@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humberto Henríquez | Microsoft Power Platform Solutions Architect</title>
+    <meta name="description" content="Especialista en digitalización y automatización de procesos empresariales con Microsoft Power Platform. 18 certificaciones Microsoft. Soluciones en producción para empresas LATAM.">
+    <meta name="keywords" content="Power Apps, Power Automate, Power BI, SharePoint, AI Builder, automatización, digitalización, consultor, LATAM">
+    <meta name="author" content="Humberto Wilfredo Henríquez Benítez">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Humberto Henríquez | Power Platform Solutions Architect">
+    <meta property="og:description" content="Convierto procesos manuales en sistemas digitales funcionales con Microsoft Power Platform. 18 certificaciones Microsoft.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-text">HH</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#problemas" data-i18n="nav-problemas">Problemas</a></li>
+                <li><a href="#servicios" data-i18n="nav-servicios">Servicios</a></li>
+                <li><a href="#proyectos" data-i18n="nav-proyectos">Proyectos</a></li>
+                <li><a href="#stack">Stack</a></li>
+                <li><a href="#sobre-mi" data-i18n="nav-sobre-mi">Sobre mí</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+                    <span class="lang-option active" data-lang="es">ES</span>
+                    <span class="lang-sep">|</span>
+                    <span class="lang-option" data-lang="en">EN</span>
+                </button>
+                <a href="#contacto" class="btn btn-primary nav-cta">Agendar consulta</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <span class="badge"><i class="ph ph-certificate"></i> 18x Microsoft Certified</span>
+                    <span class="badge"><i class="ph ph-graduation-cap"></i> MSc Data Science</span>
+                    <span class="badge"><i class="ph ph-globe-hemisphere-west"></i> 4 países</span>
+                </div>
+                <h1 class="hero-title" data-i18n="hero-title">Elimino el caos operativo de tu empresa con <span class="text-gradient">sistemas digitales</span> que funcionan desde el día uno</h1>
+                <p class="hero-subtitle" data-i18n="hero-subtitle">Diseño e implemento soluciones con Microsoft Power Platform que reemplazan procesos manuales, hojas de Excel compartidas y aprobaciones por correo, por sistemas integrados con automatización, datos en tiempo real y control real sobre las operaciones.</p>
+                <div class="hero-actions">
+                    <a href="#contacto" class="btn btn-primary btn-lg">
+                        <i class="ph ph-calendar-check"></i> Agenda una consulta de diagnóstico
+                    </a>
+                    <a href="#proyectos" class="btn btn-outline btn-lg">
+                        <i class="ph ph-folder-open"></i> Ver proyectos
+                    </a>
+                </div>
+                <div class="hero-logos">
+                    <span class="hero-logos-label">Stack principal:</span>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Power Apps</span>
+                        <span class="tech-pill">Power Automate</span>
+                        <span class="tech-pill">Power BI</span>
+                        <span class="tech-pill">AI Builder</span>
+                        <span class="tech-pill">SharePoint</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg-gradient"></div>
+    </section>
+
+    <!-- ========== SOCIAL PROOF BAR ========== -->
+    <section class="proof-bar">
+        <div class="container">
+            <div class="proof-items">
+                <div class="proof-item">
+                    <span class="proof-number">18</span>
+                    <span class="proof-label">Certificaciones Microsoft</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-number">6+</span>
+                    <span class="proof-label">Soluciones en producción</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-number">4</span>
+                    <span class="proof-label">Países atendidos</span>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-item">
+                    <span class="proof-number">10+</span>
+                    <span class="proof-label">Años de experiencia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROBLEMAS ========== -->
+    <section class="section" id="problemas">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">El diagnóstico</span>
+                <h2 class="section-title">¿Esto te suena familiar?</h2>
+                <p class="section-subtitle">Si te identificas con al menos dos de estos problemas, puedo ayudarte.</p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon"><i class="ph ph-file-xls"></i></div>
+                    <h3>Tu operación vive en Excel</h3>
+                    <p>Hojas compartidas por correo que nadie sabe cuál es la versión correcta. Los datos se pierden, se duplican o se corrompen. Si la persona que maneja "el Excel maestro" se va de vacaciones, el proceso se detiene.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon"><i class="ph ph-envelope-simple"></i></div>
+                    <h3>Tus aprobaciones son por email o WhatsApp</h3>
+                    <p>Los procesos de aprobación dependen de que alguien lea un correo o un mensaje. No hay trazabilidad, no hay tiempos medibles, no hay escalamiento automático. Las solicitudes se pierden entre bandejas de entrada.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon"><i class="ph ph-clock-countdown"></i></div>
+                    <h3>Tus reportes se arman manualmente cada semana</h3>
+                    <p>Alguien exporta datos de un sistema, los pega en Excel, les da formato y envía un PDF por correo. Cada semana. Y aún así, los números no siempre cuadran.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon"><i class="ph ph-eye-closed"></i></div>
+                    <h3>No tienes visibilidad en tiempo real</h3>
+                    <p>Para saber cómo va el negocio hoy, tienes que preguntar, esperar, y confiar en que la respuesta sea correcta. No hay dashboard, no hay datos actualizados, no hay certeza.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon"><i class="ph ph-plugs"></i></div>
+                    <h3>Tus sistemas no se hablan entre sí</h3>
+                    <p>Datos en SQL Server, tickets en un service desk, documentos en SharePoint, seguimiento en Excel. Nada se conecta. Los datos están fragmentados y nadie tiene la foto completa.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon"><i class="ph ph-user-circle-minus"></i></div>
+                    <h3>Dependes de una persona clave</h3>
+                    <p>Si esa persona se va de vacaciones, se enferma o renuncia, el proceso se detiene. No hay documentación, no hay sistema. Solo conocimiento en la cabeza de alguien.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICIOS ========== -->
+    <section class="section section-alt" id="servicios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Soluciones</span>
+                <h2 class="section-title">Servicios</h2>
+                <p class="section-subtitle">Soluciones de digitalización y automatización con Microsoft Power Platform</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-gear-six"></i></div>
+                    <h3>Automatización de Procesos Operativos</h3>
+                    <p>Reemplazo flujos manuales repetitivos por automatizaciones que se ejecutan solas: aprobaciones, notificaciones, generación de documentos, sincronización de datos entre sistemas.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> Diagnóstico de procesos candidatos</li>
+                        <li><i class="ph ph-check-circle"></i> Flujos en Power Automate (Cloud + Desktop)</li>
+                        <li><i class="ph ph-check-circle"></i> Manejo de errores y logging</li>
+                        <li><i class="ph ph-check-circle"></i> Documentación y capacitación</li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> Tu equipo deja de hacer trabajo mecánico y se enfoca en decisiones.
+                    </div>
+                </div>
+                <div class="service-card featured">
+                    <div class="service-badge">Más solicitado</div>
+                    <div class="service-icon"><i class="ph ph-device-mobile"></i></div>
+                    <h3>Aplicaciones de Negocio a Medida</h3>
+                    <p>Diseño y construyo aplicaciones empresariales con Power Apps conectadas a tus datos reales. Portales de solicitudes, registros de campo, gestión documental, inventarios.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> Levantamiento de requerimientos</li>
+                        <li><i class="ph ph-check-circle"></i> Desarrollo en Power Apps (Canvas/Model-Driven)</li>
+                        <li><i class="ph ph-check-circle"></i> Flujos de automatización asociados</li>
+                        <li><i class="ph ph-check-circle"></i> Seguridad por rol y responsive design</li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> Apps funcionales en semanas, no en meses.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-chart-line-up"></i></div>
+                    <h3>Dashboards e Inteligencia Operativa</h3>
+                    <p>Conecto tus fuentes de datos (SQL, APIs, SharePoint, Excel, service desks) en dashboards de Power BI que muestran lo que importa: KPIs, tendencias, alertas y detalle bajo demanda.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> Conexión a múltiples fuentes de datos</li>
+                        <li><i class="ph ph-check-circle"></i> Modelado DAX + Power Query avanzado</li>
+                        <li><i class="ph ph-check-circle"></i> Refresh automático y seguridad por rol</li>
+                        <li><i class="ph ph-check-circle"></i> Publicación en Power BI Service</li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> Datos reales, actualizados, sin manipulación manual.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-files"></i></div>
+                    <h3>Gestión Documental con Control</h3>
+                    <p>Implemento sistemas de control documental sobre SharePoint con codificación estandarizada, versionado, permisos por rol y búsqueda inteligente con IA.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> Codificación automática de documentos</li>
+                        <li><i class="ph ph-check-circle"></i> Búsqueda con AI Builder + KQL</li>
+                        <li><i class="ph ph-check-circle"></i> Filtros de seguridad por área y rol</li>
+                        <li><i class="ph ph-check-circle"></i> Trazabilidad para auditorías</li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> Tu documentación deja de ser un caos y se vuelve un activo gestionado.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-stamp"></i></div>
+                    <h3>Portales de Solicitudes y Aprobaciones</h3>
+                    <p>Portales digitales con formularios inteligentes, flujos de aprobación multinivel, notificaciones automáticas, escalamiento por tiempo y trazabilidad completa.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> Formulario Power Apps con validaciones</li>
+                        <li><i class="ph ph-check-circle"></i> Aprobaciones paralelas/secuenciales</li>
+                        <li><i class="ph ph-check-circle"></i> Notificaciones email + Teams</li>
+                        <li><i class="ph ph-check-circle"></i> Dashboard de seguimiento</li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> De días de aprobación manual a horas automáticas.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-compass-tool"></i></div>
+                    <h3>Consultoría y Roadmap de Digitalización</h3>
+                    <p>Analizo tus procesos actuales, identifico cuellos de botella y oportunidades de automatización, y entrego un roadmap priorizado con soluciones concretas.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> Mapeo de procesos (AS-IS / TO-BE)</li>
+                        <li><i class="ph ph-check-circle"></i> Evaluación de madurez digital</li>
+                        <li><i class="ph ph-check-circle"></i> Roadmap 3-6-12 meses con ROI</li>
+                        <li><i class="ph ph-check-circle"></i> Documento ejecutivo para directivos</li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> Sin humo, sin promesas vacías: un plan ejecutable.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CÓMO TRABAJO ========== -->
+    <section class="section" id="proceso">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Metodología</span>
+                <h2 class="section-title">Cómo trabajo</h2>
+                <p class="section-subtitle">Un proceso claro de 5 pasos para llevar tu operación de manual a digital</p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Diagnóstico</h3>
+                        <span class="step-duration">1-2 días</span>
+                        <p>Entiendo tu operación actual: qué procesos duelen, dónde se pierde tiempo, qué información falta. No asumo. Pregunto, observo y documento antes de proponer nada.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Diseño de la solución</h3>
+                        <span class="step-duration">2-3 días</span>
+                        <p>Defino la arquitectura técnica, los flujos de datos, la experiencia de usuario y los criterios de éxito. Plan claro con alcance, entregables, tiempos y dependencias.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Construcción iterativa</h3>
+                        <span class="step-duration">2-8 semanas</span>
+                        <p>Construyo en ciclos cortos con entregas funcionales cada 1-2 semanas. Ves avance real desde el inicio, puedes probar temprano y ajustar sin esperar al final.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Pruebas y ajuste</h3>
+                        <span class="step-duration">3-5 días</span>
+                        <p>Valido con usuarios reales, corrijo problemas de usabilidad y rendimiento. La solución no se entrega hasta que funcione en el contexto real de tu equipo.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3>Entrega y transferencia</h3>
+                        <span class="step-duration">1-2 días</span>
+                        <p>Entrego en producción con documentación técnica, guía de usuario y sesión de capacitación. Tu equipo queda capacitado para operar y mantener lo construido.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROYECTOS ========== -->
+    <section class="section section-dark" id="proyectos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag light">Portafolio</span>
+                <h2 class="section-title light">Proyectos en producción</h2>
+                <p class="section-subtitle light">Procesos reales que he digitalizado para empresas de la región</p>
+            </div>
+
+            <!-- Project 1: Asistente Técnico IA -->
+            <div class="project-card project-featured">
+                <div class="project-header">
+                    <div class="project-tags">
+                        <span class="project-tag tag-ai">IA Aplicada</span>
+                        <span class="project-tag tag-app">Power Apps</span>
+                        <span class="project-tag tag-flow">Power Automate</span>
+                    </div>
+                    <span class="project-industry"><i class="ph ph-buildings"></i> Servicios IT Gestionados — Regional LATAM</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-info">
+                        <h3>Asistente Técnico con Inteligencia Artificial</h3>
+                        <p class="project-tagline">De buscar manuales por horas a encontrar respuestas en segundos</p>
+
+                        <div class="project-context">
+                            <div class="context-block">
+                                <h4><i class="ph ph-warning-circle"></i> Problema</h4>
+                                <p>Técnicos de campo perdían tiempo significativo buscando documentación técnica. Navegaban carpetas de SharePoint sin sistema de búsqueda inteligente, enviaban mensajes a colegas pidiendo archivos, o resolvían sin consultar la documentación oficial.</p>
+                            </div>
+                            <div class="context-block">
+                                <h4><i class="ph ph-lightning"></i> Solución</h4>
+                                <p>App en Power Apps donde el técnico escribe su consulta en lenguaje natural. AI Builder extrae keywords, se construye una query KQL contra SharePoint Search API, se filtran resultados por área/rol del técnico, y se devuelven documentos relevantes en segundos.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-results">
+                            <h4>Resultados</h4>
+                            <ul>
+                                <li><i class="ph ph-check-circle"></i> Búsqueda de documentación pasó de minutos a segundos</li>
+                                <li><i class="ph ph-check-circle"></i> Eliminó dependencia de "preguntarle al que sabe"</li>
+                                <li><i class="ph ph-check-circle"></i> Escalaciones por falta de información reducidas visiblemente</li>
+                                <li><i class="ph ph-check-circle"></i> Seguridad por rol: cada técnico ve solo lo que le corresponde</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="project-arch">
+                        <div class="arch-diagram">
+                            <div class="arch-title">Arquitectura de la solución</div>
+                            <div class="arch-flow">
+                                <div class="arch-node"><i class="ph ph-user"></i><span>Técnico</span></div>
+                                <div class="arch-arrow"><i class="ph ph-arrow-right"></i></div>
+                                <div class="arch-node highlight"><i class="ph ph-device-mobile"></i><span>Power App</span></div>
+                                <div class="arch-arrow"><i class="ph ph-arrow-right"></i></div>
+                                <div class="arch-node"><i class="ph ph-flow-arrow"></i><span>Power Automate</span></div>
+                                <div class="arch-arrow"><i class="ph ph-arrow-right"></i></div>
+                                <div class="arch-node highlight"><i class="ph ph-brain"></i><span>AI Builder</span></div>
+                                <div class="arch-arrow"><i class="ph ph-arrow-right"></i></div>
+                                <div class="arch-node"><i class="ph ph-magnifying-glass"></i><span>Search API (KQL)</span></div>
+                            </div>
+                        </div>
+                        <div class="project-stack">
+                            <span>Power Apps</span>
+                            <span>Power Automate</span>
+                            <span>AI Builder</span>
+                            <span>SharePoint Search API</span>
+                            <span>KQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Dashboards Service Desk -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-tags">
+                        <span class="project-tag tag-bi">Power BI</span>
+                        <span class="project-tag tag-data">APIs REST</span>
+                        <span class="project-tag tag-data">SQL Server</span>
+                    </div>
+                    <span class="project-industry"><i class="ph ph-buildings"></i> Service Desk Regional</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-info">
+                        <h3>Dashboard Ejecutivo Multi-Fuente</h3>
+                        <p class="project-tagline">Unificando datos de 3 service desks en un solo dashboard</p>
+                        <div class="project-context">
+                            <div class="context-block">
+                                <h4><i class="ph ph-warning-circle"></i> Problema</h4>
+                                <p>Tres fuentes de datos distintas (SolarWinds, Redmine, SQL Server FSM) sin vista unificada. Para ver el panorama completo, había que entrar a tres portales diferentes. La gerencia tomaba decisiones con información parcial.</p>
+                            </div>
+                            <div class="context-block">
+                                <h4><i class="ph ph-lightning"></i> Solución</h4>
+                                <p>Dashboard ejecutivo en Power BI conectando las tres fuentes. Queries M con paginación dinámica (List.Generate) para APIs, gateway on-premises para SQL Server, modelo dimensional unificado y refresh automático.</p>
+                            </div>
+                        </div>
+                        <div class="project-results">
+                            <h4>Resultados</h4>
+                            <ul>
+                                <li><i class="ph ph-check-circle"></i> Vista consolidada de toda la operación de soporte</li>
+                                <li><i class="ph ph-check-circle"></i> Eliminó preparación manual de reportes ejecutivos</li>
+                                <li><i class="ph ph-check-circle"></i> Identificó patrones de carga por país y técnico</li>
+                                <li><i class="ph ph-check-circle"></i> Visibilidad en tiempo real para toma de decisiones</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="project-arch">
+                        <div class="arch-diagram">
+                            <div class="arch-title">Fuentes de datos integradas</div>
+                            <div class="arch-flow arch-converge">
+                                <div class="arch-sources">
+                                    <div class="arch-node small"><span>SolarWinds API</span></div>
+                                    <div class="arch-node small"><span>Redmine API</span></div>
+                                    <div class="arch-node small"><span>SQL Server FSM</span></div>
+                                </div>
+                                <div class="arch-arrow"><i class="ph ph-arrows-merge"></i></div>
+                                <div class="arch-node highlight"><i class="ph ph-chart-line-up"></i><span>Power BI</span></div>
+                            </div>
+                        </div>
+                        <div class="project-stack">
+                            <span>Power BI</span>
+                            <span>Power Query (M)</span>
+                            <span>DAX</span>
+                            <span>REST APIs</span>
+                            <span>SQL Server</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Listado Maestro -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-tags">
+                        <span class="project-tag tag-sp">SharePoint</span>
+                        <span class="project-tag tag-app">Power Apps</span>
+                        <span class="project-tag tag-flow">Power Automate</span>
+                    </div>
+                    <span class="project-industry"><i class="ph ph-buildings"></i> Gobierno Documental Corporativo</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-info">
+                        <h3>Sistema de Gestión Documental</h3>
+                        <p class="project-tagline">De carpetas compartidas a gobierno de la información</p>
+                        <div class="project-context">
+                            <div class="context-block">
+                                <h4><i class="ph ph-warning-circle"></i> Problema</h4>
+                                <p>Documentación en carpetas sin clasificación formal, versiones duplicadas, sin permisos por rol, sin trazabilidad. Auditorías internas requerían esfuerzo manual para demostrar control.</p>
+                            </div>
+                            <div class="context-block">
+                                <h4><i class="ph ph-lightning"></i> Solución</h4>
+                                <p>Listado Maestro con codificación estructurada [ÁREA-CLASE-ALCANCE-CORRELATIVO-VERSIÓN], generación automática de códigos vía Power Automate, Power App como frontend, filtros de seguridad por área y rol.</p>
+                            </div>
+                        </div>
+                        <div class="project-results">
+                            <h4>Resultados</h4>
+                            <ul>
+                                <li><i class="ph ph-check-circle"></i> Catálogo maestro con código único y versión vigente</li>
+                                <li><i class="ph ph-check-circle"></i> Permisos controlados: cada usuario ve solo lo que corresponde</li>
+                                <li><i class="ph ph-check-circle"></i> Generación automática eliminó errores de clasificación</li>
+                                <li><i class="ph ph-check-circle"></i> Base lista para auditorías con trazabilidad completa</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="project-arch">
+                        <div class="arch-diagram">
+                            <div class="arch-title">Estructura de codificación</div>
+                            <div class="code-structure">
+                                <div class="code-part"><span class="code-label">Área</span><span class="code-value">IT</span></div>
+                                <span class="code-sep">-</span>
+                                <div class="code-part"><span class="code-label">Clase</span><span class="code-value">MAN</span></div>
+                                <span class="code-sep">-</span>
+                                <div class="code-part"><span class="code-label">Alcance</span><span class="code-value">GEN</span></div>
+                                <span class="code-sep">-</span>
+                                <div class="code-part"><span class="code-label">Corr.</span><span class="code-value">001</span></div>
+                                <span class="code-sep">-</span>
+                                <div class="code-part"><span class="code-label">Versión</span><span class="code-value">V02</span></div>
+                            </div>
+                        </div>
+                        <div class="project-stack">
+                            <span>SharePoint Online</span>
+                            <span>Power Apps</span>
+                            <span>Power Automate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects 4 & 5: Travel + Purchase -->
+            <div class="projects-duo">
+                <div class="project-card compact">
+                    <div class="project-header">
+                        <div class="project-tags">
+                            <span class="project-tag tag-app">Power Apps</span>
+                            <span class="project-tag tag-flow">Power Automate</span>
+                        </div>
+                    </div>
+                    <h3>Travel Request Portal</h3>
+                    <p class="project-tagline">Solicitudes de viaje con aprobación digital multinivel</p>
+                    <p>Portal digital que reemplazó aprobaciones por correo con formulario estandarizado, flujo multinivel automático, notificaciones en tiempo real y tracking de estado. Estandarizado para todos los países de operación.</p>
+                    <div class="project-results compact-results">
+                        <ul>
+                            <li><i class="ph ph-check-circle"></i> Eliminó dependencia de correo electrónico</li>
+                            <li><i class="ph ph-check-circle"></i> Estado visible en tiempo real para el solicitante</li>
+                            <li><i class="ph ph-check-circle"></i> Trazabilidad completa de cada aprobación</li>
+                        </ul>
+                    </div>
+                    <div class="project-stack">
+                        <span>Power Apps</span>
+                        <span>Power Automate</span>
+                        <span>SharePoint</span>
+                    </div>
+                </div>
+                <div class="project-card compact">
+                    <div class="project-header">
+                        <div class="project-tags">
+                            <span class="project-tag tag-app">Power Apps</span>
+                            <span class="project-tag tag-flow">Power Automate</span>
+                        </div>
+                    </div>
+                    <h3>Purchase Order Request</h3>
+                    <p class="project-tagline">Órdenes de compra trazables de solicitud a cierre</p>
+                    <p>Sistema digital con formulario estructurado, aprobaciones por monto y área, gestión de estados (8 estados), adjuntos vinculados por orden, y reportería de compras consolidada.</p>
+                    <div class="project-results compact-results">
+                        <ul>
+                            <li><i class="ph ph-check-circle"></i> Formato único y estandarizado para todas las áreas</li>
+                            <li><i class="ph ph-check-circle"></i> Adjuntos viajan con la solicitud, no por separado</li>
+                            <li><i class="ph ph-check-circle"></i> Compliance y control de gasto auditable</li>
+                        </ul>
+                    </div>
+                    <div class="project-stack">
+                        <span>Power Apps</span>
+                        <span>Power Automate</span>
+                        <span>SharePoint</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: RPA -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-tags">
+                        <span class="project-tag tag-rpa">RPA</span>
+                        <span class="project-tag tag-flow">Power Automate Desktop</span>
+                        <span class="project-tag tag-data">PowerShell</span>
+                    </div>
+                    <span class="project-industry"><i class="ph ph-buildings"></i> Operaciones Internas — Lenovo LATAM</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-info">
+                        <h3>Automatización RPA para Sistemas Legacy</h3>
+                        <p class="project-tagline">Bots que procesan lo que nadie quiere procesar</p>
+                        <div class="project-context">
+                            <div class="context-block">
+                                <h4><i class="ph ph-warning-circle"></i> Problema</h4>
+                                <p>Procesos manuales repetitivos con archivos Excel: importaciones masivas de casos FSM para múltiples países LATAM, formatos de fecha inconsistentes, archivos bloqueados por OneDrive sync.</p>
+                            </div>
+                            <div class="context-block">
+                                <h4><i class="ph ph-lightning"></i> Solución</h4>
+                                <p>Suite de bots en Power Automate Desktop con manejo de OneDrive sync, validación automática de formatos por país, procesamiento batch de 500 registros, orquestación desde cloud flows.</p>
+                            </div>
+                        </div>
+                        <div class="project-results">
+                            <h4>Resultados</h4>
+                            <ul>
+                                <li><i class="ph ph-check-circle"></i> Horas semanales de trabajo manual eliminadas</li>
+                                <li><i class="ph ph-check-circle"></i> Errores de formato y datos eliminados por completo</li>
+                                <li><i class="ph ph-check-circle"></i> Procesos independientes de personas específicas</li>
+                                <li><i class="ph ph-check-circle"></i> Personal redirigido a actividades de mayor valor</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="project-arch">
+                        <div class="arch-diagram">
+                            <div class="arch-title">Flujo de automatización</div>
+                            <div class="arch-flow">
+                                <div class="arch-node"><i class="ph ph-cloud"></i><span>Cloud Flow</span></div>
+                                <div class="arch-arrow"><i class="ph ph-arrow-right"></i></div>
+                                <div class="arch-node highlight"><i class="ph ph-robot"></i><span>PAD Bot</span></div>
+                                <div class="arch-arrow"><i class="ph ph-arrow-right"></i></div>
+                                <div class="arch-node"><i class="ph ph-file-xls"></i><span>Excel / OneDrive</span></div>
+                                <div class="arch-arrow"><i class="ph ph-arrow-right"></i></div>
+                                <div class="arch-node"><i class="ph ph-database"></i><span>SQL Server</span></div>
+                            </div>
+                        </div>
+                        <div class="project-stack">
+                            <span>Power Automate Desktop</span>
+                            <span>Power Automate Cloud</span>
+                            <span>PowerShell</span>
+                            <span>ExcelScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STACK TECNOLÓGICO ========== -->
+    <section class="section" id="stack">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Herramientas</span>
+                <h2 class="section-title">Stack tecnológico y certificaciones</h2>
+                <p class="section-subtitle">Trabajo exclusivamente dentro del ecosistema Microsoft. Esto no es una limitación: es una decisión estratégica. Todo lo que construyo se integra nativamente con Microsoft 365.</p>
+            </div>
+            <div class="stack-grid">
+                <div class="stack-category">
+                    <h3><i class="ph ph-device-mobile"></i> Aplicaciones</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">Power Apps (Canvas & Model-Driven)</div>
+                        <div class="stack-item">Power Pages</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3><i class="ph ph-gear-six"></i> Automatización</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">Power Automate (Cloud Flows)</div>
+                        <div class="stack-item">Power Automate Desktop (RPA)</div>
+                        <div class="stack-item">AI Builder</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3><i class="ph ph-chart-line-up"></i> Datos e Inteligencia</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">Power BI (Desktop + Service)</div>
+                        <div class="stack-item">SQL Server</div>
+                        <div class="stack-item">DAX / Power Query (M)</div>
+                        <div class="stack-item">SharePoint Search API (KQL)</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3><i class="ph ph-plugs-connected"></i> Integraciones</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">Microsoft Graph API</div>
+                        <div class="stack-item">Custom Connectors (OpenAPI)</div>
+                        <div class="stack-item">REST APIs</div>
+                        <div class="stack-item">Azure Functions</div>
+                        <div class="stack-item">PowerShell / PnP</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3><i class="ph ph-users-three"></i> Plataforma</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">SharePoint Online</div>
+                        <div class="stack-item">Microsoft 365</div>
+                        <div class="stack-item">Dataverse</div>
+                        <div class="stack-item">Azure AD</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3><i class="ph ph-shield-check"></i> Gobernanza</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">Power Platform Solutions (ALM)</div>
+                        <div class="stack-item">Environment Variables</div>
+                        <div class="stack-item">Connection References</div>
+                        <div class="stack-item">Azure DevOps (CI/CD)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificaciones -->
+            <div class="certs-section">
+                <div class="certs-header">
+                    <h3>18 Certificaciones Microsoft Activas</h3>
+                    <p>Cada certificación representa conocimiento validado y experiencia aplicada en proyectos reales.</p>
+                </div>
+                <div class="certs-grid">
+                    <div class="cert-group">
+                        <h4>Power Platform</h4>
+                        <div class="cert-badges">
+                            <span class="cert-badge">PL-900</span>
+                            <span class="cert-badge">PL-100</span>
+                            <span class="cert-badge">PL-200</span>
+                            <span class="cert-badge">PL-300</span>
+                            <span class="cert-badge">PL-400</span>
+                            <span class="cert-badge">PL-500</span>
+                            <span class="cert-badge">PL-600</span>
+                        </div>
+                    </div>
+                    <div class="cert-group">
+                        <h4>Data & AI</h4>
+                        <div class="cert-badges">
+                            <span class="cert-badge">DA-100</span>
+                            <span class="cert-badge">DP-900</span>
+                            <span class="cert-badge">AI-900</span>
+                        </div>
+                    </div>
+                    <div class="cert-group">
+                        <h4>Azure & Security</h4>
+                        <div class="cert-badges">
+                            <span class="cert-badge">AZ-900</span>
+                            <span class="cert-badge">SC-900</span>
+                            <span class="cert-badge">MS-900</span>
+                        </div>
+                    </div>
+                    <div class="cert-group">
+                        <h4>Dynamics 365</h4>
+                        <div class="cert-badges">
+                            <span class="cert-badge">MB-910</span>
+                            <span class="cert-badge">MB-920</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SOBRE MÍ ========== -->
+    <section class="section section-alt" id="sobre-mi">
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-content">
+                    <span class="section-tag">Sobre mí</span>
+                    <h2 class="section-title">Humberto Henríquez</h2>
+                    <div class="about-text">
+                        <p>Empecé mi carrera en el mundo de la infraestructura y el soporte técnico. Ahí aprendí algo que muchos tecnólogos nunca entienden: <strong>la tecnología no vale nada si no resuelve un problema real del negocio.</strong></p>
+                        <p>Con el tiempo, me fui moviendo hacia la automatización y la gestión de datos. Vi de primera mano cómo empresas enteras operaban con hojas de Excel compartidas por correo, aprobaciones por WhatsApp, reportes armados manualmente cada lunes, y procesos críticos que dependían de que "alguien se acordara" de hacer algo.</p>
+                        <p>Ahí encontré mi misión profesional: <strong>eliminar esa fragilidad operativa.</strong></p>
+                        <p>Microsoft Power Platform se convirtió en mi herramienta principal porque permite tomar un proceso roto y convertirlo en un sistema digital completo — con interfaz, base de datos, automatización, aprobaciones y reportería — sin necesidad de desarrollo custom de meses ni presupuestos de medio millón de dólares.</p>
+                        <p>Hoy, con 18 certificaciones Microsoft, una maestría en Ciencia de Datos y experiencia operando con clientes en Centroamérica y el Caribe, me dedico a una sola cosa: <strong>ayudar a empresas a dejar de operar en modo manual y empezar a operar en modo digital.</strong></p>
+                    </div>
+                </div>
+                <div class="about-sidebar">
+                    <div class="about-card">
+                        <div class="about-detail">
+                            <i class="ph ph-map-pin"></i>
+                            <div>
+                                <strong>Base</strong>
+                                <span>San Salvador, El Salvador</span>
+                            </div>
+                        </div>
+                        <div class="about-detail">
+                            <i class="ph ph-graduation-cap"></i>
+                            <div>
+                                <strong>Formación</strong>
+                                <span>Ing. en Sistemas + MSc Ciencia de Datos</span>
+                            </div>
+                        </div>
+                        <div class="about-detail">
+                            <i class="ph ph-certificate"></i>
+                            <div>
+                                <strong>Certificaciones</strong>
+                                <span>18x Microsoft Certified</span>
+                            </div>
+                        </div>
+                        <div class="about-detail">
+                            <i class="ph ph-globe-hemisphere-west"></i>
+                            <div>
+                                <strong>Cobertura</strong>
+                                <span>El Salvador, Guatemala, Costa Rica, Rep. Dominicana</span>
+                            </div>
+                        </div>
+                        <div class="about-detail">
+                            <i class="ph ph-buildings"></i>
+                            <div>
+                                <strong>Empresa</strong>
+                                <span>Netser Group IT Services</span>
+                            </div>
+                        </div>
+                        <div class="about-detail">
+                            <i class="ph ph-translate"></i>
+                            <div>
+                                <strong>Idiomas</strong>
+                                <span>Español nativo, Inglés profesional</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DIFERENCIACIÓN ========== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Diferenciación</span>
+                <h2 class="section-title">¿Por qué trabajar conmigo?</h2>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-card">
+                    <div class="diff-icon"><i class="ph ph-stack"></i></div>
+                    <h3>Sistema completo, no piezas sueltas</h3>
+                    <p>No entrego un dashboard o una app aislada. Entrego el sistema completo: interfaz + base de datos + automatización + aprobaciones + reportería. Todo conectado.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon"><i class="ph ph-shield-checkered"></i></div>
+                    <h3>Producción, no demos</h3>
+                    <p>Cada solución incluye manejo de errores (Try-Catch), logging, seguridad por roles validada en backend, documentación técnica y capacitación. No es un prototipo bonito que falla en la realidad.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon"><i class="ph ph-handshake"></i></div>
+                    <h3>Negocio primero, tecnología después</h3>
+                    <p>No vendo herramientas. Entiendo tu operación, mapeo tu proceso y diseño la solución que resuelve tu problema real. La tecnología es el medio, no el fin.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon"><i class="ph ph-book-open-text"></i></div>
+                    <h3>Transferencia de conocimiento</h3>
+                    <p>Cada proyecto incluye documentación completa y capacitación. Mi objetivo es entregar sistemas que funcionen sin mí después de la implementación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA FINAL ========== -->
+    <section class="section section-cta" id="contacto">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to stop operating in manual mode?</h2>
+                <p>Book a free 30-minute diagnostic call. We'll review your most critical process and I'll tell you honestly if I can help and how.</p>
+                <div class="cta-cards">
+                    <a href="mailto:henriquezbh5@gmail.com" class="cta-card">
+                        <i class="ph ph-envelope-simple"></i>
+                        <strong>Email</strong>
+                        <span>henriquezbh5@gmail.com</span>
+                    </a>
+                    <a href="https://wa.me/50371928070" class="cta-card" target="_blank" rel="noopener">
+                        <i class="ph ph-whatsapp-logo"></i>
+                        <strong>WhatsApp</strong>
+                        <span>Quick response</span>
+                    </a>
+                    <a href="https://www.upwork.com/freelancers/humbertohenriquez" class="cta-card" target="_blank" rel="noopener">
+                        <i class="ph ph-briefcase"></i>
+                        <strong>Upwork</strong>
+                        <span>Hire me on Upwork</span>
+                    </a>
+                </div>
+                <div class="cta-actions">
+                    <a href="mailto:henriquezbh5@gmail.com?subject=Diagnostic%20Call%20Request&body=Hi%20Humberto%2C%0A%0AI%20would%20like%20to%20schedule%20a%20diagnostic%20call%20to%20discuss%20a%20process%20automation%20project.%0A%0ACompany%3A%20%0AProcess%20to%20digitize%3A%20%0APreferred%20date%2Ftime%3A%20%0A%0AThanks!" class="btn btn-white btn-lg">
+                        <i class="ph ph-calendar-check"></i> Book a diagnostic call
+                    </a>
+                </div>
+                <p class="cta-note">No commitment. No sales pitch. Just a conversation to understand your situation and see if I can help.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHATSAPP FLOATING BUTTON ========== -->
+    <a href="https://wa.me/50371928070?text=Hi%20Humberto%2C%20I%20visited%20your%20portfolio%20and%20I%27m%20interested%20in%20discussing%20a%20project." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contact via WhatsApp">
+        <i class="ph-fill ph-whatsapp-logo"></i>
+    </a>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">HH</span>
+                    <p>Humberto Henríquez<br>Microsoft Power Platform Solutions Architect</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#servicios">Servicios</a>
+                    <a href="#proyectos">Proyectos</a>
+                    <a href="#stack">Stack</a>
+                    <a href="#sobre-mi">Sobre mí</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; 2026 Humberto Henríquez. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
