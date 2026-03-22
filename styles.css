@@ -153,33 +153,29 @@ h1, h2, h3, h4, h5, h6 {
 .lang-toggle {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
+}
+
+.lang-btn {
     background: none;
     border: 1px solid rgba(15, 43, 70, 0.15);
     border-radius: 6px;
-    padding: 4px 10px;
+    padding: 4px 8px;
     cursor: pointer;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6875rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 1;
     transition: all 0.3s ease;
+    opacity: 0.5;
 }
 
-.lang-option {
-    color: rgba(15, 43, 70, 0.35);
-    transition: color 0.3s ease;
+.lang-btn.active {
+    opacity: 1;
+    border-color: #2D6A9F;
+    background: rgba(45, 106, 159, 0.08);
 }
 
-.lang-option.active {
-    color: #2D6A9F;
-}
-
-.lang-sep {
-    color: rgba(15, 43, 70, 0.15);
-}
-
-.lang-toggle:hover {
-    border-color: rgba(15, 43, 70, 0.3);
+.lang-btn:hover {
+    opacity: 0.8;
 }
 
 .nav-cta {
@@ -1632,6 +1628,10 @@ h1, h2, h3, h4, h5, h6 {
 
     .nav-cta {
         display: none;
+    }
+
+    .nav-right {
+        gap: 8px;
     }
 
     .nav-toggle {
