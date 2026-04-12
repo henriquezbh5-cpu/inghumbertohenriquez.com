@@ -1,0 +1,282 @@
+/* ========== PROJECT MOCKUP PREVIEWS ========== */
+
+.project-mockup {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: #1E1E2E;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.mockup-bar {
+    background: #2A2A3E;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.mockup-dots { display: flex; gap: 5px; }
+.mockup-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-dots span:nth-child(1) { background: #FF5F56; }
+.mockup-dots span:nth-child(2) { background: #FFBD2E; }
+.mockup-dots span:nth-child(3) { background: #27C93F; }
+
+.mockup-url-bar {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.45);
+    margin-left: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mockup-url-bar i { font-size: 0.75rem; color: #27C93F; }
+
+.mockup-screen {
+    padding: 18px;
+    min-height: 200px;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+}
+
+.mockup-tag {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    color: rgba(255,255,255,0.65);
+    font-size: 0.6rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.mockup-tag-light {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(6px);
+    color: rgba(0,0,0,0.55);
+    font-size: 0.6rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Phone frame */
+.project-mockup-phone {
+    width: 180px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #1E1E2E;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+    border: 3px solid #3A3A50;
+    margin: 0 auto 16px;
+}
+
+.mockup-notch {
+    background: #2A2A3E;
+    padding: 8px 0 6px;
+    display: flex;
+    justify-content: center;
+}
+
+.mockup-notch span {
+    width: 50px;
+    height: 5px;
+    background: #3A3A50;
+    border-radius: 4px;
+}
+
+.mockup-phone-body {
+    padding: 12px;
+    min-height: 260px;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===== MOCK UI ELEMENTS ===== */
+
+.m-row { display: flex; align-items: center; gap: 6px; }
+
+.m-header {
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.m-header i { font-size: 0.9rem; }
+
+.m-input {
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    font-size: 0.6rem;
+}
+
+.m-input i { font-size: 0.8rem; opacity: 0.5; }
+
+.m-card {
+    border-radius: 8px;
+    padding: 9px 10px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.6rem;
+    transition: transform 0.2s;
+}
+
+.m-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.m-body { flex: 1; line-height: 1.4; }
+.m-title { font-weight: 600; font-size: 0.65rem; }
+.m-sub { font-size: 0.52rem; opacity: 0.55; margin-top: 1px; }
+
+.m-badge {
+    font-size: 0.5rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.m-stars { display: flex; gap: 1px; }
+.m-stars i { font-size: 0.55rem; }
+
+/* KPIs */
+.m-kpis { display: flex; gap: 6px; margin-bottom: 10px; }
+
+.m-kpi {
+    flex: 1;
+    border-radius: 8px;
+    padding: 10px 6px;
+    text-align: center;
+}
+
+.m-kpi-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: block;
+}
+
+.m-kpi-lbl {
+    font-size: 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.45;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Chart */
+.m-chart {
+    border-radius: 8px;
+    height: 75px;
+    overflow: hidden;
+    position: relative;
+}
+
+.m-chart svg { width: 100%; height: 100%; display: block; }
+
+/* Products grid (phone) */
+.m-products { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+
+.m-product { border-radius: 8px; overflow: hidden; }
+
+.m-product-img {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.m-product-detail { padding: 5px 6px; }
+.m-product-name { font-size: 0.5rem; font-weight: 500; line-height: 1.3; }
+.m-product-price { font-size: 0.55rem; font-weight: 700; margin-top: 2px; }
+
+/* Bottom nav */
+.m-bnav {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 2px;
+    margin-top: auto;
+}
+
+.m-bnav i { font-size: 0.95rem; }
+
+/* ===== PROJECT THEMES ===== */
+
+/* AI Assistant */
+.mockup-ai .mockup-screen { background: linear-gradient(180deg, #0B1120, #162033); }
+.mockup-ai .m-header { color: #93C5FD; }
+.mockup-ai .m-input { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); color: rgba(255,255,255,0.45); }
+.mockup-ai .m-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); }
+.mockup-ai .m-title { color: #E2E8F0; }
+.mockup-ai .m-sub { color: rgba(255,255,255,0.35); }
+
+/* Dashboard */
+.mockup-dash .mockup-screen { background: linear-gradient(180deg, #0B1120, #162033); }
+.mockup-dash .m-kpi { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); }
+.mockup-dash .m-kpi-val { color: #60A5FA; }
+.mockup-dash .m-kpi-lbl { color: rgba(255,255,255,0.35); }
+.mockup-dash .m-chart { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
+
+/* MediGenio */
+.mockup-medi .mockup-screen { background: linear-gradient(180deg, #ECFDF5, #D1FAE5); }
+.mockup-medi .m-header { color: #065F46; }
+.mockup-medi .m-card { background: white; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.mockup-medi .m-title { color: #1F2937; }
+.mockup-medi .m-sub { color: #6B7280; }
+
+/* TecniHB */
+.mockup-tecni .mockup-screen { background: linear-gradient(180deg, #FFFBF5, #FFF1E0); }
+.mockup-tecni .m-header { color: #9A3412; }
+.mockup-tecni .m-input { background: white; border: 1px solid #FED7AA; color: #9A3412; }
+.mockup-tecni .m-card { background: white; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.mockup-tecni .m-title { color: #1F2937; }
+.mockup-tecni .m-sub { color: #6B7280; }
+.mockup-tecni .m-stars i { color: #F59E0B; }
+
+/* E-commerce phone */
+.mockup-ecom .mockup-phone-body { background: #FFFFFF; }
+.mockup-ecom .m-header { color: #1E293B; font-size: 0.65rem; }
+.mockup-ecom .m-input { background: #F1F5F9; border: 1px solid #E2E8F0; color: #94A3B8; font-size: 0.5rem; padding: 6px 8px; }
+.mockup-ecom .m-product { background: #F8FAFC; border: 1px solid #E2E8F0; }
+.mockup-ecom .m-product-name { color: #334155; }
+.mockup-ecom .m-product-price { color: #2563EB; }
+.mockup-ecom .m-product-img { background: #EFF6FF; color: #3B82F6; }
+.mockup-ecom .m-bnav { border-top: 1px solid #E2E8F0; }
+.mockup-ecom .m-bnav i { color: #CBD5E1; }
+.mockup-ecom .m-bnav i.active { color: #2563EB; }
