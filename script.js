@@ -866,25 +866,25 @@ const translations = {
         'quote-step1-title': 'What do you need?',
         'quote-type-website': 'Website',
         'quote-type-website-desc': 'Landing page, corporate site, blog',
-        'quote-type-website-price': 'From $1,000',
+        'quote-type-website-price': 'From $5,000',
         'quote-type-webapp': 'Web Application',
         'quote-type-webapp-desc': 'SaaS, portal, dashboard, marketplace',
-        'quote-type-webapp-price': 'From $3,000',
+        'quote-type-webapp-price': 'From $15,000',
         'quote-type-mobile': 'Mobile App',
         'quote-type-mobile-desc': 'iOS & Android (React Native / PWA)',
-        'quote-type-mobile-price': 'From $3,500',
+        'quote-type-mobile-price': 'From $18,000',
         'quote-type-fullstack': 'Web + Mobile',
         'quote-type-fullstack-desc': 'Complete platform with web and mobile',
-        'quote-type-fullstack-price': 'From $5,500',
+        'quote-type-fullstack-price': 'From $28,000',
         'quote-type-automation': 'Automation',
         'quote-type-automation-desc': 'Power Platform, workflows, RPA',
-        'quote-type-automation-price': 'From $1,500',
+        'quote-type-automation-price': 'From $8,000',
         'quote-type-bi': 'Dashboard / BI',
         'quote-type-bi-desc': 'Power BI, analytics, data visualization',
-        'quote-type-bi-price': 'From $1,800',
+        'quote-type-bi-price': 'From $8,500',
         'quote-type-bitcoin': 'Bitcoin Advisory',
         'quote-type-bitcoin-desc': 'Market analysis, strategy, education',
-        'quote-type-bitcoin-price': 'From $500',
+        'quote-type-bitcoin-price': 'From $2,000',
         'quote-step2-title': 'Select features',
         'quote-step3-title': 'Project size',
         'quote-size-small': 'Small',
@@ -1048,7 +1048,25 @@ if (proposalForm) {
 
 // ========== PROJECT QUOTATION SIMULATOR ==========
 (function() {
-    // Feature catalogs per project type
+    // Market pricing: EN = US market, ES = LATAM market
+    const marketBasePrices = {
+        en: { website: 5000, webapp: 15000, mobile: 18000, fullstack: 28000, automation: 8000, bi: 8500, bitcoin: 2000 },
+        es: { website: 1000, webapp: 3000, mobile: 3500, fullstack: 5500, automation: 1500, bi: 1800, bitcoin: 500 }
+    };
+    const marketFeatureMultiplier = { en: 4, es: 1 };
+
+    function getMarketBasePrice(type) {
+        var lang = getLang();
+        return marketBasePrices[lang] ? marketBasePrices[lang][type] : marketBasePrices.es[type];
+    }
+
+    function getFeaturePrice(basePrice) {
+        var lang = getLang();
+        var mult = marketFeatureMultiplier[lang] || 1;
+        return Math.round(basePrice * mult);
+    }
+
+    // Feature catalogs per project type (base prices = LATAM, multiplied for US)
     const featureCatalog = {
         website: [
             { id: 'responsive', name: 'Responsive design (mobile + tablet)', nameEs: 'Diseno responsive (movil + tablet)', price: 250 },
@@ -1245,7 +1263,7 @@ if (proposalForm) {
     typeRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             state.projectType = radio.value;
-            state.basePrice = parseInt(radio.dataset.base);
+            state.basePrice = getMarketBasePrice(radio.value);
             state.selectedFeatures = [];
             state.featuresTotal = 0;
             state.complexity = null;
@@ -1274,13 +1292,14 @@ if (proposalForm) {
         featuresGrid.innerHTML = '';
 
         features.forEach(f => {
+            const adjustedPrice = getFeaturePrice(f.price);
             const div = document.createElement('label');
             div.className = 'quote-feature-item';
             div.innerHTML =
-                '<input type="checkbox" value="' + f.id + '" data-price="' + f.price + '">' +
+                '<input type="checkbox" value="' + f.id + '" data-price="' + adjustedPrice + '">' +
                 '<span class="quote-feature-check"><i class="ph ph-check"></i></span>' +
                 '<span class="quote-feature-label">' + (lang === 'es' ? f.nameEs : f.name) + '</span>' +
-                '<span class="quote-feature-price">+$' + f.price + '</span>';
+                '<span class="quote-feature-price">+$' + adjustedPrice.toLocaleString() + '</span>';
 
             const checkbox = div.querySelector('input');
             checkbox.addEventListener('change', () => {
@@ -1326,10 +1345,11 @@ if (proposalForm) {
             summaryEmpty.style.display = 'none';
             summaryDetails.style.display = 'block';
 
-            // Type line
+            // Type line (recalculate base price for current market)
+            state.basePrice = getMarketBasePrice(state.projectType);
             const tl = typeLabels[state.projectType];
             document.getElementById('quoteTypeValue').textContent =
-                (lang === 'es' ? tl.es : tl.en) + ' — $' + state.basePrice;
+                (lang === 'es' ? tl.es : tl.en) + ' — $' + state.basePrice.toLocaleString();
 
             // Features line
             document.getElementById('quoteFeaturesValue').textContent =
@@ -1469,10 +1489,10 @@ if (proposalForm) {
             complexity = 'medium'; mult = 1.8;
         }
 
-        // Base prices per type
-        var basePrices = { website: 1000, webapp: 3000, mobile: 3500, fullstack: 5500, automation: 1500, bi: 1800, bitcoin: 500 };
-        var base = basePrices[detectedType];
-        var featuresTotal = detectedFeatures.reduce(function(sum, f) { return sum + f.price; }, 0);
+        // Base prices per type (market-adjusted)
+        var base = getMarketBasePrice(detectedType);
+        var fMult = marketFeatureMultiplier[lang] || 1;
+        var featuresTotal = detectedFeatures.reduce(function(sum, f) { return sum + Math.round(f.price * fMult); }, 0);
         var rawTotal = (base + featuresTotal) * mult;
         var min = Math.round(rawTotal * 0.85);
         var max = Math.round(rawTotal * 1.15);
@@ -1482,7 +1502,7 @@ if (proposalForm) {
 
         state.aiEstimate = {
             type: detectedType,
-            typeLabel: (lang === 'es' ? typeLabels[detectedType].es : typeLabels[detectedType].en) + ' — $' + base,
+            typeLabel: (lang === 'es' ? typeLabels[detectedType].es : typeLabels[detectedType].en) + ' — $' + base.toLocaleString(),
             features: detectedFeatures,
             featuresTotal: featuresTotal,
             complexityLabel: sizeLabels[complexity][lang] + ' (x' + mult + ')',
@@ -1500,12 +1520,13 @@ if (proposalForm) {
         var html = '<div class="quote-ai-detected-item"><i class="ph ph-app-window"></i><span class="ai-feature-name"><strong>' +
             (lang === 'es' ? 'Tipo detectado: ' : 'Detected type: ') +
             (lang === 'es' ? typeLabels[detectedType].es : typeLabels[detectedType].en) +
-            '</strong></span><span class="ai-feature-cost">$' + base + ' base</span></div>';
+            '</strong></span><span class="ai-feature-cost">$' + base.toLocaleString() + ' base</span></div>';
 
         detectedFeatures.forEach(function(f) {
+            var adjPrice = Math.round(f.price * fMult);
             html += '<div class="quote-ai-detected-item"><i class="ph ph-check-circle"></i><span class="ai-feature-name">' +
                 (lang === 'es' ? f.nameEs : f.name) +
-                '</span><span class="ai-feature-cost">+$' + f.price + '</span></div>';
+                '</span><span class="ai-feature-cost">+$' + adjPrice.toLocaleString() + '</span></div>';
         });
 
         html += '<div class="quote-ai-detected-item"><i class="ph ph-gauge"></i><span class="ai-feature-name"><strong>' +
@@ -1592,11 +1613,17 @@ if (proposalForm) {
         });
     });
 
-    // Re-render features when language changes
+    // Re-render features and recalculate prices when language/market changes
     document.querySelectorAll('.lang-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             setTimeout(function() {
-                if (state.projectType) renderFeatures();
+                if (state.projectType) {
+                    state.basePrice = getMarketBasePrice(state.projectType);
+                    renderFeatures();
+                    // Recalculate features total with new market prices
+                    state.featuresTotal = 0;
+                    state.selectedFeatures = [];
+                }
                 updateSummary();
             }, 100);
         });
