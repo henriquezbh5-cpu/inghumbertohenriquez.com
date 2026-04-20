@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization Complete | ClickMental AI</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0F2B46;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 24px;
+        }
+        .container { max-width: 520px; }
+        .icon {
+            width: 88px; height: 88px;
+            border-radius: 50%;
+            background: rgba(91, 155, 213, 0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 28px;
+            animation: pop 0.6s ease-out;
+        }
+        .icon svg { width: 44px; height: 44px; stroke: #5B9BD5; }
+        @keyframes pop {
+            0% { transform: scale(0.6); opacity: 0; }
+            60% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        h1 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+        p { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 24px; }
+        .detail {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 28px;
+            text-align: left;
+        }
+        .detail strong { color: #5B9BD5; display: block; margin-bottom: 4px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        a.btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 24px; border-radius: 8px;
+            text-decoration: none; font-weight: 600; font-size: 0.9375rem;
+            transition: all 0.3s ease;
+        }
+        .btn-primary { background: #2D6A9F; color: #FFFFFF; }
+        .btn-primary:hover { background: #245a87; transform: translateY(-1px); }
+        .btn-outline { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.2); }
+        .btn-outline:hover { border-color: #5B9BD5; color: #5B9BD5; }
+        .footer-note { margin-top: 32px; font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"/>
+            </svg>
+        </div>
+        <h1>Authorization complete</h1>
+        <p>Your account has been successfully linked to ClickMental AI. The authorization code has been received and processed by the application running on your device.</p>
+
+        <div class="detail">
+            <strong>Next step</strong>
+            You can now safely close this window and return to the ClickMental AI terminal or application. Scheduled uploads will begin at the configured times.
+        </div>
+
+        <div class="btn-row">
+            <a href="/" class="btn btn-primary">Back to homepage</a>
+            <a href="#" class="btn btn-outline" onclick="window.close();return false;">Close window</a>
+        </div>
+
+        <p class="footer-note">If the application did not confirm the connection, re-run the authorization flow from the terminal.</p>
+    </div>
+</body>
+</html>
