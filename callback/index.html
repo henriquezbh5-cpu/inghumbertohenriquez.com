@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -21,69 +21,208 @@
             text-align: center;
             padding: 24px;
         }
-        .container { max-width: 520px; }
+        .container { max-width: 560px; width: 100%; }
         .icon {
             width: 88px; height: 88px;
             border-radius: 50%;
-            background: rgba(91, 155, 213, 0.15);
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 28px;
             animation: pop 0.6s ease-out;
         }
-        .icon svg { width: 44px; height: 44px; stroke: #5B9BD5; }
+        .icon.success { background: rgba(91, 155, 213, 0.15); }
+        .icon.error { background: rgba(255, 87, 87, 0.15); }
+        .icon svg { width: 44px; height: 44px; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .icon.success svg { stroke: #5B9BD5; }
+        .icon.error svg { stroke: #FF5757; }
         @keyframes pop {
             0% { transform: scale(0.6); opacity: 0; }
             60% { transform: scale(1.05); }
             100% { transform: scale(1); opacity: 1; }
         }
         h1 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
-        p { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 24px; }
-        .detail {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+        p { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 20px; }
+        .code-box {
+            background: rgba(0,0,0,0.25);
+            border: 1px solid rgba(91, 155, 213, 0.3);
             border-radius: 10px;
             padding: 16px 20px;
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.75);
-            margin-bottom: 28px;
+            margin: 20px 0 12px;
             text-align: left;
+            position: relative;
         }
-        .detail strong { color: #5B9BD5; display: block; margin-bottom: 4px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        a.btn {
+        .code-label {
+            font-size: 0.7rem;
+            color: #5B9BD5;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .code-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.9);
+            word-break: break-all;
+            line-height: 1.5;
+            padding-right: 72px;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            padding: 6px 12px;
+            background: #2D6A9F;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover { background: #245a87; }
+        .copy-btn.copied { background: #2d9f6a; }
+        .hint {
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+            margin-bottom: 24px;
+        }
+        .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+        a.btn, button.btn {
             display: inline-flex; align-items: center; gap: 8px;
             padding: 12px 24px; border-radius: 8px;
             text-decoration: none; font-weight: 600; font-size: 0.9375rem;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
         }
         .btn-primary { background: #2D6A9F; color: #FFFFFF; }
         .btn-primary:hover { background: #245a87; transform: translateY(-1px); }
         .btn-outline { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.2); }
         .btn-outline:hover { border-color: #5B9BD5; color: #5B9BD5; }
         .footer-note { margin-top: 32px; font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+        .hidden { display: none !important; }
+        .error-box {
+            background: rgba(255, 87, 87, 0.08);
+            border: 1px solid rgba(255, 87, 87, 0.3);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 16px 0 24px;
+            text-align: left;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.85);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6L9 17l-5-5"/>
-            </svg>
-        </div>
-        <h1>Authorization complete</h1>
-        <p>Your account has been successfully linked to ClickMental AI. The authorization code has been received and processed by the application running on your device.</p>
 
-        <div class="detail">
-            <strong>Next step</strong>
-            You can now safely close this window and return to the ClickMental AI terminal or application. Scheduled uploads will begin at the configured times.
+        <!-- SUCCESS (code present) -->
+        <div id="view-success" class="hidden">
+            <div class="icon success">
+                <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h1>Authorization complete</h1>
+            <p>Your TikTok account has been successfully authorized. Copy the authorization code below and return to the ClickMental AI terminal to finalize the connection.</p>
+
+            <div class="code-box">
+                <span class="code-label">Authorization code</span>
+                <div class="code-value" id="code-value"></div>
+                <button class="copy-btn" id="copy-btn" onclick="copyCode()">Copy</button>
+            </div>
+            <div class="hint">You can also paste the full URL from your browser's address bar — the terminal accepts either.</div>
+
+            <div class="btn-row">
+                <a href="/" class="btn btn-primary">Back to homepage</a>
+                <button class="btn btn-outline" onclick="window.close();">Close window</button>
+            </div>
         </div>
 
-        <div class="btn-row">
-            <a href="/" class="btn btn-primary">Back to homepage</a>
-            <a href="#" class="btn btn-outline" onclick="window.close();return false;">Close window</a>
+        <!-- ERROR (error param present) -->
+        <div id="view-error" class="hidden">
+            <div class="icon error">
+                <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </div>
+            <h1>Authorization failed</h1>
+            <p>TikTok could not complete the authorization. You can close this window and try again from the terminal.</p>
+            <div class="error-box" id="error-box"></div>
+            <div class="btn-row">
+                <a href="/" class="btn btn-primary">Back to homepage</a>
+            </div>
         </div>
 
-        <p class="footer-note">If the application did not confirm the connection, re-run the authorization flow from the terminal.</p>
+        <!-- STATIC (no params — e.g., reviewer opening URL directly) -->
+        <div id="view-static" class="hidden">
+            <div class="icon success">
+                <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h1>OAuth callback endpoint</h1>
+            <p>This page receives the OAuth 2.0 authorization response from TikTok and similar providers. To use it, start the authorization flow from the ClickMental AI application.</p>
+            <div class="btn-row">
+                <a href="/" class="btn btn-primary">Back to homepage</a>
+                <a href="/privacy/" class="btn btn-outline">Privacy Policy</a>
+            </div>
+            <p class="footer-note">If you arrived here by mistake, no action is required.</p>
+        </div>
+
     </div>
+
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var code = params.get('code');
+            var error = params.get('error');
+            var errorDesc = params.get('error_description');
+
+            if (code) {
+                document.getElementById('view-success').classList.remove('hidden');
+                document.getElementById('code-value').textContent = code;
+            } else if (error) {
+                document.getElementById('view-error').classList.remove('hidden');
+                document.getElementById('error-box').textContent = error + (errorDesc ? ' — ' + errorDesc : '');
+            } else {
+                document.getElementById('view-static').classList.remove('hidden');
+            }
+        })();
+
+        function copyCode() {
+            var code = document.getElementById('code-value').textContent;
+            var btn = document.getElementById('copy-btn');
+            if (!code) return;
+            var done = function () {
+                btn.textContent = 'Copied';
+                btn.classList.add('copied');
+                setTimeout(function () {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code).then(done, function () {
+                    fallbackCopy(code);
+                    done();
+                });
+            } else {
+                fallbackCopy(code);
+                done();
+            }
+        }
+
+        function fallbackCopy(text) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+        }
+    </script>
 </body>
 </html>
