@@ -1415,40 +1415,39 @@ if (proposalForm) {
         },
         // Feature detection
         features: [
-            { keywords: ['login', 'registro', 'register', 'auth', 'autenticacion', 'authentication', 'sign up', 'cuenta', 'account', 'usuario', 'user'], name: 'Authentication system', nameEs: 'Sistema de autenticacion', price: 500 },
-            { keywords: ['pago', 'payment', 'pay', 'stripe', 'paypal', 'tarjeta', 'card', 'checkout', 'cobrar', 'charge', 'factura', 'invoice'], name: 'Payment integration', nameEs: 'Integracion de pagos', price: 700 },
-            { keywords: ['admin', 'panel', 'backoffice', 'back office', 'administrador', 'gestion', 'management', 'manage'], name: 'Admin panel', nameEs: 'Panel de administracion', price: 600 },
-            { keywords: ['chat', 'mensaje', 'message', 'messaging', 'inbox', 'comunicacion', 'communication'], name: 'Messaging / Chat', nameEs: 'Mensajeria / Chat', price: 600 },
-            { keywords: ['notificacion', 'notification', 'alert', 'alerta', 'push', 'email notification', 'reminder'], name: 'Notifications', nameEs: 'Notificaciones', price: 400 },
-            { keywords: ['mapa', 'map', 'gps', 'ubicacion', 'location', 'geolocalizacion', 'geolocation', 'tracking', 'rastreo', 'seguimiento', 'delivery'], name: 'Maps / Geolocation', nameEs: 'Mapas / Geolocalizacion', price: 500 },
-            { keywords: ['buscar', 'search', 'filtro', 'filter', 'busqueda'], name: 'Advanced search & filters', nameEs: 'Busqueda avanzada y filtros', price: 350 },
-            { keywords: ['subir', 'upload', 'archivo', 'file', 'imagen', 'image', 'photo', 'foto', 'documento', 'document', 'galeria', 'gallery'], name: 'File/image upload', nameEs: 'Subida de archivos/imagenes', price: 350 },
-            { keywords: ['real-time', 'real time', 'tiempo real', 'en vivo', 'live', 'websocket', 'socket'], name: 'Real-time features', nameEs: 'Funciones en tiempo real', price: 600 },
-            { keywords: ['ia', 'ai', 'inteligencia artificial', 'artificial intelligence', 'chatbot', 'bot', 'claude', 'gpt', 'openai', 'machine learning'], name: 'AI integration', nameEs: 'Integracion de IA', price: 800 },
-            { keywords: ['inventario', 'inventory', 'stock', 'almacen', 'warehouse', 'producto', 'product', 'catalogo', 'catalog'], name: 'Inventory / Product catalog', nameEs: 'Inventario / Catalogo de productos', price: 450 },
-            { keywords: ['reporte', 'report', 'estadistica', 'statistic', 'grafico', 'chart', 'analytics', 'exportar', 'export'], name: 'Reports & analytics', nameEs: 'Reportes y analytics', price: 400 },
-            { keywords: ['calendario', 'calendar', 'agenda', 'schedule', 'cita', 'appointment', 'reserva', 'booking', 'reservation'], name: 'Booking / Calendar', nameEs: 'Reservas / Calendario', price: 500 },
-            { keywords: ['carrito', 'cart', 'shopping', 'compra', 'purchase', 'orden', 'order', 'pedido'], name: 'Shopping cart / Orders', nameEs: 'Carrito / Pedidos', price: 500 },
-            { keywords: ['seo', 'google', 'posicionamiento', 'ranking', 'organic'], name: 'SEO optimization', nameEs: 'Optimizacion SEO', price: 300 },
-            { keywords: ['responsive', 'movil', 'mobile', 'tablet', 'adaptable'], name: 'Responsive design', nameEs: 'Diseno responsive', price: 200 },
-            { keywords: ['multi idioma', 'multilingual', 'multi-language', 'ingles', 'english', 'traduccion', 'translation', 'i18n'], name: 'Multi-language', nameEs: 'Multi-idioma', price: 350 },
-            { keywords: ['social', 'facebook', 'instagram', 'twitter', 'whatsapp', 'compartir', 'share', 'red social', 'social media'], name: 'Social media integration', nameEs: 'Integracion redes sociales', price: 300 },
-            { keywords: ['seguridad', 'security', 'rol', 'role', 'permiso', 'permission', 'rbac', 'access control'], name: 'Role-based security', nameEs: 'Seguridad por roles', price: 400 },
-            { keywords: ['offline', 'sin conexion', 'pwa', 'progressive'], name: 'Offline / PWA support', nameEs: 'Soporte offline / PWA', price: 500 },
+            { id: 'auth',          keywords: ['login', 'registro', 'register', 'auth', 'autenticacion', 'authentication', 'sign up', 'cuenta', 'account', 'usuario', 'user'], name: 'Authentication system', nameEs: 'Sistema de autenticacion', price: 500 },
+            { id: 'payments',      keywords: ['pago', 'payment', 'pay', 'stripe', 'paypal', 'tarjeta', 'card', 'checkout', 'cobrar', 'charge', 'factura', 'invoice'], name: 'Payment integration', nameEs: 'Integracion de pagos', price: 700 },
+            { id: 'admin',         keywords: ['admin', 'panel', 'backoffice', 'back office', 'administrador', 'gestion', 'management', 'manage'], name: 'Admin panel', nameEs: 'Panel de administracion', price: 600 },
+            { id: 'messaging',     keywords: ['chat', 'mensaje', 'message', 'messaging', 'inbox', 'comunicacion', 'communication'], name: 'Messaging / Chat', nameEs: 'Mensajeria / Chat', price: 600 },
+            { id: 'notifications', keywords: ['notificacion', 'notification', 'alert', 'alerta', 'push', 'email notification', 'reminder'], name: 'Notifications', nameEs: 'Notificaciones', price: 400 },
+            { id: 'maps',          keywords: ['mapa', 'map', 'gps', 'ubicacion', 'location', 'geolocalizacion', 'geolocation', 'tracking', 'rastreo', 'seguimiento', 'delivery'], name: 'Maps / Geolocation', nameEs: 'Mapas / Geolocalizacion', price: 500 },
+            { id: 'search',        keywords: ['buscar', 'search', 'filtro', 'filter', 'busqueda'], name: 'Advanced search & filters', nameEs: 'Busqueda avanzada y filtros', price: 350 },
+            { id: 'files',         keywords: ['subir', 'upload', 'archivo', 'file', 'imagen', 'image', 'photo', 'foto', 'documento', 'document', 'galeria', 'gallery'], name: 'File/image upload', nameEs: 'Subida de archivos/imagenes', price: 350 },
+            { id: 'realtime',      keywords: ['real-time', 'real time', 'tiempo real', 'en vivo', 'live', 'websocket', 'socket'], name: 'Real-time features', nameEs: 'Funciones en tiempo real', price: 600 },
+            { id: 'ai',            keywords: ['ia', 'ai', 'inteligencia artificial', 'artificial intelligence', 'chatbot', 'bot', 'claude', 'gpt', 'openai', 'machine learning'], name: 'AI integration', nameEs: 'Integracion de IA', price: 800 },
+            { id: 'inventory',     keywords: ['inventario', 'inventory', 'stock', 'almacen', 'warehouse', 'producto', 'product', 'catalogo', 'catalog'], name: 'Inventory / Product catalog', nameEs: 'Inventario / Catalogo de productos', price: 450 },
+            { id: 'reports',       keywords: ['reporte', 'report', 'estadistica', 'statistic', 'grafico', 'chart', 'analytics', 'exportar', 'export'], name: 'Reports & analytics', nameEs: 'Reportes y analytics', price: 400 },
+            { id: 'booking',       keywords: ['calendario', 'calendar', 'agenda', 'schedule', 'cita', 'appointment', 'reserva', 'booking', 'reservation'], name: 'Booking / Calendar', nameEs: 'Reservas / Calendario', price: 500 },
+            { id: 'cart',          keywords: ['carrito', 'cart', 'shopping', 'compra', 'purchase', 'orden', 'order', 'pedido'], name: 'Shopping cart / Orders', nameEs: 'Carrito / Pedidos', price: 500 },
+            { id: 'seo',           keywords: ['seo', 'google', 'posicionamiento', 'ranking', 'organic'], name: 'SEO optimization', nameEs: 'Optimizacion SEO', price: 300 },
+            { id: 'responsive',    keywords: ['responsive', 'movil', 'mobile', 'tablet', 'adaptable'], name: 'Responsive design', nameEs: 'Diseno responsive', price: 200 },
+            { id: 'multilang',     keywords: ['multi idioma', 'multilingual', 'multi-language', 'ingles', 'english', 'traduccion', 'translation', 'i18n'], name: 'Multi-language', nameEs: 'Multi-idioma', price: 350 },
+            { id: 'social',        keywords: ['social', 'facebook', 'instagram', 'twitter', 'whatsapp', 'compartir', 'share', 'red social', 'social media'], name: 'Social media integration', nameEs: 'Integracion redes sociales', price: 300 },
+            { id: 'rbac',          keywords: ['seguridad', 'security', 'rol', 'role', 'permiso', 'permission', 'rbac', 'access control'], name: 'Role-based security', nameEs: 'Seguridad por roles', price: 400 },
+            { id: 'offline',       keywords: ['offline', 'sin conexion', 'pwa', 'progressive'], name: 'Offline / PWA support', nameEs: 'Soporte offline / PWA', price: 500 },
         ]
     };
 
-    document.getElementById('quoteAiAnalyze').addEventListener('click', function() {
-        var text = document.getElementById('quoteAiInput').value.trim().toLowerCase();
-        if (!text || text.length < 20) {
-            document.getElementById('quoteAiInput').style.borderColor = '#EF4444';
-            setTimeout(function() { document.getElementById('quoteAiInput').style.borderColor = ''; }, 2000);
-            return;
-        }
+    // AI endpoint — Cloudflare Worker que usa Gemini 2.0 Flash.
+    // Si esta vacio o el endpoint falla, se usa keyword matching local como fallback.
+    var QUOTE_AI_ENDPOINT = 'https://quote-ai.henriquezbh5.workers.dev';
 
-        var lang = getLang();
+    // ===== Analysis pipeline =====
+    // Output shape: { type, features: [featObj], complexity, source: 'ai'|'local', reasoning }
 
-        // Detect project type
+    function analyzeLocally(rawText, lang) {
+        var text = rawText.toLowerCase();
+
         var typeScores = {};
         Object.keys(aiKeywords.types).forEach(function(type) {
             typeScores[type] = 0;
@@ -1457,42 +1456,61 @@ if (proposalForm) {
             });
         });
 
-        // If mobile + webapp both detected, might be fullstack
         if (typeScores.mobile > 0 && (typeScores.webapp > 0 || text.includes('web'))) {
             typeScores.fullstack = (typeScores.fullstack || 0) + typeScores.mobile + typeScores.webapp + 2;
         }
 
-        var detectedType = 'webapp'; // default
+        var detectedType = 'webapp';
         var maxScore = 0;
         Object.keys(typeScores).forEach(function(type) {
-            if (typeScores[type] > maxScore) {
-                maxScore = typeScores[type];
-                detectedType = type;
-            }
+            if (typeScores[type] > maxScore) { maxScore = typeScores[type]; detectedType = type; }
         });
 
-        // Detect features
-        var detectedFeatures = [];
-        aiKeywords.features.forEach(function(feat) {
-            var matched = feat.keywords.some(function(kw) { return text.includes(kw); });
-            if (matched) {
-                detectedFeatures.push(feat);
-            }
+        var detectedFeatures = aiKeywords.features.filter(function(feat) {
+            return feat.keywords.some(function(kw) { return text.includes(kw); });
         });
 
-        // Estimate complexity by text length and feature count
         var complexity = 'small';
-        var mult = 1;
-        if (text.length > 500 || detectedFeatures.length > 8) {
-            complexity = 'large'; mult = 3;
-        } else if (text.length > 200 || detectedFeatures.length > 4) {
-            complexity = 'medium'; mult = 1.8;
-        }
+        if (text.length > 500 || detectedFeatures.length > 8) complexity = 'large';
+        else if (text.length > 200 || detectedFeatures.length > 4) complexity = 'medium';
 
-        // Base prices per type (market-adjusted)
-        var base = getMarketBasePrice(detectedType);
+        return { type: detectedType, features: detectedFeatures, complexity: complexity, source: 'local', reasoning: '' };
+    }
+
+    async function analyzeWithAI(rawText, lang) {
+        if (!QUOTE_AI_ENDPOINT) throw new Error('AI endpoint not configured');
+
+        var controller = new AbortController();
+        var timeoutId = setTimeout(function() { controller.abort(); }, 12000);
+
+        try {
+            var res = await fetch(QUOTE_AI_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ description: rawText, lang: lang }),
+                signal: controller.signal
+            });
+            if (!res.ok) throw new Error('AI endpoint returned ' + res.status);
+            var data = await res.json();
+            if (!data || !data.type) throw new Error('AI endpoint returned invalid data');
+
+            var idMap = {};
+            aiKeywords.features.forEach(function(f) { idMap[f.id] = f; });
+            var features = (data.features || []).map(function(id) { return idMap[id]; }).filter(Boolean);
+
+            return { type: data.type, features: features, complexity: data.complexity || 'medium', source: 'ai', reasoning: data.reasoning || '' };
+        } finally {
+            clearTimeout(timeoutId);
+        }
+    }
+
+    function computeEstimate(analysis, rawText, lang) {
+        var multMap = { small: 1, medium: 1.8, large: 3 };
+        var mult = multMap[analysis.complexity] || 1.8;
+
+        var base = getMarketBasePrice(analysis.type);
         var fMult = marketFeatureMultiplier[lang] || 1;
-        var featuresTotal = detectedFeatures.reduce(function(sum, f) { return sum + Math.round(f.price * fMult); }, 0);
+        var featuresTotal = analysis.features.reduce(function(sum, f) { return sum + Math.round(f.price * fMult); }, 0);
         var rawTotal = (base + featuresTotal) * mult;
         var min = Math.round(rawTotal * 0.85);
         var max = Math.round(rawTotal * 1.15);
@@ -1500,30 +1518,46 @@ if (proposalForm) {
         var sizeLabels = { small: { en: 'Small', es: 'Pequeno' }, medium: { en: 'Medium', es: 'Mediano' }, large: { en: 'Large', es: 'Grande' } };
         var tl2 = lang === 'es' ? timelinesEs : timelines;
 
-        state.aiEstimate = {
-            type: detectedType,
-            typeLabel: (lang === 'es' ? typeLabels[detectedType].es : typeLabels[detectedType].en) + ' — $' + base.toLocaleString(),
-            features: detectedFeatures,
+        return {
+            type: analysis.type,
+            typeLabel: (lang === 'es' ? typeLabels[analysis.type].es : typeLabels[analysis.type].en) + ' — $' + base.toLocaleString(),
+            features: analysis.features,
             featuresTotal: featuresTotal,
-            complexityLabel: sizeLabels[complexity][lang] + ' (x' + mult + ')',
+            complexity: analysis.complexity,
+            complexityLabel: sizeLabels[analysis.complexity][lang] + ' (x' + mult + ')',
             min: min,
             max: max,
-            timeline: tl2[detectedType][complexity],
-            description: text
+            timeline: tl2[analysis.type][analysis.complexity],
+            description: rawText,
+            source: analysis.source,
+            reasoning: analysis.reasoning,
+            _base: base,
+            _fMult: fMult,
+            _mult: mult
         };
+    }
 
-        // Show AI result
+    function renderAiResult(estimate, lang) {
         var resultDiv = document.getElementById('quoteAiResult');
         var detectedDiv = document.getElementById('quoteAiDetected');
         resultDiv.style.display = 'block';
 
-        var html = '<div class="quote-ai-detected-item"><i class="ph ph-app-window"></i><span class="ai-feature-name"><strong>' +
-            (lang === 'es' ? 'Tipo detectado: ' : 'Detected type: ') +
-            (lang === 'es' ? typeLabels[detectedType].es : typeLabels[detectedType].en) +
-            '</strong></span><span class="ai-feature-cost">$' + base.toLocaleString() + ' base</span></div>';
+        var sizeLabels = { small: { en: 'Small', es: 'Pequeno' }, medium: { en: 'Medium', es: 'Mediano' }, large: { en: 'Large', es: 'Grande' } };
 
-        detectedFeatures.forEach(function(f) {
-            var adjPrice = Math.round(f.price * fMult);
+        var html = '';
+
+        if (estimate.source === 'ai' && estimate.reasoning) {
+            html += '<div class="quote-ai-detected-item"><i class="ph ph-brain"></i><span class="ai-feature-name" style="font-style:italic;opacity:.85;">' +
+                estimate.reasoning + '</span></div>';
+        }
+
+        html += '<div class="quote-ai-detected-item"><i class="ph ph-app-window"></i><span class="ai-feature-name"><strong>' +
+            (lang === 'es' ? 'Tipo detectado: ' : 'Detected type: ') +
+            (lang === 'es' ? typeLabels[estimate.type].es : typeLabels[estimate.type].en) +
+            '</strong></span><span class="ai-feature-cost">$' + estimate._base.toLocaleString() + ' base</span></div>';
+
+        estimate.features.forEach(function(f) {
+            var adjPrice = Math.round(f.price * estimate._fMult);
             html += '<div class="quote-ai-detected-item"><i class="ph ph-check-circle"></i><span class="ai-feature-name">' +
                 (lang === 'es' ? f.nameEs : f.name) +
                 '</span><span class="ai-feature-cost">+$' + adjPrice.toLocaleString() + '</span></div>';
@@ -1531,17 +1565,48 @@ if (proposalForm) {
 
         html += '<div class="quote-ai-detected-item"><i class="ph ph-gauge"></i><span class="ai-feature-name"><strong>' +
             (lang === 'es' ? 'Complejidad estimada: ' : 'Estimated complexity: ') +
-            sizeLabels[complexity][lang] +
-            '</strong></span><span class="ai-feature-cost">x' + mult + '</span></div>';
+            sizeLabels[estimate.complexity][lang] +
+            '</strong></span><span class="ai-feature-cost">x' + estimate._mult + '</span></div>';
 
         detectedDiv.innerHTML = html;
+    }
 
-        updateSummary();
+    document.getElementById('quoteAiAnalyze').addEventListener('click', async function() {
+        var btn = this;
+        var textarea = document.getElementById('quoteAiInput');
+        var rawText = textarea.value.trim();
 
-        // Scroll to result
-        setTimeout(function() {
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
+        if (!rawText || rawText.length < 20) {
+            textarea.style.borderColor = '#EF4444';
+            setTimeout(function() { textarea.style.borderColor = ''; }, 2000);
+            return;
+        }
+
+        var lang = getLang();
+        var originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="ph ph-circle-notch"></i> ' + (lang === 'es' ? 'Analizando con IA...' : 'Analyzing with AI...');
+
+        try {
+            var analysis;
+            try {
+                analysis = await analyzeWithAI(rawText, lang);
+            } catch (err) {
+                console.warn('[quote] AI endpoint unavailable, using local keyword matcher:', err.message);
+                analysis = analyzeLocally(rawText, lang);
+            }
+
+            state.aiEstimate = computeEstimate(analysis, rawText, lang);
+            renderAiResult(state.aiEstimate, lang);
+            updateSummary();
+
+            setTimeout(function() {
+                document.getElementById('quoteAiResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = originalHtml;
+        }
     });
 
     // ===== HIRE MODAL =====

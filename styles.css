@@ -2391,6 +2391,19 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 16px;
 }
 
+#quoteAiAnalyze:disabled {
+    opacity: 0.75;
+    cursor: wait;
+}
+
+#quoteAiAnalyze:disabled .ph-circle-notch {
+    animation: quote-ai-spin 0.8s linear infinite;
+}
+
+@keyframes quote-ai-spin {
+    to { transform: rotate(360deg); }
+}
+
 .quote-ai-result {
     margin-top: 24px;
     text-align: left;
