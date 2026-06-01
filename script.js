@@ -1013,27 +1013,19 @@ function sendForm(form, successCallback) {
         if (response.ok) {
             successCallback();
         } else {
-            // Fallback to mailto
-            fallbackMailto(formData);
-            successCallback();
+            sendFailed(submitBtn, originalText);
         }
     }).catch(function() {
-        // Fallback to mailto
-        fallbackMailto(formData);
-        successCallback();
+        sendFailed(submitBtn, originalText);
     });
 }
 
-function fallbackMailto(formData) {
-    var parts = [];
-    formData.forEach(function(value, key) {
-        if (key.charAt(0) !== '_' && value) {
-            parts.push(key + ': ' + value);
-        }
-    });
-    var subject = encodeURIComponent('New request from portfolio');
-    var body = encodeURIComponent(parts.join('\n') + '\n\n— Sent from inghumbertohenriquez.com');
-    window.location.href = 'mailto:henriquezbh5@gmail.com?subject=' + subject + '&body=' + body;
+// On delivery failure, re-enable the form so the visitor can retry.
+// No direct contact is exposed here on purpose.
+function sendFailed(submitBtn, originalText) {
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+    alert("Couldn't send your request right now. Please try again in a moment.");
 }
 
 const proposalForm = document.getElementById('proposalForm');
