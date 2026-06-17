@@ -394,6 +394,8 @@ body.bg-static .bg-fallback{background-size:200% 200%,200% 200%,100% 100%;animat
 .quote-ai-content textarea{width:100%;min-height:140px;resize:vertical;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--text);font-family:var(--ff-body);font-size:.95rem;margin-bottom:16px;transition:border-color .2s ease,box-shadow .2s ease;}
 .quote-ai-content textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,0.16);}
 .quote-ai-content textarea::placeholder{color:var(--text-dim);}
+.quote-ai-privacy{display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--text-dim);margin:-6px 0 14px;text-align:left;}
+.quote-ai-privacy i{color:var(--cyan);font-size:.95rem;flex-shrink:0;}
 .quote-ai-result{width:100%;margin-top:22px;text-align:left;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:20px;}
 .quote-ai-result h4{font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .quote-ai-detected{display:flex;flex-direction:column;gap:9px;}
@@ -443,6 +445,7 @@ body.bg-static .bg-fallback{background-size:200% 200%,200% 200%,100% 100%;animat
 .cta-content h2{font-size:clamp(1.8rem,3.2vw,2.6rem);margin-bottom:16px;}
 .cta-content>p{color:var(--text-muted);font-size:1.06rem;margin-bottom:8px;}
 .cta-note{font-size:.86rem;color:var(--text-dim);margin-top:18px;}
+.form-privacy{font-size:.76rem;color:var(--text-dim);text-align:center;margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto;}
 .proposal-form-container{width:100%;}
 .proposal-form input,.proposal-form select,.proposal-form textarea{font-family:var(--ff-body);}
 .proposal-form input:focus,.proposal-form select:focus,.proposal-form textarea:focus{outline:none;border-color:var(--cyan)!important;box-shadow:0 0 0 3px rgba(34,211,238,0.16);}

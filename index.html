@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://flagcdn.com; connect-src 'self' https://quote-ai.henriquezbh5.workers.dev; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Humberto Henriquez | Automation &amp; Data Studio &mdash; Power Automate, n8n, Bots, BI &amp; AI</title>
     <meta name="description" content="Automation &amp; data studio. We build bots and automations that run your operation: Power Automate, n8n, RPA, Power Apps, full-stack web &amp; mobile apps, interactive Power BI dashboards, ETL pipelines, data science and applied AI. Microsoft Power Platform certified. Dual Master's (Data Science + BI). Serving LATAM &amp; US.">
     <meta name="keywords" content="Power Automate, n8n, RPA, bots, business automation, Power Apps, Power BI, ETL, data pipelines, data science, machine learning, Claude AI, Next.js, React Native, NestJS, dashboards, El Salvador, LATAM, automation studio">
@@ -18,8 +20,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    <!-- Phosphor Icons (self-hosted: regular + fill weights only) -->
+    <link rel="stylesheet" href="vendor/phosphor/regular/style.css">
+    <link rel="stylesheet" href="vendor/phosphor/fill/style.css">
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="mockups.css">
@@ -1706,6 +1709,7 @@
                         <h3 data-i18n="quote-ai-title">Describe your project</h3>
                         <p data-i18n="quote-ai-desc">Tell me what you need in your own words. I'll analyze your description and generate an estimated cost based on the features and complexity detected.</p>
                         <textarea id="quoteAiInput" rows="6" placeholder="Example: I need an app for my restaurant where customers can see the menu, order online, pay with card, and track their delivery in real time. I also need an admin panel to manage orders and inventory..." data-i18n-placeholder="quote-ai-placeholder"></textarea>
+                        <p class="quote-ai-privacy" data-i18n="quote-ai-privacy"><i class="ph ph-info"></i> Your description is processed by Google Gemini to generate the estimate. Don't include confidential data.</p>
                         <button class="btn btn-primary" id="quoteAiAnalyze" data-i18n="quote-ai-btn">
                             <i class="ph ph-sparkle"></i> Analyze and estimate
                         </button>
@@ -1828,6 +1832,7 @@
                         </button>
                     </form>
                     <p id="formSuccess" style="display: none; text-align: center; color: #4ADE80; margin-top: 12px; font-weight: 500;" data-i18n="form-success">Sent! I'll respond within 24 hours.</p>
+                    <p class="form-privacy" data-i18n="form-privacy">Your details are processed via Formspree solely to reply to you. They are not sold or used for marketing.</p>
                 </div>
 
                 <p class="cta-note" data-i18n="cta-note">No commitment. No sales pitch. Just a conversation to understand your situation and see if I can help.</p>
@@ -1857,7 +1862,7 @@
         </div>
     </footer>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="vendor/three.min.js"></script>
     <script src="background-3d.js"></script>
     <script src="script.js"></script>
 </body>

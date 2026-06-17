@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
     <title>Authorization Complete | ClickMental AI</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -187,6 +188,11 @@
                 document.getElementById('error-box').textContent = error + (errorDesc ? ' — ' + errorDesc : '');
             } else {
                 document.getElementById('view-static').classList.remove('hidden');
+            }
+
+            // Scrub the OAuth code/params from the address bar & history (defense-in-depth).
+            if (code || error) {
+                try { history.replaceState({}, document.title, location.pathname); } catch (e) {}
             }
         })();
 

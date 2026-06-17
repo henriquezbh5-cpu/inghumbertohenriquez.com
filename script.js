@@ -1,3 +1,10 @@
+// ========== SECURITY: HTML ESCAPE HELPER ==========
+function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+}
+
 // ========== NAVBAR SCROLL EFFECT ==========
 const navbar = document.getElementById('navbar');
 let lastScroll = 0;
@@ -490,6 +497,8 @@ const translations = {
         'quote-ai-placeholder': 'Ejemplo: Necesito una app para mi restaurante donde los clientes puedan ver el menu, pedir en linea, pagar con tarjeta, y rastrear su delivery en tiempo real. Tambien necesito un panel admin para gestionar pedidos e inventario...',
         'quote-ai-btn': '<i class="ph ph-sparkle"></i> Analizar y estimar',
         'quote-ai-result-title': 'Analisis IA',
+        'quote-ai-privacy': '<i class="ph ph-info"></i> Tu descripción se procesa con Google Gemini para generar el estimado; no incluyas datos confidenciales.',
+        'form-privacy': 'Tus datos se procesan mediante Formspree únicamente para responderte. No se venden ni se usan para marketing.',
         'quote-summary-title': 'Estimacion',
         'quote-summary-badge': 'Estimacion no vinculante',
         'quote-summary-empty': 'Selecciona un tipo de proyecto para ver tu estimacion',
@@ -1101,6 +1110,8 @@ const translations = {
         'quote-ai-placeholder': 'Example: I need an app for my restaurant where customers can see the menu, order online, pay with card, and track their delivery in real time. I also need an admin panel to manage orders and inventory...',
         'quote-ai-btn': '<i class="ph ph-sparkle"></i> Analyze and estimate',
         'quote-ai-result-title': 'AI Analysis',
+        'quote-ai-privacy': '<i class="ph ph-info"></i> Your description is processed by Google Gemini to generate the estimate. Don\'t include confidential data.',
+        'form-privacy': 'Your details are processed via Formspree solely to reply to you. They are not sold or used for marketing.',
         'quote-summary-title': 'Estimate',
         'quote-summary-badge': 'Non-binding estimate',
         'quote-summary-empty': 'Select a project type to see your estimate',
@@ -1944,7 +1955,7 @@ if (proposalForm) {
 
         if (estimate.source === 'ai' && estimate.reasoning) {
             html += '<div class="quote-ai-detected-item"><i class="ph ph-brain"></i><span class="ai-feature-name" style="font-style:italic;opacity:.85;">' +
-                estimate.reasoning + '</span></div>';
+                escapeHtml(estimate.reasoning) + '</span></div>';
         }
 
         html += '<div class="quote-ai-detected-item"><i class="ph ph-app-window"></i><span class="ai-feature-name"><strong>' +
@@ -2040,7 +2051,7 @@ if (proposalForm) {
             lines.push((lang === 'es' ? 'Tiempo estimado: ' : 'Estimated timeline: ') + state.aiEstimate.timeline);
         }
 
-        summaryDiv.innerHTML = lines.map(function(l) { return '<p>' + l + '</p>'; }).join('');
+        summaryDiv.innerHTML = lines.map(function(l) { return '<p>' + escapeHtml(l) + '</p>'; }).join('');
         document.getElementById('hireRequirements').value = lines.join('\n');
 
         modal.style.display = 'flex';
