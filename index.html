@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humberto Henríquez | Software Architect & Digital Systems Engineer | Bitcoin Strategist</title>
-    <meta name="description" content="Software Architect and Digital Systems Engineer specializing in enterprise automation, full-stack web & mobile platforms, AI-driven solutions, and Bitcoin market strategy. Microsoft Power Platform certified (Power Apps, Power Automate, Power BI). Dual Master's (Data Science + BI). Postgrad Blockchain. Creator of Bitcoin Academy Tech.">
-    <meta name="keywords" content="Power Apps, Power Automate, Power BI, Next.js, React, React Native, NestJS, Prisma, PostgreSQL, Claude AI, AI Builder, TypeScript, Docker, automation, full-stack developer, mobile app, Bitcoin, cryptocurrency, blockchain, financial advisory, consultant, LATAM">
-    <meta name="author" content="Humberto Wilfredo Henríquez Benítez">
+    <title>Humberto Henriquez | Automation &amp; Data Studio &mdash; Power Automate, n8n, Bots, BI &amp; AI</title>
+    <meta name="description" content="Automation &amp; data studio. We build bots and automations that run your operation: Power Automate, n8n, RPA, Power Apps, full-stack web &amp; mobile apps, interactive Power BI dashboards, ETL pipelines, data science and applied AI. Microsoft Power Platform certified. Dual Master's (Data Science + BI). Serving LATAM &amp; US.">
+    <meta name="keywords" content="Power Automate, n8n, RPA, bots, business automation, Power Apps, Power BI, ETL, data pipelines, data science, machine learning, Claude AI, Next.js, React Native, NestJS, dashboards, El Salvador, LATAM, automation studio">
+    <meta name="author" content="Humberto Wilfredo Henriquez Benitez">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Humberto Henríquez | Software Architect & Digital Systems Engineer | Bitcoin Strategist">
-    <meta property="og:description" content="I architect and build enterprise-grade digital systems: automation platforms, full-stack web & mobile apps, AI-powered solutions, and Bitcoin market strategy. Microsoft Power Platform certified. Dual Master's.">
+    <meta property="og:title" content="Humberto Henriquez | Automation &amp; Data Studio">
+    <meta property="og:description" content="We build bots and automations that run your operation end-to-end: Power Automate, n8n, RPA, apps, BI, ETL, data science and applied AI.">
     <meta property="og:type" content="website">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="mockups.css">
 </head>
 <body>
+
+    <!-- ========== 3D BACKGROUND ========== -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="bg-fallback"></div>
+    <div class="bg-grid-overlay"></div>
 
     <!-- ========== NAVIGATION ========== -->
     <nav class="navbar" id="navbar">
@@ -35,64 +40,60 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#problemas" data-i18n="nav-problemas">Problems</a></li>
                 <li><a href="#servicios" data-i18n="nav-servicios">Services</a></li>
-                <li><a href="#proyectos" data-i18n="nav-proyectos">Projects</a></li>
+                <li><a href="#bots" data-i18n="nav-bots">Bots</a></li>
+                <li><a href="#proyectos" data-i18n="nav-proyectos">Work</a></li>
                 <li><a href="#stack" data-i18n="nav-stack">Stack</a></li>
-                <li><a href="#sobre-mi" data-i18n="nav-sobre-mi">About</a></li>
-                <li><a href="#cotizador" data-i18n="nav-cotizador" class="nav-highlight">Quote</a></li>
+                <li><a href="#sobre-mi" data-i18n="nav-sobre-mi">Studio</a></li>
+                <li><a href="#cotizador" data-i18n="nav-cotizador" class="nav-highlight">Estimate</a></li>
             </ul>
             <div class="nav-right">
                 <div class="lang-toggle">
                     <button class="lang-btn active" data-lang="en" aria-label="English"><img src="https://flagcdn.com/w40/us.png" width="20" height="14" alt="EN"></button>
-                    <button class="lang-btn" data-lang="es" aria-label="Español"><img src="https://flagcdn.com/w40/es.png" width="20" height="14" alt="ES"></button>
+                    <button class="lang-btn" data-lang="es" aria-label="Espanol"><img src="https://flagcdn.com/w40/es.png" width="20" height="14" alt="ES"></button>
                 </div>
-                <a href="#contacto" class="btn btn-primary nav-cta" data-i18n="nav-cta">Book a call</a>
+                <a href="#contacto" class="btn btn-primary nav-cta" data-i18n="nav-cta">Start a project</a>
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="Open menu">
                 <i class="ph ph-list"></i>
             </button>
         </div>
     </nav>
-
     <!-- ========== HERO ========== -->
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> <span data-i18n="hero-stack-label">Core stack:</span></div>
                 <div class="hero-badges">
-                    <span class="badge"><i class="ph ph-certificate"></i> Microsoft Power Platform Certified</span>
-                    <span class="badge" data-i18n="hero-badge-education"><i class="ph ph-graduation-cap"></i> MSc Data Science + MSc BI</span>
-                    <span class="badge" data-i18n="hero-badge-blockchain"><i class="ph ph-bitcoin-logo"></i> Blockchain & Crypto Specialist</span>
-                    <span class="badge" data-i18n="hero-badge-countries"><i class="ph ph-globe-hemisphere-west"></i> 4 countries</span>
+                    <span class="badge" data-i18n="hero-badge-1"><i class="ph ph-certificate"></i> Microsoft Power Platform Certified</span>
+                    <span class="badge" data-i18n="hero-badge-2"><i class="ph ph-graduation-cap"></i> MSc Data Science + MSc Business Intelligence</span>
+                    <span class="badge" data-i18n="hero-badge-3"><i class="ph ph-flow-arrow"></i> Power Automate + n8n automation</span>
+                    <span class="badge" data-i18n="hero-badge-4"><i class="ph ph-globe-hemisphere-west"></i> Serving 4 countries across LATAM + US</span>
                 </div>
-                <h1 class="hero-title" data-i18n="hero-title">I build <span class="text-gradient">digital systems</span> that eliminate chaos and scale your business</h1>
-                <p class="hero-subtitle" data-i18n="hero-subtitle">I architect enterprise-grade platforms — from business automation and AI-powered web & mobile applications to Bitcoin market strategy. Two Master's degrees, Microsoft Power Platform certified, and a track record of shipping production systems across LATAM.</p>
+                <h1 class="hero-title" data-i18n="hero-title">We automate the work that <span class="text-gradient">slows your team down</span> — bots, data and apps that run your operation</h1>
+                <p class="hero-subtitle" data-i18n="hero-subtitle">We design and ship automations and bots that take repetitive work off your team, then connect them to clean data, BI dashboards and ETL pipelines that show what is actually happening. From there we build the web and mobile apps and applied AI that turn your operation into a system that runs on its own.</p>
                 <div class="hero-actions">
-                    <a href="#contacto" class="btn btn-primary btn-lg" data-i18n="hero-cta-primary">
-                        <i class="ph ph-calendar-check"></i> Book a diagnostic call
-                    </a>
-                    <a href="#proyectos" class="btn btn-outline btn-lg" data-i18n="hero-cta-secondary">
-                        <i class="ph ph-folder-open"></i> View projects
-                    </a>
+                    <a href="#contacto" class="btn btn-primary btn-lg" data-i18n="hero-cta-primary"><i class="ph ph-calendar-check"></i> Automate my operation</a>
+                    <a href="#bots" class="btn btn-outline btn-lg" data-i18n="hero-cta-secondary"><i class="ph ph-robot"></i> See what we build</a>
                 </div>
                 <div class="hero-logos">
-                    <span class="hero-logos-label" data-i18n="hero-stack-label">Main stack:</span>
                     <div class="tech-pills">
-                        <span class="tech-pill">Power Platform</span>
+                        <span class="tech-pill">Power Automate</span>
+                        <span class="tech-pill">n8n</span>
+                        <span class="tech-pill">Power Apps</span>
                         <span class="tech-pill">Next.js</span>
-                        <span class="tech-pill">React</span>
-                        <span class="tech-pill">NestJS</span>
                         <span class="tech-pill">React Native</span>
-                        <span class="tech-pill">Claude AI</span>
                         <span class="tech-pill">Power BI</span>
-                        <span class="tech-pill">Bitcoin</span>
-                        <span class="tech-pill">TypeScript</span>
+                        <span class="tech-pill">Python / ETL</span>
+                        <span class="tech-pill">Claude AI</span>
+                        <span class="tech-pill">SQL Server</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="hero-bg-gradient"></div>
+        <a href="#problemas" class="hero-scroll" aria-label="Scroll"><i class="ph ph-mouse-simple"></i></a>
     </section>
-
-    <!-- ========== SOCIAL PROOF BAR ========== -->
+<!-- ========== SOCIAL PROOF BAR ========== -->
     <section class="proof-bar">
         <div class="container">
             <div class="proof-items">
@@ -162,165 +163,603 @@
         </div>
     </section>
 
-    <!-- ========== SERVICES ========== -->
+        <!-- ========== SERVICES ========== -->
     <section class="section section-alt" id="servicios">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag" data-i18n="services-tag">Solutions</span>
-                <h2 class="section-title" data-i18n="services-title">Services</h2>
-                <p class="section-subtitle" data-i18n="services-subtitle">Digitization and automation solutions with Microsoft Power Platform</p>
+                <span class="section-tag" data-i18n="services-tag">What we do</span>
+                <h2 class="section-title" data-i18n="services-title">Automation first, then everything it connects to</h2>
+                <p class="section-subtitle" data-i18n="services-subtitle">Automation and bots, data and BI, ETL pipelines, web and mobile apps, and applied AI — delivered end to end on Microsoft Power Platform, n8n and a modern web stack.</p>
             </div>
             <div class="services-grid">
+                <div class="service-card featured">
+                    <div class="service-badge" data-i18n="svc-process-automation-badge">Most requested</div>
+                    <div class="service-icon"><i class="ph ph-flow-arrow"></i></div>
+                    <h3 data-i18n="svc-process-automation-title">Process Automation</h3>
+                    <p data-i18n="svc-process-automation-desc">Replace manual, repetitive workflows with automations that run on their own across your tools and inboxes. Built with Power Automate and n8n, with approvals, error handling and clear logs so nothing falls through the cracks.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-process-automation-b1">Approval and notification flows</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-process-automation-b2">Scheduled and event-based triggers</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-process-automation-b3">Error handling with retries</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-process-automation-b4">Run logs and alerts</span></li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-process-automation-result">Hours of manual work eliminated every week, with fewer errors.</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-robot"></i></div>
+                    <h3 data-i18n="svc-bots-rpa-title">Custom Bots &amp; RPA</h3>
+                    <p data-i18n="svc-bots-rpa-desc">Attended and unattended bots that handle repetitive desktop and cloud tasks, including legacy systems without APIs. They log in, read screens, move data and run on a schedule or on demand.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-bots-rpa-b1">Desktop RPA with robust selectors</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-bots-rpa-b2">Unattended runs on dedicated VMs</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-bots-rpa-b3">Data entry and reconciliation bots</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-bots-rpa-b4">Execution logging and monitoring</span></li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-bots-rpa-result">Repetitive tasks done overnight, freeing your team for higher-value work.</span>
+                    </div>
+                </div>
+                <div class="service-card featured">
+                    <div class="service-badge" data-i18n="svc-integrations-apis-badge">High demand</div>
+                    <div class="service-icon"><i class="ph ph-plugs-connected"></i></div>
+                    <h3 data-i18n="svc-integrations-apis-title">System Integrations &amp; APIs</h3>
+                    <p data-i18n="svc-integrations-apis-desc">Connect your ERP, CRM, SaaS tools and databases so data flows automatically instead of being copied by hand. I build the integration layer with n8n, webhooks and custom connectors, with mapping and validation at every step.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-integrations-apis-b1">ERP, CRM and SaaS connectors</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-integrations-apis-b2">Webhook and event syncing</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-integrations-apis-b3">Field mapping and validation</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-integrations-apis-b4">Idempotent, retry-safe transfers</span></li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-integrations-apis-result">Your systems talk to each other, ending double entry and stale data.</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-clipboard-text"></i></div>
+                    <h3 data-i18n="svc-business-apps-title">Business Apps (Power Apps)</h3>
+                    <p data-i18n="svc-business-apps-desc">Internal apps, request portals and field registries that run on your real data in Dataverse or SQL. Clean interfaces your team actually uses, on desktop and mobile, with roles and offline capture where needed.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-business-apps-b1">Canvas and model-driven apps</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-business-apps-b2">Request and approval portals</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-business-apps-b3">Mobile field data capture</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-business-apps-b4">Role-based access on real data</span></li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-business-apps-result">Spreadsheets and paper forms replaced by one reliable app.</span>
+                    </div>
+                </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="ph ph-gear-six"></i></div>
-                    <h3 data-i18n="service-1-title">Operational Process Automation</h3>
-                    <p data-i18n="service-1-desc">I replace repetitive manual workflows with automations that run on their own: approvals, notifications, document generation, data synchronization between systems.</p>
+                    <h3 data-i18n="svc-fullstack-web-title">Full-Stack Web Applications</h3>
+                    <p data-i18n="svc-fullstack-web-desc">Custom web platforms built with Next.js, React, NestJS and PostgreSQL, from internal portals to SaaS and marketplaces. Production-grade architecture with authentication, payments and an admin panel from day one.</p>
                     <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-1-item-1">Candidate process diagnosis</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-1-item-2">Power Automate flows (Cloud + Desktop)</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-1-item-3">Error handling and logging</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-1-item-4">Documentation and training</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-fullstack-web-b1">Next.js and React front end</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-fullstack-web-b2">NestJS API and PostgreSQL</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-fullstack-web-b3">Auth, payments and admin panel</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-fullstack-web-b4">Cloud deploy and CI/CD</span></li>
                     </ul>
                     <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-1-result">Your team stops doing mechanical work and focuses on decisions.</span>
-                    </div>
-                </div>
-                <div class="service-card featured">
-                    <div class="service-badge" data-i18n="service-badge-popular">Most requested</div>
-                    <div class="service-icon"><i class="ph ph-device-mobile"></i></div>
-                    <h3 data-i18n="service-2-title">Custom Business Applications</h3>
-                    <p data-i18n="service-2-desc">I design and build enterprise applications with Power Apps connected to your real data. Request portals, field registries, document management, inventories.</p>
-                    <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-2-item-1">Requirements gathering</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-2-item-2">Power Apps development (Canvas/Model-Driven)</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-2-item-3">Associated automation flows</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-2-item-4">Role-based security and responsive design</span></li>
-                    </ul>
-                    <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-2-result">Functional apps in weeks, not months.</span>
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-fullstack-web-result">A scalable platform that grows with your business, fully owned by you.</span>
                     </div>
                 </div>
                 <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-phone-call"></i></div>
+                    <h3 data-i18n="svc-mobile-apps-title">Mobile App Development</h3>
+                    <p data-i18n="svc-mobile-apps-desc">Native-feeling iOS and Android apps from a single React Native and Expo codebase, cutting cost and time to market. Push notifications, offline support and store submission included.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-mobile-apps-b1">One codebase for iOS and Android</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-mobile-apps-b2">Push notifications and offline mode</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-mobile-apps-b3">API and backend integration</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-mobile-apps-b4">App Store and Play Store launch</span></li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-mobile-apps-result">Reach customers on both platforms without doubling your budget.</span>
+                    </div>
+                </div>
+                <div class="service-card featured">
+                    <div class="service-badge" data-i18n="svc-dashboards-bi-badge">Most requested</div>
                     <div class="service-icon"><i class="ph ph-chart-line-up"></i></div>
-                    <h3 data-i18n="service-3-title">Dashboards & Operational Intelligence</h3>
-                    <p data-i18n="service-3-desc">I connect your data sources (SQL, APIs, SharePoint, Excel, service desks) into Power BI dashboards that show what matters: KPIs, trends, alerts and detail on demand.</p>
+                    <h3 data-i18n="svc-dashboards-bi-title">Interactive Dashboards &amp; BI</h3>
+                    <p data-i18n="svc-dashboards-bi-desc">Power BI dashboards that turn scattered data into clear KPIs, trends and alerts for daily decisions. Built on a proper star schema with scheduled refresh and alerts when numbers cross your thresholds.</p>
                     <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-3-item-1">Connection to multiple data sources</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-3-item-2">Advanced DAX + Power Query modeling</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-3-item-3">Automatic refresh and role-based security</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-3-item-4">Publishing to Power BI Service</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-dashboards-bi-b1">KPI and executive dashboards</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-dashboards-bi-b2">Star schema data model</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-dashboards-bi-b3">Scheduled refresh and alerts</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-dashboards-bi-b4">Drill-down and self-service views</span></li>
                     </ul>
                     <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-3-result">Real data, up to date, without manual manipulation.</span>
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-dashboards-bi-result">One source of truth that leadership checks every morning.</span>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="ph ph-files"></i></div>
-                    <h3 data-i18n="service-4-title">Document Management with Control</h3>
-                    <p data-i18n="service-4-desc">I implement document control systems on SharePoint with standardized coding, versioning, role-based permissions and AI-powered intelligent search.</p>
+                    <div class="service-icon"><i class="ph ph-database"></i></div>
+                    <h3 data-i18n="svc-etl-pipelines-title">ETL &amp; Data Pipelines</h3>
+                    <p data-i18n="svc-etl-pipelines-desc">Reliable pipelines that clean, model and move data between sources, warehouses and reporting layers. Built with Python, Power Query and SQL under Airflow-style orchestration, with quality checks and monitoring.</p>
                     <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-4-item-1">Automatic document coding</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-4-item-2">Search with AI Builder + KQL</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-4-item-3">Security filters by area and role</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-4-item-4">Audit traceability</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-etl-pipelines-b1">Ingestion from multiple sources</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-etl-pipelines-b2">Cleaning and data modeling</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-etl-pipelines-b3">Scheduled orchestration</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-etl-pipelines-b4">Data quality checks and monitoring</span></li>
                     </ul>
                     <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-4-result">Your documentation stops being chaos and becomes a managed asset.</span>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="ph ph-stamp"></i></div>
-                    <h3 data-i18n="service-5-title">Request & Approval Portals</h3>
-                    <p data-i18n="service-5-desc">Digital portals with smart forms, multi-level approval flows, automatic notifications, time-based escalation and full traceability.</p>
-                    <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-5-item-1">Power Apps form with validations</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-5-item-2">Parallel/sequential approvals</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-5-item-3">Email + Teams notifications</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-5-item-4">Tracking dashboard</span></li>
-                    </ul>
-                    <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-5-result">From days of manual approval to automatic hours.</span>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="ph ph-compass-tool"></i></div>
-                    <h3 data-i18n="service-6-title">Digitization Consulting & Roadmap</h3>
-                    <p data-i18n="service-6-desc">I analyze your current processes, identify bottlenecks and automation opportunities, and deliver a prioritized roadmap with concrete solutions.</p>
-                    <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-6-item-1">Process mapping (AS-IS / TO-BE)</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-6-item-2">Digital maturity assessment</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-6-item-3">3-6-12 month roadmap with ROI</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-6-item-4">Executive document for leadership</span></li>
-                    </ul>
-                    <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-6-result">No smoke, no empty promises: an executable plan.</span>
-                    </div>
-                </div>
-                <div class="service-card featured">
-                    <div class="service-badge" data-i18n="service-badge-new">New</div>
-                    <div class="service-icon"><i class="ph ph-globe"></i></div>
-                    <h3 data-i18n="service-7-title">Full-Stack Web Applications</h3>
-                    <p data-i18n="service-7-desc">I design and build modern web platforms with Next.js, React, NestJS and PostgreSQL. From marketplaces and SaaS products to client portals and internal tools — responsive, scalable, production-ready.</p>
-                    <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-7-item-1">Next.js + React + Tailwind frontend</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-7-item-2">NestJS API + Prisma + PostgreSQL backend</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-7-item-3">Authentication, payments, real-time features</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-7-item-4">Docker deployment + CI/CD pipeline</span></li>
-                    </ul>
-                    <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-7-result">Custom web platforms built in weeks, deployed and ready to scale.</span>
-                    </div>
-                </div>
-                <div class="service-card featured">
-                    <div class="service-badge" data-i18n="service-badge-hot">High demand</div>
-                    <div class="service-icon"><i class="ph ph-device-mobile"></i></div>
-                    <h3 data-i18n="service-9-title">Mobile App Development</h3>
-                    <p data-i18n="service-9-desc">I build cross-platform mobile apps with React Native and Expo that work on iOS and Android from a single codebase. From e-commerce and delivery apps to booking systems and internal tools — native performance, modern UX, deployed to both app stores.</p>
-                    <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-9-item-1">React Native / Expo (iOS + Android)</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-9-item-2">Push notifications + offline support</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-9-item-3">GPS, camera, biometrics, payments</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-9-item-4">App Store + Play Store publishing</span></li>
-                    </ul>
-                    <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-9-result">Your business in your customers' pockets — one codebase, two platforms.</span>
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-etl-pipelines-result">Trustworthy, ready-to-use data feeding every report and model.</span>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="ph ph-brain"></i></div>
-                    <h3 data-i18n="service-8-title">AI-Powered Solutions</h3>
-                    <p data-i18n="service-8-desc">I integrate artificial intelligence into your business processes and applications. From intelligent assistants and document analysis to automated workflows powered by Claude AI and custom AI agents.</p>
+                    <h3 data-i18n="svc-data-science-title">Data Science &amp; Predictive Models</h3>
+                    <p data-i18n="svc-data-science-desc">Predictive models for forecasting, customer segmentation, churn, demand and anomaly detection, grounded in your business question. Each model ships with validation, confidence ranges and explainability so you can trust the numbers.</p>
                     <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-8-item-1">Claude AI / LLM integration into apps</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-8-item-2">Intelligent chatbots and virtual assistants</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-8-item-3">Document analysis and data extraction</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-8-item-4">AI agents for workflow automation</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-data-science-b1">Demand and sales forecasting</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-data-science-b2">Churn and customer segmentation</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-data-science-b3">Anomaly and fraud detection</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-data-science-b4">Validated, explainable models</span></li>
                     </ul>
                     <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-8-result">Your team works with AI, not against it. Real productivity gains from day one.</span>
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-data-science-result">Decisions backed by data instead of gut feeling.</span>
                     </div>
                 </div>
                 <div class="service-card featured">
-                    <div class="service-badge" data-i18n="service-badge-btc">Bitcoin</div>
-                    <div class="service-icon"><i class="ph ph-bitcoin-logo"></i></div>
-                    <h3 data-i18n="service-10-title">Bitcoin & Crypto Advisory</h3>
-                    <p data-i18n="service-10-desc">As an active Bitcoin market operator and creator of Bitcoin Academy Tech, I provide data-driven financial guidance on Bitcoin and digital assets. From understanding market cycles and building investment strategies to technical analysis and risk management — backed by real trading experience and academic credentials in Blockchain Technology.</p>
+                    <div class="service-badge" data-i18n="svc-applied-ai-badge">New</div>
+                    <div class="service-icon"><i class="ph ph-sparkle"></i></div>
+                    <h3 data-i18n="svc-applied-ai-title">Applied AI Solutions</h3>
+                    <p data-i18n="svc-applied-ai-desc">AI agents, RAG assistants, chatbots and document intelligence built on Claude AI and Gemini, grounded in your own content. Defined evaluations, guardrails and cost control so the AI is accurate, safe and affordable.</p>
                     <ul class="service-includes">
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-10-item-1">Bitcoin market analysis & technical analysis</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-10-item-2">Investment strategy & portfolio allocation</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-10-item-3">Risk management & position sizing</span></li>
-                        <li><i class="ph ph-check-circle"></i> <span data-i18n="service-10-item-4">Education sessions (1-on-1 or group)</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-applied-ai-b1">RAG assistants over your docs</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-applied-ai-b2">Custom chatbots and AI agents</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-applied-ai-b3">Document data extraction</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-applied-ai-b4">Evaluations, guardrails and cost control</span></li>
                     </ul>
                     <div class="service-result">
-                        <i class="ph ph-arrow-right"></i> <span data-i18n="service-10-result">Make informed decisions in crypto markets — no hype, just data and strategy.</span>
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-applied-ai-result">AI that answers from your data, not generic guesses.</span>
                     </div>
-                    <a href="https://bitcoinacademy.tech" target="_blank" rel="noopener" class="service-link" data-i18n="service-10-link"><i class="ph ph-arrow-square-out"></i> Visit Bitcoin Academy Tech</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ========== HOW I WORK ========== -->
+    <!-- ========== AUTOMATION BOTS CATALOG ========== -->
+    <section class="section section-bots" id="bots">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="bots-tag">Bots catalog</span>
+                <h2 class="section-title" data-i18n="bots-title">Bots that do the work nobody should be doing by hand</h2>
+                <p class="section-subtitle" data-i18n="bots-subtitle">Each one replaces a manual, error-prone routine with a process that runs on schedule, logs everything and escalates only when it needs you.</p>
+            </div>
+            <div class="bot-category" data-cat="cat1">
+                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-bank"></i></span> <span data-i18n="botcat-1">Finance &amp; Accounting</span></h3>
+                <div class="bots-grid">
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-bank"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-concilia-bot-name">ConciliaBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-concilia-bot-pain">Every month-end your accounting team stays until midnight matching bank statements against the ERP line by line, fighting transposed amounts and missing references, while leadership waits on numbers nobody fully trusts.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-concilia-bot-solution">The bot pulls bank movements and ledger entries on a schedule, matches them with fuzzy and exact rules, flags only the true exceptions for human review, and posts a clean reconciliation summary to Teams.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">SQL Server</span>
+                            <span class="bot-tech-chip">REST API bancaria</span>
+                            <span class="bot-tech-chip">Excel</span>
+                            <span class="bot-tech-chip">Teams</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-concilia-bot-outcome">Turns month-end reconciliation from a multi-day grind into a same-morning task, with humans touching only the handful of items that genuinely need judgment.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-receipt"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-factura-bot-360-name">FacturaBot 360</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-factura-bot-360-pain">Supplier invoices arrive as PDFs scattered across three inboxes and a WhatsApp group; someone re-types them into the system, totals get fat-fingered, and at least one invoice always surfaces late, past its due date, with a surprise penalty.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-factura-bot-360-solution">It captures incoming invoices from email, extracts vendor, amounts, tax and due date with OCR and AI, validates totals against the purchase order, and loads the entry into the accounting system with an audit trail.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">AI Builder OCR</span>
+                            <span class="bot-tech-chip">Claude AI</span>
+                            <span class="bot-tech-chip">SharePoint</span>
+                            <span class="bot-tech-chip">SQL Server</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-factura-bot-360-outcome">No invoice falls through the cracks and no due date is missed because a PDF got buried in someone's inbox.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-magnifying-glass"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-gasto-guard-name">GastoGuard</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-gasto-guard-pain">Expense reports come in as crumpled photos and half-filled forms; finance plays detective chasing missing receipts, duplicate charges and out-of-policy claims, and reimbursements drag on for weeks while staff grumble.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-gasto-guard-solution">Employees photograph a receipt, the bot reads the merchant, date and amount, checks it against expense policy and duplicates, routes anything suspicious for approval and pushes clean claims straight to payment.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Apps</span>
+                            <span class="bot-tech-chip">AI Builder OCR</span>
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-gasto-guard-outcome">Reimbursements move from weeks to days, and out-of-policy or duplicate claims get caught before money leaves the company.</span></div>
+                    </article>
+                </div>
+            </div>
+            <div class="bot-category" data-cat="cat2">
+                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-users-three"></i></span> <span data-i18n="botcat-2">Human Resources</span></h3>
+                <div class="bots-grid">
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-user-plus"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-onboard-bot-name">OnboardBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-onboard-bot-pain">A new hire starts Monday with no laptop, no email account and no access to the systems they need; HR, IT and the manager each assume someone else handled it, and the employee spends their first week idle and unimpressed.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-onboard-bot-solution">When a hire is confirmed, the bot fires a coordinated checklist: it requests accounts and equipment, schedules induction sessions, sends welcome material and tracks every task to completion with reminders to the right owner.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">SharePoint</span>
+                            <span class="bot-tech-chip">Microsoft Teams</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-onboard-bot-outcome">Every new hire walks in to a desk that's ready, so day one is about the work and not about chasing access.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-calendar-check"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-vacacion-flow-name">VacacionFlow</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-vacacion-flow-pain">Time-off requests live in email threads and a shared spreadsheet that two people edit at once; nobody knows the real balance, approvals stall while a manager travels, and payroll discovers conflicts after the fact.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-vacacion-flow-solution">Employees submit time off from their phone, the bot checks the live balance and team coverage, routes approval with a backup approver if the manager is out, and updates the calendar and payroll record automatically.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Apps</span>
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                            <span class="bot-tech-chip">Teams</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-vacacion-flow-outcome">Balances are always trustworthy and approvals never stall just because someone is out of office.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-identification-card"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-talento-bot-name">TalentoBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-talento-bot-pain">A single job posting buries recruiters under hundreds of CVs in mixed formats; strong candidates sit unread for days, the good ones accept other offers, and screening feels like reading the same paragraph a thousand times.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-talento-bot-solution">The bot ingests incoming CVs, extracts skills and experience, ranks each candidate against the role's must-have criteria, drafts a shortlist summary for the recruiter and sends acknowledgment emails to every applicant.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Claude AI</span>
+                            <span class="bot-tech-chip">AI Builder</span>
+                            <span class="bot-tech-chip">SharePoint</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-talento-bot-outcome">Recruiters spend their time interviewing the strongest candidates instead of reading hundreds of CVs that don't fit.</span></div>
+                    </article>
+                </div>
+            </div>
+            <div class="bot-category" data-cat="cat3">
+                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-handshake"></i></span> <span data-i18n="botcat-3">Sales &amp; CRM</span></h3>
+                <div class="bots-grid">
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-hand-coins"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-cobranza-bot-name">CobranzaBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-cobranza-bot-pain">Receivables age quietly because reminders depend on whoever remembers; customers claim they never got the invoice, follow-ups are inconsistent and cash that should be in the bank is stuck in a forgotten 60-day-old balance.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-cobranza-bot-solution">The bot watches due dates, sends tiered reminders before and after the deadline through email and WhatsApp, logs every contact in the CRM and escalates aging balances to the account owner with a ready-to-send summary.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">n8n</span>
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">REST API WhatsApp</span>
+                            <span class="bot-tech-chip">SQL Server</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-cobranza-bot-outcome">Collections become consistent and polite instead of sporadic, so cash comes in sooner without anyone having to nag from memory.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-funnel"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-lead-pilot-name">LeadPilot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-lead-pilot-pain">Leads pour in from the website, ads and trade shows into different places, then sit for hours or days before anyone responds; by the time a rep calls, the prospect has already talked to a competitor who answered first.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-lead-pilot-solution">The bot captures leads from every channel into one place, deduplicates and enriches them, scores and assigns each to the right rep instantly, and triggers a first-touch reply within minutes so no hot lead goes cold.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">n8n</span>
+                            <span class="bot-tech-chip">Webhooks</span>
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">REST API CRM</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-lead-pilot-outcome">Every lead gets a fast, consistent first response, so fewer opportunities are lost simply because the company replied too late.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-file-text"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-cotiza-bot-name">CotizaBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-cotiza-bot-pain">Quotes are built by hand in old Word files with last quarter's prices; reps copy the wrong template, margins slip, approvals bounce around email, and the customer waits two days for a document that should take ten minutes.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-cotiza-bot-solution">From the CRM opportunity, the bot pulls current pricing and discount rules, generates a branded quote PDF, routes it for approval only when margin thresholds require it, and emails the final document to the customer.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">SQL Server</span>
+                            <span class="bot-tech-chip">Word/PDF</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-cotiza-bot-outcome">Quotes go out in minutes with the right prices every time, and discount approvals stop being a bottleneck.</span></div>
+                    </article>
+                </div>
+            </div>
+            <div class="bot-category" data-cat="cat4">
+                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-truck"></i></span> <span data-i18n="botcat-4">Operations &amp; Supply Chain</span></h3>
+                <div class="bots-grid">
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-warehouse"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-stock-sentry-name">StockSentry</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-stock-sentry-pain">Inventory truth lives in a spreadsheet updated whenever someone gets around to it; fast movers run out without warning, slow movers pile up tying cash, and purchasing reorders by gut feel after the shelf is already empty.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-stock-sentry-solution">The bot consolidates stock levels across locations, compares them against reorder points and sales velocity, alerts purchasing before items run dry and drafts purchase requisitions for the right quantities to the right suppliers.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">SQL Server</span>
+                            <span class="bot-tech-chip">Power BI</span>
+                            <span class="bot-tech-chip">Excel</span>
+                            <span class="bot-tech-chip">Teams</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-stock-sentry-outcome">Stockouts and dead inventory both shrink because reorders are triggered by data, not by an empty shelf.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-truck"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-ruta-bot-name">RutaBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-ruta-bot-pain">Delivery dispatch is a morning scramble of phone calls and a printed list; drivers double back across the city, customers call asking where their order is, and nobody can say with confidence what was delivered and what wasn't.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-ruta-bot-solution">The bot builds the day's delivery list from open orders, notifies each customer with an arrival window, collects proof-of-delivery from the driver's phone and updates order status and the dashboard in real time.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Apps</span>
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">REST API</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">Power BI</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-ruta-bot-outcome">Dispatch stops being a daily fire drill and customers get clear delivery updates instead of calling to ask.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-shield-check"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-calidad-watch-name">CalidadWatch</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-calidad-watch-pain">Quality inspections are logged on paper clipboards that get lost or soaked; defects are spotted hours too late, the same problem repeats across shifts, and audits become a frantic search for documents that may not exist.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-calidad-watch-solution">Inspectors record checks from a tablet, the bot flags out-of-spec readings instantly, opens a corrective-action task with the responsible area and keeps a timestamped, searchable record ready for any audit.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Apps</span>
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">Power BI</span>
+                            <span class="bot-tech-chip">Teams</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-calidad-watch-outcome">Defects get caught and corrected the same shift, and audit evidence is always one search away instead of lost on paper.</span></div>
+                    </article>
+                </div>
+            </div>
+            <div class="bot-category" data-cat="cat5">
+                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-headset"></i></span> <span data-i18n="botcat-5">Customer Service &amp; Support</span></h3>
+                <div class="bots-grid">
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-headset"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-soporte-bot-name">SoporteBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-soporte-bot-pain">Support requests arrive by email, web form and WhatsApp with no ticket number; messages get answered twice or not at all, the same questions burn agent time daily, and customers feel ignored while issues bounce between people.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-soporte-bot-solution">The bot turns every incoming message into a tracked ticket, drafts an AI answer for common questions, routes complex cases to the right agent with full context and sends the customer a confirmation with their ticket number instantly.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">n8n</span>
+                            <span class="bot-tech-chip">Claude AI</span>
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">REST API WhatsApp</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-soporte-bot-outcome">Every request gets acknowledged immediately and nothing slips through the cracks between channels.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-chat-centered-dots"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-encuesta-bot-name">EncuestaBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-encuesta-bot-pain">After a sale or a support case, feedback is either never collected or trapped in a survey tool no one reviews; an unhappy customer churns silently and the team only learns there was a problem when the account is already gone.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-encuesta-bot-solution">The bot sends a short follow-up survey after each interaction, uses AI to read open comments and gauge sentiment, alerts a manager the moment a response turns negative and rolls everything into a live satisfaction dashboard.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Google Gemini</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">Power BI</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-encuesta-bot-outcome">Unhappy customers get a callback while there's still time to save the relationship, instead of churning in silence.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-clock-countdown"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-sla-guard-name">SLAGuard</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-sla-guard-pain">Service commitments are tracked in people's heads; a ticket quietly breaches its deadline, the customer escalates angrily to a director, and only then does anyone realize the case had been sitting untouched for three days.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-sla-guard-solution">The bot watches every open ticket against its SLA clock, nudges the assigned agent before time runs out, escalates to a supervisor as the deadline nears and reports breach trends so the same gaps stop repeating.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">Teams</span>
+                            <span class="bot-tech-chip">Power BI</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-sla-guard-outcome">Deadlines get defended proactively, so escalations come from the system early rather than from an angry customer too late.</span></div>
+                    </article>
+                </div>
+            </div>
+            <div class="bot-category" data-cat="cat6">
+                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-shopping-cart"></i></span> <span data-i18n="botcat-6">Procurement &amp; Admin</span></h3>
+                <div class="bots-grid">
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-shopping-cart"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-compra-bot-name">CompraBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-compra-bot-pain">Purchase requests live in email and verbal asks; approvals stall in someone's inbox for a week, urgent orders get placed without sign-off, and nobody can tell who approved what or where a given request currently stands.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-compra-bot-solution">Staff submit a structured purchase request, the bot routes it through the approval chain by amount and category, escalates if an approver sits idle, and turns the approved request into a tracked purchase order automatically.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Apps</span>
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">SharePoint</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-compra-bot-outcome">Approvals stop dying in inboxes and every purchase has a clear, auditable trail of who approved it and when.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-signature"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-contrato-bot-name">ContratoBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-contrato-bot-pain">Contracts and supplier agreements are scattered across shared drives with no expiry tracking; a key contract auto-renews at a worse rate, an insurance policy lapses unnoticed, and legal scrambles when an auditor asks for a signed copy.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-contrato-bot-solution">The bot indexes every contract, extracts key dates and terms with AI, alerts owners well before renewal or expiry windows, and keeps a searchable, version-controlled repository with the right approvals on file.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Claude AI</span>
+                            <span class="bot-tech-chip">SharePoint</span>
+                            <span class="bot-tech-chip">AI Builder</span>
+                            <span class="bot-tech-chip">Outlook</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-contrato-bot-outcome">No contract ever auto-renews by surprise or lapses unnoticed, and signed copies are always one search away.</span></div>
+                    </article>
+                    <article class="bot-card">
+                        <div class="bot-card-top">
+                            <div class="bot-icon"><i class="ph ph-files"></i></div>
+                            <h4 class="bot-name" data-i18n="bot-doc-bot-name">DocBot</h4>
+                        </div>
+                        <div class="bot-block bot-pain">
+                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
+                            <p data-i18n="bot-doc-bot-pain">Critical documents land as email attachments and get dropped into whatever folder is open; files are named 'final_v3_real', the same document exists in four versions, and finding the right one before a meeting is a daily panic.</p>
+                        </div>
+                        <div class="bot-block bot-solution">
+                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
+                            <p data-i18n="bot-doc-bot-solution">The bot captures incoming documents, classifies them by type with AI, renames and files them under a consistent structure, extracts key fields into a register and removes duplicates so there's one trusted version of everything.</p>
+                        </div>
+                        <div class="bot-tech">
+                            <span class="bot-tech-chip">Power Automate</span>
+                            <span class="bot-tech-chip">Google Gemini</span>
+                            <span class="bot-tech-chip">SharePoint</span>
+                            <span class="bot-tech-chip">AI Builder OCR</span>
+                            <span class="bot-tech-chip">Dataverse</span>
+                        </div>
+                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-doc-bot-outcome">There's always one trusted version of every document, found in seconds instead of hunted for before every meeting.</span></div>
+                    </article>
+                </div>
+            </div>
+            <div class="bots-footer">
+                <p class="bots-note"><i class="ph ph-info"></i> <span data-i18n="bots-note">Examples of bots we build to measure — adapted to your systems and processes.</span></p>
+                <a href="#cotizador" class="btn btn-primary btn-lg" data-i18n="bots-cta"><i class="ph ph-sparkle"></i> Automate this</a>
+            </div>
+        </div>
+    </section>
+<!-- ========== HOW I WORK ========== -->
     <section class="section" id="proceso">
         <div class="container">
             <div class="section-header">
@@ -1418,6 +1857,8 @@
         </div>
     </footer>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="background-3d.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
