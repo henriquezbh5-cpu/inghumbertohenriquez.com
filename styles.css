@@ -637,3 +637,111 @@ body.bg-static .bg-fallback{background-size:200% 200%,200% 200%,100% 100%;animat
 .service-badge.service-badge-btc{background:linear-gradient(135deg,#f7931a,#fbbf24);color:#1a1200;}
 .service-card.service-btc .service-includes li i,
 .service-card.service-btc .service-result i{color:var(--btc);}
+
+/* ============================================================
+   25. MICROSOFT ECOSYSTEM ARCHITECTURE (animated, branched)
+   ============================================================ */
+.arch{position:relative;max-width:1040px;margin:0 auto;}
+.arch-svg{display:block;width:100%;height:auto;overflow:visible;}
+.arch-link{fill:none;stroke:rgba(148,180,255,0.16);stroke-width:1.5;vector-effect:non-scaling-stroke;}
+.arch-packet{fill:#eafcff;filter:drop-shadow(0 0 5px rgba(34,211,238,0.9)) drop-shadow(0 0 10px rgba(139,92,246,0.6));}
+.arch-nodes{position:absolute;top:0;left:0;width:100%;aspect-ratio:1000 / 440;pointer-events:none;}
+.arch-node{
+    position:absolute;transform:translate(-50%,-26px);
+    width:clamp(92px,12vw,150px);pointer-events:auto;text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    opacity:0;translate:0 14px;transition:opacity .5s ease,translate .5s ease;
+}
+.arch-node.hub{transform:translate(-50%,-32px);}
+.arch.flow-visible .arch-node{opacity:1;translate:0 0;}
+.arch.flow-visible .arch-node:nth-child(1){transition-delay:.05s;}
+.arch.flow-visible .arch-node:nth-child(2){transition-delay:.15s;}
+.arch.flow-visible .arch-node:nth-child(3){transition-delay:.25s;}
+.arch.flow-visible .arch-node:nth-child(4){transition-delay:.4s;}
+.arch.flow-visible .arch-node:nth-child(5){transition-delay:.55s;}
+.arch.flow-visible .arch-node:nth-child(6){transition-delay:.65s;}
+.arch.flow-visible .arch-node:nth-child(7){transition-delay:.8s;}
+.arch-ico{
+    width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;
+    font-size:1.55rem;color:#eafcff;
+    background:linear-gradient(150deg,rgba(34,211,238,.15),rgba(139,92,246,.15));
+    border:1px solid var(--border-strong);
+    box-shadow:0 8px 24px rgba(4,7,20,.5),inset 0 1px 0 rgba(255,255,255,.08);
+    backdrop-filter:blur(8px);transition:transform .3s ease,box-shadow .3s ease;
+}
+.arch-node:hover .arch-ico{transform:translateY(-3px) scale(1.05);box-shadow:var(--shadow-glow);}
+.arch-node.hub .arch-ico{width:64px;height:64px;font-size:1.9rem;background:var(--grad);color:#06101f;box-shadow:0 12px 34px rgba(99,102,241,.45);}
+.arch-name{font-family:var(--ff-display);font-size:.82rem;font-weight:600;line-height:1.15;color:var(--text);}
+.arch-node.hub .arch-name{font-size:.92rem;}
+.arch-caption{text-align:center;color:var(--text-dim);font-size:.82rem;margin-top:24px;font-family:var(--ff-mono);letter-spacing:.02em;}
+@media (max-width:760px){
+    .arch-svg{display:none;}
+    .arch-nodes{position:static;aspect-ratio:auto;width:auto;display:flex;flex-direction:column;gap:12px;padding-left:6px;}
+    .arch-node{position:static!important;transform:none!important;translate:none;width:auto;
+        flex-direction:row;gap:14px;text-align:left;justify-content:flex-start;opacity:1;}
+    .arch-node .arch-ico{flex-shrink:0;}
+}
+@media (prefers-reduced-motion:reduce){
+    .arch-node{opacity:1!important;translate:none!important;}
+    .arch-packet{display:none!important;}
+}
+
+/* ============================================================
+   26. BITCOIN SECTION — orange flow variant + animated blockchain
+   ============================================================ */
+.section-tag.tag-btc{color:var(--btc);background:rgba(247,147,26,.08);border-color:rgba(247,147,26,.22);}
+.flow.flow-btc .flow-progress{stroke:url(#flowGradBtc);filter:drop-shadow(0 0 6px rgba(247,147,26,.55));}
+.flow.flow-btc .flow-pulse{fill:#fff3e0;filter:drop-shadow(0 0 7px rgba(247,147,26,.95)) drop-shadow(0 0 14px rgba(251,191,36,.6));}
+.flow.flow-btc .flow-pulse-halo{fill:rgba(247,147,26,.18);}
+.flow.flow-btc .flow-node-badge{background:linear-gradient(135deg,#f7931a,#fbbf24);color:#1a1200;box-shadow:0 4px 12px rgba(247,147,26,.35);}
+.flow.flow-btc .flow-node-ico::after{background:linear-gradient(135deg,#f7931a,#fbbf24);}
+.flow.flow-btc .flow-node:hover .flow-node-ico{box-shadow:0 14px 40px rgba(247,147,26,.22);}
+.flow.flow-btc .flow-node:hover .flow-node-ico i{color:#fbbf24;}
+.flow.flow-btc .flow-caption i{color:var(--btc);}
+/* animated blockchain */
+.chain{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0;max-width:840px;margin:0 auto clamp(36px,5vw,52px);}
+.chain-block{position:relative;width:118px;padding:14px 12px;border-radius:14px;text-align:center;
+    background:linear-gradient(160deg,rgba(247,147,26,.12),rgba(139,92,246,.07));
+    border:1px solid rgba(247,147,26,.28);box-shadow:0 10px 28px rgba(4,7,20,.5);
+    animation:chainGlow 4.5s ease-in-out infinite;}
+.chain-block:nth-child(3){animation-delay:.6s;}
+.chain-block:nth-child(5){animation-delay:1.2s;}
+.chain-block:nth-child(7){animation-delay:1.8s;}
+.chain-block:nth-child(9){animation-delay:2.4s;}
+.chain-ico{color:#f7931a;font-size:1.35rem;}
+.chain-idx{display:block;font-family:var(--ff-mono);font-size:.64rem;color:#fbbf24;margin-top:4px;}
+.chain-hash{display:block;font-family:var(--ff-mono);font-size:.56rem;color:var(--text-dim);word-break:break-all;line-height:1.3;margin-top:5px;}
+.chain-link{flex:0 0 32px;height:3px;border-radius:3px;position:relative;overflow:hidden;background:rgba(247,147,26,.22);}
+.chain-link::after{content:'';position:absolute;top:0;left:0;height:100%;width:45%;border-radius:3px;
+    background:linear-gradient(90deg,transparent,rgba(255,214,150,.95),transparent);animation:chainFlow 2.6s linear infinite;}
+@keyframes chainFlow{0%{transform:translateX(-120%);}100%{transform:translateX(300%);}}
+@keyframes chainGlow{0%,100%{box-shadow:0 10px 28px rgba(4,7,20,.5);}50%{box-shadow:0 10px 28px rgba(4,7,20,.5),0 0 0 1px rgba(247,147,26,.45),0 0 22px rgba(247,147,26,.28);}}
+@media (max-width:560px){.chain-block{width:42%;}.chain-link{display:none;}}
+@media (prefers-reduced-motion:reduce){.chain-block,.chain-link::after{animation:none!important;}}
+
+/* ============================================================
+   27. POLISH — cursor spotlight on cards + section aurora
+   ============================================================ */
+.spot{position:relative;}
+.spot::after{
+    content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;
+    transition:opacity .35s ease;mix-blend-mode:screen;
+    background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%), rgba(120,180,255,0.12), transparent 46%);
+}
+.spot.spotting::after{opacity:1;}
+.service-card.service-btc.spot::after{background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%), rgba(247,147,26,0.12), transparent 46%);}
+/* drifting aurora behind key sections */
+.section-aurora{position:relative;overflow:hidden;}
+.section-aurora::before{
+    content:'';position:absolute;inset:-25%;z-index:0;pointer-events:none;
+    background:radial-gradient(600px 420px at 22% 28%, rgba(34,211,238,0.10), transparent 60%),
+               radial-gradient(600px 420px at 78% 72%, rgba(139,92,246,0.12), transparent 60%);
+    animation:auroraDrift 26s ease-in-out infinite alternate;
+}
+.section-aurora.aurora-btc::before{
+    background:radial-gradient(620px 440px at 25% 30%, rgba(247,147,26,0.10), transparent 60%),
+               radial-gradient(560px 420px at 80% 74%, rgba(139,92,246,0.10), transparent 62%);
+}
+.section-aurora>.container{position:relative;z-index:1;}
+@keyframes auroraDrift{0%{transform:translate3d(-3%,-2%,0) scale(1.06);}100%{transform:translate3d(3%,2%,0) scale(1.12);}}
+@media (prefers-reduced-motion:reduce){.section-aurora::before{animation:none;}}

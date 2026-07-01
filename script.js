@@ -281,6 +281,29 @@ const translations = {
         'svc-bitcoin-b3': 'An\u00e1lisis de mercado y estrategia con datos',
         'svc-bitcoin-b4': 'Orientaci\u00f3n en medios de pago y tesorer\u00eda',
         'svc-bitcoin-result': 'Tu equipo entiende Bitcoin y puede actuar con claridad, no con miedo.',
+        // Microsoft ecosystem architecture
+        'arch-tag': 'Ecosistema conectado',
+        'arch-title': 'Tu ecosistema Microsoft, conectado',
+        'arch-subtitle': 'Tus datos fluyen de SharePoint, Dataverse y SQL a través de Power Automate hasta las apps y dashboards que tu equipo usa a diario &mdash; una sola plataforma, sin islas.',
+        'arch-team': 'Tu equipo',
+        'arch-caption': 'Datos &rarr; Automatización &rarr; Experiencia. Una sola plataforma, sin islas.',
+        // Bitcoin advisory section
+        'btc-tag': 'Bitcoin, con criterio',
+        'btc-title': 'De "quiero aceptar Bitcoin" a hacerlo bien',
+        'btc-subtitle': 'Acompaño a empresas y equipos a adoptar Bitcoin con cabeza: educación, medios de pago (on-chain y Lightning) y lectura de mercado con datos. Educación y estrategia, no asesoría financiera regulada.',
+        'btc-1-title': 'Diagnóstico',
+        'btc-1-desc': 'Dónde encaja Bitcoin',
+        'btc-2-title': 'Educación',
+        'btc-2-desc': 'Tu equipo entiende',
+        'btc-3-title': 'Setup',
+        'btc-3-desc': 'Wallet + BTCPay',
+        'btc-4-title': 'Aceptar pagos',
+        'btc-4-desc': 'On-chain + Lightning',
+        'btc-5-title': 'Tesorería',
+        'btc-5-desc': 'Registro y control',
+        'btc-6-title': 'Reportes',
+        'btc-6-desc': 'Visible y auditable',
+        'btc-caption': 'Adopción práctica, sin exageraciones &mdash; a tu ritmo y con tus números claros.',
 
         // Projects section
         'projects-tag': 'Portafolio',
@@ -563,9 +586,9 @@ const translations = {
         "hero-title": "Automatizamos el trabajo que <span class=\"text-gradient\">frena a tu equipo</span> \u2014 bots, datos y apps que mueven tu operaci\u00f3n",
         "hero-subtitle": "Dise\u00f1amos y entregamos automatizaciones y bots que sacan el trabajo repetitivo de las manos de tu equipo, y los conectamos con datos limpios, tableros de BI y pipelines ETL que muestran qu\u00e9 est\u00e1 pasando de verdad. Desde ah\u00ed construimos las apps web y m\u00f3viles y la IA aplicada que convierten tu operaci\u00f3n en un sistema que corre solo.",
         "hero-badge-1": "<i class=\"ph ph-certificate\"></i> Microsoft Power Platform Certified",
-        "hero-badge-2": "<i class=\"ph ph-graduation-cap\"></i> MSc Data Science + MSc Business Intelligence",
+        "hero-badge-2": "<i class=\"ph ph-graduation-cap\"></i> 2 Maestr\u00edas (Data Science + BI) \u00b7 Posgrado Blockchain \u00b7 Ing. en Sistemas",
         "hero-badge-3": "<i class=\"ph ph-flow-arrow\"></i> Automatizaci\u00f3n con Power Automate + n8n",
-        "hero-badge-4": "<i class=\"ph ph-globe-hemisphere-west\"></i> Operando en 4 pa\u00edses de LATAM + EE. UU.",
+        "hero-badge-4": "<i class=\"ph ph-globe-hemisphere-west\"></i> Operando en todo el mundo \u00b7 100% remoto",
         "hero-cta-primary": "<i class=\"ph ph-calendar-check\"></i> Automatizar mi operaci\u00f3n",
         "hero-cta-secondary": "<i class=\"ph ph-robot\"></i> Ver lo que construimos",
         "hero-stack-label": "Stack principal:",
@@ -927,6 +950,29 @@ const translations = {
         'svc-bitcoin-b3': 'Data-driven market analysis and strategy',
         'svc-bitcoin-b4': 'Payment-rails and treasury orientation',
         'svc-bitcoin-result': 'Your team understands Bitcoin and can act on it with clarity, not fear.',
+        // Microsoft ecosystem architecture
+        'arch-tag': 'Connected ecosystem',
+        'arch-title': 'Your Microsoft ecosystem, connected',
+        'arch-subtitle': 'Your data flows from SharePoint, Dataverse and SQL through Power Automate into the apps and dashboards your team uses every day &mdash; one platform, no islands.',
+        'arch-team': 'Your team',
+        'arch-caption': 'Data &rarr; Automation &rarr; Experience. One platform, no islands.',
+        // Bitcoin advisory section
+        'btc-tag': 'Bitcoin, done right',
+        'btc-title': 'From "I want to accept Bitcoin" to doing it right',
+        'btc-subtitle': 'I help businesses and teams adopt Bitcoin with a clear head: education, payment rails (on-chain and Lightning) and data-driven market reading. Education and strategy, not regulated financial advice.',
+        'btc-1-title': 'Diagnosis',
+        'btc-1-desc': 'Where Bitcoin fits',
+        'btc-2-title': 'Education',
+        'btc-2-desc': 'Your team gets it',
+        'btc-3-title': 'Setup',
+        'btc-3-desc': 'Wallet + BTCPay',
+        'btc-4-title': 'Accept payments',
+        'btc-4-desc': 'On-chain + Lightning',
+        'btc-5-title': 'Treasury',
+        'btc-5-desc': 'Records &amp; control',
+        'btc-6-title': 'Reporting',
+        'btc-6-desc': 'Visible &amp; auditable',
+        'btc-caption': 'Practical adoption, no hype &mdash; at your pace, with your numbers clear.',
 
         // Projects section
         'projects-tag': 'Portfolio',
@@ -1209,9 +1255,9 @@ const translations = {
         "hero-title": "We automate the work that <span class=\"text-gradient\">slows your team down</span> \u2014 bots, data and apps that run your operation",
         "hero-subtitle": "We design and ship automations and bots that take repetitive work off your team, then connect them to clean data, BI dashboards and ETL pipelines that show what is actually happening. From there we build the web and mobile apps and applied AI that turn your operation into a system that runs on its own.",
         "hero-badge-1": "<i class=\"ph ph-certificate\"></i> Microsoft Power Platform Certified",
-        "hero-badge-2": "<i class=\"ph ph-graduation-cap\"></i> MSc Data Science + MSc Business Intelligence",
+        "hero-badge-2": "<i class=\"ph ph-graduation-cap\"></i> 2 MSc (Data Science + BI) · PgD Blockchain · BSc Systems Eng.",
         "hero-badge-3": "<i class=\"ph ph-flow-arrow\"></i> Power Automate + n8n automation",
-        "hero-badge-4": "<i class=\"ph ph-globe-hemisphere-west\"></i> Serving 4 countries across LATAM + US",
+        "hero-badge-4": "<i class=\"ph ph-globe-hemisphere-west\"></i> Operating worldwide · 100% remote",
         "hero-cta-primary": "<i class=\"ph ph-calendar-check\"></i> Automate my operation",
         "hero-cta-secondary": "<i class=\"ph ph-robot\"></i> See what we build",
         "hero-stack-label": "Core stack:",
@@ -2230,24 +2276,31 @@ if (proposalForm) {
     if (canHover && !reduce) {
         var tiltEls = document.querySelectorAll('.service-card, .project-card, .bot-card, .problem-card, .diff-card');
         tiltEls.forEach(function (el) {
-            // Add .tilt lazily on first hover so it never clobbers the scroll-reveal
-            // transition (.animate-in) that runs when the card first enters the viewport.
+            // .spot (cursor spotlight) is safe upfront: it only paints an invisible ::after
+            // until .spotting is set, so it never clobbers the card's scroll-reveal transition.
+            // .tilt is added lazily on first hover for the same reason.
+            el.classList.add('spot');
             var raf = null;
-            el.addEventListener('pointerenter', function () { el.classList.add('tilt'); el.classList.add('tilting'); });
+            el.addEventListener('pointerenter', function () {
+                el.classList.add('tilt'); el.classList.add('tilting'); el.classList.add('spotting');
+            });
             el.addEventListener('pointermove', function (e) {
                 if (raf) return;
                 raf = window.requestAnimationFrame(function () {
                     raf = null;
                     var r = el.getBoundingClientRect();
-                    var cx = (e.clientX - r.left) / r.width - 0.5;
-                    var cy = (e.clientY - r.top) / r.height - 0.5;
-                    el.style.setProperty('--rx', (cx * 5).toFixed(2) + 'deg');
-                    el.style.setProperty('--ry', (-cy * 5).toFixed(2) + 'deg');
+                    var px = (e.clientX - r.left) / r.width;
+                    var py = (e.clientY - r.top) / r.height;
+                    el.style.setProperty('--rx', ((px - 0.5) * 5).toFixed(2) + 'deg');
+                    el.style.setProperty('--ry', (-(py - 0.5) * 5).toFixed(2) + 'deg');
+                    el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+                    el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
                 });
             });
             el.addEventListener('pointerleave', function () {
                 if (raf) { window.cancelAnimationFrame(raf); raf = null; }
                 el.classList.remove('tilting');
+                el.classList.remove('spotting');
                 el.style.setProperty('--rx', '0deg');
                 el.style.setProperty('--ry', '0deg');
             });

@@ -42,6 +42,10 @@
                 <stop offset="0.5" stop-color="#6366f1"></stop>
                 <stop offset="1" stop-color="#8b5cf6"></stop>
             </linearGradient>
+            <linearGradient id="flowGradBtc" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#f7931a"></stop>
+                <stop offset="1" stop-color="#fbbf24"></stop>
+            </linearGradient>
         </defs>
     </svg>
 
@@ -79,9 +83,9 @@
                 <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> <span data-i18n="hero-stack-label">Core stack:</span></div>
                 <div class="hero-badges">
                     <span class="badge" data-i18n="hero-badge-1"><i class="ph ph-certificate"></i> Microsoft Power Platform Certified</span>
-                    <span class="badge" data-i18n="hero-badge-2"><i class="ph ph-graduation-cap"></i> MSc Data Science + MSc Business Intelligence</span>
+                    <span class="badge" data-i18n="hero-badge-2"><i class="ph ph-graduation-cap"></i> 2 MSc (Data Science + BI) · PgD Blockchain · BSc Systems Eng.</span>
                     <span class="badge" data-i18n="hero-badge-3"><i class="ph ph-flow-arrow"></i> Power Automate + n8n automation</span>
-                    <span class="badge" data-i18n="hero-badge-4"><i class="ph ph-globe-hemisphere-west"></i> Serving 4 countries across LATAM + US</span>
+                    <span class="badge" data-i18n="hero-badge-4"><i class="ph ph-globe-hemisphere-west"></i> Operating worldwide · 100% remote</span>
                 </div>
                 <h1 class="hero-title" data-i18n="hero-title">We automate the work that <span class="text-gradient">slows your team down</span> — bots, data and apps that run your operation</h1>
                 <p class="hero-subtitle" data-i18n="hero-subtitle">We design and ship automations and bots that take repetitive work off your team, then connect them to clean data, BI dashboards and ETL pipelines that show what is actually happening. From there we build the web and mobile apps and applied AI that turn your operation into a system that runs on its own.</p>
@@ -1186,6 +1190,66 @@
         </div>
     </section>
 
+    <!-- ========== MICROSOFT ECOSYSTEM ARCHITECTURE (animated) ========== -->
+    <section class="section section-alt" id="ecosistema">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="arch-tag">Connected ecosystem</span>
+                <h2 class="section-title" data-i18n="arch-title">Your Microsoft ecosystem, connected</h2>
+                <p class="section-subtitle" data-i18n="arch-subtitle">Your data flows from SharePoint, Dataverse and SQL through Power Automate into the apps and dashboards your team uses every day &mdash; one platform, no islands.</p>
+            </div>
+            <div class="arch" data-flow>
+                <svg class="arch-svg" viewBox="0 0 1000 440" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">
+                    <path id="archPath1" class="arch-link" d="M120,79 C270,79 300,220 420,220"></path>
+                    <path id="archPath2" class="arch-link" d="M120,220 L420,220"></path>
+                    <path id="archPath3" class="arch-link" d="M120,361 C270,361 300,220 420,220"></path>
+                    <path id="archPath4" class="arch-link" d="M420,220 C560,220 590,140 720,140"></path>
+                    <path id="archPath5" class="arch-link" d="M420,220 C560,220 590,300 720,300"></path>
+                    <path id="archPath6" class="arch-link" d="M720,140 C830,140 860,220 910,220"></path>
+                    <path id="archPath7" class="arch-link" d="M720,300 C830,300 860,220 910,220"></path>
+                    <circle class="arch-packet" r="4"><animateMotion dur="3.6s" begin="0s" repeatCount="indefinite"><mpath xlink:href="#archPath1" href="#archPath1"></mpath></animateMotion></circle>
+                    <circle class="arch-packet" r="4"><animateMotion dur="3.2s" begin="0.5s" repeatCount="indefinite"><mpath xlink:href="#archPath2" href="#archPath2"></mpath></animateMotion></circle>
+                    <circle class="arch-packet" r="4"><animateMotion dur="3.8s" begin="1s" repeatCount="indefinite"><mpath xlink:href="#archPath3" href="#archPath3"></mpath></animateMotion></circle>
+                    <circle class="arch-packet" r="4"><animateMotion dur="3.4s" begin="1.6s" repeatCount="indefinite"><mpath xlink:href="#archPath4" href="#archPath4"></mpath></animateMotion></circle>
+                    <circle class="arch-packet" r="4"><animateMotion dur="3.4s" begin="2s" repeatCount="indefinite"><mpath xlink:href="#archPath5" href="#archPath5"></mpath></animateMotion></circle>
+                    <circle class="arch-packet" r="4"><animateMotion dur="3s" begin="2.6s" repeatCount="indefinite"><mpath xlink:href="#archPath6" href="#archPath6"></mpath></animateMotion></circle>
+                    <circle class="arch-packet" r="4"><animateMotion dur="3s" begin="3s" repeatCount="indefinite"><mpath xlink:href="#archPath7" href="#archPath7"></mpath></animateMotion></circle>
+                </svg>
+                <div class="arch-nodes">
+                    <article class="arch-node" style="left:12%;top:18%">
+                        <div class="arch-ico"><i class="ph ph-files"></i></div>
+                        <span class="arch-name">SharePoint</span>
+                    </article>
+                    <article class="arch-node" style="left:12%;top:50%">
+                        <div class="arch-ico"><i class="ph ph-stack"></i></div>
+                        <span class="arch-name">Dataverse</span>
+                    </article>
+                    <article class="arch-node" style="left:12%;top:82%">
+                        <div class="arch-ico"><i class="ph ph-database"></i></div>
+                        <span class="arch-name">SQL Server</span>
+                    </article>
+                    <article class="arch-node hub" style="left:42%;top:50%">
+                        <div class="arch-ico"><i class="ph ph-flow-arrow"></i></div>
+                        <span class="arch-name">Power Automate</span>
+                    </article>
+                    <article class="arch-node" style="left:72%;top:31.8%">
+                        <div class="arch-ico"><i class="ph ph-app-window"></i></div>
+                        <span class="arch-name">Power Apps</span>
+                    </article>
+                    <article class="arch-node" style="left:72%;top:68.2%">
+                        <div class="arch-ico"><i class="ph ph-chart-line-up"></i></div>
+                        <span class="arch-name">Power BI</span>
+                    </article>
+                    <article class="arch-node" style="left:91%;top:50%">
+                        <div class="arch-ico"><i class="ph ph-users-three"></i></div>
+                        <span class="arch-name" data-i18n="arch-team">Your team</span>
+                    </article>
+                </div>
+                <p class="arch-caption" data-i18n="arch-caption">Data &rarr; Automation &rarr; Experience. One platform, no islands.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== ABOUT ME ========== -->
     <section class="section section-alt" id="sobre-mi">
         <div class="container">
@@ -1287,6 +1351,81 @@
                     <h3 data-i18n="diff-4-title">Knowledge transfer</h3>
                     <p data-i18n="diff-4-desc">Every project includes complete documentation and training. My goal is to deliver systems that work without me after implementation.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BITCOIN ADVISORY (blockchain + adoption flow) ========== -->
+    <section class="section section-dark section-aurora aurora-btc" id="bitcoin">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag tag-btc" data-i18n="btc-tag">Bitcoin, done right</span>
+                <h2 class="section-title" data-i18n="btc-title">From "I want to accept Bitcoin" to doing it right</h2>
+                <p class="section-subtitle" data-i18n="btc-subtitle">I help businesses and teams adopt Bitcoin with a clear head: education, payment rails (on-chain and Lightning) and data-driven market reading. Education and strategy, not regulated financial advice.</p>
+            </div>
+            <div class="chain" aria-hidden="true">
+                <div class="chain-block"><i class="ph ph-cube chain-ico"></i><span class="chain-idx">#842,101</span><span class="chain-hash">00a3f…b12</span></div>
+                <div class="chain-link"></div>
+                <div class="chain-block"><i class="ph ph-cube chain-ico"></i><span class="chain-idx">#842,102</span><span class="chain-hash">7b1c9…04e</span></div>
+                <div class="chain-link"></div>
+                <div class="chain-block"><i class="ph ph-cube chain-ico"></i><span class="chain-idx">#842,103</span><span class="chain-hash">c40d2…a77</span></div>
+                <div class="chain-link"></div>
+                <div class="chain-block"><i class="ph ph-cube chain-ico"></i><span class="chain-idx">#842,104</span><span class="chain-hash">1f8e6…3da</span></div>
+                <div class="chain-link"></div>
+                <div class="chain-block"><i class="ph ph-cube chain-ico"></i><span class="chain-idx">#842,105</span><span class="chain-hash">e92b4…5c1</span></div>
+            </div>
+            <div class="flow flow-compact flow-btc" data-flow>
+                <svg class="flow-svg" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">
+                    <path class="flow-track" d="M80,100 C164,100 164,200 248,200 C332,200 332,100 416,100 C500,100 500,200 584,200 C668,200 668,100 752,100 C836,100 836,200 920,200"></path>
+                    <path id="flowPath3" class="flow-progress" pathLength="1" d="M80,100 C164,100 164,200 248,200 C332,200 332,100 416,100 C500,100 500,200 584,200 C668,200 668,100 752,100 C836,100 836,200 920,200"></path>
+                    <circle class="flow-pulse-halo" r="11"><animateMotion dur="5s" begin="0.4s" repeatCount="indefinite"><mpath xlink:href="#flowPath3" href="#flowPath3"></mpath></animateMotion></circle>
+                    <circle class="flow-pulse" r="4.5"><animateMotion dur="5s" begin="0.4s" repeatCount="indefinite"><mpath xlink:href="#flowPath3" href="#flowPath3"></mpath></animateMotion></circle>
+                </svg>
+                <div class="flow-nodes">
+                    <article class="flow-node" style="left:8%;top:33.3%">
+                        <div class="flow-node-ico"><i class="ph ph-magnifying-glass"></i><span class="flow-node-badge">01</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="btc-1-title">Diagnosis</h3>
+                            <p data-i18n="btc-1-desc">Where Bitcoin fits</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:24.8%;top:66.7%">
+                        <div class="flow-node-ico"><i class="ph ph-graduation-cap"></i><span class="flow-node-badge">02</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="btc-2-title">Education</h3>
+                            <p data-i18n="btc-2-desc">Your team gets it</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:41.6%;top:33.3%">
+                        <div class="flow-node-ico"><i class="ph ph-wallet"></i><span class="flow-node-badge">03</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="btc-3-title">Setup</h3>
+                            <p data-i18n="btc-3-desc">Wallet + BTCPay</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:58.4%;top:66.7%">
+                        <div class="flow-node-ico"><i class="ph ph-currency-btc"></i><span class="flow-node-badge">04</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="btc-4-title">Accept payments</h3>
+                            <p data-i18n="btc-4-desc">On-chain + Lightning</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:75.2%;top:33.3%">
+                        <div class="flow-node-ico"><i class="ph ph-bank"></i><span class="flow-node-badge">05</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="btc-5-title">Treasury</h3>
+                            <p data-i18n="btc-5-desc">Records &amp; control</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:92%;top:66.7%">
+                        <div class="flow-node-ico"><i class="ph ph-chart-line-up"></i><span class="flow-node-badge">06</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="btc-6-title">Reporting</h3>
+                            <p data-i18n="btc-6-desc">Visible &amp; auditable</p>
+                        </div>
+                    </article>
+                </div>
+                <p class="flow-caption"><i class="ph ph-currency-btc"></i> <span data-i18n="btc-caption">Practical adoption, no hype — at your pace, with your numbers clear.</span></p>
             </div>
         </div>
     </section>
@@ -1517,7 +1656,7 @@
     </section>
 
     <!-- ========== CONTACT & REQUEST PROPOSAL ========== -->
-    <section class="section section-cta" id="contacto">
+    <section class="section section-cta section-aurora" id="contacto">
         <div class="container">
             <div class="cta-content">
                 <h2 data-i18n="cta-title">Ready to build something that actually works?</h2>
