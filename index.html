@@ -34,6 +34,17 @@
     <div class="bg-fallback"></div>
     <div class="bg-grid-overlay"></div>
 
+    <!-- Shared gradient for the animated flow diagrams (defined once, order-independent) -->
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+        <defs>
+            <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#22d3ee"></stop>
+                <stop offset="0.5" stop-color="#6366f1"></stop>
+                <stop offset="1" stop-color="#8b5cf6"></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+
     <!-- ========== NAVIGATION ========== -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
@@ -319,9 +330,88 @@
                         <i class="ph ph-arrow-right"></i> <span data-i18n="svc-applied-ai-result">AI that answers from your data, not generic guesses.</span>
                     </div>
                 </div>
+                <div class="service-card service-btc">
+                    <div class="service-badge service-badge-btc" data-i18n="svc-bitcoin-badge">Advisory</div>
+                    <div class="service-icon service-icon-btc"><i class="ph ph-currency-btc"></i></div>
+                    <h3 data-i18n="svc-bitcoin-title">Bitcoin Advisory &amp; Education</h3>
+                    <p data-i18n="svc-bitcoin-desc">Practical, data-driven Bitcoin guidance for businesses and teams — from accepting Bitcoin and Lightning payments to training your people and reading the market with real data instead of hype. As a market operator and creator of Bitcoin Academy Tech, I bring the technical and the strategic together. Education and strategy, not regulated financial advice.</p>
+                    <ul class="service-includes">
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-bitcoin-b1">Bitcoin adoption for businesses (accept BTC / Lightning)</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-bitcoin-b2">Workshops and team training</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-bitcoin-b3">Data-driven market analysis and strategy</span></li>
+                        <li><i class="ph ph-check-circle"></i> <span data-i18n="svc-bitcoin-b4">Payment-rails and treasury orientation</span></li>
+                    </ul>
+                    <div class="service-result">
+                        <i class="ph ph-arrow-right"></i> <span data-i18n="svc-bitcoin-result">Your team understands Bitcoin and can act on it with clarity, not fear.</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <!-- ========== AUTOMATION ANATOMY (animated flow) ========== -->
+    <section class="section" id="anatomia">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="autoflow-tag">Automation, in motion</span>
+                <h2 class="section-title" data-i18n="autoflow-title">Anatomy of an automation</h2>
+                <p class="section-subtitle" data-i18n="autoflow-subtitle">Every bot I build follows the same skeleton: something fires it, it does the work, checks itself, connects your systems, tells the right people and leaves a trace you can see.</p>
+            </div>
+            <div class="flow flow-compact" data-flow>
+                <svg class="flow-svg" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">
+                    <path class="flow-track" d="M80,100 C164,100 164,200 248,200 C332,200 332,100 416,100 C500,100 500,200 584,200 C668,200 668,100 752,100 C836,100 836,200 920,200"></path>
+                    <path id="flowPath2" class="flow-progress" pathLength="1" d="M80,100 C164,100 164,200 248,200 C332,200 332,100 416,100 C500,100 500,200 584,200 C668,200 668,100 752,100 C836,100 836,200 920,200"></path>
+                    <circle class="flow-pulse-halo" r="11"><animateMotion dur="5.2s" begin="0.4s" repeatCount="indefinite"><mpath xlink:href="#flowPath2" href="#flowPath2"></mpath></animateMotion></circle>
+                    <circle class="flow-pulse" r="4.5"><animateMotion dur="5.2s" begin="0.4s" repeatCount="indefinite"><mpath xlink:href="#flowPath2" href="#flowPath2"></mpath></animateMotion></circle>
+                </svg>
+                <div class="flow-nodes">
+                    <article class="flow-node" style="left:8%;top:33.3%">
+                        <div class="flow-node-ico"><i class="ph ph-lightning"></i><span class="flow-node-badge">01</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="autoflow-1-title">Trigger</h3>
+                            <p data-i18n="autoflow-1-desc">An event fires it</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:24.8%;top:66.7%">
+                        <div class="flow-node-ico"><i class="ph ph-gear-six"></i><span class="flow-node-badge">02</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="autoflow-2-title">Process</h3>
+                            <p data-i18n="autoflow-2-desc">It does the work</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:41.6%;top:33.3%">
+                        <div class="flow-node-ico"><i class="ph ph-git-branch"></i><span class="flow-node-badge">03</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="autoflow-3-title">Validate</h3>
+                            <p data-i18n="autoflow-3-desc">Rules &amp; error handling</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:58.4%;top:66.7%">
+                        <div class="flow-node-ico"><i class="ph ph-plugs-connected"></i><span class="flow-node-badge">04</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="autoflow-4-title">Integrate</h3>
+                            <p data-i18n="autoflow-4-desc">Systems talk to each other</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:75.2%;top:33.3%">
+                        <div class="flow-node-ico"><i class="ph ph-bell-ringing"></i><span class="flow-node-badge">05</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="autoflow-5-title">Notify</h3>
+                            <p data-i18n="autoflow-5-desc">The right people know</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:92%;top:66.7%">
+                        <div class="flow-node-ico"><i class="ph ph-chart-line-up"></i><span class="flow-node-badge">06</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="autoflow-6-title">Dashboard</h3>
+                            <p data-i18n="autoflow-6-desc">You see it all, live</p>
+                        </div>
+                    </article>
+                </div>
+                <p class="flow-caption"><i class="ph ph-repeat"></i> <span data-i18n="autoflow-caption">Runs on schedule or on demand — and escalates to a human only when it truly needs one.</span></p>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== AUTOMATION BOTS CATALOG ========== -->
     <section class="section section-bots" id="bots">
         <div class="container">
@@ -401,77 +491,6 @@
                     </article>
                 </div>
             </div>
-            <div class="bot-category" data-cat="cat2">
-                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-users-three"></i></span> <span data-i18n="botcat-2">Human Resources</span></h3>
-                <div class="bots-grid">
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-user-plus"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-onboard-bot-name">OnboardBot</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-onboard-bot-pain">A new hire starts Monday with no laptop, no email account and no access to the systems they need; HR, IT and the manager each assume someone else handled it, and the employee spends their first week idle and unimpressed.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-onboard-bot-solution">When a hire is confirmed, the bot fires a coordinated checklist: it requests accounts and equipment, schedules induction sessions, sends welcome material and tracks every task to completion with reminders to the right owner.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">SharePoint</span>
-                            <span class="bot-tech-chip">Microsoft Teams</span>
-                            <span class="bot-tech-chip">Outlook</span>
-                            <span class="bot-tech-chip">Dataverse</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-onboard-bot-outcome">Every new hire walks in to a desk that's ready, so day one is about the work and not about chasing access.</span></div>
-                    </article>
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-calendar-check"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-vacacion-flow-name">VacacionFlow</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-vacacion-flow-pain">Time-off requests live in email threads and a shared spreadsheet that two people edit at once; nobody knows the real balance, approvals stall while a manager travels, and payroll discovers conflicts after the fact.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-vacacion-flow-solution">Employees submit time off from their phone, the bot checks the live balance and team coverage, routes approval with a backup approver if the manager is out, and updates the calendar and payroll record automatically.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Apps</span>
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">Dataverse</span>
-                            <span class="bot-tech-chip">Outlook</span>
-                            <span class="bot-tech-chip">Teams</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-vacacion-flow-outcome">Balances are always trustworthy and approvals never stall just because someone is out of office.</span></div>
-                    </article>
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-identification-card"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-talento-bot-name">TalentoBot</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-talento-bot-pain">A single job posting buries recruiters under hundreds of CVs in mixed formats; strong candidates sit unread for days, the good ones accept other offers, and screening feels like reading the same paragraph a thousand times.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-talento-bot-solution">The bot ingests incoming CVs, extracts skills and experience, ranks each candidate against the role's must-have criteria, drafts a shortlist summary for the recruiter and sends acknowledgment emails to every applicant.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">Claude AI</span>
-                            <span class="bot-tech-chip">AI Builder</span>
-                            <span class="bot-tech-chip">SharePoint</span>
-                            <span class="bot-tech-chip">Outlook</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-talento-bot-outcome">Recruiters spend their time interviewing the strongest candidates instead of reading hundreds of CVs that don't fit.</span></div>
-                    </article>
-                </div>
-            </div>
             <div class="bot-category" data-cat="cat3">
                 <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-handshake"></i></span> <span data-i18n="botcat-3">Sales &amp; CRM</span></h3>
                 <div class="bots-grid">
@@ -540,77 +559,6 @@
                             <span class="bot-tech-chip">Outlook</span>
                         </div>
                         <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-cotiza-bot-outcome">Quotes go out in minutes with the right prices every time, and discount approvals stop being a bottleneck.</span></div>
-                    </article>
-                </div>
-            </div>
-            <div class="bot-category" data-cat="cat4">
-                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-truck"></i></span> <span data-i18n="botcat-4">Operations &amp; Supply Chain</span></h3>
-                <div class="bots-grid">
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-warehouse"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-stock-sentry-name">StockSentry</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-stock-sentry-pain">Inventory truth lives in a spreadsheet updated whenever someone gets around to it; fast movers run out without warning, slow movers pile up tying cash, and purchasing reorders by gut feel after the shelf is already empty.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-stock-sentry-solution">The bot consolidates stock levels across locations, compares them against reorder points and sales velocity, alerts purchasing before items run dry and drafts purchase requisitions for the right quantities to the right suppliers.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">SQL Server</span>
-                            <span class="bot-tech-chip">Power BI</span>
-                            <span class="bot-tech-chip">Excel</span>
-                            <span class="bot-tech-chip">Teams</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-stock-sentry-outcome">Stockouts and dead inventory both shrink because reorders are triggered by data, not by an empty shelf.</span></div>
-                    </article>
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-truck"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-ruta-bot-name">RutaBot</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-ruta-bot-pain">Delivery dispatch is a morning scramble of phone calls and a printed list; drivers double back across the city, customers call asking where their order is, and nobody can say with confidence what was delivered and what wasn't.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-ruta-bot-solution">The bot builds the day's delivery list from open orders, notifies each customer with an arrival window, collects proof-of-delivery from the driver's phone and updates order status and the dashboard in real time.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Apps</span>
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">REST API</span>
-                            <span class="bot-tech-chip">Dataverse</span>
-                            <span class="bot-tech-chip">Power BI</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-ruta-bot-outcome">Dispatch stops being a daily fire drill and customers get clear delivery updates instead of calling to ask.</span></div>
-                    </article>
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-shield-check"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-calidad-watch-name">CalidadWatch</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-calidad-watch-pain">Quality inspections are logged on paper clipboards that get lost or soaked; defects are spotted hours too late, the same problem repeats across shifts, and audits become a frantic search for documents that may not exist.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-calidad-watch-solution">Inspectors record checks from a tablet, the bot flags out-of-spec readings instantly, opens a corrective-action task with the responsible area and keeps a timestamped, searchable record ready for any audit.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Apps</span>
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">Dataverse</span>
-                            <span class="bot-tech-chip">Power BI</span>
-                            <span class="bot-tech-chip">Teams</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-calidad-watch-outcome">Defects get caught and corrected the same shift, and audit evidence is always one search away instead of lost on paper.</span></div>
                     </article>
                 </div>
             </div>
@@ -685,77 +633,6 @@
                     </article>
                 </div>
             </div>
-            <div class="bot-category" data-cat="cat6">
-                <h3 class="bot-category-title"><span class="bot-cat-ico"><i class="ph ph-shopping-cart"></i></span> <span data-i18n="botcat-6">Procurement &amp; Admin</span></h3>
-                <div class="bots-grid">
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-shopping-cart"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-compra-bot-name">CompraBot</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-compra-bot-pain">Purchase requests live in email and verbal asks; approvals stall in someone's inbox for a week, urgent orders get placed without sign-off, and nobody can tell who approved what or where a given request currently stands.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-compra-bot-solution">Staff submit a structured purchase request, the bot routes it through the approval chain by amount and category, escalates if an approver sits idle, and turns the approved request into a tracked purchase order automatically.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Apps</span>
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">SharePoint</span>
-                            <span class="bot-tech-chip">Dataverse</span>
-                            <span class="bot-tech-chip">Outlook</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-compra-bot-outcome">Approvals stop dying in inboxes and every purchase has a clear, auditable trail of who approved it and when.</span></div>
-                    </article>
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-signature"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-contrato-bot-name">ContratoBot</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-contrato-bot-pain">Contracts and supplier agreements are scattered across shared drives with no expiry tracking; a key contract auto-renews at a worse rate, an insurance policy lapses unnoticed, and legal scrambles when an auditor asks for a signed copy.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-contrato-bot-solution">The bot indexes every contract, extracts key dates and terms with AI, alerts owners well before renewal or expiry windows, and keeps a searchable, version-controlled repository with the right approvals on file.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">Claude AI</span>
-                            <span class="bot-tech-chip">SharePoint</span>
-                            <span class="bot-tech-chip">AI Builder</span>
-                            <span class="bot-tech-chip">Outlook</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-contrato-bot-outcome">No contract ever auto-renews by surprise or lapses unnoticed, and signed copies are always one search away.</span></div>
-                    </article>
-                    <article class="bot-card">
-                        <div class="bot-card-top">
-                            <div class="bot-icon"><i class="ph ph-files"></i></div>
-                            <h4 class="bot-name" data-i18n="bot-doc-bot-name">DocBot</h4>
-                        </div>
-                        <div class="bot-block bot-pain">
-                            <span class="bot-label bot-label-pain" data-i18n="bots-label-pain">The pain</span>
-                            <p data-i18n="bot-doc-bot-pain">Critical documents land as email attachments and get dropped into whatever folder is open; files are named 'final_v3_real', the same document exists in four versions, and finding the right one before a meeting is a daily panic.</p>
-                        </div>
-                        <div class="bot-block bot-solution">
-                            <span class="bot-label bot-label-sol" data-i18n="bots-label-solution">The bot</span>
-                            <p data-i18n="bot-doc-bot-solution">The bot captures incoming documents, classifies them by type with AI, renames and files them under a consistent structure, extracts key fields into a register and removes duplicates so there's one trusted version of everything.</p>
-                        </div>
-                        <div class="bot-tech">
-                            <span class="bot-tech-chip">Power Automate</span>
-                            <span class="bot-tech-chip">Google Gemini</span>
-                            <span class="bot-tech-chip">SharePoint</span>
-                            <span class="bot-tech-chip">AI Builder OCR</span>
-                            <span class="bot-tech-chip">Dataverse</span>
-                        </div>
-                        <div class="bot-outcome"><i class="ph ph-arrow-bend-down-right"></i> <span data-i18n="bot-doc-bot-outcome">There's always one trusted version of every document, found in seconds instead of hunted for before every meeting.</span></div>
-                    </article>
-                </div>
-            </div>
             <div class="bots-footer">
                 <p class="bots-note"><i class="ph ph-info"></i> <span data-i18n="bots-note">Examples of bots we build to measure — adapted to your systems and processes.</span></p>
                 <a href="#cotizador" class="btn btn-primary btn-lg" data-i18n="bots-cta"><i class="ph ph-sparkle"></i> Automate this</a>
@@ -770,47 +647,56 @@
                 <h2 class="section-title" data-i18n="process-title">How I work</h2>
                 <p class="section-subtitle" data-i18n="process-subtitle">A clear 5-step process to take your operation from manual to digital</p>
             </div>
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3 data-i18n="step-1-title">Diagnosis</h3>
-                        <span class="step-duration" data-i18n="step-1-duration">1-2 days</span>
-                        <p data-i18n="step-1-desc">I understand your current operation: which processes hurt, where time is lost, what information is missing. I don't assume. I ask, observe and document before proposing anything.</p>
-                    </div>
+            <div class="flow" data-flow>
+                <svg class="flow-svg" viewBox="0 0 1000 340" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">
+                    <path class="flow-track" d="M90,110 C190,110 195,230 295,230 C395,230 400,110 500,110 C600,110 605,230 705,230 C805,230 810,110 910,110"></path>
+                    <path id="flowPath1" class="flow-progress" pathLength="1" d="M90,110 C190,110 195,230 295,230 C395,230 400,110 500,110 C600,110 605,230 705,230 C805,230 810,110 910,110"></path>
+                    <circle class="flow-pulse-halo" r="12"><animateMotion dur="4.8s" begin="0.5s" repeatCount="indefinite"><mpath xlink:href="#flowPath1" href="#flowPath1"></mpath></animateMotion></circle>
+                    <circle class="flow-pulse" r="5"><animateMotion dur="4.8s" begin="0.5s" repeatCount="indefinite"><mpath xlink:href="#flowPath1" href="#flowPath1"></mpath></animateMotion></circle>
+                </svg>
+                <div class="flow-nodes">
+                    <article class="flow-node" style="left:9%;top:32.4%">
+                        <div class="flow-node-ico"><i class="ph ph-magnifying-glass"></i><span class="flow-node-badge">01</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="step-1-title">Diagnosis</h3>
+                            <div><span class="flow-dur" data-i18n="step-1-duration">1-2 days</span></div>
+                            <p data-i18n="step-1-short">I map what hurts before proposing anything.</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:29.5%;top:67.6%">
+                        <div class="flow-node-ico"><i class="ph ph-pen-nib"></i><span class="flow-node-badge">02</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="step-2-title">Solution design</h3>
+                            <div><span class="flow-dur" data-i18n="step-2-duration">2-3 days</span></div>
+                            <p data-i18n="step-2-short">Architecture, data flows and success criteria.</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:50%;top:32.4%">
+                        <div class="flow-node-ico"><i class="ph ph-code"></i><span class="flow-node-badge">03</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="step-3-title">Iterative development</h3>
+                            <div><span class="flow-dur" data-i18n="step-3-duration">2-8 weeks</span></div>
+                            <p data-i18n="step-3-short">Working deliveries every 1-2 weeks.</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:70.5%;top:67.6%">
+                        <div class="flow-node-ico"><i class="ph ph-flask"></i><span class="flow-node-badge">04</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="step-4-title">Testing &amp; adjustment</h3>
+                            <div><span class="flow-dur" data-i18n="step-4-duration">3-5 days</span></div>
+                            <p data-i18n="step-4-short">Validated with real users, in real context.</p>
+                        </div>
+                    </article>
+                    <article class="flow-node" style="left:91%;top:32.4%">
+                        <div class="flow-node-ico"><i class="ph ph-rocket-launch"></i><span class="flow-node-badge">05</span></div>
+                        <div class="flow-node-content">
+                            <h3 data-i18n="step-5-title">Delivery &amp; handoff</h3>
+                            <div><span class="flow-dur" data-i18n="step-5-duration">1-2 days</span></div>
+                            <p data-i18n="step-5-short">Production, docs and training. Yours to run.</p>
+                        </div>
+                    </article>
                 </div>
-                <div class="process-step">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3 data-i18n="step-2-title">Solution design</h3>
-                        <span class="step-duration" data-i18n="step-2-duration">2-3 days</span>
-                        <p data-i18n="step-2-desc">I define the technical architecture, data flows, user experience and success criteria. A clear plan with scope, deliverables, timelines and dependencies.</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3 data-i18n="step-3-title">Iterative development</h3>
-                        <span class="step-duration" data-i18n="step-3-duration">2-8 weeks</span>
-                        <p data-i18n="step-3-desc">I build in short cycles with functional deliveries every 1-2 weeks. You see real progress from the start, can test early and adjust without waiting until the end.</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">04</div>
-                    <div class="step-content">
-                        <h3 data-i18n="step-4-title">Testing & adjustment</h3>
-                        <span class="step-duration" data-i18n="step-4-duration">3-5 days</span>
-                        <p data-i18n="step-4-desc">I validate with real users, fix usability and performance issues. The solution is not delivered until it works in the real context of your team.</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">05</div>
-                    <div class="step-content">
-                        <h3 data-i18n="step-5-title">Delivery & handoff</h3>
-                        <span class="step-duration" data-i18n="step-5-duration">1-2 days</span>
-                        <p data-i18n="step-5-desc">I deliver to production with technical documentation, user guide and training session. Your team is equipped to operate and maintain what was built.</p>
-                    </div>
-                </div>
+                <p class="flow-caption"><i class="ph ph-arrow-right"></i> <span data-i18n="flow-process-caption">Every project moves left to right — from a manual mess to a system that runs itself.</span></p>
             </div>
         </div>
     </section>
@@ -947,114 +833,6 @@
                             <span>REST APIs</span>
                             <span>SQL Server</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3: Master Document List -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-tags">
-                        <span class="project-tag tag-sp">SharePoint</span>
-                        <span class="project-tag tag-app">Power Apps</span>
-                        <span class="project-tag tag-flow">Power Automate</span>
-                    </div>
-                    <span class="project-industry"><i class="ph ph-buildings"></i> <span data-i18n="proj3-industry">Corporate Document Governance</span></span>
-                </div>
-                <div class="project-body">
-                    <div class="project-info">
-                        <h3 data-i18n="proj3-title">Document Management System</h3>
-                        <p class="project-tagline" data-i18n="proj3-tagline">From shared folders to information governance</p>
-                        <div class="project-context">
-                            <div class="context-block">
-                                <h4><i class="ph ph-warning-circle"></i> <span data-i18n="label-problem">Problem</span></h4>
-                                <p data-i18n="proj3-problem">Documentation in folders without formal classification, duplicate versions, no role-based permissions, no traceability. Internal audits required manual effort to demonstrate control.</p>
-                            </div>
-                            <div class="context-block">
-                                <h4><i class="ph ph-lightning"></i> <span data-i18n="label-solution">Solution</span></h4>
-                                <p data-i18n="proj3-solution">Master List with structured coding [AREA-CLASS-SCOPE-SERIAL-VERSION], automatic code generation via Power Automate, Power App as frontend, security filters by area and role.</p>
-                            </div>
-                        </div>
-                        <div class="project-results">
-                            <h4 data-i18n="label-results">Results</h4>
-                            <ul>
-                                <li><i class="ph ph-check-circle"></i> <span data-i18n="proj3-result-1">Master catalog with unique code and current version</span></li>
-                                <li><i class="ph ph-check-circle"></i> <span data-i18n="proj3-result-2">Controlled permissions: each user sees only what they should</span></li>
-                                <li><i class="ph ph-check-circle"></i> <span data-i18n="proj3-result-3">Automatic generation eliminated classification errors</span></li>
-                                <li><i class="ph ph-check-circle"></i> <span data-i18n="proj3-result-4">Audit-ready with full traceability</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="project-arch">
-                        <div class="arch-diagram">
-                            <div class="arch-title" data-i18n="proj3-arch-title">Coding structure</div>
-                            <div class="code-structure">
-                                <div class="code-part"><span class="code-label" data-i18n="code-area">Area</span><span class="code-value">IT</span></div>
-                                <span class="code-sep">-</span>
-                                <div class="code-part"><span class="code-label" data-i18n="code-class">Class</span><span class="code-value">MAN</span></div>
-                                <span class="code-sep">-</span>
-                                <div class="code-part"><span class="code-label" data-i18n="code-scope">Scope</span><span class="code-value">GEN</span></div>
-                                <span class="code-sep">-</span>
-                                <div class="code-part"><span class="code-label" data-i18n="code-serial">Serial</span><span class="code-value">001</span></div>
-                                <span class="code-sep">-</span>
-                                <div class="code-part"><span class="code-label" data-i18n="code-version">Version</span><span class="code-value">V02</span></div>
-                            </div>
-                        </div>
-                        <div class="project-stack">
-                            <span>SharePoint Online</span>
-                            <span>Power Apps</span>
-                            <span>Power Automate</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projects 4 & 5: Travel + Purchase -->
-            <div class="projects-duo">
-                <div class="project-card compact">
-                    <div class="project-header">
-                        <div class="project-tags">
-                            <span class="project-tag tag-app">Power Apps</span>
-                            <span class="project-tag tag-flow">Power Automate</span>
-                        </div>
-                    </div>
-                    <h3 data-i18n="proj4-title">Travel Request Portal</h3>
-                    <p class="project-tagline" data-i18n="proj4-tagline">Travel requests with multi-level digital approval</p>
-                    <p data-i18n="proj4-desc">Digital portal that replaced email-based approvals with a standardized form, automatic multi-level flow, real-time notifications and status tracking. Standardized for all countries of operation.</p>
-                    <div class="project-results compact-results">
-                        <ul>
-                            <li><i class="ph ph-check-circle"></i> <span data-i18n="proj4-result-1">Eliminated email dependency</span></li>
-                            <li><i class="ph ph-check-circle"></i> <span data-i18n="proj4-result-2">Real-time status visible to the requester</span></li>
-                            <li><i class="ph ph-check-circle"></i> <span data-i18n="proj4-result-3">Full traceability of every approval</span></li>
-                        </ul>
-                    </div>
-                    <div class="project-stack">
-                        <span>Power Apps</span>
-                        <span>Power Automate</span>
-                        <span>SharePoint</span>
-                    </div>
-                </div>
-                <div class="project-card compact">
-                    <div class="project-header">
-                        <div class="project-tags">
-                            <span class="project-tag tag-app">Power Apps</span>
-                            <span class="project-tag tag-flow">Power Automate</span>
-                        </div>
-                    </div>
-                    <h3 data-i18n="proj5-title">Purchase Order Request</h3>
-                    <p class="project-tagline" data-i18n="proj5-tagline">Traceable purchase orders from request to closure</p>
-                    <p data-i18n="proj5-desc">Digital system with structured form, approvals by amount and area, state management (8 states), attachments linked by order, and consolidated purchasing reports.</p>
-                    <div class="project-results compact-results">
-                        <ul>
-                            <li><i class="ph ph-check-circle"></i> <span data-i18n="proj5-result-1">Single standardized format for all areas</span></li>
-                            <li><i class="ph ph-check-circle"></i> <span data-i18n="proj5-result-2">Attachments travel with the request, not separately</span></li>
-                            <li><i class="ph ph-check-circle"></i> <span data-i18n="proj5-result-3">Compliance and auditable spend control</span></li>
-                        </ul>
-                    </div>
-                    <div class="project-stack">
-                        <span>Power Apps</span>
-                        <span>Power Automate</span>
-                        <span>SharePoint</span>
                     </div>
                 </div>
             </div>
@@ -1306,65 +1084,6 @@
                 </div>
             </div>
 
-            <!-- Projects 9, 10 & 11: Compact trio -->
-            <div class="projects-duo" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                <div class="project-card compact">
-                    <div class="project-header">
-                        <div class="project-tags">
-                            <span class="project-tag tag-ai">AI Video</span>
-                            <span class="project-tag tag-data">Python</span>
-                        </div>
-                    </div>
-                    <h3 data-i18n="proj9-title">AI Video Factory</h3>
-                    <p class="project-tagline" data-i18n="proj9-tagline">Automated AI-powered video generation at scale</p>
-                    <p data-i18n="proj9-desc">Multi-channel video generation system using Google Veo, Runway Gen-4, ElevenLabs TTS, and n8n orchestration. Batch processing 4 videos/day per channel with automated publishing to TikTok, YouTube Shorts, and Instagram Reels.</p>
-                    <div class="project-stack">
-                        <span>Python</span>
-                        <span>Flask</span>
-                        <span>Google Veo</span>
-                        <span>ElevenLabs</span>
-                        <span>n8n</span>
-                        <span>FFmpeg</span>
-                    </div>
-                </div>
-                <div class="project-card compact">
-                    <div class="project-header">
-                        <div class="project-tags">
-                            <span class="project-tag tag-web">Next.js</span>
-                            <span class="project-tag tag-data">FinTech</span>
-                        </div>
-                    </div>
-                    <h3 data-i18n="proj10-title">Crypto Trading Dashboard</h3>
-                    <p class="project-tagline" data-i18n="proj10-tagline">Real-time market analysis and trading signals</p>
-                    <p data-i18n="proj10-desc">Cryptocurrency trading dashboard with Next.js 14, professional candlestick charts (lightweight-charts), real-time market data, technical analysis indicators, and PineScript integration for TradingView strategies.</p>
-                    <div class="project-stack">
-                        <span>Next.js 14</span>
-                        <span>TypeScript</span>
-                        <span>Tailwind</span>
-                        <span>Lightweight Charts</span>
-                        <span>PineScript</span>
-                    </div>
-                </div>
-                <div class="project-card compact">
-                    <div class="project-header">
-                        <div class="project-tags">
-                            <span class="project-tag tag-data">Python</span>
-                            <span class="project-tag tag-data">SQLite</span>
-                        </div>
-                    </div>
-                    <h3 data-i18n="proj11-title">Invoice Processing Engine</h3>
-                    <p class="project-tagline" data-i18n="proj11-tagline">Automated tax compliance and accounting</p>
-                    <p data-i18n="proj11-desc">Batch invoice processing system with automated Colombian tax calculations (withholding, VAT, ICA), double-entry accounting generation, rule engine for tax compliance, and complete audit trail.</p>
-                    <div class="project-stack">
-                        <span>Python</span>
-                        <span>Flask</span>
-                        <span>SQLite</span>
-                        <span>REST API</span>
-                        <span>Tax Rules Engine</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -1507,7 +1226,7 @@
                             </div>
                         </div>
                         <div class="about-detail">
-                            <i class="ph ph-bitcoin-logo"></i>
+                            <i class="ph ph-currency-btc"></i>
                             <div>
                                 <strong data-i18n="about-btc-label">Bitcoin & Crypto</strong>
                                 <span data-i18n="about-btc-value">Market operator & creator of <a href="https://bitcoinacademy.tech" target="_blank" rel="noopener" style="color: #2D6A9F; text-decoration: underline;">Bitcoin Academy Tech</a></span>
@@ -1656,7 +1375,7 @@
                             <label class="quote-option-card quote-option-btc">
                                 <input type="radio" name="projectType" value="bitcoin" data-base="500">
                                 <div class="quote-option-inner">
-                                    <i class="ph ph-bitcoin-logo"></i>
+                                    <i class="ph ph-currency-btc"></i>
                                     <strong data-i18n="quote-type-bitcoin">Bitcoin Advisory</strong>
                                     <span class="quote-option-desc" data-i18n="quote-type-bitcoin-desc">Market analysis, strategy, education</span>
                                     <span class="quote-option-price quote-price-btc" data-i18n="quote-type-bitcoin-price">From $500</span>

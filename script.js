@@ -248,6 +248,39 @@ const translations = {
         'step-5-title': 'Entrega y transferencia',
         'step-5-duration': '1-2 d\u00edas',
         'step-5-desc': 'Entrego en producci\u00f3n con documentaci\u00f3n t\u00e9cnica, gu\u00eda de usuario y sesi\u00f3n de capacitaci\u00f3n. Tu equipo queda capacitado para operar y mantener lo construido.',
+        // Flow diagrams (short lines) + captions
+        'step-1-short': 'Mapeo qu\u00e9 duele antes de proponer nada.',
+        'step-2-short': 'Arquitectura, flujos de datos y criterios de \u00e9xito.',
+        'step-3-short': 'Entregas funcionales cada 1-2 semanas.',
+        'step-4-short': 'Validado con usuarios reales, en contexto real.',
+        'step-5-short': 'Producci\u00f3n, documentaci\u00f3n y capacitaci\u00f3n. Tuyo para operar.',
+        'flow-process-caption': 'Cada proyecto avanza de izquierda a derecha: de un caos manual a un sistema que se opera solo.',
+        // Automation anatomy flow
+        'autoflow-tag': 'Automatizaci\u00f3n, en movimiento',
+        'autoflow-title': 'Anatom\u00eda de una automatizaci\u00f3n',
+        'autoflow-subtitle': 'Cada bot que construyo sigue el mismo esqueleto: algo lo dispara, hace el trabajo, se valida, conecta tus sistemas, avisa a quien corresponde y deja un rastro visible.',
+        'autoflow-1-title': 'Disparador',
+        'autoflow-1-desc': 'Un evento lo activa',
+        'autoflow-2-title': 'Proceso',
+        'autoflow-2-desc': 'Hace el trabajo',
+        'autoflow-3-title': 'Validaci\u00f3n',
+        'autoflow-3-desc': 'Reglas y manejo de errores',
+        'autoflow-4-title': 'Integraci\u00f3n',
+        'autoflow-4-desc': 'Los sistemas se conectan',
+        'autoflow-5-title': 'Notifica',
+        'autoflow-5-desc': 'Avisa a quien corresponde',
+        'autoflow-6-title': 'Tablero',
+        'autoflow-6-desc': 'Todo visible, en vivo',
+        'autoflow-caption': 'Corre programado o bajo demanda, y escala a una persona solo cuando de verdad hace falta.',
+        // Bitcoin advisory service
+        'svc-bitcoin-badge': 'Consultor\u00eda',
+        'svc-bitcoin-title': 'Consultor\u00eda y Educaci\u00f3n Bitcoin',
+        'svc-bitcoin-desc': 'Asesor\u00eda pr\u00e1ctica y basada en datos sobre Bitcoin para empresas y equipos: desde aceptar pagos con Bitcoin y Lightning hasta capacitar a tu gente y leer el mercado con datos reales, no con ruido. Como operador de mercado y creador de Bitcoin Academy Tech, uno lo t\u00e9cnico con lo estrat\u00e9gico. Educaci\u00f3n y estrategia, no asesor\u00eda financiera regulada.',
+        'svc-bitcoin-b1': 'Adopci\u00f3n de Bitcoin para empresas (aceptar BTC / Lightning)',
+        'svc-bitcoin-b2': 'Talleres y capacitaci\u00f3n para equipos',
+        'svc-bitcoin-b3': 'An\u00e1lisis de mercado y estrategia con datos',
+        'svc-bitcoin-b4': 'Orientaci\u00f3n en medios de pago y tesorer\u00eda',
+        'svc-bitcoin-result': 'Tu equipo entiende Bitcoin y puede actuar con claridad, no con miedo.',
 
         // Projects section
         'projects-tag': 'Portafolio',
@@ -861,6 +894,39 @@ const translations = {
         'step-5-title': 'Delivery & handoff',
         'step-5-duration': '1-2 days',
         'step-5-desc': 'I deliver to production with technical documentation, user guide and training session. Your team is equipped to operate and maintain what was built.',
+        // Flow diagrams (short lines) + captions
+        'step-1-short': 'I map what hurts before proposing anything.',
+        'step-2-short': 'Architecture, data flows and success criteria.',
+        'step-3-short': 'Working deliveries every 1-2 weeks.',
+        'step-4-short': 'Validated with real users, in real context.',
+        'step-5-short': 'Production, docs and training. Yours to run.',
+        'flow-process-caption': 'Every project moves left to right &mdash; from a manual mess to a system that runs itself.',
+        // Automation anatomy flow
+        'autoflow-tag': 'Automation, in motion',
+        'autoflow-title': 'Anatomy of an automation',
+        'autoflow-subtitle': 'Every bot I build follows the same skeleton: something fires it, it does the work, checks itself, connects your systems, tells the right people and leaves a trace you can see.',
+        'autoflow-1-title': 'Trigger',
+        'autoflow-1-desc': 'An event fires it',
+        'autoflow-2-title': 'Process',
+        'autoflow-2-desc': 'It does the work',
+        'autoflow-3-title': 'Validate',
+        'autoflow-3-desc': 'Rules &amp; error handling',
+        'autoflow-4-title': 'Integrate',
+        'autoflow-4-desc': 'Systems talk to each other',
+        'autoflow-5-title': 'Notify',
+        'autoflow-5-desc': 'The right people know',
+        'autoflow-6-title': 'Dashboard',
+        'autoflow-6-desc': 'You see it all, live',
+        'autoflow-caption': 'Runs on schedule or on demand &mdash; and escalates to a human only when it truly needs one.',
+        // Bitcoin advisory service
+        'svc-bitcoin-badge': 'Advisory',
+        'svc-bitcoin-title': 'Bitcoin Advisory &amp; Education',
+        'svc-bitcoin-desc': 'Practical, data-driven Bitcoin guidance for businesses and teams &mdash; from accepting Bitcoin and Lightning payments to training your people and reading the market with real data instead of hype. As a market operator and creator of Bitcoin Academy Tech, I bring the technical and the strategic together. Education and strategy, not regulated financial advice.',
+        'svc-bitcoin-b1': 'Bitcoin adoption for businesses (accept BTC / Lightning)',
+        'svc-bitcoin-b2': 'Workshops and team training',
+        'svc-bitcoin-b3': 'Data-driven market analysis and strategy',
+        'svc-bitcoin-b4': 'Payment-rails and treasury orientation',
+        'svc-bitcoin-result': 'Your team understands Bitcoin and can act on it with clarity, not fear.',
 
         // Projects section
         'projects-tag': 'Portfolio',
@@ -2107,4 +2173,84 @@ if (proposalForm) {
         el.classList.add('animate-target');
         if (typeof observer !== 'undefined') observer.observe(el);
     });
+})();
+
+// ========== ANIMATED FLOW DIAGRAMS + POLISH ==========
+(function () {
+    'use strict';
+    var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    // --- Animated flow diagrams: reveal (draw path + light up nodes) on view ---
+    var flows = document.querySelectorAll('[data-flow]');
+    if (flows.length) {
+        if (reduce) {
+            flows.forEach(function (f) {
+                f.classList.add('flow-visible');
+                var svg = f.querySelector('svg');
+                if (svg && typeof svg.pauseAnimations === 'function') {
+                    try { svg.pauseAnimations(); } catch (e) { /* ignore */ }
+                }
+            });
+        } else if ('IntersectionObserver' in window) {
+            var fObs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('flow-visible');
+                        fObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+            flows.forEach(function (f) { fObs.observe(f); });
+        } else {
+            flows.forEach(function (f) { f.classList.add('flow-visible'); });
+        }
+    }
+
+    // --- Scroll progress bar ---
+    if (!reduce) {
+        var bar = document.createElement('div');
+        bar.className = 'scroll-progress';
+        (document.body || document.documentElement).appendChild(bar);
+        var ticking = false;
+        function updateBar() {
+            ticking = false;
+            var doc = document.documentElement;
+            var scrollable = (doc.scrollHeight - doc.clientHeight) || 1;
+            var p = Math.min(Math.max(window.pageYOffset / scrollable, 0), 1);
+            bar.style.transform = 'scaleX(' + p + ')';
+        }
+        window.addEventListener('scroll', function () {
+            if (!ticking) { ticking = true; window.requestAnimationFrame(updateBar); }
+        }, { passive: true });
+        updateBar();
+    }
+
+    // --- Subtle 3D tilt on cards (fine pointer + hover capable only) ---
+    var canHover = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+    if (canHover && !reduce) {
+        var tiltEls = document.querySelectorAll('.service-card, .project-card, .bot-card, .problem-card, .diff-card');
+        tiltEls.forEach(function (el) {
+            // Add .tilt lazily on first hover so it never clobbers the scroll-reveal
+            // transition (.animate-in) that runs when the card first enters the viewport.
+            var raf = null;
+            el.addEventListener('pointerenter', function () { el.classList.add('tilt'); el.classList.add('tilting'); });
+            el.addEventListener('pointermove', function (e) {
+                if (raf) return;
+                raf = window.requestAnimationFrame(function () {
+                    raf = null;
+                    var r = el.getBoundingClientRect();
+                    var cx = (e.clientX - r.left) / r.width - 0.5;
+                    var cy = (e.clientY - r.top) / r.height - 0.5;
+                    el.style.setProperty('--rx', (cx * 5).toFixed(2) + 'deg');
+                    el.style.setProperty('--ry', (-cy * 5).toFixed(2) + 'deg');
+                });
+            });
+            el.addEventListener('pointerleave', function () {
+                if (raf) { window.cancelAnimationFrame(raf); raf = null; }
+                el.classList.remove('tilting');
+                el.style.setProperty('--rx', '0deg');
+                el.style.setProperty('--ry', '0deg');
+            });
+        });
+    }
 })();
