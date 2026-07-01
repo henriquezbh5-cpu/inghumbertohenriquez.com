@@ -764,3 +764,21 @@ body.bg-static .bg-fallback{background-size:200% 200%,200% 200%,100% 100%;animat
 .btc-proof .btn{border-color:rgba(247,147,26,.42);}
 .btc-proof .btn i{color:var(--btc);}
 .btc-proof .btn:hover{border-color:var(--btc);box-shadow:0 0 0 1px rgba(247,147,26,.4),0 12px 30px rgba(247,147,26,.14);}
+
+/* ============================================================
+   29. IMPACT METRICS + DIRECT CONTACT (WhatsApp/LinkedIn)
+   ============================================================ */
+.proj-impact{display:flex;align-items:center;gap:11px;margin:0 0 18px;padding:11px 14px;border-radius:12px;
+    background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(139,92,246,.08));border:1px solid rgba(34,211,238,.22);}
+.proj-impact>i{font-size:1.4rem;color:var(--cyan);flex-shrink:0;}
+.proj-impact-lbl{display:block;font-family:var(--ff-mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);}
+.proj-impact-num{font-family:var(--ff-mono);font-weight:600;color:var(--text);font-size:.94rem;line-height:1.35;}
+/* direct-contact buttons in the CTA */
+.cta-direct{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px 0 4px;}
+.btn.btn-wa{border-color:rgba(37,211,102,.45);}
+.btn.btn-wa i{color:#25D366;}
+.btn.btn-wa:hover{border-color:#25D366;box-shadow:0 0 0 1px rgba(37,211,102,.4),0 12px 30px rgba(37,211,102,.14);}
+/* footer social icons */
+.footer-social{display:flex;gap:12px;}
+.footer-social a{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);font-size:1.2rem;transition:color .25s ease,border-color .25s ease,transform .25s ease;}
+.footer-social a:hover{color:var(--text);border-color:var(--cyan);transform:translateY(-2px);}

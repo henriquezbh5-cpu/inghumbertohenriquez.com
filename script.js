@@ -313,6 +313,11 @@ const translations = {
         'trust-5': 'Respuesta en 24 h',
         'about-availability-label': 'Disponibilidad',
         'about-availability-value': 'Solapamiento total con horario de EE.UU. (CST)',
+        'impact-label': 'Impacto típico',
+        'proj1-impact': 'Búsqueda de docs: minutos &rarr; segundos &middot; menos escalamientos',
+        'proj2-impact': '3 fuentes &rarr; 1 vista &middot; ~1 día/mes de reportes ahorrado',
+        'proj6-impact': '~500 registros/corrida, sin intervención &middot; horas/semana recuperadas',
+        'cta-whatsapp': 'Escríbeme por WhatsApp',
 
         // Projects section
         'projects-tag': 'Portafolio',
@@ -991,6 +996,11 @@ const translations = {
         'trust-5': 'Reply within 24h',
         'about-availability-label': 'Availability',
         'about-availability-value': 'Full overlap with US business hours (CST)',
+        'impact-label': 'Typical impact',
+        'proj1-impact': 'Doc search: minutes &rarr; seconds &middot; fewer escalations',
+        'proj2-impact': '3 sources &rarr; 1 view &middot; ~1 day/month of manual reporting saved',
+        'proj6-impact': '~500 records/run, unattended &middot; hours/week recovered',
+        'cta-whatsapp': 'Chat on WhatsApp',
 
         // Projects section
         'projects-tag': 'Portfolio',
