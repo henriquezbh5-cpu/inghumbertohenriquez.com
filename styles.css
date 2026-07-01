@@ -745,3 +745,22 @@ body.bg-static .bg-fallback{background-size:200% 200%,200% 200%,100% 100%;animat
 .section-aurora>.container{position:relative;z-index:1;}
 @keyframes auroraDrift{0%{transform:translate3d(-3%,-2%,0) scale(1.06);}100%{transform:translate3d(3%,2%,0) scale(1.12);}}
 @media (prefers-reduced-motion:reduce){.section-aurora::before{animation:none;}}
+
+/* ============================================================
+   28. TRUST — about photo, risk-reversal strip, proof link
+   ============================================================ */
+.about-photo-wrap{display:inline-block;position:relative;margin-bottom:22px;}
+.about-photo-wrap::after{content:'';position:absolute;inset:-3px;border-radius:24px;padding:3px;background:var(--grad);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
+.about-photo{width:132px;height:132px;border-radius:22px;object-fit:cover;display:block;box-shadow:0 12px 34px rgba(4,7,20,.55);}
+/* risk-reversal / how-i-work strip near the CTA */
+.trust-strip{margin:4px auto 28px;max-width:780px;}
+.trust-strip-title{font-family:var(--ff-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
+.trust-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.trust-chip{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:9px 16px;backdrop-filter:blur(8px);}
+.trust-chip i{color:var(--cyan);font-size:1.05rem;}
+/* Bitcoin Academy proof button */
+.btc-proof{display:flex;justify-content:center;margin:-8px 0 30px;}
+.btc-proof .btn{border-color:rgba(247,147,26,.42);}
+.btc-proof .btn i{color:var(--btc);}
+.btc-proof .btn:hover{border-color:var(--btc);box-shadow:0 0 0 1px rgba(247,147,26,.4),0 12px 30px rgba(247,147,26,.14);}
