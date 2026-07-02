@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Circular inspection stamp: verified, in production">
+<title>VERIFIED · IN PRODUCTION</title>
+<defs>
+  <path id="stv-top" d="M16,60 A44,44 0 0 1 104,60" fill="none"/>
+  <path id="stv-bot" d="M8,60 A52,52 0 0 0 112,60" fill="none"/>
+</defs>
+<circle class="ill-draw" cx="60" cy="60" r="56" fill="none" stroke="#14B8A6" stroke-width="2.5"/>
+<circle cx="60" cy="60" r="36" fill="none" stroke="#14B8A6" stroke-width="1"/>
+<text font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#14B8A6">
+  <textPath href="#stv-top" startOffset="50%" text-anchor="middle">VERIFIED</textPath>
+</text>
+<text font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="2.5" fill="#14B8A6">
+  <textPath href="#stv-bot" startOffset="50%" text-anchor="middle">IN PRODUCTION</textPath>
+</text>
+<circle cx="12" cy="60" r="1.8" fill="#14B8A6"/>
+<circle cx="108" cy="60" r="1.8" fill="#14B8A6"/>
+<path d="M60,44 L63.8,54.7 L75.2,55.1 L66.2,62 L69.4,72.9 L60,66.5 L50.6,72.9 L53.8,62 L44.8,55.1 L56.2,54.7 Z" fill="#14B8A6"/>
+</svg>

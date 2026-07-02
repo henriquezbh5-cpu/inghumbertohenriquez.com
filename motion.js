@@ -254,6 +254,81 @@
     }
 
     /* ------------------------------------------------------------------ */
+    /* 4b. HERO ILLUSTRATION — FIG. 1 draws itself, then a teal dot rides  */
+    /*     the process path in a slow loop while the hero is on screen.    */
+    /* ------------------------------------------------------------------ */
+    try {
+        var figSvg = document.querySelector('.hero-fig-svg');
+        if (figSvg) {
+            var drawables = [];
+            figSvg.querySelectorAll('.ill-draw').forEach(function (node) {
+                var paths = node.tagName.toLowerCase() === 'g'
+                    ? node.querySelectorAll('path, line, polyline, circle, rect, ellipse')
+                    : [node];
+                paths.forEach(function (p) {
+                    if (typeof p.getTotalLength !== 'function') return;
+                    var len;
+                    try { len = p.getTotalLength(); } catch (e) { return; }
+                    if (!len || !isFinite(len)) return;
+                    // Preserve authored dash patterns (construction lines) — skip them.
+                    if (p.getAttribute('stroke-dasharray')) return;
+                    drawables.push({ el: p, len: len });
+                });
+            });
+
+            if (drawables.length) {
+                if (skipIntro) {
+                    // repeat visit: art fully drawn, no replay
+                } else {
+                    drawables.forEach(function (d) {
+                        gsap.set(d.el, { strokeDasharray: d.len, strokeDashoffset: d.len });
+                    });
+                    gsap.to(drawables.map(function (d) { return d.el; }), {
+                        strokeDashoffset: 0,
+                        duration: 1.6,
+                        ease: 'power2.inOut',
+                        stagger: 0.012,
+                        delay: 0.55,
+                        onComplete: function () {
+                            drawables.forEach(function (d) { gsap.set(d.el, { clearProps: 'strokeDasharray,strokeDashoffset' }); });
+                        }
+                    });
+                }
+            }
+
+            // Traveling process dot: loops along #hb-flow-path only while hero is visible.
+            var flowPath = figSvg.querySelector('#hb-flow-path');
+            var flowDot = figSvg.querySelector('[data-role="flow-dot"]');
+            if (flowPath && flowDot && typeof flowPath.getTotalLength === 'function') {
+                var flowLen = flowPath.getTotalLength();
+                if (flowLen && isFinite(flowLen)) {
+                    var prog = { t: 0 };
+                    var dotTween = gsap.to(prog, {
+                        t: 1,
+                        duration: 6,
+                        ease: 'none',
+                        repeat: -1,
+                        paused: true,
+                        delay: skipIntro ? 0 : 2.2,
+                        onUpdate: function () {
+                            var pt = flowPath.getPointAtLength(prog.t * flowLen);
+                            gsap.set(flowDot, { attr: { cx: pt.x, cy: pt.y }, autoAlpha: prog.t < 0.02 || prog.t > 0.98 ? 0 : 1 });
+                        }
+                    });
+                    ScrollTrigger.create({
+                        trigger: figSvg,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        onToggle: function (self) { self.isActive ? dotTween.play() : dotTween.pause(); }
+                    });
+                }
+            }
+        }
+    } catch (err) {
+        console.warn('motion: hero illustration failed', err);
+    }
+
+    /* ------------------------------------------------------------------ */
     /* 5. SLABS — masked crossfade, once at 60% visibility (~1.1s):        */
     /*    "before" exits upward, "after" rises in, arrow draws.            */
     /* ------------------------------------------------------------------ */

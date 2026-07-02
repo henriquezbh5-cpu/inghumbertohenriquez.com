@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520">
+  <title>ASSY-01</title>
+  <defs>
+    <pattern id="aH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <pattern id="aHd" patternUnits="userSpaceOnUse" width="3.5" height="3.5" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="3.5" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <g id="aBot" stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-34" y="-24" width="68" height="24" rx="12" fill="url(#aHd)" stroke-width="1.75"/>
+      <circle cx="-18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="0" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-12" y="-34" width="24" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-36" y="-104" width="72" height="70" rx="12" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="16" y="-100" width="17" height="62" fill="url(#aH)" stroke="none"/>
+      <path d="M14 -102 V-36" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <path d="M-36 -58 H14" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <circle cx="-30" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="-30" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="24" cy="-70" r="1.6" stroke-width="1"/>
+      <rect x="-28" y="-66" width="34" height="15" rx="2" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-9" y="-114" width="18" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-29" y="-150" width="58" height="38" rx="9" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="-21" y="-143" width="42" height="25" rx="4" fill="#F6F4EE" stroke-width="1.75"/>
+      <g fill="#0F2B46" stroke="none">
+        <circle cx="-13" cy="-134" r="1.7"/><circle cx="-8" cy="-134" r="1.7"/>
+        <circle cx="-13" cy="-129" r="1.7"/><circle cx="-8" cy="-129" r="1.7"/>
+        <circle cx="8" cy="-134" r="1.7"/><circle cx="13" cy="-134" r="1.7"/>
+        <circle cx="8" cy="-129" r="1.7"/><circle cx="13" cy="-129" r="1.7"/>
+        <circle cx="-4" cy="-123" r="1"/><circle cx="0" cy="-123" r="1"/><circle cx="4" cy="-123" r="1"/>
+      </g>
+      <circle cx="-29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <path d="M0 -150 V-166" stroke-width="1.75"/>
+      <circle cx="0" cy="-170" r="6" stroke="#0F766E" stroke-width="1" class="ill-live"/>
+      <circle cx="0" cy="-170" r="3.5" fill="#14B8A6" stroke="none" class="ill-live"/>
+      <circle cx="-36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+      <circle cx="36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+    </g>
+  </defs>
+
+  <g stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- patent frame -->
+    <rect x="16" y="16" width="868" height="488" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="24" y="24" width="852" height="472" stroke-width="1"/>
+    <text x="450" y="52" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="4" fill="#0F2B46" stroke="none">FIG. 1 — ASSY-01</text>
+    <path d="M380 60 H520" stroke-width="1"/>
+
+    <!-- DETAIL A callout (exploded head) -->
+    <text x="98" y="80" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#0F2B46" stroke="none">DETAIL A</text>
+    <path d="M150 88 V182" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="4 3"/>
+    <circle cx="150" cy="96" r="4" stroke-width="1.75"/>
+    <path d="M150 104 V118" stroke-width="1.75"/>
+    <rect x="122" y="122" width="56" height="38" rx="8" fill="#FFFFFF" stroke-width="1.75" class="ill-draw"/>
+    <rect x="132" y="130" width="36" height="22" rx="4" stroke-width="1"/>
+    <circle cx="143" cy="140" r="1.7" fill="#0F2B46" stroke="none"/>
+    <circle cx="157" cy="140" r="1.7" fill="#0F2B46" stroke="none"/>
+    <path d="M122 164 V178 M178 164 V178" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path d="M122 174 H178" stroke-width="1"/>
+    <path d="M122 174 l6 -3 M122 174 l6 3 M178 174 l-6 -3 M178 174 l-6 3" stroke-width="1"/>
+    <text x="150" y="169" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">56</text>
+    <path d="M158 96 H200" stroke-width="1"/>
+    <circle cx="158" cy="96" r="1.3" fill="#0F2B46" stroke="none"/>
+    <text x="204" y="99" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">A-1</text>
+    <path d="M182 141 H210" stroke-width="1"/>
+    <circle cx="182" cy="141" r="1.3" fill="#0F2B46" stroke="none"/>
+    <text x="214" y="144" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">A-2</text>
+    <text x="98" y="202" font-family="IBM Plex Mono, monospace" font-size="8" fill="rgba(15,43,70,.45)" stroke="none">TOL ±0.5</text>
+
+    <!-- ground -->
+    <path d="M60 470 H840" stroke-width="1.75"/>
+    <rect x="60" y="471" width="780" height="8" fill="url(#aH)" stroke="none"/>
+    <ellipse cx="180" cy="472" rx="52" ry="6" fill="url(#aH)" stroke="none"/>
+    <ellipse cx="700" cy="472" rx="52" ry="6" fill="url(#aH)" stroke="none"/>
+
+    <!-- workbench -->
+    <rect x="315" y="346" width="12" height="124" fill="#FFFFFF" stroke-width="1.75"/>
+    <rect x="613" y="346" width="12" height="124" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M327 452 L613 372 M327 372 L613 452" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="315" y="430" width="310" height="8" fill="#FFFFFF" stroke-width="1"/>
+    <rect x="295" y="330" width="350" height="16" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+    <rect x="296" y="338" width="348" height="7" fill="url(#aH)" stroke="none"/>
+    <!-- toolbox on shelf -->
+    <rect x="370" y="406" width="64" height="24" rx="2" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M370 414 H434" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path d="M392 406 Q402 394 412 406" stroke-width="1.75"/>
+    <rect x="399" y="412" width="6" height="6" stroke-width="1"/>
+
+    <!-- blueprint sheet on bench -->
+    <g transform="translate(305,298) rotate(-3)">
+      <rect x="0" y="0" width="92" height="34" fill="#FFFFFF" stroke-width="1"/>
+      <path d="M84 0 L92 8" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <g stroke="#2D6A9F" stroke-width="1">
+        <rect x="8" y="10" width="14" height="9"/>
+        <path d="M22 14.5 H32 l-3 -2 M32 14.5 l-3 2"/>
+        <path d="M43 8 L52 14.5 L43 21 L34 14.5 Z"/>
+        <path d="M52 14.5 H62 l-3 -2 M62 14.5 l-3 2"/>
+        <rect x="62" y="10" width="14" height="9"/>
+      </g>
+    </g>
+
+    <!-- detached small arm, part A-2 -->
+    <path d="M415 326 L431 314" stroke-width="2.5"/>
+    <circle cx="423" cy="320" r="3" fill="#FFFFFF" stroke-width="1"/>
+    <path d="M431 314 l5 -6 M431 314 l7 2" stroke-width="1.75"/>
+    <text x="440" y="304" font-family="IBM Plex Mono, monospace" font-size="7" fill="#0F2B46" stroke="none">A-2</text>
+
+    <!-- gear -->
+    <circle cx="470" cy="314" r="12" fill="#FFFFFF" stroke-width="1.75"/>
+    <circle cx="470" cy="314" r="3" stroke-width="1"/>
+    <path d="M482 314 H486 M470 302 V298 M458 314 H454 M470 326 V330 M478.5 305.5 L481.3 302.7 M461.5 305.5 L458.7 302.7 M461.5 322.5 L458.7 325.3 M478.5 322.5 L481.3 325.3" stroke-width="1.75"/>
+    <!-- spring -->
+    <path d="M496 328 L500 320 L504 328 L508 320 L512 328 L516 320 L520 328" stroke-width="1.75"/>
+    <!-- screws -->
+    <path d="M530 324 V330" stroke-width="1.75"/><circle cx="530" cy="322" r="2" stroke-width="1"/>
+    <path d="M540 326 l4 4" stroke-width="1.75"/><circle cx="538" cy="325" r="2" stroke-width="1"/>
+
+    <!-- small bot under assembly -->
+    <rect x="543" y="318" width="34" height="12" rx="6" fill="url(#aHd)" stroke-width="1.75"/>
+    <rect x="538" y="280" width="44" height="38" rx="7" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+    <path d="M570 282 V316" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <circle cx="544" cy="286" r="1.2" stroke-width="1"/>
+    <circle cx="544" cy="312" r="1.2" stroke-width="1"/>
+    <rect x="546" y="296" width="20" height="10" rx="1.5" fill="#F6F4EE" stroke-width="1"/>
+    <text x="556" y="303.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="6" fill="#0F2B46" stroke="none">R-08</text>
+    <rect x="544" y="254" width="32" height="26" rx="5" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+    <rect x="549" y="259" width="22" height="16" rx="3" fill="#F6F4EE" stroke-width="1"/>
+    <circle cx="556" cy="267" r="2" fill="#0F2B46" stroke="none"/>
+    <circle cx="566" cy="267" r="2" fill="#14B8A6" stroke="none" class="ill-live"/>
+    <path d="M560 254 V242" stroke-width="1.75"/>
+    <circle cx="560" cy="239" r="3" fill="#14B8A6" stroke="none" class="ill-live"/>
+    <circle cx="538" cy="288" r="3.5" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M538 288 L524 300 L528 312" stroke-width="2.5"/>
+    <path d="M528 312 l-5 5 M528 312 l6 4" stroke-width="1.75"/>
+    <circle cx="582" cy="288" r="4.5" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M582 283 L586.3 285.5 L586.3 290.5 L582 293 L577.7 290.5 L577.7 285.5 Z" fill="#FFFFFF" stroke-width="1.75"/>
+    <!-- callout A -->
+    <circle cx="606" cy="246" r="9" stroke-width="1"/>
+    <text x="606" y="249.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">A</text>
+    <path d="M598 251 L586 262" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="3 3"/>
+
+    <!-- ROBOT R-01 : inspecting part -->
+    <use href="#aBot" transform="translate(180,470)"/>
+    <text x="169" y="415" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-01</text>
+    <path d="M216 382 L250 350 L262 324" stroke-width="2.5"/>
+    <circle cx="250" cy="350" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M254 322 L258 310 M270 322 L266 310" stroke-width="2.5"/>
+    <rect x="256" y="286" width="12" height="32" rx="6" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M258 286 L254 278 M266 286 L270 278" stroke-width="1.75"/>
+    <path d="M144 382 L120 352 L118 332" stroke-width="2.5"/>
+    <circle cx="120" cy="352" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M110 328 L110 318 M126 328 L126 318" stroke-width="2.5"/>
+    <rect x="112" y="312" width="12" height="20" rx="5" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M118 332 V354 M115 354 l3 6 3 -6" stroke-width="1.75"/>
+
+    <!-- ROBOT R-02 : tightening bolt -->
+    <use href="#aBot" transform="translate(700,470)"/>
+    <text x="689" y="415" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-02</text>
+    <path d="M664 382 L618 344 L596 306" stroke-width="2.5"/>
+    <circle cx="618" cy="344" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M600 310 L588 294" stroke-width="2.5"/>
+    <path d="M575 295 A10.5 10.5 0 1 1 590 281" stroke-width="2.5"/>
+    <path d="M600 276 l4 -8 M607 283 l7 -5 M594 272 l1 -8" stroke-width="1"/>
+    <path d="M736 382 L766 368 L740 398" stroke-width="2.5"/>
+    <circle cx="766" cy="368" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+
+    <!-- title block -->
+    <rect x="620" y="474" width="256" height="22" fill="#F6F4EE" stroke-width="1"/>
+    <path d="M700 474 V496 M790 474 V496" stroke-width="1"/>
+    <text x="628" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">ASSY-01</text>
+    <text x="708" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SCALE 1:2</text>
+    <text x="798" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SHT 1/6</text>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Round red stamp: in operation, eight plus years">
+<title>IN OPERATION · 8+ YEARS / EN OPERACIÓN · 8+ AÑOS</title>
+<defs>
+  <path id="stt-top" d="M14,60 A46,46 0 0 1 106,60" fill="none"/>
+  <path id="stt-bot" d="M9,60 A51,51 0 0 0 111,60" fill="none"/>
+</defs>
+<circle class="ill-draw" cx="60" cy="60" r="57" fill="none" stroke="#B4232C" stroke-width="2.5"/>
+<circle cx="60" cy="60" r="37" fill="none" stroke="#B4232C" stroke-width="1"/>
+<text font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#B4232C">
+  <textPath href="#stt-top" startOffset="50%" text-anchor="middle">IN OPERATION</textPath>
+</text>
+<text font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#B4232C">
+  <textPath href="#stt-bot" startOffset="50%" text-anchor="middle">EN OPERACIÓN</textPath>
+</text>
+<circle cx="12" cy="60" r="1.8" fill="#B4232C"/>
+<circle cx="108" cy="60" r="1.8" fill="#B4232C"/>
+<text x="60" y="64" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" font-weight="600" letter-spacing="1" fill="#B4232C">8+</text>
+<text x="60" y="76" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="6.5" letter-spacing="1" fill="#B4232C">AÑOS · YEARS</text>
+</svg>

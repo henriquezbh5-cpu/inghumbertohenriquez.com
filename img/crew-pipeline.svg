@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <title>P-7</title>
+  <defs>
+    <pattern id="bH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <pattern id="bHd" patternUnits="userSpaceOnUse" width="3.5" height="3.5" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="3.5" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <g id="bBot" stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-34" y="-24" width="68" height="24" rx="12" fill="url(#bHd)" stroke-width="1.75"/>
+      <circle cx="-18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="0" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-12" y="-34" width="24" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-36" y="-104" width="72" height="70" rx="12" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="16" y="-100" width="17" height="62" fill="url(#bH)" stroke="none"/>
+      <path d="M14 -102 V-36" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <path d="M-36 -58 H14" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <circle cx="-30" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="-30" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="24" cy="-70" r="1.6" stroke-width="1"/>
+      <rect x="-28" y="-66" width="34" height="15" rx="2" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-9" y="-114" width="18" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-29" y="-150" width="58" height="38" rx="9" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="-21" y="-143" width="42" height="25" rx="4" fill="#F6F4EE" stroke-width="1.75"/>
+      <g fill="#0F2B46" stroke="none">
+        <circle cx="-13" cy="-134" r="1.7"/><circle cx="-8" cy="-134" r="1.7"/>
+        <circle cx="-13" cy="-129" r="1.7"/><circle cx="-8" cy="-129" r="1.7"/>
+        <circle cx="8" cy="-134" r="1.7"/><circle cx="13" cy="-134" r="1.7"/>
+        <circle cx="8" cy="-129" r="1.7"/><circle cx="13" cy="-129" r="1.7"/>
+        <circle cx="-4" cy="-123" r="1"/><circle cx="0" cy="-123" r="1"/><circle cx="4" cy="-123" r="1"/>
+      </g>
+      <circle cx="-29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <path d="M0 -150 V-166" stroke-width="1.75"/>
+      <circle cx="0" cy="-170" r="6" stroke="#0F766E" stroke-width="1" class="ill-live"/>
+      <circle cx="0" cy="-170" r="3.5" fill="#14B8A6" stroke="none" class="ill-live"/>
+      <circle cx="-36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+      <circle cx="36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+    </g>
+  </defs>
+
+  <g stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- frame -->
+    <rect x="16" y="16" width="868" height="388" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="24" y="24" width="852" height="372" stroke-width="1"/>
+    <text x="450" y="52" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="4" fill="#0F2B46" stroke="none">FIG. 2 — P-7</text>
+    <path d="M395 60 H505" stroke-width="1"/>
+
+    <!-- ground -->
+    <path d="M60 370 H840" stroke-width="1.75"/>
+    <rect x="60" y="371" width="780" height="8" fill="url(#bH)" stroke="none"/>
+    <ellipse cx="330" cy="372" rx="52" ry="6" fill="url(#bH)" stroke="none"/>
+
+    <!-- pipe supports -->
+    <path d="M250 254 L232 370 M250 254 L268 370" stroke-width="1.75"/>
+    <path d="M238 330 H262" stroke-width="1"/>
+    <rect x="224" y="366" width="20" height="5" stroke-width="1"/>
+    <rect x="256" y="366" width="20" height="5" stroke-width="1"/>
+    <path d="M750 254 L732 370 M750 254 L768 370" stroke-width="1.75"/>
+    <path d="M738 330 H762" stroke-width="1"/>
+    <rect x="724" y="366" width="20" height="5" stroke-width="1"/>
+    <rect x="756" y="366" width="20" height="5" stroke-width="1"/>
+
+    <!-- pipe -->
+    <path d="M70 212 H830" stroke-width="2.5" class="ill-draw"/>
+    <path d="M70 254 H830" stroke-width="2.5" class="ill-draw"/>
+    <path d="M70 212 V254 M830 212 V254" stroke-width="2.5"/>
+    <path d="M70 220 H830" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path d="M70 233 H830" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="10 4 2 4"/>
+    <!-- flanges -->
+    <rect x="184" y="204" width="5" height="58" fill="#FFFFFF" stroke-width="1.75"/>
+    <rect x="191" y="204" width="5" height="58" fill="#FFFFFF" stroke-width="1.75"/>
+    <circle cx="186.5" cy="210" r="1.3" fill="#0F2B46" stroke="none"/><circle cx="186.5" cy="248" r="1.3" fill="#0F2B46" stroke="none"/>
+    <circle cx="193.5" cy="210" r="1.3" fill="#0F2B46" stroke="none"/><circle cx="193.5" cy="248" r="1.3" fill="#0F2B46" stroke="none"/>
+    <rect x="634" y="204" width="5" height="58" fill="#FFFFFF" stroke-width="1.75"/>
+    <rect x="641" y="204" width="5" height="58" fill="#FFFFFF" stroke-width="1.75"/>
+    <circle cx="636.5" cy="210" r="1.3" fill="#0F2B46" stroke="none"/><circle cx="636.5" cy="248" r="1.3" fill="#0F2B46" stroke="none"/>
+    <circle cx="643.5" cy="210" r="1.3" fill="#0F2B46" stroke="none"/><circle cx="643.5" cy="248" r="1.3" fill="#0F2B46" stroke="none"/>
+
+    <!-- flow chevrons + packets -->
+    <g stroke="#2D6A9F" stroke-width="1.75">
+      <path d="M120 226 l12 7 -12 7"/>
+      <path d="M270 226 l12 7 -12 7"/>
+      <path d="M540 226 l12 7 -12 7"/>
+      <path d="M705 226 l12 7 -12 7"/>
+      <path d="M790 226 l12 7 -12 7"/>
+    </g>
+    <text x="104" y="200" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="2" fill="#0F2B46" stroke="none">P-7 FLOW</text>
+    <circle cx="150" cy="233" r="4" fill="#14B8A6" stroke="none" class="ill-live"/>
+    <circle cx="315" cy="233" r="3.5" fill="#14B8A6" stroke="none" class="ill-live"/>
+    <circle cx="505" cy="233" r="4" fill="#14B8A6" stroke="none" class="ill-live"/>
+    <circle cx="735" cy="233" r="3.5" fill="#14B8A6" stroke="none" class="ill-live"/>
+    <path d="M492 229 h-8 M492 237 h-6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+
+    <!-- rag draped on pipe -->
+    <rect x="692" y="198" width="30" height="14" rx="4" fill="url(#bH)" stroke-width="1.75"/>
+    <rect x="698" y="212" width="16" height="22" rx="3" fill="url(#bH)" stroke-width="1.75"/>
+
+    <!-- valve -->
+    <rect x="403" y="200" width="54" height="64" rx="8" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+    <rect x="438" y="206" width="14" height="52" fill="url(#bH)" stroke="none"/>
+    <rect x="422" y="182" width="16" height="20" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M430 182 V166" stroke-width="1.75"/>
+    <circle cx="430" cy="150" r="20" stroke-width="2.5" class="ill-draw"/>
+    <path d="M430 132 V168 M414 162 L446 138 M414 138 L446 162" stroke-width="1.75"/>
+    <circle cx="430" cy="150" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <!-- tag -->
+    <path d="M457 252 L470 264" stroke-width="1"/>
+    <g transform="translate(468,262) rotate(8)">
+      <rect x="0" y="0" width="36" height="16" rx="2" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="4" cy="8" r="1.3" stroke-width="1"/>
+      <text x="21" y="11.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="#0F2B46" stroke="none">V-03</text>
+    </g>
+
+    <!-- gauge -->
+    <rect x="586" y="196" width="8" height="16" fill="#FFFFFF" stroke-width="1.75"/>
+    <circle cx="590" cy="170" r="26" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+    <circle cx="590" cy="170" r="20" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path d="M572 160 L576 163 M580 148 L583 152 M590 144 V150 M600 148 L597 152 M608 160 L604 163" stroke-width="1"/>
+    <path d="M612 158 L608 161" stroke="#B4232C" stroke-width="2.5"/>
+    <path d="M590 170 L602 152" stroke="#2D6A9F" stroke-width="1.75"/>
+    <circle cx="590" cy="170" r="3" fill="#2D6A9F" stroke="none"/>
+    <text x="590" y="188" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="#0F2B46" stroke="none">KPA</text>
+
+    <!-- ROBOT R-03 : oiling the valve -->
+    <use href="#bBot" transform="translate(330,370)"/>
+    <text x="319" y="315" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-03</text>
+    <!-- right arm to handwheel -->
+    <path d="M366 282 L392 230 L413 168" stroke-width="2.5"/>
+    <circle cx="392" cy="230" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M408 164 l-6 -4 M418 165 l2 -7" stroke-width="1.75"/>
+    <path d="M398 130 a26 26 0 0 1 12 -8 M392 122 a34 34 0 0 1 14 -10" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <!-- left arm with oil can -->
+    <path d="M294 282 L322 240 L396 198" stroke-width="2.5"/>
+    <circle cx="322" cy="240" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <rect x="394" y="188" width="16" height="13" rx="3" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M398 188 a5 5 0 0 1 8 0" stroke-width="1"/>
+    <path d="M410 191 L426 179" stroke-width="1.75"/>
+    <circle cx="428" cy="186" r="1.6" fill="#0F2B46" stroke="none"/>
+    <circle cx="429" cy="192" r="1.2" fill="#0F2B46" stroke="none"/>
+
+    <!-- title block -->
+    <rect x="620" y="374" width="256" height="22" fill="#F6F4EE" stroke-width="1"/>
+    <path d="M700 374 V396 M790 374 V396" stroke-width="1"/>
+    <text x="628" y="389" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">P-7</text>
+    <text x="708" y="389" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SCALE 1:5</text>
+    <text x="798" y="389" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SHT 2/6</text>
+  </g>
+</svg>

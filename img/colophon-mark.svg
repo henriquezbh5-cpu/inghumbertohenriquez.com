@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Maker's mark: a drafting compass crossed with a pen nib">
+<title>COLOPHON — COMPASS AND PEN</title>
+<g opacity=".7" fill="none" stroke="#0F2B46" stroke-linejoin="round">
+  <!-- compass -->
+  <line x1="24" y1="1.5" x2="24" y2="4.8" stroke-width="1.75"/>
+  <circle cx="24" cy="7" r="2.2" stroke-width="1.75"/>
+  <line x1="22.8" y1="9" x2="13" y2="38" stroke-width="1.75"/>
+  <line x1="25.2" y1="9" x2="35" y2="38" stroke-width="1.75"/>
+  <path d="M17.5,20 A14 14 0 0 1 30.5,20" stroke-width="1" stroke-dasharray="2 2"/>
+  <line x1="13" y1="38" x2="12.2" y2="42" stroke-width="1.75"/>
+  <line x1="35" y1="38" x2="35.8" y2="42" stroke-width="1.75"/>
+  <!-- arc being drawn -->
+  <path class="ill-draw" d="M12,42.5 A19 19 0 0 0 36,42.5" stroke-width="1" stroke-dasharray="2 2.5"/>
+  <!-- pen, crossing diagonally -->
+  <g transform="rotate(40 24 24)">
+    <line x1="4" y1="22.6" x2="26" y2="22.6" stroke-width="1.75"/>
+    <line x1="4" y1="25.4" x2="26" y2="25.4" stroke-width="1.75"/>
+    <line x1="4" y1="22.6" x2="4" y2="25.4" stroke-width="1.75"/>
+    <path d="M26,22.6 C31,22.8 34.5,23.5 37.5,24 C34.5,24.5 31,25.2 26,25.4" stroke-width="1.75"/>
+    <line x1="26" y1="24" x2="34" y2="24" stroke-width="1"/>
+    <circle cx="30" cy="24" r="1" stroke-width="1"/>
+  </g>
+</g>
+</svg>

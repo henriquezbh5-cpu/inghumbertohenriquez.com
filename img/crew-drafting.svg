@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520">
+  <title>DR-05</title>
+  <defs>
+    <pattern id="dH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <pattern id="dHd" patternUnits="userSpaceOnUse" width="3.5" height="3.5" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="3.5" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <g id="dBot" stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-34" y="-24" width="68" height="24" rx="12" fill="url(#dHd)" stroke-width="1.75"/>
+      <circle cx="-18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="0" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-12" y="-34" width="24" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-36" y="-104" width="72" height="70" rx="12" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="16" y="-100" width="17" height="62" fill="url(#dH)" stroke="none"/>
+      <path d="M14 -102 V-36" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <path d="M-36 -58 H14" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <circle cx="-30" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="-30" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="24" cy="-70" r="1.6" stroke-width="1"/>
+      <rect x="-28" y="-66" width="34" height="15" rx="2" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-9" y="-114" width="18" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-29" y="-150" width="58" height="38" rx="9" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="-21" y="-143" width="42" height="25" rx="4" fill="#F6F4EE" stroke-width="1.75"/>
+      <g fill="#0F2B46" stroke="none">
+        <circle cx="-13" cy="-134" r="1.7"/><circle cx="-8" cy="-134" r="1.7"/>
+        <circle cx="-13" cy="-129" r="1.7"/><circle cx="-8" cy="-129" r="1.7"/>
+        <circle cx="8" cy="-134" r="1.7"/><circle cx="13" cy="-134" r="1.7"/>
+        <circle cx="8" cy="-129" r="1.7"/><circle cx="13" cy="-129" r="1.7"/>
+        <circle cx="-4" cy="-123" r="1"/><circle cx="0" cy="-123" r="1"/><circle cx="4" cy="-123" r="1"/>
+      </g>
+      <circle cx="-29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <path d="M0 -150 V-166" stroke-width="1.75"/>
+      <circle cx="0" cy="-170" r="6" stroke="#0F766E" stroke-width="1" class="ill-live"/>
+      <circle cx="0" cy="-170" r="3.5" fill="#14B8A6" stroke="none" class="ill-live"/>
+      <circle cx="-36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+      <circle cx="36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+    </g>
+  </defs>
+
+  <g stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- frame -->
+    <rect x="16" y="16" width="668" height="488" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="24" y="24" width="652" height="472" stroke-width="1"/>
+    <text x="350" y="52" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="4" fill="#0F2B46" stroke="none">FIG. 4 — DR-05</text>
+    <path d="M285 60 H415" stroke-width="1"/>
+
+    <!-- ground -->
+    <path d="M60 470 H640" stroke-width="1.75"/>
+    <rect x="60" y="471" width="580" height="8" fill="url(#dH)" stroke="none"/>
+    <ellipse cx="505" cy="472" rx="52" ry="6" fill="url(#dH)" stroke="none"/>
+
+    <!-- stool + mug -->
+    <rect x="75" y="420" width="52" height="8" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M82 428 L76 470 M120 428 L126 470 M84 452 H119" stroke-width="1.75"/>
+    <rect x="92" y="404" width="16" height="16" rx="2" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M108 408 a5 4 0 0 1 0 8" stroke-width="1.75"/>
+    <path d="M96 398 q3 -6 0 -10 M103 398 q3 -6 0 -10" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+
+    <!-- table legs -->
+    <path d="M170 336 L150 470 M400 268 L416 470" stroke-width="2.5"/>
+    <path d="M158 430 L410 444" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="142" y="466" width="18" height="5" stroke-width="1"/>
+    <rect x="408" y="466" width="18" height="5" stroke-width="1"/>
+
+    <!-- drafting board -->
+    <path d="M130 312 L408 242 L428 270 L150 340 Z" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+    <path d="M150 340 L152 348 L430 278 L428 270" fill="url(#dH)" stroke-width="1.75"/>
+    <!-- sheet -->
+    <path d="M165 305 L380 251 L395 272 L180 326 Z" fill="#FFFFFF" stroke-width="1"/>
+    <rect x="170" y="300" width="8" height="5" fill="#F6F4EE" stroke-width="1" transform="rotate(-14 174 302)"/>
+    <rect x="372" y="249" width="8" height="5" fill="#F6F4EE" stroke-width="1" transform="rotate(-14 376 251)"/>
+    <!-- flowchart on sheet -->
+    <g transform="translate(196,302) rotate(-14)">
+      <path d="M-6 8 H130" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="3 4"/>
+      <path d="M-6 43 H92" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="3 4"/>
+      <rect x="0" y="0" width="36" height="16" rx="3" stroke-width="1.75" class="ill-draw"/>
+      <path d="M36 8 H50 l-3 -2 M50 8 l-3 2" stroke-width="1.75"/>
+      <path d="M62 -2 L74 8 L62 18 L50 8 Z" stroke-width="1.75" class="ill-draw"/>
+      <path d="M74 8 H88 l-3 -2 M88 8 l-3 2" stroke-width="1.75"/>
+      <rect x="88" y="0" width="34" height="16" rx="8" stroke-width="1.75" class="ill-draw"/>
+      <path d="M62 18 V32 l-2 -3 M62 32 l2 -3" stroke-width="1.75"/>
+      <rect x="44" y="34" width="34" height="14" rx="3" stroke-width="1.75" class="ill-draw"/>
+      <text x="104" y="30" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="1" fill="#2D6A9F" stroke="none">REV A</text>
+    </g>
+    <!-- compass-drawn arc -->
+    <path d="M378 270 A20 20 0 0 1 398 252" stroke="#2D6A9F" stroke-width="1" stroke-dasharray="3 3"/>
+
+    <!-- lamp -->
+    <rect x="396" y="240" width="12" height="8" fill="#FFFFFF" stroke-width="1.75" transform="rotate(-14 402 244)"/>
+    <path d="M402 242 L448 196" stroke-width="1.75"/>
+    <circle cx="448" cy="196" r="3" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M448 196 L426 158" stroke-width="1.75"/>
+    <path d="M414 148 L440 142 L434 166 L416 164 Z" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M420 170 L362 240 M428 172 L392 250 M412 166 L332 222" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="2 5"/>
+
+    <!-- rolled plans leaning on leg -->
+    <g transform="translate(150,392) rotate(14)">
+      <rect x="12" y="8" width="13" height="66" rx="6.5" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="0" y="0" width="14" height="76" rx="7" fill="#FFFFFF" stroke-width="1.75"/>
+      <circle cx="7" cy="7" r="5.5" stroke-width="1"/>
+      <path d="M7 7 a2.5 2.5 0 0 1 2.5 2.5" stroke-width="1"/>
+      <rect x="0" y="32" width="14" height="8" fill="url(#dH)" stroke-width="1"/>
+    </g>
+
+    <!-- ROBOT R-05 : draftsbot -->
+    <use href="#dBot" transform="translate(505,470)"/>
+    <text x="494" y="415" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-05</text>
+    <!-- left arm with compass -->
+    <path d="M469 382 L420 312 L400 248" stroke-width="2.5"/>
+    <circle cx="420" cy="312" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <circle cx="398" cy="240" r="3.5" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M398 243 L388 264 M398 243 L406 259" stroke-width="1.75"/>
+    <path d="M394 250 A7 7 0 0 1 401 251" stroke-width="1"/>
+    <!-- right arm with set square -->
+    <path d="M541 382 L560 344 L552 320" stroke-width="2.5"/>
+    <circle cx="560" cy="344" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M536 318 H576 L536 282 Z" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M544 310 H560 L544 296 Z" stroke-width="1"/>
+
+    <!-- title block -->
+    <rect x="420" y="474" width="256" height="22" fill="#F6F4EE" stroke-width="1"/>
+    <path d="M500 474 V496 M590 474 V496" stroke-width="1"/>
+    <text x="428" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">DR-05</text>
+    <text x="508" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SCALE 1:2</text>
+    <text x="598" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SHT 4/6</text>
+  </g>
+</svg>

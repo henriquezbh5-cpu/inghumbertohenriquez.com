@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520">
+  <title>QA-04</title>
+  <defs>
+    <pattern id="cH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <pattern id="cHd" patternUnits="userSpaceOnUse" width="3.5" height="3.5" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="3.5" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <g id="cBot" stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-34" y="-24" width="68" height="24" rx="12" fill="url(#cHd)" stroke-width="1.75"/>
+      <circle cx="-18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="0" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-12" y="-34" width="24" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-36" y="-104" width="72" height="70" rx="12" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="16" y="-100" width="17" height="62" fill="url(#cH)" stroke="none"/>
+      <path d="M14 -102 V-36" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <path d="M-36 -58 H14" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <circle cx="-30" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="-30" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="24" cy="-70" r="1.6" stroke-width="1"/>
+      <rect x="-28" y="-66" width="34" height="15" rx="2" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-9" y="-114" width="18" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-29" y="-150" width="58" height="38" rx="9" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="-21" y="-143" width="42" height="25" rx="4" fill="#F6F4EE" stroke-width="1.75"/>
+      <g fill="#0F2B46" stroke="none">
+        <circle cx="-13" cy="-134" r="1.7"/><circle cx="-8" cy="-134" r="1.7"/>
+        <circle cx="-13" cy="-129" r="1.7"/><circle cx="-8" cy="-129" r="1.7"/>
+        <circle cx="8" cy="-134" r="1.7"/><circle cx="13" cy="-134" r="1.7"/>
+        <circle cx="8" cy="-129" r="1.7"/><circle cx="13" cy="-129" r="1.7"/>
+        <circle cx="-4" cy="-123" r="1"/><circle cx="0" cy="-123" r="1"/><circle cx="4" cy="-123" r="1"/>
+      </g>
+      <circle cx="-29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <path d="M0 -150 V-166" stroke-width="1.75"/>
+      <circle cx="0" cy="-170" r="6" stroke="#0F766E" stroke-width="1" class="ill-live"/>
+      <circle cx="0" cy="-170" r="3.5" fill="#14B8A6" stroke="none" class="ill-live"/>
+      <circle cx="-36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+      <circle cx="36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+    </g>
+  </defs>
+
+  <g stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- frame -->
+    <rect x="16" y="16" width="668" height="488" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="24" y="24" width="652" height="472" stroke-width="1"/>
+    <text x="350" y="52" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="4" fill="#0F2B46" stroke="none">FIG. 3 — QA-04</text>
+    <path d="M285 60 H415" stroke-width="1"/>
+
+    <!-- ground -->
+    <path d="M60 470 H640" stroke-width="1.75"/>
+    <rect x="60" y="471" width="580" height="8" fill="url(#cH)" stroke="none"/>
+    <ellipse cx="540" cy="472" rx="52" ry="6" fill="url(#cH)" stroke="none"/>
+
+    <!-- hanging framed dashboard -->
+    <circle cx="270" cy="72" r="2.5" fill="#0F2B46" stroke="none"/>
+    <path d="M270 74 L118 96 M270 74 L422 96" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="110" y="94" width="320" height="258" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+    <rect x="124" y="108" width="292" height="230" stroke-width="1"/>
+    <rect x="124" y="108" width="292" height="26" fill="url(#cH)" stroke-width="1"/>
+    <text x="132" y="125" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#0F2B46" stroke="none">DASH-01</text>
+    <circle cx="394" cy="121" r="1.5" fill="#0F2B46" stroke="none"/>
+    <circle cx="402" cy="121" r="1.5" fill="#0F2B46" stroke="none"/>
+    <circle cx="410" cy="121" r="1.5" fill="#0F2B46" stroke="none"/>
+    <!-- chart -->
+    <path d="M140 150 V320 H400" stroke-width="1.75"/>
+    <path d="M140 190 H400 M140 230 H400 M140 270 H400" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="2 4"/>
+    <rect x="155" y="250" width="30" height="70" fill="url(#cH)" stroke-width="1.75"/>
+    <rect x="205" y="220" width="30" height="100" fill="url(#cH)" stroke-width="1.75"/>
+    <rect x="255" y="270" width="30" height="50" fill="url(#cH)" stroke-width="1.75"/>
+    <rect x="305" y="190" width="30" height="130" fill="#2D6A9F" stroke-width="1.75"/>
+    <rect x="355" y="230" width="30" height="90" fill="url(#cH)" stroke-width="1.75"/>
+    <path d="M150 262 L200 240 L250 246 L300 204 L350 216 L392 186" stroke-width="1.75" class="ill-draw"/>
+    <circle cx="150" cy="262" r="2.2" fill="#0F2B46" stroke="none"/>
+    <circle cx="200" cy="240" r="2.2" fill="#0F2B46" stroke="none"/>
+    <circle cx="250" cy="246" r="2.2" fill="#0F2B46" stroke="none"/>
+    <circle cx="300" cy="204" r="2.2" fill="#0F2B46" stroke="none"/>
+    <circle cx="350" cy="216" r="2.2" fill="#0F2B46" stroke="none"/>
+    <circle cx="392" cy="186" r="4" fill="#14B8A6" stroke="none" class="ill-live"/>
+    <g font-family="IBM Plex Mono, monospace" font-size="7" fill="#0F2B46" stroke="none" text-anchor="middle">
+      <text x="170" y="332">01</text><text x="220" y="332">02</text><text x="270" y="332">03</text>
+      <text x="320" y="332">04</text><text x="370" y="332">05</text>
+    </g>
+    <!-- red inspection stamp (single red use) -->
+    <g transform="translate(388,136) rotate(-14)" stroke="#B4232C">
+      <circle r="19" stroke-width="1.75"/>
+      <circle r="13.5" stroke-width="1"/>
+      <text y="3.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" letter-spacing="1" fill="#B4232C" stroke="none">PASS</text>
+    </g>
+    <!-- plate -->
+    <rect x="220" y="360" width="100" height="16" rx="2" fill="#F6F4EE" stroke-width="1"/>
+    <text x="270" y="371" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="#0F2B46" stroke="none">DASH-01 REV C</text>
+
+    <!-- ROBOT R-04 : inspector -->
+    <use href="#cBot" transform="translate(540,470)"/>
+    <text x="529" y="415" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-04</text>
+    <!-- left arm + magnifier -->
+    <path d="M504 382 L462 344 L442 306" stroke-width="2.5"/>
+    <circle cx="462" cy="344" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M412 267 L440 304" stroke-width="2.5"/>
+    <circle cx="395" cy="245" r="28" stroke-width="2.5" class="ill-draw"/>
+    <circle cx="395" cy="245" r="24" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path d="M384 230 l-8 10 M392 226 l-4 5" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path d="M378 250 L395 234 L412 242" stroke="#2D6A9F" stroke-width="2.5"/>
+    <circle cx="395" cy="234" r="3" fill="#0F2B46" stroke="none"/>
+    <!-- right arm + clipboard -->
+    <path d="M576 382 L600 352 L592 332" stroke-width="2.5"/>
+    <circle cx="600" cy="352" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <rect x="566" y="296" width="50" height="66" rx="3" fill="#FFFFFF" stroke-width="1.75"/>
+    <rect x="583" y="290" width="16" height="10" rx="3" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M578 316 H606 M578 326 H606 M578 336 H598" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="571" y="312" width="6" height="6" stroke-width="1"/>
+    <rect x="571" y="322" width="6" height="6" stroke-width="1"/>
+    <rect x="571" y="332" width="6" height="6" stroke-width="1"/>
+    <path d="M571.5 315 l2 2 l3.5 -4.5 M571.5 325 l2 2 l3.5 -4.5" stroke="#2D6A9F" stroke-width="1.75"/>
+
+    <!-- title block -->
+    <rect x="420" y="474" width="256" height="22" fill="#F6F4EE" stroke-width="1"/>
+    <path d="M500 474 V496 M590 474 V496" stroke-width="1"/>
+    <text x="428" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">QA-04</text>
+    <text x="508" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SCALE 1:2</text>
+    <text x="598" y="489" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SHT 3/6</text>
+  </g>
+</svg>

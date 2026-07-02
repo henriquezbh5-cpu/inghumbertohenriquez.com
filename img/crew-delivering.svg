@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <title>HND-06</title>
+  <defs>
+    <pattern id="eH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <pattern id="eHd" patternUnits="userSpaceOnUse" width="3.5" height="3.5" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="3.5" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    </pattern>
+    <g id="eBot" stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-34" y="-24" width="68" height="24" rx="12" fill="url(#eHd)" stroke-width="1.75"/>
+      <circle cx="-18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="0" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="18" cy="-12" r="6.5" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-12" y="-34" width="24" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-36" y="-104" width="72" height="70" rx="12" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="16" y="-100" width="17" height="62" fill="url(#eH)" stroke="none"/>
+      <path d="M14 -102 V-36" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <path d="M-36 -58 H14" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <circle cx="-30" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="-30" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-98" r="1.6" stroke-width="1"/>
+      <circle cx="8" cy="-42" r="1.6" stroke-width="1"/>
+      <circle cx="24" cy="-70" r="1.6" stroke-width="1"/>
+      <rect x="-28" y="-66" width="34" height="15" rx="2" fill="#F6F4EE" stroke-width="1"/>
+      <rect x="-9" y="-114" width="18" height="10" fill="#FFFFFF" stroke-width="1.75"/>
+      <rect x="-29" y="-150" width="58" height="38" rx="9" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="-21" y="-143" width="42" height="25" rx="4" fill="#F6F4EE" stroke-width="1.75"/>
+      <g fill="#0F2B46" stroke="none">
+        <circle cx="-13" cy="-134" r="1.7"/><circle cx="-8" cy="-134" r="1.7"/>
+        <circle cx="-13" cy="-129" r="1.7"/><circle cx="-8" cy="-129" r="1.7"/>
+        <circle cx="8" cy="-134" r="1.7"/><circle cx="13" cy="-134" r="1.7"/>
+        <circle cx="8" cy="-129" r="1.7"/><circle cx="13" cy="-129" r="1.7"/>
+        <circle cx="-4" cy="-123" r="1"/><circle cx="0" cy="-123" r="1"/><circle cx="4" cy="-123" r="1"/>
+      </g>
+      <circle cx="-29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <circle cx="29" cy="-131" r="3" fill="#F6F4EE" stroke-width="1"/>
+      <path d="M0 -150 V-166" stroke-width="1.75"/>
+      <circle cx="0" cy="-170" r="6" stroke="#0F766E" stroke-width="1" class="ill-live"/>
+      <circle cx="0" cy="-170" r="3.5" fill="#14B8A6" stroke="none" class="ill-live"/>
+      <circle cx="-36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+      <circle cx="36" cy="-88" r="5.5" fill="#FFFFFF" stroke-width="1.75"/>
+    </g>
+  </defs>
+
+  <g stroke="#0F2B46" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- frame -->
+    <rect x="16" y="16" width="768" height="418" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="24" y="24" width="752" height="402" stroke-width="1"/>
+    <text x="400" y="52" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="4" fill="#0F2B46" stroke="none">FIG. 5 — HND-06</text>
+    <path d="M330 60 H470" stroke-width="1"/>
+
+    <!-- ground -->
+    <path d="M60 400 H740" stroke-width="1.75"/>
+    <rect x="60" y="401" width="680" height="8" fill="url(#eH)" stroke="none"/>
+    <ellipse cx="230" cy="402" rx="55" ry="6" fill="url(#eH)" stroke="none"/>
+
+    <!-- briefcase, client side -->
+    <rect x="646" y="360" width="66" height="40" rx="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M668 360 Q679 348 690 360" stroke-width="1.75"/>
+    <path d="M646 374 H712" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <rect x="656" y="371" width="7" height="6" stroke-width="1"/>
+    <rect x="695" y="371" width="7" height="6" stroke-width="1"/>
+
+    <!-- ROBOT R-06 : courier -->
+    <use href="#eBot" transform="translate(230,400)"/>
+    <text x="219" y="345" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-06</text>
+    <!-- motion whiffs -->
+    <path d="M300 262 h-20 M312 250 h-14" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <!-- left arm relaxed -->
+    <path d="M194 312 L176 344 L184 368" stroke-width="2.5"/>
+    <circle cx="176" cy="344" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M178 372 l-4 6 M190 370 l4 5" stroke-width="1.75"/>
+    <!-- right arm with folder -->
+    <path d="M266 312 L322 286 L368 268" stroke-width="2.5"/>
+    <circle cx="322" cy="286" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M364 262 l4 -8 M374 266 l8 -3" stroke-width="1.75"/>
+
+    <!-- document folder -->
+    <g transform="translate(378,232) rotate(-5)">
+      <rect x="0" y="0" width="96" height="62" rx="3" fill="#FFFFFF" stroke-width="2.5" class="ill-draw"/>
+      <rect x="6" y="-8" width="30" height="10" rx="2" fill="#FFFFFF" stroke-width="1.75"/>
+      <path d="M0 20 L40 20 L48 28 L96 28" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+      <circle cx="70" cy="46" r="3" stroke-width="1"/>
+      <circle cx="84" cy="46" r="3" stroke-width="1"/>
+      <path d="M73 46 Q78 41 81 46" stroke-width="1"/>
+      <text x="10" y="48" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#0F2B46" stroke="none">DOC-42</text>
+      <g transform="translate(74,14) rotate(-12)" stroke="#B4232C">
+        <circle r="11" stroke-width="1.75"/>
+        <text y="2.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="5.5" letter-spacing="1" fill="#B4232C" stroke="none">APPD</text>
+      </g>
+    </g>
+
+    <!-- transfer warmth marks -->
+    <path d="M488 250 a14 14 0 0 1 0 26" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path d="M497 244 a20 20 0 0 1 0 38" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+
+    <!-- human hand + suit cuff -->
+    <path d="M744 236 L636 252 L646 300 L744 316" fill="url(#eH)" stroke-width="1.75"/>
+    <circle cx="700" cy="256" r="1.5" fill="#0F2B46" stroke="none"/>
+    <circle cx="712" cy="254" r="1.5" fill="#0F2B46" stroke="none"/>
+    <path d="M636 252 L646 300 L622 302 L612 254 Z" fill="#FFFFFF" stroke-width="1.75"/>
+    <circle cx="630" cy="278" r="2.5" fill="#2D6A9F" stroke="none"/>
+    <path d="M612 256 C585 246 556 244 530 252 C512 257 500 264 500 272 C500 279 508 284 522 284 L560 288 C585 291 605 296 622 300 Z" fill="#FFFFFF" stroke-width="1.75" class="ill-draw"/>
+    <path d="M600 252 C588 236 566 230 552 238 C544 243 546 252 556 254" fill="#FFFFFF" stroke-width="1.75"/>
+    <path d="M504 266 q12 -2 24 1 M502 274 q12 3 26 4" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+
+    <!-- title block -->
+    <rect x="520" y="404" width="256" height="22" fill="#F6F4EE" stroke-width="1"/>
+    <path d="M600 404 V426 M690 404 V426" stroke-width="1"/>
+    <text x="528" y="419" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">HND-06</text>
+    <text x="608" y="419" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SCALE 1:2</text>
+    <text x="698" y="419" font-family="IBM Plex Mono, monospace" font-size="8" fill="#0F2B46" stroke="none">SHT 5/6</text>
+  </g>
+</svg>
