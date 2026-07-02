@@ -73,12 +73,12 @@
 
   renderer.setPixelRatio(clamp(window.devicePixelRatio || 1, 1, pixelCap));
   renderer.setSize(W, H, false);
-  renderer.setClearColor(0x000000, 0); // transparent; CSS gradient shows through
+  renderer.setClearColor(0x000000, 0); // transparent; CSS paper background shows through
 
   // --- Scene / camera / fog ---------------------------------------------------
   var scene = new THREE.Scene();
-  // Deep navy->indigo fog gives depth and fades distant nodes.
-  scene.fog = new THREE.FogExp2(0x070b1f, 0.045);
+  // Paper fog: depth fade goes to archival paper, not darkness.
+  scene.fog = new THREE.FogExp2(0xF6F4EE, 0.03);
 
   var camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 100);
   camera.position.set(0, 0, 18);
@@ -98,10 +98,10 @@
   var LINK_DIST = isMobile ? 4.6 : 4.2; // connection radius
   var MAX_LINKS = isMobile ? 360 : 900; // cap segments for perf
 
-  // Accent palette
-  var COL_CYAN = new THREE.Color(0x22d3ee);
-  var COL_VIOLET = new THREE.Color(0x8b5cf6);
-  var COL_DEEP = new THREE.Color(0x3b6dd6);
+  // Ink-on-paper palette
+  var COL_STEEL = new THREE.Color(0x2D6A9F);
+  var COL_INK = new THREE.Color(0x0F2B46);
+  var COL_TEAL = new THREE.Color(0x0F766E);
 
   // Per-node state arrays
   var positions = new Float32Array(NODE_COUNT * 3);
@@ -125,10 +125,11 @@
     drift[i * 3 + 1] = 0.4 + Math.random() * 0.9;
     drift[i * 3 + 2] = 0.3 + Math.random() * 0.7;
 
-    // Color: blend cyan/violet with a deep base, tinted by depth.
+    // Color: faint ink schematic — steel blue lerped toward ink navy,
+    // ~20% of nodes pulled toward live teal.
     var ct = Math.random();
-    var c = COL_CYAN.clone().lerp(COL_VIOLET, ct);
-    c.lerp(COL_DEEP, 0.25);
+    var c = COL_STEEL.clone().lerp(COL_INK, ct);
+    if (Math.random() < 0.2) c.lerp(COL_TEAL, 0.65);
     pointColors[i * 3] = c.r;
     pointColors[i * 3 + 1] = c.g;
     pointColors[i * 3 + 2] = c.b;
@@ -168,13 +169,13 @@
   );
 
   var pointsMat = new THREE.PointsMaterial({
-    size: isMobile ? 0.5 : 0.42,
+    size: isMobile ? 0.45 : 0.38,
     map: glowTex,
     vertexColors: true,
     transparent: true,
-    opacity: 0.95,
+    opacity: 0.5,
     depthWrite: false,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.NormalBlending,
     sizeAttenuation: true,
     fog: true
   });
@@ -199,11 +200,14 @@
   );
   lineGeo.setDrawRange(0, 0);
 
+  // Flat steel ink lines: on paper, vertex-color fade would darken toward
+  // black (more visible, not less), so a uniform faint color is used instead.
   var lineMat = new THREE.LineBasicMaterial({
-    vertexColors: true,
+    color: 0x2D6A9F,
+    vertexColors: false,
     transparent: true,
-    opacity: 0.16,
-    blending: THREE.AdditiveBlending,
+    opacity: 0.10,
+    blending: THREE.NormalBlending,
     depthWrite: false,
     fog: true
   });
@@ -273,29 +277,7 @@
     lineGeo.attributes.color.needsUpdate = true;
   }
 
-  // --- Distant ambient glow sprites (cyan + violet) for "expensive" depth ----
-  function makeGlowSprite(color, scale, posV, opacity) {
-    var mat = new THREE.SpriteMaterial({
-      map: glowTex,
-      color: color,
-      transparent: true,
-      opacity: opacity,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      fog: false
-    });
-    var s = new THREE.Sprite(mat);
-    s.scale.set(scale, scale, 1);
-    s.position.copy(posV);
-    scene.add(s);
-    return s;
-  }
-  var glowCyan = makeGlowSprite(
-    0x22d3ee, 26, new THREE.Vector3(-9, 4, -10), 0.10
-  );
-  var glowViolet = makeGlowSprite(
-    0x8b5cf6, 30, new THREE.Vector3(10, -5, -12), 0.10
-  );
+  // (Ambient glow sprites removed: additive halos are invisible/muddy on paper.)
 
   // --- Interaction: mouse + device orientation parallax ----------------------
   var targetX = 0, targetY = 0; // normalized, hard-clamped to -1..1
@@ -421,11 +403,6 @@
     points.rotation.x = Math.sin(t * 0.05) * 0.05;
     lines.rotation.x = points.rotation.x;
 
-    // Breathing glow on ambient sprites.
-    var pulse = 0.08 + (Math.sin(t * 0.4) * 0.5 + 0.5) * 0.06;
-    glowCyan.material.opacity = pulse;
-    glowViolet.material.opacity = 0.07 + (Math.cos(t * 0.33) * 0.5 + 0.5) * 0.06;
-
     renderer.render(scene, camera);
   }
 
@@ -457,16 +434,12 @@
 
     scene.remove(points);
     scene.remove(lines);
-    scene.remove(glowCyan);
-    scene.remove(glowViolet);
 
     pointsGeo.dispose();
     pointsMat.dispose();
     lineGeo.dispose();
     lineMat.dispose();
     glowTex.dispose();
-    if (glowCyan.material) glowCyan.material.dispose();
-    if (glowViolet.material) glowViolet.material.dispose();
 
     renderer.dispose();
     if (typeof renderer.forceContextLoss === 'function') {
