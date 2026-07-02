@@ -1,5 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520">
   <title>ASSY-01</title>
+  <style>
+    @keyframes asm-pulse{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes asm-tighten{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+    @keyframes asm-spin{to{transform:rotate(360deg)}}
+    @keyframes asm-blink{0%,70%,100%{opacity:0}12%,42%{opacity:1}}
+    .ill-live{animation:asm-pulse 2.4s ease-in-out infinite}
+    .asm-arm1{transform-box:fill-box;transform-origin:0% 100%;animation:asm-tighten 3s ease-in-out infinite}
+    .asm-gear{transform-box:fill-box;transform-origin:50% 50%;animation:asm-spin 12s linear infinite}
+    .asm-spark{animation:asm-blink 2.6s ease-in-out infinite}
+    .asm-s2{animation-delay:.35s}
+    .asm-s3{animation-delay:.7s}
+    @media (prefers-reduced-motion: reduce){*{animation:none !important}}
+  </style>
   <defs>
     <pattern id="aH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
@@ -110,9 +123,11 @@
     <text x="440" y="304" font-family="IBM Plex Mono, monospace" font-size="7" fill="#0F2B46" stroke="none">A-2</text>
 
     <!-- gear -->
-    <circle cx="470" cy="314" r="12" fill="#FFFFFF" stroke-width="1.75"/>
-    <circle cx="470" cy="314" r="3" stroke-width="1"/>
-    <path d="M482 314 H486 M470 302 V298 M458 314 H454 M470 326 V330 M478.5 305.5 L481.3 302.7 M461.5 305.5 L458.7 302.7 M461.5 322.5 L458.7 325.3 M478.5 322.5 L481.3 325.3" stroke-width="1.75"/>
+    <g class="asm-gear">
+      <circle cx="470" cy="314" r="12" fill="#FFFFFF" stroke-width="1.75"/>
+      <circle cx="470" cy="314" r="3" stroke-width="1"/>
+      <path d="M482 314 H486 M470 302 V298 M458 314 H454 M470 326 V330 M478.5 305.5 L481.3 302.7 M461.5 305.5 L458.7 302.7 M461.5 322.5 L458.7 325.3 M478.5 322.5 L481.3 325.3" stroke-width="1.75"/>
+    </g>
     <!-- spring -->
     <path d="M496 328 L500 320 L504 328 L508 320 L512 328 L516 320 L520 328" stroke-width="1.75"/>
     <!-- screws -->
@@ -146,11 +161,13 @@
     <!-- ROBOT R-01 : inspecting part -->
     <use href="#aBot" transform="translate(180,470)"/>
     <text x="169" y="415" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-01</text>
-    <path d="M216 382 L250 350 L262 324" stroke-width="2.5"/>
-    <circle cx="250" cy="350" r="4" fill="#FFFFFF" stroke-width="1.75"/>
-    <path d="M254 322 L258 310 M270 322 L266 310" stroke-width="2.5"/>
-    <rect x="256" y="286" width="12" height="32" rx="6" fill="#FFFFFF" stroke-width="1.75"/>
-    <path d="M258 286 L254 278 M266 286 L270 278" stroke-width="1.75"/>
+    <g class="asm-arm1">
+      <path d="M216 382 L250 350 L262 324" stroke-width="2.5"/>
+      <circle cx="250" cy="350" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+      <path d="M254 322 L258 310 M270 322 L266 310" stroke-width="2.5"/>
+      <rect x="256" y="286" width="12" height="32" rx="6" fill="#FFFFFF" stroke-width="1.75"/>
+      <path d="M258 286 L254 278 M266 286 L270 278" stroke-width="1.75"/>
+    </g>
     <path d="M144 382 L120 352 L118 332" stroke-width="2.5"/>
     <circle cx="120" cy="352" r="4" fill="#FFFFFF" stroke-width="1.75"/>
     <path d="M110 328 L110 318 M126 328 L126 318" stroke-width="2.5"/>
@@ -164,7 +181,9 @@
     <circle cx="618" cy="344" r="4" fill="#FFFFFF" stroke-width="1.75"/>
     <path d="M600 310 L588 294" stroke-width="2.5"/>
     <path d="M575 295 A10.5 10.5 0 1 1 590 281" stroke-width="2.5"/>
-    <path d="M600 276 l4 -8 M607 283 l7 -5 M594 272 l1 -8" stroke-width="1"/>
+    <path class="asm-spark" d="M600 276 l4 -8" stroke-width="1"/>
+    <path class="asm-spark asm-s2" d="M607 283 l7 -5" stroke-width="1"/>
+    <path class="asm-spark asm-s3" d="M594 272 l1 -8" stroke-width="1"/>
     <path d="M736 382 L766 368 L740 398" stroke-width="2.5"/>
     <circle cx="766" cy="368" r="4" fill="#FFFFFF" stroke-width="1.75"/>
 

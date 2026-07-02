@@ -1,5 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520">
   <title>DR-05</title>
+  <style>
+    .ill-live{animation:cdPulse 2.4s ease-in-out infinite}
+    @keyframes cdPulse{0%,100%{opacity:.35}50%{opacity:1}}
+    .cd-fore{transform-origin:420px 312px;animation:cdSketch 1.6s ease-in-out infinite}
+    @keyframes cdSketch{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-4deg)}}
+    .cd-cone{animation:cdCone 4s ease-in-out infinite}
+    @keyframes cdCone{0%,100%{opacity:.9}50%{opacity:1}}
+    .cd-st1,.cd-st2{animation:cdSteam 3.2s ease-in-out infinite}
+    .cd-st2{animation-delay:-1.6s}
+    @keyframes cdSteam{0%{transform:translateY(0);opacity:.75}60%{opacity:.3}100%{transform:translateY(-4px);opacity:0}}
+    @media (prefers-reduced-motion: reduce){*{animation:none !important}}
+  </style>
   <defs>
     <pattern id="dH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
@@ -60,7 +72,8 @@
     <path d="M82 428 L76 470 M120 428 L126 470 M84 452 H119" stroke-width="1.75"/>
     <rect x="92" y="404" width="16" height="16" rx="2" fill="#FFFFFF" stroke-width="1.75"/>
     <path d="M108 408 a5 4 0 0 1 0 8" stroke-width="1.75"/>
-    <path d="M96 398 q3 -6 0 -10 M103 398 q3 -6 0 -10" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path class="cd-st1" d="M96 398 q3 -6 0 -10" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path class="cd-st2" d="M103 398 q3 -6 0 -10" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
 
     <!-- table legs -->
     <path d="M170 336 L150 470 M400 268 L416 470" stroke-width="2.5"/>
@@ -97,7 +110,7 @@
     <circle cx="448" cy="196" r="3" fill="#FFFFFF" stroke-width="1.75"/>
     <path d="M448 196 L426 158" stroke-width="1.75"/>
     <path d="M414 148 L440 142 L434 166 L416 164 Z" fill="#FFFFFF" stroke-width="1.75"/>
-    <path d="M420 170 L362 240 M428 172 L392 250 M412 166 L332 222" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="2 5"/>
+    <path class="cd-cone" d="M420 170 L362 240 M428 172 L392 250 M412 166 L332 222" stroke="rgba(15,43,70,.45)" stroke-width="1" stroke-dasharray="2 5"/>
 
     <!-- rolled plans leaning on leg -->
     <g transform="translate(150,392) rotate(14)">
@@ -112,11 +125,12 @@
     <use href="#dBot" transform="translate(505,470)"/>
     <text x="494" y="415" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-05</text>
     <!-- left arm with compass -->
-    <path d="M469 382 L420 312 L400 248" stroke-width="2.5"/>
+    <path d="M469 382 L420 312" stroke-width="2.5"/>
+    <path class="cd-fore" d="M420 312 L400 248" stroke-width="2.5"/>
     <circle cx="420" cy="312" r="4" fill="#FFFFFF" stroke-width="1.75"/>
-    <circle cx="398" cy="240" r="3.5" fill="#FFFFFF" stroke-width="1.75"/>
-    <path d="M398 243 L388 264 M398 243 L406 259" stroke-width="1.75"/>
-    <path d="M394 250 A7 7 0 0 1 401 251" stroke-width="1"/>
+    <circle class="cd-fore" cx="398" cy="240" r="3.5" fill="#FFFFFF" stroke-width="1.75"/>
+    <path class="cd-fore" d="M398 243 L388 264 M398 243 L406 259" stroke-width="1.75"/>
+    <path class="cd-fore" d="M394 250 A7 7 0 0 1 401 251" stroke-width="1"/>
     <!-- right arm with set square -->
     <path d="M541 382 L560 344 L552 320" stroke-width="2.5"/>
     <circle cx="560" cy="344" r="4" fill="#FFFFFF" stroke-width="1.75"/>

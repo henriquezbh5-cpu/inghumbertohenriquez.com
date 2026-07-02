@@ -1,5 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280">
   <title>R-07</title>
+  <style>
+    @keyframes mini-pulse{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes mini-wave{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+    @keyframes mini-blink{0%,60%,100%{opacity:.15}15%,35%{opacity:1}}
+    @keyframes mini-radiate{0%,100%{opacity:.15}30%,55%{opacity:1}}
+    .ill-live{animation:mini-pulse 2.4s ease-in-out infinite}
+    .mini-arm{transform-box:fill-box;transform-origin:0% 100%;animation:mini-wave 1.8s ease-in-out infinite}
+    .mini-warc{animation:mini-blink 1.8s ease-in-out infinite}
+    .mini-w2{animation-delay:.25s}
+    .mini-sig{animation:mini-radiate 2.8s ease-in-out infinite}
+    .mini-s2{animation-delay:.4s}
+    @media (prefers-reduced-motion: reduce){*{animation:none !important}}
+  </style>
   <defs>
     <pattern id="fH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
@@ -55,14 +68,16 @@
     <use href="#fBot" transform="translate(120,252)"/>
     <text x="109" y="197" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#0F2B46" stroke="none">R-07</text>
     <!-- broadcast arcs from antenna -->
-    <path d="M110 72 a13 13 0 0 1 20 0" stroke="#0F766E" stroke-width="1" class="ill-live"/>
-    <path d="M104 66 a20 20 0 0 1 32 0" stroke="#0F766E" stroke-width="1" class="ill-live"/>
+    <path d="M110 72 a13 13 0 0 1 20 0" stroke="#0F766E" stroke-width="1" class="mini-sig"/>
+    <path d="M104 66 a20 20 0 0 1 32 0" stroke="#0F766E" stroke-width="1" class="mini-sig mini-s2"/>
     <!-- waving right arm -->
-    <path d="M156 164 L188 132 L196 106" stroke-width="2.5"/>
-    <circle cx="188" cy="132" r="4" fill="#FFFFFF" stroke-width="1.75"/>
-    <path d="M190 100 L186 90 M202 100 L206 90" stroke-width="2.5"/>
-    <path d="M212 104 a16 16 0 0 0 6 -22" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
-    <path d="M222 110 a24 24 0 0 0 9 -33" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <g class="mini-arm">
+      <path d="M156 164 L188 132 L196 106" stroke-width="2.5"/>
+      <circle cx="188" cy="132" r="4" fill="#FFFFFF" stroke-width="1.75"/>
+      <path d="M190 100 L186 90 M202 100 L206 90" stroke-width="2.5"/>
+    </g>
+    <path class="mini-warc" d="M212 104 a16 16 0 0 0 6 -22" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
+    <path class="mini-warc mini-w2" d="M222 110 a24 24 0 0 0 9 -33" stroke="rgba(15,43,70,.45)" stroke-width="1"/>
     <!-- left arm relaxed -->
     <path d="M84 164 L70 194 L78 216" stroke-width="2.5"/>
     <circle cx="70" cy="194" r="4" fill="#FFFFFF" stroke-width="1.75"/>

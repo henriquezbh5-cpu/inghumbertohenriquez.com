@@ -2520,7 +2520,7 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   border-bottom: 1px solid var(--line);
   padding-bottom: var(--sp-2);
 }
-.svc-fig img {
+.svc-fig img, .svc-fig svg {
   display: block; width: 100%; height: auto;
   max-height: 150px; object-fit: contain;
   opacity: 0.95;
@@ -2528,12 +2528,12 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
 
 /* — P5/P6: crew figures (bots reference build + method handover) — */
 .bots-fig { margin-bottom: var(--sp-5); }
-.bots-fig img {
+.bots-fig img, .bots-fig svg {
   display: block; width: 100%; height: auto;
   max-width: 860px; margin: 0 auto;
 }
 .method-fig { margin-top: var(--sp-6); }
-.method-fig img {
+.method-fig img, .method-fig svg {
   display: block; width: 100%; height: auto;
   max-width: 760px; margin: 0 auto;
 }
@@ -2677,7 +2677,7 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
 @media (max-width: 640px) {
   .stamp-tenure { right: -8px; bottom: -8px; width: 72px; }
   .contact-portrait img { width: 140px; height: 172px; }
-  .svc-fig img { max-height: 120px; }
+  .svc-fig img, .svc-fig svg { max-height: 120px; }
   .stamp-inprod { width: 56px; height: 56px; margin: calc(-1 * var(--sp-2)) 0; }
 }
 
@@ -2687,3 +2687,6 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   .ill-live { animation: none !important; opacity: 1 !important; }
   .live-dot { animation: none !important; box-shadow: none !important; }
 }
+
+/* inlined animated SVGs (scoped styles live inside each svg) */
+.isvg { display: block; width: 100%; height: auto; }
