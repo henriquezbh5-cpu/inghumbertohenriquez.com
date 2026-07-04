@@ -446,8 +446,9 @@ html.js-anim .animate-target.is-in { opacity: 1; }
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   /* no backdrop-filter: it would become the containing block for the
-     fixed mobile nav panel (filter/backdrop-filter create one). */
-  background: rgba(246,244,238,0.97);
+     fixed mobile nav panel (filter/backdrop-filter create one).
+     Fully opaque: navy bands scrolling underneath must not ghost through. */
+  background: var(--paper-0);
   border-bottom: 1px solid var(--line);
   transition: border-color var(--dur-micro) ease;
 }
@@ -2690,3 +2691,46 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
 
 /* inlined animated SVGs (scoped styles live inside each svg) */
 .isvg { display: block; width: 100%; height: auto; }
+
+/* ============================================================
+   27. AGENT FLEET TEASER (home strip -> /agentes/)
+   ============================================================ */
+.fleet-teaser { padding: var(--sp-7) 0; }
+.fleet-teaser-inner {
+  display: grid; grid-template-columns: 1.4fr 0.6fr;
+  gap: var(--sp-5); align-items: center;
+}
+.fleet-teaser-kicker {
+  font-size: var(--t-0); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--live-bright); margin-bottom: var(--sp-2);
+}
+.fleet-teaser-title {
+  font-family: var(--ff-display); font-weight: 400;
+  font-size: var(--t-6); color: var(--band-text);
+  margin-bottom: var(--sp-2);
+}
+.fleet-teaser-sub {
+  color: var(--band-muted); font-size: var(--t-2); max-width: 60ch;
+  margin-bottom: var(--sp-4);
+}
+.fleet-teaser-actions { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+/* on navy: paper button. base .btn-ink resting fill is ::after (z-2), hover is ::before (z-1). */
+.fleet-teaser .btn-ink { color: var(--ink); border-color: var(--band-text); }
+.fleet-teaser .btn-ink::after { background: var(--band-text); }
+.fleet-teaser .btn-ink::before { background: var(--live-bright); }
+.fleet-teaser .btn-ink:hover, .fleet-teaser .btn-ink:focus-visible { color: var(--ink); }
+.fleet-teaser-note { font-size: var(--t-0); letter-spacing: 0.08em; color: var(--band-muted); }
+.fleet-teaser-units {
+  display: flex; flex-direction: column; gap: var(--sp-1);
+  border-left: 1px solid var(--band-line); padding-left: var(--sp-4);
+}
+.ft-unit {
+  font-size: var(--t-1); letter-spacing: 0.08em; color: var(--band-muted);
+  border-bottom: 1px solid var(--band-line); padding: var(--sp-1) 0;
+}
+.ft-unit.ft-more { color: var(--live-bright); border-bottom: 0; }
+@media (max-width: 820px) {
+  .fleet-teaser-inner { grid-template-columns: 1fr; }
+  .fleet-teaser-units { border-left: 0; padding-left: 0; border-top: 1px solid var(--band-line); padding-top: var(--sp-3); flex-direction: row; flex-wrap: wrap; gap: var(--sp-2); }
+  .ft-unit { border-bottom: 0; }
+}

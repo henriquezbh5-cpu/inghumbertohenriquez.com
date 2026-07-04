@@ -323,7 +323,7 @@ const translations = {
         "proj3-title": "Sistema de Gestión Documental",
         "proj3-tagline": "De carpetas compartidas a gobierno de la información",
         "proj3-problem": "Documentación en carpetas sin clasificación formal, versiones duplicadas, sin permisos por rol, sin trazabilidad. Auditorías internas requerían esfuerzo manual para demostrar control.",
-        "proj3-solution": "Listado Maestro con codificación estructurada [ÁREA-CLASE-ALCANCE-CORRELATIVO-VERSIÓN], generación automática de códigos vía Power Automate, Power App como frontend, filtros de seguridad por área y rol.",
+        "proj3-solution": "listado maestro de documentos con codificación estructurada [ÁREA-CLASE-ALCANCE-CORRELATIVO-VERSIÓN], generación automática de códigos vía Power Automate, Power App como frontend, filtros de seguridad por área y rol.",
         "proj3-result-1": "Catálogo maestro con código único y versión vigente",
         "proj3-result-2": "Permisos controlados: cada usuario ve solo lo que corresponde",
         "proj3-result-3": "Generación automática eliminó errores de clasificación",
@@ -357,7 +357,7 @@ const translations = {
         "proj6-result-4": "Personal redirigido a actividades de mayor valor",
         "proj6-arch-title": "Flujo de automatización",
         "proj7-industry": "Servicios IT Gestionados — Regional LATAM",
-        "proj7-title": "Control Documental — Listado Maestro",
+        "proj7-title": "Control Documental Automatizado",
         "proj7-tagline": "Un listado maestro gobernado en lugar de una hoja mantenida a mano",
         "proj7-problem": "Los documentos controlados se llevaban en un listado maestro mantenido a mano. Las versiones se desfasaban, las fechas de revisión pasaban inadvertidas y preparar una auditoría implicaba días persiguiendo archivos y cruzando hojas de cálculo.",
         "proj7-solution": "Un sistema automatizado de control documental sobre SharePoint: listado maestro gobernado con control de versiones, flujos de aprobación para documentos nuevos y actualizados, recordatorios automáticos de fechas de revisión y una vista en vivo del estado de toda la biblioteca.",
@@ -369,7 +369,7 @@ const translations = {
         "arch-patient": "Paciente",
         "arch-clinics": "Clínicas",
         "proj8-industry": "Operaciones Corporativas — Multipaís",
-        "proj8-title": "Portal de Solicitudes de Viaje",
+        "proj8-title": "Portal de Solicitudes y Aprobaciones",
         "proj8-tagline": "Solicitudes de viaje con aprobación digital multinivel",
         "proj8-problem": "Las solicitudes y aprobaciones de viaje corrían por correo. Sin formulario estándar, sin visibilidad de dónde estaba detenida una solicitud, y cada país manejaba el proceso de forma ligeramente distinta.",
         "proj8-solution": "Un portal digital que reemplazó las aprobaciones por correo con un formulario estandarizado, flujo de aprobación multinivel automático, notificaciones en tiempo real y seguimiento de estado — estandarizado para todos los países de operación.",
@@ -388,7 +388,7 @@ const translations = {
         "proj11-tagline": "Cumplimiento tributario y contabilidad automatizada",
         "proj11-desc": "Sistema de procesamiento batch de facturas con cálculos tributarios colombianos automatizados (retención, IVA, ICA), generación de asientos contables de partida doble, motor de reglas fiscales, y trazabilidad completa de auditoría.",
         "proj12-industry": "Compras — LATAM",
-        "proj12-title": "Automatización de Órdenes de Compra",
+        "proj12-title": "Ciclo de Compras Automatizado",
         "proj12-tagline": "De la solicitud a la orden de compra aprobada sin redigitar",
         "proj12-problem": "Las órdenes de compra se armaban a mano desde correos y hojas de cálculo: datos redigitados, aprobaciones faltantes y ningún registro claro de quién autorizó qué ni cuándo.",
         "proj12-solution": "Un flujo automatizado de órdenes de compra: captura estandarizada de solicitudes, ruteo de aprobaciones por monto y categoría, generación automática de documentos y una traza de auditoría completa en cada orden.",
@@ -690,6 +690,12 @@ const translations = {
         "svc-applied-ai-result": "IA que responde con tus datos, no con suposiciones genéricas.",
         "svc-applied-ai-badge": "Nuevo",
         "nav-metodo": "Método",
+        "nav-agentes": "Agentes IA",
+        "fleet-kicker": "LÁMINA 10 — FLOTA DE AGENTES · 20 UNIDADES EN SERVICIO",
+        "fleet-title": "Veinte agentes de IA, dibujados y en marcha.",
+        "fleet-sub": "Calificación de leads, conciliación bancaria, soporte de primer nivel, órdenes de compra y 16 más — cada uno con una simulación en vivo, paso a paso, de su flujo completo. Presiona play y mira a un colaborador digital hacer el trabajo.",
+        "fleet-cta": "Entrar a la sala de control",
+        "fleet-note": "8 CATEGORÍAS · SIMULACIONES EN VIVO · ES/EN",
         "nav-estimate": "Estimar",
         "hero-doc-left": "DOC. HH/2026 — INGENIERÍA DE OPERACIONES",
         "hero-doc-right": "ESTADO · OPERATIVO",
@@ -1019,7 +1025,7 @@ const translations = {
         "proj6-result-4": "Staff redirected to higher-value activities",
         "proj6-arch-title": "Automation flow",
         "proj7-industry": "Managed IT Services — LATAM Regional",
-        "proj7-title": "Document Control — Master List Automation",
+        "proj7-title": "Automated Document Control",
         "proj7-tagline": "One governed master list instead of a hand-maintained spreadsheet",
         "proj7-problem": "Controlled documents were tracked in a master list maintained by hand. Versions drifted, review dates slipped by unnoticed, and preparing for an audit meant days of chasing files and cross-checking spreadsheets.",
         "proj7-solution": "An automated document-control system on SharePoint: a governed master list with version control, approval flows for new and updated documents, automatic review-date reminders and a live status view of the entire library.",
@@ -1031,7 +1037,7 @@ const translations = {
         "arch-patient": "Patient",
         "arch-clinics": "Clinics",
         "proj8-industry": "Corporate Operations — Multi-country",
-        "proj8-title": "Travel Request Portal",
+        "proj8-title": "Request & Approval Portal",
         "proj8-tagline": "Travel requests with multi-level digital approval",
         "proj8-problem": "Travel requests and approvals ran over email. No standard form, no visibility of where a request was stuck, and every country handled the process slightly differently.",
         "proj8-solution": "A digital portal that replaced email-based approvals with a standardized form, automatic multi-level approval flow, real-time notifications and status tracking — standardized across all countries of operation.",
@@ -1050,7 +1056,7 @@ const translations = {
         "proj11-tagline": "Automated tax compliance and accounting",
         "proj11-desc": "Batch invoice processing system with automated Colombian tax calculations (withholding, VAT, ICA), double-entry accounting generation, rule engine for tax compliance, and complete audit trail.",
         "proj12-industry": "Procurement — LATAM",
-        "proj12-title": "Purchase Order Automation",
+        "proj12-title": "Automated Purchasing Cycle",
         "proj12-tagline": "From request to approved purchase order without retyping",
         "proj12-problem": "Purchase orders were assembled by hand from emails and spreadsheets: re-typed data, missing approvals, and no clear record of who authorized what or when.",
         "proj12-solution": "An automated purchase-order workflow: standardized request capture, approval routing by amount and category, automatic document generation and a complete audit trail on every order.",
@@ -1352,6 +1358,12 @@ const translations = {
         "svc-applied-ai-result": "AI that answers from your data, not generic guesses.",
         "svc-applied-ai-badge": "New",
         "nav-metodo": "Method",
+        "nav-agentes": "AI Agents",
+        "fleet-kicker": "SHEET 10 — AGENT FLEET · 20 UNITS IN SERVICE",
+        "fleet-title": "Twenty AI agents, drawn and running.",
+        "fleet-sub": "Lead qualification, bank reconciliation, tier-1 support, purchase orders and 16 more — each with a live, step-by-step simulation of the full workflow. Press play and watch a digital coworker do the job.",
+        "fleet-cta": "Enter the control room",
+        "fleet-note": "8 CATEGORIES · LIVE SIMULATIONS · ES/EN",
         "nav-estimate": "Estimate",
         "hero-doc-left": "DOC. HH/2026 — OPERATIONS ENGINEERING",
         "hero-doc-right": "STATUS · OPERATIONAL",
@@ -2355,4 +2367,28 @@ if (proposalForm) {
     });
 
     startLoop();
+})();
+
+
+// ========== AGENT INTEREST PREFILL (from /agentes/ "Solicitar demo") ==========
+(function () {
+    try {
+        var slug = sessionStorage.getItem('ag_interest');
+        if (!slug) return;
+        var msg = document.getElementById('pfMessage') || document.querySelector('#proposalForm textarea[name="message"]');
+        var sel = document.getElementById('serviceSelect');
+        var lang = localStorage.getItem('preferred-lang') === 'en' ? 'en' : 'es';
+        var name = slug.charAt(0).toUpperCase() + slug.slice(1);
+        if (msg && !msg.value) {
+            msg.value = lang === 'es'
+                ? 'Me interesa el agente ' + name + ' que vi en la flota de agentes. Quiero una demo aplicada a mi proceso.'
+                : 'I am interested in the ' + name + ' agent I saw in the agent fleet. I would like a demo applied to my process.';
+        }
+        if (sel) {
+            for (var i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].value === 'automation') { sel.selectedIndex = i; break; }
+            }
+        }
+        sessionStorage.removeItem('ag_interest');
+    } catch (e) { /* ignore */ }
 })();

@@ -1,0 +1,963 @@
+/* ============================================================
+   AGENT FLEET — SHEET 10 (/agentes/) — page layer
+   Loads AFTER ../styles.css: tokens, .band, .btn, .rv contract
+   all inherited. Vanilla CSS, zero external assets.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   0. ACTOR PALETTE — scoped tokens (spec §7)
+   ------------------------------------------------------------ */
+.ag-floor, .ag-stage {
+  --ag-trigger:  #ECA24D;                    /* drafting brass    */
+  --ag-agent:    #7FB4E0;                    /* brand steel       */
+  --ag-llm:      #7FB4E0;                    /* llm ≡ agent       */
+  --ag-tool:     #2DD4BF;                    /* telemetry teal    */
+  --ag-tool-mark:#14B8A6;
+  --ag-system:   rgba(242,239,231,0.62);     /* band-muted        */
+  --ag-decision: #F2D479;                    /* blueprint marker  */
+  --ag-human:    #34D399;                    /* ok, lightened     */
+  --ag-human-mark:#10B981;
+  --ag-result:   #F2EFE7;                    /* printed chit      */
+}
+
+/* actor → --actor indirection (nodes, legend chips, log tags) */
+[data-actor="trigger"]     { --actor: var(--ag-trigger); }
+[data-actor="agente"]      { --actor: var(--ag-agent); }
+[data-actor="llm"]         { --actor: var(--ag-llm); }
+[data-actor="herramienta"],
+[data-actor="tool"]        { --actor: var(--ag-tool); }
+[data-actor="sistema"],
+[data-actor="system"]      { --actor: var(--ag-system); }
+[data-actor="decision"]    { --actor: var(--ag-decision); }
+[data-actor="humano"],
+[data-actor="human"]       { --actor: var(--ag-human); }
+[data-actor="resultado"],
+[data-actor="result"]      { --actor: var(--ag-result); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* skip link — visually hidden until keyboard focus (WCAG 2.4.1) */
+.ag-skip {
+  position: absolute; left: -9999px; top: auto;
+  width: 1px; height: 1px; overflow: hidden;
+}
+.ag-skip:focus {
+  position: fixed; left: 12px; top: 12px;
+  width: auto; height: auto; overflow: visible;
+  z-index: 1000; padding: .6rem 1rem;
+  background: var(--ink, #1a2b4a); color: #fff;
+  border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  font: inherit; text-decoration: none;
+}
+
+/* ------------------------------------------------------------
+   1. REVEALS — page-scoped .rv container rule (motion.js absent;
+   agentes.js adds html.js-anim + toggles .is-in via one IO)
+   ------------------------------------------------------------ */
+html.js-anim .rv {
+  opacity: 0; translate: 0 12px;
+  transition: opacity var(--dur-std) var(--ease-text),
+              translate var(--dur-std) var(--ease-text);
+}
+html.js-anim .rv.is-in,
+html.js-anim .rv.animate-in { opacity: 1; translate: 0 0; }
+/* card stagger inside a group grid */
+html.js-anim .ag-grid .rv:nth-child(2) { transition-delay: 70ms; }
+html.js-anim .ag-grid .rv:nth-child(3) { transition-delay: 140ms; }
+
+/* ------------------------------------------------------------
+   2. PAPER INTRO — .ag-hero (§3.1) + HOW ROW (§3.2)
+   ------------------------------------------------------------ */
+.ag-hero { padding: calc(var(--sp-6) + var(--sp-7)) 0 var(--sp-7); }
+.ag-hero .dochead-strip { margin-bottom: var(--sp-1); }
+.ag-hero .ch-head { margin-top: var(--sp-5); }
+.ag-hero-grid {
+  display: grid; grid-template-columns: 7fr 5fr;
+  gap: var(--sp-6); align-items: center;
+}
+.ag-hero-title {
+  font-family: var(--ff-display); font-weight: 400;
+  font-size: var(--t-7); line-height: 1.06; letter-spacing: -0.015em;
+  color: var(--ink); margin-bottom: var(--sp-3);
+}
+.ag-hero-title em { font-style: italic; color: var(--steel); }
+.ag-hero-sub { font-size: var(--t-4); line-height: 1.5; color: var(--ink-body); max-width: 56ch; margin-bottom: var(--sp-4); }
+.ag-hero-actions { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.ag-hero-strip {
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-700); /* 11px micro-label: ink-dim fails AA */
+  border-top: 1px solid var(--line); padding-top: var(--sp-2); margin-top: var(--sp-5);
+}
+.ag-hero-fig { text-align: center; }
+.ag-hero-fig img, .ag-hero-fig svg { width: min(280px, 70%); height: auto; }
+.ag-hero-fig figcaption {
+  font-family: var(--ff-mono); font-size: var(--t-0); letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-700); margin-top: var(--sp-2); /* 11px: AA-safe ink */
+}
+
+/* how-it-works: 4 mini nodes in one ruled row */
+.ag-how { padding: var(--sp-7) 0; border-top: 1px solid var(--line); }
+.ag-how-title {
+  font-family: var(--ff-display); font-style: italic; font-weight: 400;
+  font-size: var(--t-5); color: var(--ink); margin-bottom: var(--sp-5);
+}
+.how-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line);
+}
+.how-node { padding: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-1); }
+.how-node + .how-node { border-left: 1px solid var(--line); }
+.how-badge {
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.08em; color: var(--ink-700); /* 11px: AA-safe ink */
+}
+.how-ico {
+  width: var(--sp-5); height: var(--sp-5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--t-4); color: var(--ink);
+  background: var(--paper-1); border: 1px solid var(--line-strong);
+}
+.how-node strong { display: block; color: var(--ink); font-size: var(--t-2); }
+.how-node p { font-size: var(--t-1); line-height: 1.5; color: var(--ink-body); }
+
+/* ------------------------------------------------------------
+   3. OPERATIONS FLOOR — .band.ag-floor (§3.3–3.5)
+   ------------------------------------------------------------ */
+.ag-floor .section-header { margin-bottom: var(--sp-5); }
+
+/* actor legend (drafting plate key) */
+.ag-legend {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-3);
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--band-muted);
+  border-top: 1px solid var(--band-line); border-bottom: 1px solid var(--band-line);
+  padding: var(--sp-2) 0; margin-bottom: var(--sp-6);
+}
+.legend-chip { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.chip-swatch {
+  width: 8px; height: 8px; flex-shrink: 0;
+  background: var(--actor, var(--band-muted));
+  border-radius: var(--r-s);
+}
+
+/* rail + groups layout */
+.floor-layout { display: grid; grid-template-columns: 240px 1fr; gap: var(--sp-6); align-items: start; }
+
+/* 3.4 category rail — desktop sticky */
+.ag-rail { position: sticky; top: 96px; }
+.ag-rail ul, .ag-rail .rail-nav { list-style: none; }
+.rail-item {
+  display: flex; align-items: baseline; gap: var(--sp-1);
+  width: 100%; text-align: left;
+  font-family: var(--ff-mono); font-size: var(--t-1); font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--band-muted);
+  padding: var(--sp-1) 0 var(--sp-1) var(--sp-2);
+  border-left: 2px solid transparent;
+  transition: color var(--dur-micro) ease, border-color var(--dur-micro) ease;
+}
+.rail-item i { font-size: var(--t-2); translate: 0 2px; }
+.rail-item:hover { color: var(--band-text); }
+.rail-item.on { color: var(--band-accent); border-left-color: var(--band-accent); }
+.rail-count { color: var(--band-muted); font-size: var(--t-0); }
+.rail-foot {
+  font-family: var(--ff-mono); font-size: var(--t-0); letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--band-muted);
+  border-top: 1px solid var(--band-line);
+  padding-top: var(--sp-2); margin-top: var(--sp-3);
+}
+
+/* 3.5 category groups */
+.ag-group { margin-bottom: var(--sp-7); scroll-margin-top: 96px; }
+.ag-group:last-of-type { margin-bottom: 0; }
+.group-rule {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-family: var(--ff-mono); font-size: var(--t-1); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--band-text); margin-bottom: var(--sp-1);
+}
+.group-rule .rule-x, .group-rule .ch-rule { flex: 1; height: 1px; background: var(--band-line); display: block; }
+.group-blurb { font-size: var(--t-2); color: var(--band-muted); margin-bottom: var(--sp-3); }
+
+/* card grid — 3-up @1320, 2-up tablet, 1-up mobile */
+.ag-grid {
+  display: grid; gap: var(--sp-3);
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+}
+
+/* ------------------------------------------------------------
+   4. UNIT RECORD CARD — article.ag-card (§4)
+   ------------------------------------------------------------ */
+.ag-card {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-2);
+  min-height: 320px;
+  padding: var(--sp-3);
+  background: rgba(242,239,231,0.02);
+  border: 1px solid var(--band-line);
+  transition: border-color var(--dur-micro) ease;
+}
+.ag-card:hover, .ag-card:focus-within { border-color: var(--band-accent); }
+.ag-card-link { position: absolute; inset: 0; z-index: 2; }
+.ag-card-link:focus-visible { outline: 2px solid var(--band-accent); outline-offset: 2px; }
+
+.ag-card-head { display: flex; align-items: center; gap: var(--sp-2); }
+.ag-unit {
+  position: relative;
+  font-family: var(--ff-mono); font-size: var(--t-1); font-weight: 500;
+  letter-spacing: 0.08em; color: var(--band-accent);
+}
+.ag-unit::after {
+  content: ''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-micro) var(--ease-draw);
+}
+.ag-card:hover .ag-unit::after, .ag-card:focus-within .ag-unit::after { transform: scaleX(1); }
+.ag-cat-tag {
+  flex: 1; font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--band-muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ag-dot {
+  width: 6px; height: 6px; flex-shrink: 0;
+  border-radius: var(--r-pill); background: var(--live-bright);
+}
+.ag-card.awake .ag-dot { animation: agDotPulse 2.4s var(--ease-draw) infinite; }
+.ag-card.awake:hover .ag-dot,
+.ag-card.awake:focus-within .ag-dot { animation-duration: 1.2s; }
+@keyframes agDotPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(20,184,166,0.45); }
+  60%  { box-shadow: 0 0 0 7px rgba(20,184,166,0); }
+  100% { box-shadow: 0 0 0 0 rgba(20,184,166,0); }
+}
+
+.ag-id-row { display: flex; gap: var(--sp-2); align-items: flex-start; }
+.ag-ico {
+  width: 44px; height: 44px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--t-4); color: var(--band-accent);
+  border: 1px solid var(--band-line);
+}
+.ag-name {
+  font-family: var(--ff-display); font-weight: 400;
+  font-size: var(--t-4); line-height: 1.2; color: var(--band-text);
+}
+.ag-alias {
+  font-family: var(--ff-display); font-style: italic;
+  font-size: var(--t-2); color: var(--band-muted); margin-top: 2px;
+}
+.ag-resumen {
+  font-size: var(--t-2); line-height: 1.55; color: var(--band-muted);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ag-stack {
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--band-muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ag-slab {
+  margin-top: auto;
+  font-family: var(--ff-mono); font-size: var(--t-1); font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--band-text);
+  border-bottom: 1px solid var(--band-line); padding-bottom: var(--sp-2);
+}
+.ag-slab .slab-after, .ag-slab strong { color: var(--live-bright); font-weight: 500; }
+.ag-slab .slab-arrow { color: var(--band-muted); }
+.ag-card-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); }
+.ag-card-sim {
+  font-family: var(--ff-mono); font-size: var(--t-1); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--band-accent);
+}
+.ag-chip {
+  position: relative; z-index: 3;
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--band-muted);
+  border: 1px solid var(--band-line); border-radius: var(--r-s);
+  padding: 2px var(--sp-1); white-space: nowrap;
+  transition: color var(--dur-micro) ease, border-color var(--dur-micro) ease;
+}
+.ag-chip:hover { color: var(--band-text); border-color: var(--band-accent); }
+
+/* ------------------------------------------------------------
+   5. TARIFARIO (§3.6) + CONTACT STRIP (§3.7) — still navy
+   ------------------------------------------------------------ */
+.ag-rate, .ag-tarifario { margin-top: var(--sp-8); border-top: 1px solid var(--band-line); padding-top: var(--sp-6); scroll-margin-top: 96px; }
+.rate-row {
+  display: grid; grid-template-columns: var(--sp-6) 1fr auto;
+  gap: var(--sp-3); align-items: baseline;
+  border-top: 1px solid var(--band-line); padding: var(--sp-3) 0;
+}
+.rate-row:last-of-type { border-bottom: 1px solid var(--band-line); }
+.rate-band {
+  font-family: var(--ff-mono); font-size: var(--t-5); font-weight: 500;
+  color: var(--band-accent); line-height: 1;
+}
+.rate-name { font-family: var(--ff-display); font-size: var(--t-4); color: var(--band-text); }
+.rate-scope { font-size: var(--t-2); color: var(--band-muted); margin-top: 4px; }
+.rate-range {
+  font-family: var(--ff-mono); font-size: var(--t-2); font-weight: 500;
+  color: var(--live-bright); white-space: nowrap;
+}
+.rate-notes { margin-top: var(--sp-4); display: grid; gap: var(--sp-1); }
+.rate-notes p { font-size: var(--t-2); color: var(--band-muted); }
+.rate-notes .btn-link { justify-self: start; margin-top: var(--sp-2); }
+
+.ag-contact { margin-top: var(--sp-8); padding-top: var(--sp-6); scroll-margin-top: 96px; }
+.ag-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); align-items: start; }
+.ag-contact-title {
+  font-family: var(--ff-display); font-weight: 400;
+  font-size: var(--t-6); line-height: 1.12; color: var(--band-text);
+  margin-bottom: var(--sp-4);
+}
+.ag-contact .btn { border-color: var(--band-text); color: var(--band-text); }
+.ag-contact .btn:hover { border-color: var(--wa); color: var(--wa); }
+.ag-contact .btn .ph-whatsapp-logo, .ag-contact .btn i { color: var(--wa); }
+.ag-reply-line {
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--band-muted);
+  margin-top: var(--sp-2);
+}
+.ag-form { display: grid; gap: var(--sp-2); }
+.ag-form label {
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--band-muted);
+}
+.ag-form input, .ag-form textarea {
+  width: 100%; padding: var(--sp-1) var(--sp-2);
+  font-size: var(--t-2); color: var(--band-text);
+  background: rgba(242,239,231,0.04);
+  border: 1px solid var(--band-line); border-radius: var(--r-s);
+  transition: border-color var(--dur-micro) ease;
+}
+.ag-form input:focus-visible, .ag-form textarea:focus-visible {
+  outline: none; border-color: var(--band-accent);
+}
+.ag-form ::placeholder { color: var(--band-muted); opacity: 0.8; }
+.ag-form button[type="submit"] {
+  justify-self: start;
+  font-family: var(--ff-mono); font-size: var(--t-1); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--band); background: var(--band-text);
+  border: 1px solid var(--band-text); padding: var(--sp-1) var(--sp-3);
+  transition: background var(--dur-micro) ease, color var(--dur-micro) ease;
+}
+.ag-form button[type="submit"]:hover { background: var(--band-accent); border-color: var(--band-accent); }
+.ag-form-status { font-size: var(--t-2); color: var(--live-bright); }
+
+/* ------------------------------------------------------------
+   6. FOOTER — return to paper (§3.8)
+   ------------------------------------------------------------ */
+.ag-footer { padding: var(--sp-6) 0; border-top: 1px solid var(--line-strong); }
+.ag-footer-grid { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); flex-wrap: wrap; }
+.ag-footer-links { display: flex; gap: var(--sp-3); flex-wrap: wrap; font-size: var(--t-2); }
+.ag-footer-links a { color: var(--steel); }
+.ag-footer-links a:hover { color: var(--steel-deep); text-decoration: underline; text-underline-offset: 4px; }
+.ag-colophon {
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim);
+  border-top: 1px solid var(--line); padding-top: var(--sp-2); margin-top: var(--sp-3);
+  display: flex; justify-content: space-between; gap: var(--sp-2); flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------
+   7. SIMULATOR STAGE — dialog.ag-stage (§5.2 / §5.3)
+   ------------------------------------------------------------ */
+.ag-stage {
+  position: fixed; inset: 0; margin: auto; z-index: 2000;
+  width: min(1200px, 94vw); height: min(760px, 88vh);
+  max-width: none; max-height: none;
+  padding: 0; overflow: hidden;
+  display: grid; grid-template-rows: 56px 1fr auto;
+  background: var(--band); color: var(--band-text);
+  border: 1px solid var(--band-line); border-radius: var(--r-0);
+  --line: var(--band-line);
+}
+.ag-stage:not([open]) { display: none; }
+.ag-stage::backdrop { background: rgba(7,19,32,0.62); }
+html.js-anim .ag-stage[open] { animation: stageIn .24s var(--ease-text); }
+html.js-anim .ag-stage[open]::backdrop { animation: backdropIn .2s ease; }
+@keyframes stageIn { from { opacity: 0; translate: 0 12px; } }
+@keyframes backdropIn { from { opacity: 0; } }
+/* double top rule */
+.ag-stage::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: rgba(242,239,231,0.5); z-index: 5;
+}
+.ag-stage::after {
+  content: ''; position: absolute; top: 4px; left: 0; right: 0; height: 1px;
+  background: rgba(242,239,231,0.35); z-index: 5;
+}
+.ag-stage :focus-visible { outline: 2px solid var(--band-accent); outline-offset: 2px; }
+
+/* — header — */
+.stage-head {
+  display: flex; align-items: center; gap: var(--sp-2);
+  padding: 0 var(--sp-3); position: relative;
+  border-bottom: 1px solid var(--band-line);
+}
+html.js-anim .ag-stage[open] .stage-head::after {
+  content: ''; position: absolute; left: 0; bottom: -1px; width: 100%; height: 1px;
+  background: var(--band-accent);
+  transform: scaleX(0); transform-origin: left;
+  animation: ruleDraw .8s var(--ease-draw) .4s forwards;
+}
+@keyframes ruleDraw { to { transform: scaleX(1); } }
+.stage-unit {
+  font-size: var(--t-1); font-weight: 500; letter-spacing: 0.08em;
+  color: var(--band-accent);
+}
+.stage-title {
+  font-family: var(--ff-display); font-weight: 400;
+  font-size: var(--t-4); color: var(--band-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.stage-cat {
+  flex: 1; font-size: var(--t-0); font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--band-muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.stage-close {
+  flex-shrink: 0;
+  font-size: var(--t-1); font-weight: 500; letter-spacing: 0.08em;
+  color: var(--band-muted);
+  padding: var(--sp-1) var(--sp-2);
+  border: 1px solid transparent;
+  transition: color var(--dur-micro) ease, border-color var(--dur-micro) ease;
+}
+.stage-close:hover { color: var(--band-text); border-color: var(--band-line); }
+.stage-close kbd {
+  font: inherit; font-size: var(--t-0); color: var(--band-muted);
+  border: 1px solid var(--band-line); border-radius: var(--r-s); padding: 0 4px;
+}
+
+/* — body: scene 58 / terminal 42 — */
+.stage-body { display: grid; grid-template-columns: 58% 42%; min-height: 0; }
+.stage-scene {
+  display: flex; flex-direction: column;
+  padding: var(--sp-3); min-width: 0; min-height: 0;
+  border-right: 1px solid var(--band-line);
+  overflow: hidden;
+}
+
+/* — robot figure — */
+.stage-bot { position: relative; text-align: center; margin: 0 auto var(--sp-2); flex-shrink: 0; }
+.stage-bot svg { height: 150px; width: auto; display: block; margin: 0 auto; overflow: visible; }
+/* hairline floor under the bot extends into the flow baseline */
+.stage-bot::after {
+  content: ''; position: absolute; left: -40px; right: -40px; bottom: 18px;
+  height: 1px; background: var(--band-line); z-index: -1;
+}
+.bot-tag {
+  font-size: var(--t-0); font-weight: 500; letter-spacing: 0.08em;
+  color: var(--band-muted);
+}
+
+/* ------------------------------------------------------------
+   8. ROBOT STATES — 6 poses (§6). Class .rb-* on the container
+   AND [data-bot-state] both supported. Ivory ink on navy.
+   ------------------------------------------------------------ */
+.stage-bot svg [id^="bot-"] { transform-box: fill-box; transform-origin: center; }
+.stage-bot #bot-body, .stage-bot #bot-head,
+.stage-bot #bot-arm-l, .stage-bot #bot-arm-r,
+.stage-bot #bot-eyes-l, .stage-bot #bot-eyes-r {
+  transition: transform .18s ease, opacity .18s ease;
+}
+.stage-bot #bot-head   { transform-origin: center bottom; }
+.stage-bot #bot-arm-l  { transform-origin: right top; }
+.stage-bot #bot-arm-r  { transform-origin: left top; }
+.stage-bot #bot-eyes-happy, .stage-bot #bot-mouth-wide, .stage-bot #bot-tool,
+.stage-bot #bot-arcs, .stage-bot #bot-chit-q, .stage-bot #bot-chit-dots,
+.stage-bot #bot-chit-clock, .stage-bot #bot-chit-check, .stage-bot #bot-sparks {
+  opacity: 0; transition: opacity .18s ease;
+}
+.stage-bot #bot-antenna-dot { transition: fill .18s ease; }
+
+/* shared loops */
+@keyframes botBob    { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes antPulse  { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+@keyframes botBlink  { 0%, 90%, 100% { opacity: 1; } 93%, 96% { opacity: 0.15; } }
+@keyframes arcsBlink { 0%,100% { opacity: 0; } 40%,60% { opacity: 0.85; } }
+@keyframes armSwing  { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-26deg); } }
+@keyframes sparkFlick{ 0%,100% { opacity: 0; } 30% { opacity: 1; } 55% { opacity: 0.2; } 70% { opacity: 0.9; } }
+@keyframes dotsCycle { 0%,100% { opacity: 0.2; } 30% { opacity: 1; } }
+@keyframes antTriple { 0%,40%,80% { opacity: 1; } 20%,60% { opacity: 0.15; } 100% { opacity: 1; } }
+@keyframes antFlash  { 0%,40%,80% { opacity: 1; } 20%,60%,100% { opacity: 0.1; } }
+
+/* IDLE — bob, antenna pulse, blink; trigger step: arcs radiate */
+:is(.rb-idle, [data-bot-state="idle"]) #bot-body { animation: botBob 3s ease-in-out infinite; }
+:is(.rb-idle, [data-bot-state="idle"]) #bot-antenna-dot { animation: antPulse 2.4s ease-in-out infinite; }
+:is(.rb-idle, [data-bot-state="idle"]) :is(#bot-eyes-l, #bot-eyes-r) { animation: botBlink 4s steps(1) infinite; }
+:is(.rb-idle, [data-bot-state="idle"]).on-trigger #bot-arcs { animation: arcsBlink 0.5s ease 3; }
+:is(.rb-idle, [data-bot-state="idle"]).on-trigger #bot-antenna-dot { animation: antFlash 0.9s steps(1) 1; }
+
+/* PENSANDO — head tilt −4°, eyes up-left, fast antenna, arcs blink */
+:is(.rb-pensando, [data-bot-state="pensando"]) #bot-head { transform: rotate(-4deg); }
+:is(.rb-pensando, [data-bot-state="pensando"]) :is(#bot-eyes-l, #bot-eyes-r) { transform: translate(-1.5px, -1.5px); }
+:is(.rb-pensando, [data-bot-state="pensando"]) #bot-antenna-dot { animation: antPulse 0.9s ease-in-out infinite; }
+:is(.rb-pensando, [data-bot-state="pensando"]) #bot-arcs { opacity: 1; animation: arcsBlink 1.4s ease-in-out infinite; }
+:is(.rb-pensando, [data-bot-state="pensando"]) #bot-body { animation: botBob 3s ease-in-out infinite; }
+
+/* TRABAJANDO — lean 2°, right-arm hammer swing, tool + sparks */
+:is(.rb-trabajando, [data-bot-state="trabajando"]) #bot-body { transform: rotate(2deg); }
+:is(.rb-trabajando, [data-bot-state="trabajando"]) #bot-arm-r { animation: armSwing 0.7s ease-in-out infinite; }
+:is(.rb-trabajando, [data-bot-state="trabajando"]) #bot-tool { opacity: 1; }
+:is(.rb-trabajando, [data-bot-state="trabajando"]) #bot-sparks { animation: sparkFlick 0.6s steps(2) infinite; }
+
+/* DECISIÓN — full stop beat, head +6°, squint, "?" chit, marker antenna */
+:is(.rb-decision, [data-bot-state="decision"]) [id^="bot-"],
+:is(.rb-decision, [data-bot-state="decision"]) [id^="bot-"] * { animation: none; }
+:is(.rb-decision, [data-bot-state="decision"]) #bot-head { transform: rotate(6deg); }
+:is(.rb-decision, [data-bot-state="decision"]) #bot-eyes-l { transform: scaleY(0.4); }
+:is(.rb-decision, [data-bot-state="decision"]) #bot-chit-q { opacity: 1; }
+:is(.rb-decision, [data-bot-state="decision"]) #bot-antenna-dot { fill: var(--ag-decision); }
+
+/* ESPERANDO — arms drop, slow bob, "…" + clock chits, slow-blink antenna */
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-arm-l { transform: rotate(14deg); }
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-arm-r { transform: rotate(-14deg); }
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-body { animation: botBob 4.5s ease-in-out infinite; }
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-chit-dots { opacity: 1; }
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-chit-dots > * { animation: dotsCycle 1.5s ease-in-out infinite; }
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-chit-dots > :nth-child(2) { animation-delay: 0.25s; }
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-chit-dots > :nth-child(3) { animation-delay: 0.5s; }
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-chit-clock { opacity: 1; }
+:is(.rb-esperando, [data-bot-state="esperando"]) #bot-antenna-dot { animation: antPulse 2.8s ease-in-out infinite; }
+
+/* ÉXITO — arms up ±30°, happy eyes, wide mouth, triple blink then steady */
+:is(.rb-exito, [data-bot-state="exito"]) #bot-arm-l { transform: rotate(-30deg); }
+:is(.rb-exito, [data-bot-state="exito"]) #bot-arm-r { transform: rotate(30deg); }
+:is(.rb-exito, [data-bot-state="exito"]) :is(#bot-eyes-l, #bot-eyes-r) { opacity: 0; }
+:is(.rb-exito, [data-bot-state="exito"]) #bot-eyes-happy { opacity: 1; }
+:is(.rb-exito, [data-bot-state="exito"]) #bot-mouth { opacity: 0; }
+:is(.rb-exito, [data-bot-state="exito"]) #bot-mouth-wide { opacity: 1; }
+:is(.rb-exito, [data-bot-state="exito"]) #bot-chit-check { opacity: 1; }
+:is(.rb-exito, [data-bot-state="exito"]) #bot-antenna-dot { animation: antTriple 1.2s steps(1) 1 forwards; }
+
+/* ------------------------------------------------------------
+   9. FLOW CANVAS — nodes + connectors (§5.3 states / §9 motion)
+   ------------------------------------------------------------ */
+.stage-flow {
+  display: flex; align-items: flex-start;
+  /* strip sizes to content; auto block margins center it in the leftover scene space */
+  flex: 0 1 auto; min-height: 0; min-width: 0;
+  margin-block: auto;
+  padding: var(--sp-2) var(--sp-1) var(--sp-2) 0; /* small right pad so last label clears the clip */
+  scroll-padding-inline: var(--sp-2);
+  /* 9 nodes overflow at common widths: scroll horizontally, active node auto-centers via JS */
+  overflow-x: auto; overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(242,239,231,0.25) transparent;
+  /* edge fades advertise off-screen steps; JS toggles data-at-start/data-at-end */
+  --fade-l: 0px; --fade-r: 28px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l), #000 calc(100% - var(--fade-r)), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l), #000 calc(100% - var(--fade-r)), transparent 100%);
+}
+.stage-flow[data-at-start="false"] { --fade-l: 28px; }
+.stage-flow[data-at-start="true"]  { --fade-l: 0px; }
+.stage-flow[data-at-end="true"]    { --fade-r: 0px; }
+.stage-flow::-webkit-scrollbar { height: 6px; }
+.stage-flow::-webkit-scrollbar-thumb { background: rgba(242,239,231,0.2); border-radius: 3px; }
+.stage-flow::-webkit-scrollbar-track { background: transparent; }
+.fl-node {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  width: 84px; min-width: 64px; flex-shrink: 0;
+  text-align: center;
+}
+.fl-ico {
+  position: relative;
+  width: var(--sp-5); height: var(--sp-5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--t-4);
+  color: var(--band-muted);
+  border: 1px solid var(--band-line);
+  background: var(--band);
+  transition: color var(--dur-micro) ease, border-color var(--dur-micro) ease;
+}
+.fl-lab {
+  font-size: var(--t-0); font-weight: 500; letter-spacing: 0.04em;
+  text-transform: uppercase; line-height: 1.3;
+  color: var(--band-muted);
+  transition: color var(--dur-micro) ease;
+}
+.fl-branch {
+  font-size: var(--t-0); letter-spacing: 0.02em;
+  color: var(--ag-decision); line-height: 1.3;
+}
+/* check mark — draws on completion */
+.fl-check {
+  position: absolute; inset: 0; width: 100%; height: 100%; padding: 12px;
+  fill: none; stroke: var(--ok-mark); stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 20; stroke-dashoffset: 20;
+  pointer-events: none;
+}
+
+/* states */
+.fl-node[data-state="pendiente"] .fl-ico { color: var(--band-muted); border-color: var(--band-line); }
+.fl-node[data-state="activo"] .fl-ico {
+  color: var(--actor, var(--band-accent));
+  border-color: var(--actor, var(--band-accent));
+}
+.fl-node[data-state="activo"] .fl-lab { color: var(--band-text); }
+.fl-node[data-state="activo"] .fl-ico::after {
+  content: ''; position: absolute; inset: -1px;
+  border: 1px solid var(--actor, var(--band-accent));
+  animation: nodeRing 1.6s var(--ease-draw) infinite;
+  pointer-events: none;
+}
+@keyframes nodeRing {
+  0%   { opacity: 0.9; transform: scale(1); }
+  100% { opacity: 0;   transform: scale(1.5); }
+}
+.fl-node[data-state="completado"] .fl-ico { color: var(--band-muted); border-color: var(--band-line); }
+.fl-node[data-state="completado"] .fl-ico i { opacity: 0.35; }
+.fl-node[data-state="completado"] .fl-check {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset .3s var(--ease-draw);
+}
+
+/* connector: 2px rail, fill driven by --fill (engine sets per frame) */
+.fl-conn {
+  position: relative; flex: 1; min-width: 16px; height: 2px;
+  margin-top: 23px; /* icon-center (48px/2) − 1px */
+  background: var(--band-line);
+}
+.fl-conn-fill {
+  position: absolute; inset: 0;
+  background: var(--live-bright);
+  transform: scaleX(var(--fill, 0)); transform-origin: left;
+}
+.fl-conn-pulse {
+  position: absolute; top: -3px; left: 0;
+  width: 8px; height: 8px; border-radius: var(--r-pill);
+  background: var(--live-bright);
+  opacity: 0; pointer-events: none;
+}
+.fl-conn.active .fl-conn-pulse { opacity: 1; animation: connPulseH 0.9s linear infinite; }
+@keyframes connPulseH { from { left: 0; } to { left: calc(100% - 8px); } }
+
+/* ------------------------------------------------------------
+   10. TERMINAL — .stage-term (§5.4 log)
+   ------------------------------------------------------------ */
+.stage-term {
+  position: relative;
+  display: flex; flex-direction: column;
+  min-height: 0; min-width: 0;
+  background: #0B2036;
+}
+.term-head {
+  display: flex; align-items: center; gap: var(--sp-1);
+  flex-shrink: 0;
+  font-size: var(--t-0); font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--band-muted);
+  padding: var(--sp-1) var(--sp-2);
+  border-bottom: 1px solid var(--band-line);
+  white-space: nowrap; overflow: hidden;
+}
+.term-dot {
+  width: 8px; height: 8px; flex-shrink: 0;
+  border-radius: var(--r-pill);
+  background: var(--band-muted);
+  transition: background var(--dur-micro) ease;
+}
+.ag-stage.playing .term-dot,  .term-dot.run  { background: var(--live-bright); animation: agDotPulse 1.2s var(--ease-draw) infinite; }
+.ag-stage.finished .term-dot, .term-dot.done { background: var(--ok-mark); animation: none; }
+.term-log {
+  flex: 1; min-height: 0;
+  overflow-y: auto; overscroll-behavior: contain;
+  font-family: var(--ff-mono); font-size: var(--t-1); line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+  color: var(--band-text);
+  padding: var(--sp-2);
+  scrollbar-width: thin; scrollbar-color: rgba(242,239,231,0.25) transparent;
+}
+.term-log::-webkit-scrollbar { width: 6px; }
+.term-log::-webkit-scrollbar-thumb { background: rgba(242,239,231,0.25); }
+.term-log:focus-visible { outline-offset: -2px; }
+
+/* log line anatomy: [ts] icon ACTOR › text */
+.tl { display: block; margin-bottom: var(--sp-1); overflow-wrap: break-word; }
+.tl-ts { color: var(--band-muted); margin-right: 6px; }
+.tl-actor {
+  color: var(--actor, var(--band-muted));
+  font-weight: 500; letter-spacing: 0.04em;
+}
+.tl-actor i { margin-right: 3px; }
+.tl-sep { color: var(--band-muted); }
+.tl-txt { color: var(--band-text); }
+.tl.tl-result .tl-txt, .tl.tl-result .tl-actor { color: var(--ag-result); font-weight: 500; }
+.tl-caret {
+  display: inline-block; width: 0.55em;
+  color: var(--live-bright);
+  animation: caretBlink 1s steps(2, jump-none) infinite;
+}
+@keyframes caretBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+/* new-lines chip when autoscroll frozen */
+.term-newchip {
+  position: absolute; bottom: var(--sp-2); left: 50%; transform: translateX(-50%);
+  font-size: var(--t-0); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--band-text); background: var(--band);
+  border: 1px solid var(--band-accent); border-radius: var(--r-s);
+  padding: 4px var(--sp-2); z-index: 3;
+}
+.term-newchip:hover { color: var(--band-accent); }
+
+/* ------------------------------------------------------------
+   11. STAGE FOOTER — transport / progress / CTAs (§5.2)
+   ------------------------------------------------------------ */
+.stage-foot {
+  position: relative;
+  display: flex; align-items: center; gap: var(--sp-3);
+  min-height: 96px;
+  padding: var(--sp-2) var(--sp-3) var(--sp-3);
+  border-top: 1px solid var(--band-line);
+  flex-wrap: wrap;
+}
+.stage-controls { display: flex; align-items: center; gap: var(--sp-1); flex-shrink: 0; }
+.ctl {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--t-4); color: var(--band-text);
+  border: 1px solid var(--band-line);
+  transition: color var(--dur-micro) ease, border-color var(--dur-micro) ease;
+}
+.ctl:hover { color: var(--band-accent); border-color: var(--band-accent); }
+.ctl[aria-pressed="true"] { color: var(--live-bright); border-color: var(--live-bright); }
+.ctl-speed { display: flex; align-items: center; margin-left: var(--sp-1); }
+.ctl-speed button {
+  position: relative;
+  font-family: var(--ff-mono); font-size: var(--t-0); font-weight: 500;
+  color: var(--band-muted);
+  padding: var(--sp-1) 6px; min-height: 44px;
+  transition: color var(--dur-micro) ease;
+}
+.ctl-speed button::after {
+  content: ''; position: absolute; left: 6px; right: 6px; bottom: 10px; height: 1px;
+  background: var(--live-bright);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-micro) var(--ease-draw);
+}
+.ctl-speed button:hover { color: var(--band-text); }
+.ctl-speed button.on, .ctl-speed button[aria-pressed="true"] { color: var(--live-bright); }
+.ctl-speed button.on::after, .ctl-speed button[aria-pressed="true"]::after { transform: scaleX(1); }
+
+/* progress ruler */
+.stage-progress { flex: 1; min-width: 160px; display: flex; align-items: center; gap: var(--sp-2); }
+.prog-rail {
+  position: relative; flex: 1; height: 6px;
+  background: rgba(242,239,231,0.08);
+  border: 1px solid var(--band-line);
+}
+.prog-fill {
+  position: absolute; top: 0; left: 0; bottom: 0; width: 0%;
+  background: var(--live-bright);
+}
+/* step-boundary notches (engine injects <i> ticks with inline left%) */
+.prog-rail i {
+  position: absolute; top: -3px; bottom: -3px; width: 1px;
+  background: var(--band-muted); opacity: 0.6; z-index: 2;
+}
+.prog-meta {
+  font-size: var(--t-0); font-weight: 500; letter-spacing: 0.04em;
+  color: var(--band-muted); white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* CTAs */
+.stage-ctas { display: flex; align-items: center; gap: var(--sp-3); flex-shrink: 0; }
+.ag-btn-band { border-color: var(--band-text); color: var(--band-text); }
+.ag-btn-band:hover, .ag-btn-band:focus-visible { border-color: var(--band-accent); color: var(--band-accent); }
+.stage-keys {
+  flex-basis: 100%;
+  font-size: var(--t-0); font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--band-muted);
+  margin-top: calc(-1 * var(--sp-1));
+}
+
+/* ------------------------------------------------------------
+   12. CONFETTI + COMPLETADO STAMP (§9 #12–13)
+   ------------------------------------------------------------ */
+.stage-confetti {
+  position: absolute; inset: 0; z-index: 8;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.stage-stamp {
+  position: absolute; top: 76px; left: var(--sp-4); z-index: 9;
+  font-size: var(--t-2); font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ag-human);
+  border: 2px solid currentColor; border-radius: var(--r-s);
+  padding: var(--sp-1) var(--sp-2);
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+html.js-anim .stage-stamp:not([hidden]) { animation: stampIn .26s var(--ease-text); }
+@keyframes stampIn {
+  from { opacity: 0; transform: rotate(-8deg) scale(1.15); }
+  to   { opacity: 1; transform: rotate(-2deg) scale(1); }
+}
+
+/* ------------------------------------------------------------
+   13. RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 1080px) {
+  .floor-layout { display: block; }
+  /* rail → horizontal chip bar */
+  .ag-rail {
+    position: sticky; top: 56px; z-index: 40;
+    background: var(--band);
+    border-bottom: 1px solid var(--band-line);
+    margin: 0 calc(-1 * var(--sp-4)); padding: 0 var(--sp-4);
+  }
+  .ag-rail ul, .ag-rail .rail-nav {
+    display: flex; gap: var(--sp-1);
+    overflow-x: auto; scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding: var(--sp-1) 0;
+  }
+  .ag-rail ul::-webkit-scrollbar, .ag-rail .rail-nav::-webkit-scrollbar { display: none; }
+  .rail-item {
+    width: auto; scroll-snap-align: start; white-space: nowrap;
+    font-size: var(--t-0);
+    border: 1px solid var(--band-line); border-radius: var(--r-s);
+    padding: 6px var(--sp-1);
+  }
+  .rail-item.on { color: var(--band-accent); border-color: var(--band-accent); }
+  .rail-item i, .rail-foot { display: none; }
+  .ag-group { scroll-margin-top: 128px; }
+}
+
+@media (max-width: 900px) {
+  .ag-hero-grid { grid-template-columns: 1fr; gap: var(--sp-4); }
+  .ag-hero-fig { order: -1; }
+  .ag-hero-fig img, .ag-hero-fig svg { width: min(200px, 60%); }
+  .how-row { grid-template-columns: 1fr 1fr; }
+  .how-node:nth-child(2n+1) { border-left: none; }
+  .how-node:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .ag-contact-grid { grid-template-columns: 1fr; }
+  .rate-row { grid-template-columns: var(--sp-5) 1fr; }
+  .rate-range { grid-column: 2; }
+}
+
+/* — stage mobile: fullscreen vertical stack — */
+@media (max-width: 719px) {
+  .ag-stage {
+    inset: 0; margin: 0;
+    width: 100%; height: 100dvh; max-height: 100dvh;
+    grid-template-rows: 48px 1fr auto;
+  }
+  .stage-head { padding: 0 var(--sp-2); }
+  .stage-cat { display: none; }
+  .stage-body { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; overflow-y: auto; }
+  /* cap the scene so the tall vertical flow scrolls inside it
+     instead of pushing the log console off-screen */
+  .stage-scene {
+    border-right: none; border-bottom: 1px solid var(--band-line);
+    max-height: 42dvh; overflow-y: auto;
+  }
+  .stage-bot svg { height: 96px; }
+  .stage-bot::after { display: none; }
+
+  /* vertical flow: nodes as rows, connectors as left-rail segments.
+     flex-shrink:0 keeps full content height (scene scrolls, nodes never clip);
+     the horizontal edge mask does not apply to the stacked layout. */
+  .stage-flow, .stage-flow[data-orient="v"] {
+    flex-direction: column; align-items: stretch;
+    flex-shrink: 0; margin-block: 0;
+    -webkit-mask-image: none; mask-image: none;
+  }
+  .fl-node {
+    flex-direction: row; align-items: center; gap: var(--sp-2);
+    width: 100%; text-align: left;
+  }
+  .fl-node .fl-ico { width: 40px; height: 40px; font-size: var(--t-3); flex-shrink: 0; }
+  .fl-lab { font-size: var(--t-1); text-transform: none; letter-spacing: 0.02em; }
+  .fl-branch { margin-left: auto; text-align: right; }
+  .fl-conn {
+    flex: none; width: 2px; height: 24px; min-width: 0; min-height: 20px;
+    margin: 0 0 0 19px; /* centre of 40px icon − 1px */
+  }
+  .fl-conn-fill { transform: scaleY(var(--fill, 0)); transform-origin: top; }
+  .fl-conn-pulse { top: 0; left: -3px; }
+  .fl-conn.active .fl-conn-pulse { animation: connPulseV 0.9s linear infinite; }
+
+  /* guaranteed floor: the log console must stay visible on phones */
+  .stage-term { min-height: 32dvh; max-height: 50dvh; }
+  .stage-foot {
+    min-height: 0; padding: var(--sp-2);
+    gap: var(--sp-2);
+  }
+  .stage-ctas { order: -1; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: var(--sp-1); }
+  .stage-ctas .btn { justify-content: center; }
+  .stage-controls {
+    position: sticky; bottom: 0;
+    flex: 1; justify-content: space-between;
+    min-height: 64px;
+  }
+  .stage-progress { flex-basis: 100%; order: 1; }
+  .stage-keys { display: none; }
+}
+@keyframes connPulseV { from { top: 0; } to { top: calc(100% - 8px); } }
+
+@media (max-width: 640px) {
+  .ag-hero { padding-top: calc(var(--sp-6) + var(--sp-6)); }
+  .ag-hero-title { font-size: var(--t-6); }
+  .how-row { grid-template-columns: 1fr; }
+  .how-node { border-left: none !important; }
+  .how-node + .how-node { border-top: 1px solid var(--line); }
+  .ag-card { min-height: 0; }
+  .ag-grid { gap: var(--sp-2); }
+  .ag-legend { gap: var(--sp-1) var(--sp-2); }
+}
+
+/* ------------------------------------------------------------
+   14. REDUCED MOTION — full kill (§10.7)
+   Static poses stay (they're plain transforms, not keyframes).
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .ag-floor *, .ag-stage *, .ag-hero *, .ag-how *,
+  .ag-floor *::before, .ag-floor *::after,
+  .ag-stage *::before, .ag-stage *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html.js-anim .rv { opacity: 1 !important; translate: none !important; }
+  .ag-stage[open], .ag-stage[open]::backdrop, .stage-stamp:not([hidden]) { animation: none !important; }
+  .fl-node[data-state="activo"] .fl-ico::after {
+    animation: none !important; opacity: 0.6; transform: none;
+  }
+  .fl-conn-pulse, .tl-caret { display: none !important; }
+  .fl-node[data-state="completado"] .fl-check { transition: none !important; stroke-dashoffset: 0; }
+  .ag-card .ag-dot, .term-dot { animation: none !important; box-shadow: none !important; }
+  .stage-confetti { display: none !important; }
+}
+
+/* ------------------------------------------------------------
+   15. FORCED COLORS + PRINT SANITY
+   ------------------------------------------------------------ */
+@media (forced-colors: active) {
+  .ag-card, .fl-ico, .ctl, .prog-rail, .ag-chip, .term-newchip { border-color: CanvasText; }
+  .fl-conn, .fl-conn-fill, .prog-fill, .ag-dot, .term-dot, .chip-swatch { background: CanvasText; }
+  .stage-stamp { color: CanvasText; }
+}
+
+@media print {
+  .ag-stage, .ag-rail, .sticky-pill, .stage-confetti { display: none !important; }
+  .ag-floor, .band.ag-floor {
+    background: #fff; color: #000;
+    --band-text: #000; --band-muted: #333;
+    --band-accent: #000; --band-line: #ccc;
+    --ag-trigger: #000; --ag-agent: #000; --ag-llm: #000; --ag-tool: #000;
+    --ag-system: #333; --ag-decision: #000; --ag-human: #000; --ag-result: #000;
+  }
+  .ag-card { border-color: #ccc; break-inside: avoid; }
+  .ag-dot { display: none; }
+  html.js-anim .rv { opacity: 1 !important; translate: none !important; }
+}

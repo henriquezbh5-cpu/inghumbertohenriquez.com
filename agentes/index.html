@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://flagcdn.com; connect-src 'self' https://quote-ai.henriquezbh5.workers.dev https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Agent Fleet &mdash; 20 agentes de IA en vivo | Humberto Henr&iacute;quez</title>
+    <meta name="description" content="Veinte agentes de IA con simulaciones en vivo de su flujo de trabajo: ventas, operaciones, finanzas, soporte, datos, marketing, RRHH y legal. Presiona play y mira cada flujo correr paso a paso.">
+    <meta name="author" content="Humberto Wilfredo Henriquez Benitez">
+    <link rel="canonical" href="https://inghumbertohenriquez.com/agentes/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Agent Fleet — 20 agentes de IA en vivo | Humberto Henríquez">
+    <meta property="og:description" content="Veinte agentes de IA con simulaciones en vivo de su flujo de trabajo. Presiona play y mira cada flujo correr paso a paso.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inghumbertohenriquez.com/agentes/">
+    <meta property="og:image" content="https://inghumbertohenriquez.com/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Humberto Henriquez — Operating Ledger">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://inghumbertohenriquez.com/img/og-image.jpg">
+
+    <!-- Favicon: ink HH seal -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F6F4EE'/%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%230F2B46' stroke-width='3'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' text-anchor='middle' fill='%230F2B46'%3EHH%3C/text%3E%3C/svg%3E">
+
+    <!-- Fonts: self-hosted (styles.css declares @font-face) -->
+    <link rel="preload" href="../fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/instrument-serif-400italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Phosphor Icons (self-hosted: regular + fill weights only) -->
+    <link rel="stylesheet" href="../vendor/phosphor/regular/style.css">
+    <link rel="stylesheet" href="../vendor/phosphor/fill/style.css">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="agentes.css">
+</head>
+<body class="ag-page">
+
+    <a class="ag-skip" href="#main" data-i18n="ag-skip">Saltar al contenido</a>
+
+    <!-- ========== NAVIGATION (Sheet 10) ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../" class="nav-logo" aria-label="Volver al documento" data-i18n-aria="ag-nav-back">
+                <span class="logo-seal"><span class="logo-text">HH</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-back"><a href="../" data-i18n="ag-nav-back">&larr; Volver al documento</a></li>
+                <li><span class="nav-num mono" aria-hidden="true">10.1</span><a href="#como" data-i18n="ag-nav-how">C&oacute;mo funciona</a></li>
+                <li><span class="nav-num mono" aria-hidden="true">10.2</span><a href="#flota" data-i18n="ag-nav-fleet">La flota</a></li>
+                <li><span class="nav-num mono" aria-hidden="true">10.3</span><a href="#tarifario" data-i18n="ag-nav-pricing">Tarifario</a></li>
+                <li><span class="nav-num mono" aria-hidden="true">10.4</span><a href="#contacto-fleet" data-i18n="ag-nav-contact">Contacto</a></li>
+            </ul>
+            <div class="nav-right">
+                <span class="nav-clock clock mono" data-clock aria-hidden="true">14:32:07</span>
+                <div class="lang-toggle">
+                    <button class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
+                    <span class="lang-sep" aria-hidden="true">/</span>
+                    <button class="lang-btn active" data-lang="es" aria-label="Español" aria-pressed="true">ES</button>
+                </div>
+                <a href="../#cotizador" class="btn btn-ink nav-cta" data-i18n="ag-nav-cta">Cotizar</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" data-i18n-aria="ag-aria-menu" aria-expanded="false" aria-controls="navLinks">
+                <i class="ph ph-list" aria-hidden="true"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main id="main">
+
+    <!-- ========== 3.1 PAPER INTRO — LEDGER COVER OF SHEET 10 ========== -->
+    <header class="ag-hero" id="top">
+        <div class="container">
+            <div class="hero-dochead rv">
+                <div class="dochead-strip mono">
+                    <span class="dochead-left" data-i18n="ag-doc-left">DOC. HH/2026 &mdash; L&Aacute;MINA 10 &middot; FLOTA DE AGENTES</span>
+                    <span class="dochead-mid">SAN SALVADOR &middot; GMT-6 <span class="clock" data-clock>14:32:07</span></span>
+                    <span class="dochead-right"><span class="status-dot" aria-hidden="true"></span> <span data-i18n="ag-doc-right">ESTADO &middot; 20 UNIDADES EN SERVICIO</span></span>
+                </div>
+                <span class="dochead-rule rule-x" aria-hidden="true"></span>
+            </div>
+
+            <div class="ch-head rv"><span class="ch-index" data-i18n="ag-ch-10">10 &mdash; FLOTA DE AGENTES</span><span class="ch-rule rule-x"></span></div>
+
+            <div class="ag-hero-grid">
+                <div class="ag-hero-main">
+                    <h1 class="hero-title ag-hero-title"><span class="line-mask"><span class="line" data-i18n="ag-hero-title">Veinte agentes de IA, <em>dibujados y en marcha.</em></span></span></h1>
+                    <p class="hero-subtitle rv" data-i18n="ag-hero-sub">Cada unidad de esta l&aacute;mina es un patr&oacute;n real de automatizaci&oacute;n que implemento. No los leas: presiona play y mira el flujo completo correr, paso a paso, en tiempo real.</p>
+                    <div class="hero-actions rv">
+                        <a href="#flota" class="btn btn-ink btn-lg" data-i18n="ag-hero-cta1">Bajar a la sala de control &darr;</a>
+                        <a href="https://wa.me/50371928070?text=Hola%20Humberto%2C%20vi%20tu%20Agent%20Fleet%20y%20quiero%20automatizar%20un%20proceso." target="_blank" rel="noopener" class="btn-link" data-i18n="ag-hero-cta2">Hablar con el ingeniero &rarr;</a>
+                    </div>
+                    <p class="ag-hero-strip mono rv" data-i18n="ag-hero-strip">20 UNIDADES &middot; 8 CATEGOR&Iacute;AS &middot; SIMULACIONES EN VIVO &middot; EST. 2026</p>
+                </div>
+                <aside class="ag-hero-fig rv">
+                    <figure>
+                        <img src="../img/crew-mini.svg" alt="" width="240" height="280" decoding="async" aria-hidden="true">
+                        <figcaption class="mono" data-i18n="ag-hero-figcap">FIG. 10-0 &mdash; UNIDAD R-07, RECEPCI&Oacute;N DE FLOTA</figcaption>
+                    </figure>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== 3.2 HOW-IT-WORKS ========== -->
+    <section class="section ag-como" id="como">
+        <div class="container">
+            <div class="ch-head rv"><span class="ch-index" data-i18n="ag-como-index">10.1 &mdash; INSTRUCCIONES DE LECTURA</span><span class="ch-rule rule-x"></span></div>
+            <header class="section-header rv">
+                <h2 class="section-title"><span class="line-mask"><span class="line" data-i18n="ag-como-title"><em>C&oacute;mo leer esta sala</em></span></span></h2>
+            </header>
+            <div class="como-grid">
+                <div class="como-step rv">
+                    <span class="como-num mono" aria-hidden="true">01</span>
+                    <span class="como-ico" aria-hidden="true"><i class="ph ph-cursor-click"></i></span>
+                    <p class="como-text" data-i18n="ag-como-1"><strong>Elige una unidad.</strong> Cada tarjeta es un agente con un trabajo concreto.</p>
+                </div>
+                <div class="como-step rv">
+                    <span class="como-num mono" aria-hidden="true">02</span>
+                    <span class="como-ico" aria-hidden="true"><i class="ph ph-play"></i></span>
+                    <p class="como-text" data-i18n="ag-como-2"><strong>Corre la simulaci&oacute;n.</strong> El robot ejecuta el flujo real: disparadores, herramientas, decisiones.</p>
+                </div>
+                <div class="como-step rv">
+                    <span class="como-num mono" aria-hidden="true">03</span>
+                    <span class="como-ico" aria-hidden="true"><i class="ph ph-terminal-window"></i></span>
+                    <p class="como-text" data-i18n="ag-como-3"><strong>Lee el registro.</strong> La consola imprime lo que pasa de verdad, con marcas de tiempo.</p>
+                </div>
+                <div class="como-step rv">
+                    <span class="como-num mono" aria-hidden="true">04</span>
+                    <span class="como-ico" aria-hidden="true"><i class="ph ph-whatsapp-logo"></i></span>
+                    <p class="como-text" data-i18n="ag-como-4"><strong>P&iacute;delo para tu operaci&oacute;n.</strong> Un mensaje y lo aterrizamos a tus sistemas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 3.3 THE OPERATIONS FLOOR (navy band) ========== -->
+    <section class="band ag-floor" id="flota">
+        <div class="container">
+            <div class="ch-head rv"><span class="ch-index" data-i18n="ag-floor-index">SALA DE CONTROL &mdash; &Iacute;NDICE DE FLOTA</span><span class="ch-rule rule-x"></span></div>
+            <header class="section-header rv">
+                <h2 class="section-title"><span class="line-mask"><span class="line" data-i18n="ag-floor-title">El piso de operaciones.</span></span></h2>
+                <p class="section-subtitle" data-i18n="ag-floor-sub">Veinte unidades en servicio, agrupadas seg&uacute;n lo que te quitan de encima. Abre cualquier unidad para ver su corrida completa.</p>
+                <p class="section-subtitle ag-proof-bridge rv"><a class="btn-link" href="../#proyectos" data-i18n="ag-floor-proof">Estos patrones no son maquetas: nacen de sistemas que ya opero en producci&oacute;n. Ve un caso real construido &rarr;</a></p>
+            </header>
+
+            <!-- Actor legend (drafting plate legend) -->
+            <div class="ag-legend mono rv" role="group" aria-label="Leyenda de actores" data-i18n-aria="ag-aria-legend">
+                <span class="legend-title" data-i18n="ag-legend-label">LEYENDA:</span>
+                <span class="legend-chip" data-actor="trigger"><span class="chip-swatch" aria-hidden="true"></span><span data-i18n="ag-legend-trigger">DISPARADOR</span></span>
+                <span class="legend-chip" data-actor="agente"><span class="chip-swatch" aria-hidden="true"></span><span data-i18n="ag-legend-agent">AGENTE IA</span></span>
+                <span class="legend-chip" data-actor="herramienta"><span class="chip-swatch" aria-hidden="true"></span><span data-i18n="ag-legend-tool">HERRAMIENTA</span></span>
+                <span class="legend-chip" data-actor="sistema"><span class="chip-swatch" aria-hidden="true"></span><span data-i18n="ag-legend-system">SISTEMA</span></span>
+                <span class="legend-chip" data-actor="decision"><span class="chip-swatch" aria-hidden="true"></span><span data-i18n="ag-legend-decision">DECISI&Oacute;N</span></span>
+                <span class="legend-chip" data-actor="humano"><span class="chip-swatch" aria-hidden="true"></span><span data-i18n="ag-legend-human">HUMANO</span></span>
+                <span class="legend-chip" data-actor="resultado"><span class="chip-swatch" aria-hidden="true"></span><span data-i18n="ag-legend-result">RESULTADO</span></span>
+            </div>
+
+            <noscript>
+                <p class="ag-noscript mono">Las tarjetas y simulaciones de esta sala requieren JavaScript. / The cards and simulations on this floor require JavaScript. &mdash; henriquezbh5@gmail.com &middot; wa.me/50371928070</p>
+            </noscript>
+
+            <div class="ag-floor-layout">
+                <!-- ===== 3.4 CATEGORY INDEX (sticky rail / mobile chip bar) ===== -->
+                <aside class="ag-rail rv" id="agRail">
+                    <nav class="rail-nav" aria-label="Índice de categorías" data-i18n-aria="ag-aria-rail">
+                        <a href="#cat-ventas" class="rail-link" data-cat="ventas">
+                            <span class="rail-num mono">C1</span><i class="ph ph-storefront" aria-hidden="true"></i>
+                            <span class="rail-label" data-i18n="ag-cat-ventas">Ventas</span>
+                            <span class="rail-count mono" aria-hidden="true">&middot; 2</span>
+                        </a>
+                        <a href="#cat-operaciones" class="rail-link" data-cat="operaciones">
+                            <span class="rail-num mono">C2</span><i class="ph ph-truck" aria-hidden="true"></i>
+                            <span class="rail-label" data-i18n="ag-cat-operaciones">Operaciones</span>
+                            <span class="rail-count mono" aria-hidden="true">&middot; 3</span>
+                        </a>
+                        <a href="#cat-finanzas" class="rail-link" data-cat="finanzas">
+                            <span class="rail-num mono">C3</span><i class="ph ph-receipt" aria-hidden="true"></i>
+                            <span class="rail-label" data-i18n="ag-cat-finanzas">Finanzas</span>
+                            <span class="rail-count mono" aria-hidden="true">&middot; 3</span>
+                        </a>
+                        <a href="#cat-soporte" class="rail-link" data-cat="soporte">
+                            <span class="rail-num mono">C4</span><i class="ph ph-headset" aria-hidden="true"></i>
+                            <span class="rail-label" data-i18n="ag-cat-soporte">Soporte</span>
+                            <span class="rail-count mono" aria-hidden="true">&middot; 3</span>
+                        </a>
+                        <a href="#cat-datos" class="rail-link" data-cat="datos">
+                            <span class="rail-num mono">C5</span><i class="ph ph-chart-line-up" aria-hidden="true"></i>
+                            <span class="rail-label" data-i18n="ag-cat-datos">Datos</span>
+                            <span class="rail-count mono" aria-hidden="true">&middot; 3</span>
+                        </a>
+                        <a href="#cat-marketing" class="rail-link" data-cat="marketing">
+                            <span class="rail-num mono">C6</span><i class="ph ph-megaphone" aria-hidden="true"></i>
+                            <span class="rail-label" data-i18n="ag-cat-marketing">Marketing</span>
+                            <span class="rail-count mono" aria-hidden="true">&middot; 2</span>
+                        </a>
+                        <a href="#cat-rrhh" class="rail-link" data-cat="rrhh">
+                            <span class="rail-num mono">C7</span><i class="ph ph-users-three" aria-hidden="true"></i>
+                            <span class="rail-label" data-i18n="ag-cat-rrhh">RRHH</span>
+                            <span class="rail-count mono" aria-hidden="true">&middot; 2</span>
+                        </a>
+                        <a href="#cat-legal" class="rail-link" data-cat="legal">
+                            <span class="rail-num mono">C8</span><i class="ph ph-files" aria-hidden="true"></i>
+                            <span class="rail-label" data-i18n="ag-cat-legal">Legal</span>
+                            <span class="rail-count mono" aria-hidden="true">&middot; 2</span>
+                        </a>
+                    </nav>
+                    <p class="rail-foot mono" data-i18n="ag-rail-foot">&Iacute;NDICE DE LA L&Aacute;MINA 10 &middot; DESPL&Aacute;ZATE O SALTA</p>
+                </aside>
+
+                <!-- ===== 3.5 CATEGORY GROUPS × 8 ===== -->
+                <div class="ag-groups">
+                    <section class="ag-group" id="cat-ventas" data-cat="ventas">
+                        <div class="ag-group-rule rv">
+                            <span class="ag-group-label mono" data-i18n="ag-group-ventas">C1 &mdash; VENTAS &middot; 2 UNIDADES</span>
+                            <span class="ch-rule rule-x" aria-hidden="true"></span>
+                        </div>
+                        <p class="ag-group-blurb rv" data-i18n="ag-blurb-ventas">Responde antes de que tu competencia abra Excel.</p>
+                        <div class="ag-grid" data-cat="ventas"></div>
+                    </section>
+
+                    <section class="ag-group" id="cat-operaciones" data-cat="operaciones">
+                        <div class="ag-group-rule rv">
+                            <span class="ag-group-label mono" data-i18n="ag-group-operaciones">C2 &mdash; OPERACIONES &middot; 3 UNIDADES</span>
+                            <span class="ch-rule rule-x" aria-hidden="true"></span>
+                        </div>
+                        <p class="ag-group-blurb rv" data-i18n="ag-blurb-operaciones">Inventario, &oacute;rdenes y env&iacute;os que se reportan solos.</p>
+                        <div class="ag-grid" data-cat="operaciones"></div>
+                    </section>
+
+                    <section class="ag-group" id="cat-finanzas" data-cat="finanzas">
+                        <div class="ag-group-rule rv">
+                            <span class="ag-group-label mono" data-i18n="ag-group-finanzas">C3 &mdash; FINANZAS &middot; 3 UNIDADES</span>
+                            <span class="ch-rule rule-x" aria-hidden="true"></span>
+                        </div>
+                        <p class="ag-group-blurb rv" data-i18n="ag-blurb-finanzas">El papel se persigue solo: facturas, recordatorios, caja visible.</p>
+                        <div class="ag-grid" data-cat="finanzas"></div>
+                    </section>
+
+                    <section class="ag-group" id="cat-soporte" data-cat="soporte">
+                        <div class="ag-group-rule rv">
+                            <span class="ag-group-label mono" data-i18n="ag-group-soporte">C4 &mdash; SOPORTE &middot; 3 UNIDADES</span>
+                            <span class="ch-rule rule-x" aria-hidden="true"></span>
+                        </div>
+                        <p class="ag-group-blurb rv" data-i18n="ag-blurb-soporte">Primera respuesta en segundos; humanos solo donde importan.</p>
+                        <div class="ag-grid" data-cat="soporte"></div>
+                    </section>
+
+                    <section class="ag-group" id="cat-datos" data-cat="datos">
+                        <div class="ag-group-rule rv">
+                            <span class="ag-group-label mono" data-i18n="ag-group-datos">C5 &mdash; DATOS &middot; 3 UNIDADES</span>
+                            <span class="ch-rule rule-x" aria-hidden="true"></span>
+                        </div>
+                        <p class="ag-group-blurb rv" data-i18n="ag-blurb-datos">Informes que se escriben solos antes de que los pidas.</p>
+                        <div class="ag-grid" data-cat="datos"></div>
+                    </section>
+
+                    <section class="ag-group" id="cat-marketing" data-cat="marketing">
+                        <div class="ag-group-rule rv">
+                            <span class="ag-group-label mono" data-i18n="ag-group-marketing">C6 &mdash; MARKETING &middot; 2 UNIDADES</span>
+                            <span class="ch-rule rule-x" aria-hidden="true"></span>
+                        </div>
+                        <p class="ag-group-blurb rv" data-i18n="ag-blurb-marketing">Contenido y campa&ntilde;as que se producen, publican y miden solos.</p>
+                        <div class="ag-grid" data-cat="marketing"></div>
+                    </section>
+
+                    <section class="ag-group" id="cat-rrhh" data-cat="rrhh">
+                        <div class="ag-group-rule rv">
+                            <span class="ag-group-label mono" data-i18n="ag-group-rrhh">C7 &mdash; RRHH &middot; 2 UNIDADES</span>
+                            <span class="ch-rule rule-x" aria-hidden="true"></span>
+                        </div>
+                        <p class="ag-group-blurb rv" data-i18n="ag-blurb-rrhh">Procesos de gente sin andar persiguiendo firmas.</p>
+                        <div class="ag-grid" data-cat="rrhh"></div>
+                    </section>
+
+                    <section class="ag-group" id="cat-legal" data-cat="legal">
+                        <div class="ag-group-rule rv">
+                            <span class="ag-group-label mono" data-i18n="ag-group-legal">C8 &mdash; LEGAL &middot; 2 UNIDADES</span>
+                            <span class="ch-rule rule-x" aria-hidden="true"></span>
+                        </div>
+                        <p class="ag-group-blurb rv" data-i18n="ag-blurb-legal">PDFs y contratos se vuelven datos estructurados y vigilados.</p>
+                        <div class="ag-grid" data-cat="legal"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 3.6 PRICING / TARIFARIO (navy plate) ========== -->
+    <section class="band ag-tarifario" id="tarifario">
+        <div class="container">
+            <div class="ch-head rv"><span class="ch-index" data-i18n="ag-tar-index">TARIFARIO &mdash; SOLO REFERENCIA</span><span class="ch-rule rule-x"></span></div>
+            <header class="section-header rv">
+                <h2 class="section-title"><span class="line-mask"><span class="line" data-i18n="ag-tar-title">Lo que cuesta una unidad.</span></span></h2>
+            </header>
+
+            <div class="tar-rows">
+                <div class="tar-row rv">
+                    <span class="tar-band mono" aria-hidden="true">S</span>
+                    <p class="tar-body" data-i18n="ag-tar-s"><strong>Unidad simple &mdash; $600&ndash;1,200.</strong> Un flujo, una integraci&oacute;n, reglas fijas. ~1&ndash;2 semanas.</p>
+                </div>
+                <div class="tar-row rv">
+                    <span class="tar-band mono" aria-hidden="true">M</span>
+                    <p class="tar-body" data-i18n="ag-tar-m"><strong>Unidad est&aacute;ndar &mdash; $1,200&ndash;3,000.</strong> Multi-paso, razonamiento IA, 2&ndash;3 integraciones, ciclo de aprobaci&oacute;n. ~2&ndash;4 semanas.</p>
+                </div>
+                <div class="tar-row rv">
+                    <span class="tar-band mono" aria-hidden="true">L</span>
+                    <p class="tar-body" data-i18n="ag-tar-l"><strong>C&eacute;lula compuesta &mdash; $3,000&ndash;8,000.</strong> Varios agentes orquestados con memoria compartida y tableros. ~4&ndash;8 semanas.</p>
+                </div>
+            </div>
+
+            <div class="tar-foot rv">
+                <p class="tar-note" data-i18n="ag-tar-inc">Toda unidad incluye: dise&ntilde;o, construcci&oacute;n, pruebas, entrega documentada y 30 d&iacute;as de soporte post-lanzamiento.</p>
+                <p class="tar-note mono" data-i18n="ag-tar-ref">PRECIOS DE REFERENCIA &mdash; EL N&Uacute;MERO REAL SALE DE UN DIAGN&Oacute;STICO DE 30 MINUTOS.</p>
+                <a class="btn-link" href="../#cotizador" data-i18n="ag-tar-cta">Cotiza tu caso exacto en 60 segundos &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 3.7 CONTACT STRIP (navy, section-close) ========== -->
+    <section class="band ag-contact section-close" id="contacto-fleet">
+        <div class="container">
+            <div class="ch-head rv"><span class="ch-index" data-i18n="ag-contact-index">10.4 &mdash; CONTACTO DIRECTO</span><span class="ch-rule rule-x"></span></div>
+            <div class="ag-contact-layout">
+                <div class="ag-contact-left rv">
+                    <h2 class="section-title"><span class="line-mask"><span class="line" data-i18n="ag-contact-title">&iquest;Cu&aacute;l de estos procesos le est&aacute; comiendo horas a tu equipo?</span></span></h2>
+                    <a class="btn ag-wa-btn" href="https://wa.me/50371928070?text=Hola%20Humberto%2C%20vi%20tu%20Agent%20Fleet%20y%20quiero%20automatizar%20un%20proceso." target="_blank" rel="noopener">
+                        <i class="ph ph-whatsapp-logo" aria-hidden="true"></i> <span data-i18n="ag-contact-wa">Hablemos por WhatsApp</span>
+                    </a>
+                    <p class="ag-contact-reply mono"><span class="live-dot" aria-hidden="true"></span> <span data-i18n="ag-contact-reply">RESPUESTA &lt; 24H &middot; GMT-6</span> <span class="clock" data-clock>14:32:07</span></p>
+                </div>
+                <div class="ag-contact-right rv">
+                    <form id="agContactForm" class="ag-form" action="https://formspree.io/f/xeevjelz" method="POST">
+                        <input type="hidden" name="_subject" id="agFormSubject" value="Agent Fleet inquiry">
+                        <input type="hidden" name="agent" id="agFormAgent" value="">
+                        <input type="text" name="_gotcha" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <div class="form-field">
+                            <label class="form-label mono" for="agName" data-i18n="ag-form-name">Nombre</label>
+                            <input id="agName" type="text" name="name" required autocomplete="name">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label mono" for="agEmail" data-i18n="ag-form-email">Correo</label>
+                            <input id="agEmail" type="email" name="_replyto" required autocomplete="email">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label mono" for="agMsg" data-i18n="ag-form-msg">&iquest;Qu&eacute; quieres automatizar?</label>
+                            <textarea id="agMsg" name="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-ink" data-i18n="ag-form-send">ENVIAR</button>
+                        <p id="agFormOk" class="form-success" hidden data-i18n="ag-form-ok">Enviado. Respondo en menos de 24 horas.</p>
+                        <p id="agFormFallback" class="form-fallback" hidden></p>
+                        <p class="form-privacy" data-i18n="ag-form-privacy">Tus datos se procesan v&iacute;a Formspree solo para responderte. No se venden ni se usan para marketing.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ========== 3.8 RETURN TO PAPER — FOOTER ========== -->
+    <footer class="footer ag-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-seal"><span class="logo-text">HH</span></span>
+                    <p><a href="../" class="ag-foot-back" data-i18n="ag-foot-back">&larr; Volver al documento principal</a></p>
+                </div>
+                <nav class="footer-links" aria-label="Footer">
+                    <a href="../#servicios" data-i18n="ag-foot-services">Servicios</a>
+                    <a href="../#cotizador" data-i18n="ag-foot-quote">Cotizador</a>
+                    <a href="../#contacto" data-i18n="ag-foot-contact">Contacto</a>
+                </nav>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph ph-linkedin-logo" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/50371928070" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i></a>
+                    <a href="mailto:henriquezbh5@gmail.com" aria-label="Email"><i class="ph ph-envelope-simple" aria-hidden="true"></i></a>
+                    <span class="footer-clock mono">GMT-6 <span class="clock" data-clock>14:32:07</span></span>
+                </div>
+            </div>
+            <div class="footer-colophon">
+                <p class="colophon-line mono" data-i18n="ag-foot-line">L&Aacute;MINA 10 &middot; REV 2026.07 &middot; DIBUJADO A MANO &middot; CORRIDO POR M&Aacute;QUINAS</p>
+                <p class="footer-copy"><span data-i18n="ag-foot-copy">&copy; 2026 Humberto Henr&iacute;quez. Todos los derechos reservados.</span> &middot; <a href="../privacy/" data-i18n="ag-foot-privacy">Privacidad</a> &middot; <a href="../terms/" data-i18n="ag-foot-terms">T&eacute;rminos</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== STICKY PILL (agentes.js owns visibility; hidden while stage open) ========== -->
+    <div class="sticky-pill" id="stickyPill" hidden>
+        <a class="pill-wa" href="https://wa.me/50371928070?text=Hola%20Humberto%2C%20vi%20tu%20Agent%20Fleet%20y%20quiero%20automatizar%20un%20proceso." target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i></a>
+        <a class="pill-estimate" href="../#cotizador"><span data-i18n="ag-pill-estimate">Cotizar</span></a>
+        <button class="pill-dismiss" id="pillDismiss" aria-label="Cerrar" data-i18n-aria="ag-aria-pill-dismiss"><i class="ph ph-x" aria-hidden="true"></i></button>
+    </div>
+
+    <!-- ========== §4 CARD ANATOMY — TEMPLATE (cloned by agentes.js) ========== -->
+    <template id="agCardTemplate">
+        <article class="ag-card rv" data-agent="">
+            <div class="ag-card-head mono">
+                <span class="ag-unit"></span>
+                <span class="ag-cat-tag"></span>
+                <span class="ag-live-dot" aria-hidden="true"></span>
+            </div>
+            <div class="ag-card-id">
+                <span class="ag-ico" aria-hidden="true"><i class="ph"></i></span>
+                <div class="ag-id-text">
+                    <h3 class="ag-name"></h3>
+                    <p class="ag-alias"></p>
+                </div>
+            </div>
+            <p class="ag-resumen"></p>
+            <p class="ag-stack mono"></p>
+            <div class="ag-slab mono">
+                <span class="slab-before"></span>
+                <span class="slab-arrow" aria-hidden="true">&rarr;</span>
+                <span class="slab-after"></span>
+            </div>
+            <div class="ag-card-foot">
+                <span class="ag-card-sim mono" data-i18n="ag-card-sim">&#9656; VER SIMULACI&Oacute;N</span>
+                <span class="ag-card-chip mono"></span>
+            </div>
+            <a class="ag-card-link" href="#" aria-label=""></a>
+        </article>
+    </template>
+
+    <!-- ========== §5.3 SIMULATOR STAGE — DOM CONTRACT ========== -->
+    <dialog class="ag-stage" id="agStage" aria-labelledby="agStageTitle" tabindex="-1">
+        <header class="stage-head">
+            <span class="stage-unit mono" id="agStageUnit">A-01</span>
+            <h2 class="stage-title" id="agStageTitle">Nova</h2>
+            <span class="stage-cat mono" id="agStageCat">C1 &mdash; VENTAS</span>
+            <button class="stage-close mono" id="agStageClose" aria-label="Cerrar simulación" data-i18n-aria="ag-aria-close">&#10005; <kbd>ESC</kbd></button>
+        </header>
+
+        <div class="stage-body">
+            <div class="stage-scene">
+                <figure class="stage-bot" id="agBot" data-bot-state="idle" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 216" class="rb" id="agRobot" aria-hidden="true">
+  <title id="agRobotTitle">Unidad de la flota</title>
+  
+  <defs>
+    <pattern id="rbH" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(242,239,231,0.35)" stroke-width="1"/>
+    </pattern>
+    <pattern id="rbHd" patternUnits="userSpaceOnUse" width="3.5" height="3.5" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="3.5" stroke="rgba(242,239,231,0.35)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <g transform="translate(100,206)" stroke="#F2EFE7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+    <ellipse id="bot-shadow" class="rb-shadow" cx="0" cy="2" rx="46" ry="6" fill="url(#rbH)" stroke="none"/>
+
+    <g id="bot-rig" class="rb-rig">
+
+      <g id="bot-body" class="rb-body">
+        
+        <rect x="-34" y="-24" width="68" height="24" rx="12" fill="url(#rbHd)" stroke-width="1.75"/>
+        <circle cx="-18" cy="-12" r="6.5" stroke-width="1"/>
+        <circle cx="0" cy="-12" r="6.5" stroke-width="1"/>
+        <circle cx="18" cy="-12" r="6.5" stroke-width="1"/>
+        
+        <rect x="-12" y="-34" width="24" height="10" stroke-width="1.75"/>
+        
+        <rect x="-36" y="-104" width="72" height="70" rx="12" stroke-width="2.5"/>
+        <rect x="16" y="-100" width="17" height="62" fill="url(#rbH)" stroke="none"/>
+        <path d="M14 -102 V-36" stroke="rgba(242,239,231,0.45)" stroke-width="1"/>
+        <path d="M-36 -58 H14" stroke="rgba(242,239,231,0.45)" stroke-width="1"/>
+        <circle cx="-30" cy="-98" r="1.6" stroke-width="1"/>
+        <circle cx="-30" cy="-42" r="1.6" stroke-width="1"/>
+        <circle cx="8" cy="-98" r="1.6" stroke-width="1"/>
+        <circle cx="8" cy="-42" r="1.6" stroke-width="1"/>
+        <circle cx="24" cy="-70" r="1.6" stroke-width="1"/>
+        
+        <g id="bot-core" class="rb-core">
+          <rect x="-28" y="-66" width="34" height="15" rx="2" stroke-width="1"/>
+          <g class="rb-gear" stroke-width="1">
+            <circle cx="-11" cy="-58.5" r="3.5"/>
+            <path d="M-11 -63.5 v-1.5 M-11 -53.5 v1.5 M-16 -58.5 h-1.5 M-6 -58.5 h1.5"/>
+          </g>
+        </g>
+        
+        <rect x="-9" y="-114" width="18" height="10" stroke-width="1.75"/>
+        <circle cx="-36" cy="-88" r="5.5" stroke-width="1.75"/>
+        <circle cx="36" cy="-88" r="5.5" stroke-width="1.75"/>
+      </g>
+
+      <g id="bot-head" class="rb-head">
+        <rect x="-29" y="-150" width="58" height="38" rx="9" stroke-width="2.5"/>
+        <rect x="-21" y="-143" width="42" height="25" rx="4" fill="#0B2036" stroke-width="1.75"/>
+        <path id="bot-scan" class="rb-scan" d="M-19 -140 H19" stroke="#14B8A6" stroke-width="1" opacity="0"/>
+        
+        <g id="bot-eyes-l" class="rb-eyes" fill="#F2EFE7" stroke="none">
+          <circle cx="-13" cy="-134" r="1.7"/><circle cx="-8" cy="-134" r="1.7"/>
+          <circle cx="-13" cy="-129" r="1.7"/><circle cx="-8" cy="-129" r="1.7"/>
+        </g>
+        <g id="bot-eyes-r" class="rb-eyes" fill="#F2EFE7" stroke="none">
+          <circle cx="8" cy="-134" r="1.7"/><circle cx="13" cy="-134" r="1.7"/>
+          <circle cx="8" cy="-129" r="1.7"/><circle cx="13" cy="-129" r="1.7"/>
+        </g>
+        <g id="bot-eyes-happy" class="rb-eyes-happy" opacity="0" stroke-width="1.75">
+          <path d="M-15 -130 l4.5 -4.5 4.5 4.5"/>
+          <path d="M6 -130 l4.5 -4.5 4.5 4.5"/>
+        </g>
+        <g id="bot-brows" class="rb-brows" opacity="0" stroke-width="1.5">
+          <path d="M-15 -139 l9 -2"/>
+          <path d="M6 -141 l9 2"/>
+        </g>
+        
+        <g id="bot-mouth" class="rb-mouth" fill="#F2EFE7" stroke="none">
+          <circle cx="-4" cy="-123" r="1"/><circle cx="0" cy="-123" r="1"/><circle cx="4" cy="-123" r="1"/>
+        </g>
+        <path id="bot-mouth-wide" class="rb-mouth-wide" d="M-5 -124 a5 4.5 0 0 0 10 0" opacity="0" stroke-width="1.5"/>
+        
+        <circle cx="-29" cy="-131" r="3" stroke-width="1"/>
+        <circle cx="29" cy="-131" r="3" stroke-width="1"/>
+        
+        <path id="bot-antenna" class="rb-antenna" d="M0 -150 V-166" stroke-width="1.75"/>
+        <g id="bot-antenna-dot" class="rb-antenna-dot">
+          <circle cx="0" cy="-170" r="6" stroke="#0F766E" stroke-width="1"/>
+          <circle class="rb-led" cx="0" cy="-170" r="3.5" fill="#14B8A6" stroke="none"/>
+        </g>
+        
+        <g id="bot-arcs" class="rb-arcs" opacity="0" stroke="#14B8A6" stroke-width="1">
+          <path class="rb-arc1" d="M-10 -180 a13 13 0 0 1 20 0"/>
+          <path class="rb-arc2" d="M-16 -186 a20 20 0 0 1 32 0"/>
+        </g>
+      </g>
+
+      <g id="bot-arm-l" class="rb-arm-l">
+        <path d="M-36 -88 L-52 -60 L-44 -38" stroke-width="2.5"/>
+        <circle cx="-52" cy="-60" r="4" stroke-width="1.75"/>
+        <path d="M-47 -34 l-4 5 M-38 -36 l4 5" stroke-width="1.75"/>
+      </g>
+
+      <g id="bot-arm-r" class="rb-arm-r">
+        <path d="M36 -88 L52 -62 L44 -40" stroke-width="2.5"/>
+        <circle cx="52" cy="-62" r="4" stroke-width="1.75"/>
+        <path d="M41 -37 l-4 5 M47 -37 l3 5" stroke-width="1.75"/>
+      </g>
+
+      <g id="bot-tool" class="rb-tool" opacity="0" stroke-width="2.5">
+        <path d="M48 -36 L60 -24"/>
+        <path d="M43 -45 a6.5 6.5 0 1 0 9.5 9.5"/>
+      </g>
+
+      <g id="bot-sparks" class="rb-sparks" opacity="0" stroke="#14B8A6" stroke-width="1.5">
+        <path class="rb-spark1" d="M58 -34 l6 -5"/>
+        <path class="rb-spark2" d="M63 -25 h7"/>
+        <path class="rb-spark3" d="M57 -17 l5 5"/>
+      </g>
+
+    </g>
+
+    
+    <g id="bot-chit-q" class="rb-chit" opacity="0" transform="rotate(6 33 -184)">
+      <rect x="24" y="-194" width="18" height="20" rx="1" fill="#F2EFE7" stroke="none"/>
+      <text x="33" y="-179.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#0F2B46" stroke="none">?</text>
+    </g>
+
+    <g id="bot-chit-dots" class="rb-chit" opacity="0" transform="rotate(-5 -31.5 -177)">
+      <rect x="-45" y="-184" width="27" height="14" rx="1" fill="#F2EFE7" stroke="none"/>
+      <g fill="#0F2B46" stroke="none">
+        <circle class="rb-dot1" cx="-38.5" cy="-177" r="1.8"/>
+        <circle class="rb-dot2" cx="-31.5" cy="-177" r="1.8"/>
+        <circle class="rb-dot3" cx="-24.5" cy="-177" r="1.8"/>
+      </g>
+    </g>
+
+    <g id="bot-chit-clock" class="rb-chit" opacity="0">
+      <circle cx="38" cy="-184" r="7.5" fill="#F2EFE7" stroke="#0F2B46" stroke-width="1"/>
+      <path d="M38 -184 v-4 M38 -184 h3" stroke="#0F2B46" stroke-width="1.2"/>
+    </g>
+
+    <g id="bot-chit-check" class="rb-chit" opacity="0" transform="rotate(-6 -36 -189)">
+      <rect x="-46" y="-198" width="20" height="18" rx="1" fill="#F2EFE7" stroke="none"/>
+      <path d="M-41.5 -189 l3.5 3.5 6.5 -7.5" stroke="#0F2B46" stroke-width="2"/>
+    </g>
+
+  </g>
+</svg>
+                    <figcaption class="bot-tag mono" id="agBotTag">A-01</figcaption>
+                </figure>
+                <div class="stage-flow" id="agFlow" data-orient="h" role="group" aria-label="Pasos del flujo" data-i18n-aria="ag-aria-flow">
+                    <!-- .fl-node / .fl-conn generated per step by agentes.js -->
+                </div>
+            </div>
+
+            <aside class="stage-term">
+                <div class="term-head mono"><span class="term-dot" id="agTermDot"></span>
+                    <span data-i18n="ag-term-title">REGISTRO DE OPERACI&Oacute;N</span> &middot; <span id="agTermFile">nova.log</span></div>
+                <div class="term-log" id="agTermLog" role="log" aria-live="polite" aria-atomic="false"
+                     tabindex="0" aria-label="Registro de la simulación" data-i18n-aria="ag-aria-log"></div>
+                <button class="term-newchip mono" id="agTermChip" hidden>&#9660; <span data-i18n="ag-term-new">NUEVAS L&Iacute;NEAS</span></button>
+            </aside>
+        </div>
+
+        <footer class="stage-foot">
+            <div class="stage-controls" role="group" aria-label="Controles de simulación" data-i18n-aria="ag-aria-controls">
+                <button class="ctl" id="agPlay" aria-pressed="false" aria-keyshortcuts="Space" aria-label="Reproducir / pausar" data-i18n-aria="ag-aria-play"><i class="ph ph-play"></i></button>
+                <button class="ctl" id="agReset" aria-keyshortcuts="r" aria-label="Reiniciar" data-i18n-aria="ag-aria-reset"><i class="ph ph-arrow-counter-clockwise"></i></button>
+                <button class="ctl" id="agStep" aria-keyshortcuts="ArrowRight" aria-label="Paso siguiente" data-i18n-aria="ag-aria-step"><i class="ph ph-skip-forward"></i></button>
+                <div class="ctl-speed" role="group" aria-label="Velocidad" data-i18n-aria="ag-aria-speed">
+                    <button data-speed="0.5" aria-pressed="false">0.5&times;</button><button data-speed="1" class="on" aria-pressed="true">1&times;</button><button data-speed="2" aria-pressed="false">2&times;</button>
+                </div>
+            </div>
+            <div class="stage-progress">
+                <div class="prog-rail" id="agProgRail"><!-- step-boundary notches injected as <i> ticks -->
+                    <div class="prog-fill" id="agProg" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                         aria-valuenow="0" aria-valuetext="0 de 8 pasos"
+                         aria-label="Progreso de la simulación" data-i18n-aria="ag-aria-progress"></div>
+                </div>
+                <span class="prog-meta mono" id="agProgMeta">00:00.000 &middot; 0%</span>
+            </div>
+            <div class="stage-ctas">
+                <a class="btn ag-btn-band" id="agCtaWa" target="_blank" rel="noopener" data-i18n="ag-cta-want">QUIERO ESTE AGENTE</a>
+                <a class="btn-link" id="agCtaDemo" data-i18n="ag-cta-demo">Solicitar demo &rarr;</a>
+            </div>
+            <p class="stage-keys mono" data-i18n="ag-keys">ESPACIO PAUSA &middot; R REINICIA &middot; &rarr; PASO &middot; ESC CIERRA</p>
+        </footer>
+
+        <canvas class="stage-confetti" id="agConfetti" aria-hidden="true"></canvas>
+        <div class="stage-stamp mono" id="agStamp" hidden data-i18n="ag-stamp">COMPLETADO &#10003;</div>
+    </dialog>
+
+    <script defer src="agents-data.js"></script>
+    <script defer src="agentes.js"></script>
+</body>
+</html>
