@@ -183,7 +183,7 @@
       'ag-tar-l': '<strong>C&eacute;lula compuesta &mdash; $3,000&ndash;8,000.</strong> Varios agentes orquestados con memoria compartida y tableros. ~4&ndash;8 semanas.',
       'ag-tar-inc': 'Toda unidad incluye: dise&ntilde;o, construcci&oacute;n, pruebas, entrega documentada y 30 d&iacute;as de soporte post-lanzamiento.',
       'ag-tar-ref': 'PRECIOS DE REFERENCIA &mdash; EL N&Uacute;MERO REAL SALE DE UN DIAGN&Oacute;STICO DE 30 MINUTOS.',
-      'ag-tar-cta': 'Cotiza tu caso exacto en 60 segundos &rarr;',
+      'ag-tar-cta': 'Cotiza tu caso con Optimatiza &rarr;',
       /* contact */
       'ag-contact-index': '10.4 &mdash; CONTACTO DIRECTO',
       'ag-contact-title': '&iquest;Cu&aacute;l de estos procesos le est&aacute; comiendo horas a tu equipo?',
@@ -198,12 +198,10 @@
       /* footer */
       'ag-foot-back': '&larr; Volver al documento principal',
       'ag-foot-services': 'Servicios',
-      'ag-foot-quote': 'Cotizador',
+      'ag-foot-quote': 'Tarifario',
       'ag-foot-contact': 'Contacto',
       'ag-foot-line': 'L&Aacute;MINA 10 &middot; REV 2026.07 &middot; DIBUJADO A MANO &middot; CORRIDO POR M&Aacute;QUINAS',
       'ag-foot-copy': '&copy; 2026 Humberto Henr&iacute;quez. Todos los derechos reservados.',
-      'ag-foot-privacy': 'Privacidad',
-      'ag-foot-terms': 'T&eacute;rminos',
       'ag-pill-estimate': 'Cotizar',
       /* card + stage chrome */
       'ag-card-sim': '&#9656; VER SIMULACI&Oacute;N',
@@ -316,7 +314,7 @@
       'ag-tar-l': '<strong>Composite cell &mdash; $3,000&ndash;8,000.</strong> Several agents orchestrated with shared memory and dashboards. ~4&ndash;8 weeks.',
       'ag-tar-inc': 'Every unit ships with: design, build, testing, documented handover and 30 days of post-launch support.',
       'ag-tar-ref': 'REFERENCE PRICES &mdash; THE REAL NUMBER COMES OUT OF A 30-MINUTE DIAGNOSTIC.',
-      'ag-tar-cta': 'Estimate your exact case in 60 seconds &rarr;',
+      'ag-tar-cta': 'Get a quote at Optimatiza &rarr;',
       /* contact */
       'ag-contact-index': '10.4 &mdash; DIRECT CONTACT',
       'ag-contact-title': 'Which of these processes is eating your team&rsquo;s hours?',
@@ -331,12 +329,10 @@
       /* footer */
       'ag-foot-back': '&larr; Back to the main document',
       'ag-foot-services': 'Services',
-      'ag-foot-quote': 'Estimator',
+      'ag-foot-quote': 'Pricing',
       'ag-foot-contact': 'Contact',
       'ag-foot-line': 'SHEET 10 &middot; REV 2026.07 &middot; DRAWN BY HAND &middot; RUN BY MACHINES',
       'ag-foot-copy': '&copy; 2026 Humberto Henr&iacute;quez. All rights reserved.',
-      'ag-foot-privacy': 'Privacy',
-      'ag-foot-terms': 'Terms',
       'ag-pill-estimate': 'Estimate',
       /* card + stage chrome */
       'ag-card-sim': '&#9656; RUN SIMULATION',
