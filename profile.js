@@ -33,7 +33,7 @@
         'chip-founder': ['FUNDADOR — OPTIMATIZA', 'FOUNDER — OPTIMATIZA'],
         'chip-btc': ['CREADOR — BITCOIN ACADEMY', 'CREATOR — BITCOIN ACADEMY'],
         'chip-msc': ['2 MAESTRÍAS + POSGRADO', '2 MSC + POSTGRAD DEGREE'],
-        'chip-pl': ['PL-900 → PL-600 COMPLETA', 'PL-900 → PL-600 FULL TRACK'],
+        'chip-pl': ['3× MICROSOFT CERTIFIED', '3× MICROSOFT CERTIFIED'],
         'photo-stamp': ['VERIFICADO · 2026', 'VERIFIED · 2026'],
         'photo-caption': ['FIG. 0 — EL INGENIERO · SAN SALVADOR, EL SALVADOR', 'FIG. 0 — THE ENGINEER · SAN SALVADOR, EL SALVADOR'],
 
@@ -63,7 +63,7 @@
         'fact-shipped': ['PUBLICADO', 'SHIPPED'],
         'hist-p1': ['Empecé mi carrera en el mundo de la infraestructura y el soporte técnico. Ahí aprendí algo que muchos tecnólogos nunca entienden: <strong>la tecnología no vale nada si no resuelve un problema real del negocio</strong>.', 'I started my career in infrastructure and tech support. There I learned something many technologists never do: <strong>technology is worth nothing unless it solves a real business problem</strong>.'],
         'hist-p2': ['Con el tiempo me fui moviendo hacia la automatización y la gestión de datos. Vi de primera mano cómo empresas enteras operaban con hojas de Excel compartidas por correo, aprobaciones por WhatsApp, reportes que se armaban a mano cada lunes y procesos críticos que dependían de que "alguien se acordara" de hacer algo.', 'Over time I moved into automation and data. I saw first-hand how entire companies ran on Excel files shared by email, WhatsApp approvals, reports assembled by hand every Monday, and critical processes that depended on "someone remembering" to do something.'],
-        'hist-p3': ['Ahí encontré mi misión profesional: <strong>eliminar esa fragilidad operativa</strong>. Microsoft Power Platform se convirtió en mi herramienta principal porque permite exactamente eso — tomar un proceso roto y convertirlo en un sistema digital completo, sin desarrollos de meses ni presupuestos de medio millón de dólares. Certificación tras certificación, terminé la línea completa: de fundamentos a arquitecto de soluciones.', 'That\'s where I found my professional mission: <strong>eliminating that operational fragility</strong>. Microsoft Power Platform became my main tool because it allows exactly that — taking a broken process and turning it into a complete digital system, without months-long builds or half-million-dollar budgets. Certification after certification, I completed the whole track: from fundamentals to solution architect.'],
+        'hist-p3': ['Ahí encontré mi misión profesional: <strong>eliminar esa fragilidad operativa</strong>. Microsoft Power Platform se convirtió en mi herramienta principal porque permite exactamente eso — tomar un proceso roto y convertirlo en un sistema digital completo, sin desarrollos de meses ni presupuestos de medio millón de dólares. Me certifiqué en sus tres pilares — Power Apps, Power Automate y Power BI — y los llevé a producción.', 'That\'s where I found my professional mission: <strong>eliminating that operational fragility</strong>. Microsoft Power Platform became my main tool because it allows exactly that — taking a broken process and turning it into a complete digital system, without months-long builds or half-million-dollar budgets. I got certified in its three pillars — Power Apps, Power Automate and Power BI — and took them to production.'],
         'hist-p4': ['Mientras tanto seguí estudiando de noche: una maestría en Inteligencia de Negocios, un posgrado en Blockchain y una maestría en Ciencia de Datos. Y en paralelo construí cosas propias — una academia de Bitcoin que hoy vive en Google Play, sistemas de trading algorítmico, pipelines de video que se publican solos.', 'Meanwhile I kept studying at night: a master\'s in Business Intelligence, a postgraduate degree in Blockchain, and a master\'s in Data Science. And in parallel I built things of my own — a Bitcoin academy that now lives on Google Play, algorithmic trading systems, video pipelines that publish themselves.'],
         'hist-p5': ['En 2026 le puse nombre a la siguiente etapa: <strong>Optimatiza</strong>, mi estudio de agentes de IA y automatización para empresas de Latinoamérica. Una década de sistemas en producción, productizada.', 'In 2026 I gave the next stage a name: <strong>Optimatiza</strong>, my AI-agents and automation studio for Latin American companies. A decade of production systems, productized.'],
         'hist-quote': ['"Entender el problema de negocio primero. Construir la solución correcta después."', '"Understand the business problem first. Build the right solution second."'],
@@ -104,20 +104,12 @@
 
         /* certificaciones */
         'cert-index': ['03 — CERTIFICACIONES · PRÁCTICA VALIDADA, NO DECORACIÓN', '03 — CERTIFICATIONS · VALIDATED PRACTICE, NOT DECORATION'],
-        'cert-title': ['La línea Power Platform <em>completa</em>.', 'The <em>complete</em> Power Platform track.'],
-        'cert-sub': ['De fundamentos (PL-900) a Solution Architect (PL-600), más la base de Azure, datos e IA. Cada badge es un examen supervisado de Microsoft.', 'From fundamentals (PL-900) to Solution Architect (PL-600), plus the Azure, data and AI foundations. Every badge is a proctored Microsoft exam.'],
-        'cert-cat1': ['MICROSOFT POWER PLATFORM — LÍNEA COMPLETA', 'MICROSOFT POWER PLATFORM — FULL TRACK'],
-        'cert-cat2': ['MICROSOFT AZURE · DATOS · IA', 'MICROSOFT AZURE · DATA · AI'],
-        'c-pl900': ['Power Platform Fundamentals', 'Power Platform Fundamentals'],
-        'c-pl100': ['Power Platform App Maker', 'Power Platform App Maker'],
-        'c-pl200': ['Power Platform Functional Consultant', 'Power Platform Functional Consultant'],
-        'c-pl300': ['Power BI Data Analyst', 'Power BI Data Analyst'],
-        'c-pl400': ['Power Platform Developer', 'Power Platform Developer'],
+        'cert-title': ['Los tres pilares de <em>Power Platform</em>.', 'The three pillars of <em>Power Platform</em>.'],
+        'cert-sub': ['Power Apps, Power Automate y Power BI — cada badge es un examen supervisado de Microsoft, y detrás de cada uno hay sistemas reales en producción.', 'Power Apps, Power Automate and Power BI — every badge is a proctored Microsoft exam, and behind each one there are real systems in production.'],
+        'cert-cat1': ['MICROSOFT CERTIFIED — POWER PLATFORM', 'MICROSOFT CERTIFIED — POWER PLATFORM'],
+        'c-pl100': ['Power Platform App Maker — Power Apps', 'Power Platform App Maker — Power Apps'],
         'c-pl500': ['Power Automate RPA Developer', 'Power Automate RPA Developer'],
-        'c-pl600': ['Power Platform Solution Architect', 'Power Platform Solution Architect'],
-        'c-az900': ['Azure Fundamentals', 'Azure Fundamentals'],
-        'c-dp900': ['Azure Data Fundamentals', 'Azure Data Fundamentals'],
-        'c-ai900': ['Azure AI Fundamentals', 'Azure AI Fundamentals'],
+        'c-pl300': ['Power BI Data Analyst', 'Power BI Data Analyst'],
         'cert-note': ['LA FORMACIÓN CONTINUA ES UN HÁBITO, NO UN EVENTO — SIEMPRE HAY UN EXAMEN EN EL CALENDARIO.', 'CONTINUOUS LEARNING IS A HABIT, NOT AN EVENT — THERE IS ALWAYS AN EXAM ON THE CALENDAR.'],
 
         /* proyectos */

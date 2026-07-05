@@ -410,7 +410,7 @@ html.js-anim .rv.is-in[data-fade] { opacity: 1; transform: none; }
 .edu-badge { margin-top: 8px; }
 
 /* ---------- 12. CERTIFICACIONES ---------- */
-.cert-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--sp-4); }
+.cert-grid { display: grid; grid-template-columns: minmax(0, 760px); gap: var(--sp-4); }
 .cert-card {
   background: var(--paper-1); border: 1px solid var(--line); border-radius: var(--r-0);
   box-shadow: var(--shadow-card); padding: var(--sp-4);
