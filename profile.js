@@ -419,6 +419,22 @@
                 });
                 el.addEventListener('mouseleave', function () { xTo(0); yTo(0); });
             });
+
+            /* 3D tilt on the hero photo — listeners live on the static
+               wrapper (.hero-photo) so the rotating frame never moves its
+               own hit area out from under the cursor */
+            var tiltWrap = document.querySelector('.hero-photo');
+            var tiltFrame = tiltWrap && tiltWrap.querySelector('.photo-frame');
+            if (tiltFrame) {
+                var rxTo = gsap.quickTo(tiltFrame, 'rotationX', { duration: 0.5, ease: 'power3.out' });
+                var ryTo = gsap.quickTo(tiltFrame, 'rotationY', { duration: 0.5, ease: 'power3.out' });
+                tiltWrap.addEventListener('mousemove', function (e) {
+                    var r = tiltWrap.getBoundingClientRect();
+                    ryTo(((e.clientX - r.left) / r.width - 0.5) * 10);
+                    rxTo(-((e.clientY - r.top) / r.height - 0.5) * 10);
+                });
+                tiltWrap.addEventListener('mouseleave', function () { rxTo(0); ryTo(0); });
+            }
         }
 
         /* re-measure reveals when language changes (line lengths differ) */

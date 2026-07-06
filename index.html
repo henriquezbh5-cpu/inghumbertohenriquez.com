@@ -65,6 +65,8 @@
 </head>
 <body>
 
+    <canvas class="bg3d" id="bg3d" aria-hidden="true"></canvas>
+
     <div class="scroll-progress" aria-hidden="true"></div>
 
     <!-- ============================== NAV ============================== -->
@@ -85,6 +87,7 @@
             </ul>
             <div class="nav-right">
                 <span class="nav-clock mono" data-clock aria-hidden="true">--:--:--</span>
+                <button class="fx-toggle mono" id="fxToggle" hidden aria-pressed="true" aria-label="Efectos 3D" title="Efectos 3D">FX</button>
                 <div class="lang-toggle" role="group" aria-label="Idioma">
                     <button class="lang-btn active" data-lang="es" aria-pressed="true">ES</button>
                     <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
@@ -590,5 +593,6 @@
     <script defer src="vendor/gsap/ScrollTrigger.min.js"></script>
     <script defer src="vendor/lenis/lenis.min.js"></script>
     <script defer src="profile.js"></script>
+    <script type="module" src="flow3d.js"></script>
 </body>
 </html>
