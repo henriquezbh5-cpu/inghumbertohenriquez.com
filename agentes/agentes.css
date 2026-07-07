@@ -83,7 +83,7 @@ html.js-anim .ag-grid .rv:nth-child(3) { transition-delay: 140ms; }
   font-size: var(--t-7); line-height: 1.06; letter-spacing: -0.015em;
   color: var(--ink); margin-bottom: var(--sp-3);
 }
-.ag-hero-title em { font-style: italic; color: var(--steel); }
+.ag-hero-title em { font-style: normal; color: var(--steel); }
 .ag-hero-sub { font-size: var(--t-4); line-height: 1.5; color: var(--ink-body); max-width: 56ch; margin-bottom: var(--sp-4); }
 .ag-hero-actions { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
 .ag-hero-strip {
@@ -101,7 +101,7 @@ html.js-anim .ag-grid .rv:nth-child(3) { transition-delay: 140ms; }
 /* how-it-works: 4 mini nodes in one ruled row */
 .ag-how { padding: var(--sp-7) 0; border-top: 1px solid var(--line); }
 .ag-how-title {
-  font-family: var(--ff-display); font-style: italic; font-weight: 400;
+  font-family: var(--ff-display); font-style: normal; font-weight: 400;
   font-size: var(--t-5); color: var(--ink); margin-bottom: var(--sp-5);
 }
 .how-row {
@@ -248,7 +248,7 @@ html.js-anim .ag-grid .rv:nth-child(3) { transition-delay: 140ms; }
   font-size: var(--t-4); line-height: 1.2; color: var(--band-text);
 }
 .ag-alias {
-  font-family: var(--ff-display); font-style: italic;
+  font-family: var(--ff-display); font-style: normal;
   font-size: var(--t-2); color: var(--band-muted); margin-top: 2px;
 }
 .ag-resumen {

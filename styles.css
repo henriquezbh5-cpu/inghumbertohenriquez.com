@@ -168,7 +168,7 @@ body {
   background-image:
     repeating-linear-gradient(63deg, rgba(15,43,70,0.012) 0 1px, transparent 1px 5px),
     repeating-linear-gradient(-63deg, rgba(15,43,70,0.010) 0 1px, transparent 1px 7px);
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -2743,18 +2743,7 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
 }
 
 
-/* --- Acentos de titular con gradiente de marca (base sólida = --steel) ---
-   El gradiente-clip solo donde background-clip:text está soportado (universal
-   moderno); si no, queda el sólido -> nunca invisible. Bloque al final = gana cascada. */
-@supports ((background-clip: text) or (-webkit-background-clip: text)) {
-  .hero-title em, .section-title em, .platform-quote em, .contact-lead em {
-    background-image: var(--grad-ai);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-  }
-}
-@media (forced-colors: active) {
-  .hero-title em, .section-title em, .platform-quote em, .contact-lead em {
-    -webkit-text-fill-color: currentColor; color: CanvasText; background-image: none;
-  }
-}
+/* Acentos <em> de /agentes: color sólido --steel (definido en las reglas base).
+   NO se aplica gradiente-clip aquí: --grad-ai no está definido en styles.css y la
+   subpágina no carga profile.css, así que un var() sin fallback dejaría el texto
+   invisible. El tratamiento gradiente vive solo en la home (profile.css). */

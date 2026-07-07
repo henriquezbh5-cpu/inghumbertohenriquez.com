@@ -112,6 +112,9 @@ async function init() {
     const THREE = await import(CONFIG.threePath);
 
     const mobile = matchMedia('(max-width: 768px)').matches;
+    /* el hero apila a ≤900px (sin la máscara CSS que es ≥901): atenuar el cristal
+       en todo ese rango para no comprometer el contraste del texto full-width */
+    const stacked = matchMedia('(max-width: 900px)').matches;
     const finePointer = matchMedia('(pointer: fine)').matches;
     const staticOnly = mqReduce.matches;
 
@@ -134,6 +137,9 @@ async function init() {
     })();
     const useTransmission = gpuTier === 'transmission';
 
+    /* el pase de transmisión a media resolución: recorta a la mitad su costo
+       (por defecto three lo hace a resolución completa). No-op en tier reflective. */
+    if (useTransmission && 'transmissionResolutionScale' in renderer) renderer.transmissionResolutionScale = 0.5;
     renderer.setPixelRatio(Math.min(devicePixelRatio, useTransmission ? 1.5 : CONFIG.dprCap));
 
     const scene = new THREE.Scene();
@@ -295,7 +301,7 @@ async function init() {
     const assembly = new THREE.Group();
     const cp = mobile ? CONFIG.crystalPosMobile : CONFIG.crystalPos;
     assembly.position.set(cp.x, cp.y, cp.z);
-    const assemblyScale = mobile ? 0.46 : 1;
+    let assemblyScale = mobile ? 0.46 : 1;
     assembly.scale.setScalar(assemblyScale);
     assembly.rotation.z = 0.35;   /* eje largo inclinado ~20° */
     root.add(assembly);
@@ -417,12 +423,32 @@ async function init() {
     const edgeFlash = new THREE.LineSegments(edgeFlashGeo, edgeFlashMat);
     assembly.add(edgeFlash);
 
+    let heroDim = stacked ? 0.5 : 1;   /* let: se re-evalúa al cruzar el breakpoint */
+
+    /* recoloca/reescala el ensamble y re-atenúa al cruzar el breakpoint en un resize real */
+    function applyBreakpoint() {
+        const nm = matchMedia('(max-width: 768px)').matches;
+        const ns = matchMedia('(max-width: 900px)').matches;
+        const cp = nm ? CONFIG.crystalPosMobile : CONFIG.crystalPos;
+        assembly.position.set(cp.x, cp.y, cp.z);
+        assemblyScale = nm ? 0.46 : 1;
+        heroDim = ns ? 0.5 : 1;
+    }
+    /* repinta un frame estático (reduced-motion: el loop no corre y setSize limpia el buffer) */
+    function renderStaticFrame() {
+        entered = 1; step(0.016);
+        layerOpacity = heroDim; canvas.style.opacity = heroDim.toFixed(3);
+        renderer.render(scene, camera);
+    }
+
     /* ---- sizing ---- */
     function resize() {
         renderer.setPixelRatio(Math.min(devicePixelRatio, useTransmission ? 1.5 : CONFIG.dprCap));
         renderer.setSize(innerWidth, innerHeight, false);
         camera.aspect = innerWidth / innerHeight;
         camera.updateProjectionMatrix();
+        applyBreakpoint();
+        if (staticOnly && built) renderStaticFrame();   /* reduced-motion: repintar tras limpiar el buffer */
     }
     resize();
     addEventListener('resize', resize, { passive: true });
@@ -440,7 +466,6 @@ async function init() {
     let prevNow = 0, elapsed = 0, entered = 0;
     canvas.style.opacity = '0';
     const smooth = (x) => x * x * (3 - 2 * x);
-    const heroDim = mobile ? 0.55 : 1;
 
     function step(dt) {
         elapsed += dt;
@@ -507,7 +532,10 @@ async function init() {
         edgeFlashMat.opacity = Math.max(0, (1 - entered) * 0.9);
 
         /* fade-in + atenuación al pasar el hero */
-        const target = (1 - 0.5 * Math.min(sc / (innerHeight * 0.9), 1)) * heroDim;
+        /* móvil sin máscara CSS: al pasar el hero se desvanece casi por completo,
+           para no dejar la constelación bajo el texto de secciones planas */
+        const fadeAmt = stacked ? 0.92 : 0.5;
+        const target = (1 - fadeAmt * Math.min(sc / (innerHeight * 0.9), 1)) * heroDim;
         layerOpacity += (target - layerOpacity) * (1 - Math.exp(-dt * 2.2));
         canvas.style.opacity = layerOpacity.toFixed(3);
     }
@@ -531,8 +559,13 @@ async function init() {
     let visibleTab = !document.hidden;
     let zoneVisible = true;
     function gate() {
-        if (staticOnly) { setRunning(false); return; }  /* reduced-motion: no loop */
-        setRunning(visibleTab && zoneVisible && fxOn && !mqReduce.matches);
+        /* mqReduce.matches se evalúa EN VIVO: si el usuario apaga reduced-motion
+           a mitad de sesión, run pasa a true y arranca el loop (no un const capturado). */
+        const run = visibleTab && zoneVisible && fxOn && !mqReduce.matches;
+        setRunning(run);
+        /* reduced-motion con FX on: sin loop pero el cristal debe seguir visible;
+           repinta el frame estático (cubre FX off→on y el arranque). */
+        if (!run && fxOn && mqReduce.matches && built) renderStaticFrame();
     }
     function hide() { layerOpacity = 0; canvas.style.opacity = '0'; }
 
@@ -554,14 +587,9 @@ async function init() {
     built = true;
     sceneCtl = { gate, hide };
 
-    if (staticOnly) {
-        /* reduced-motion: un solo render del frame más bonito (cristal iluminado) */
-        entered = 1; step(0.016);
-        layerOpacity = heroDim; canvas.style.opacity = heroDim.toFixed(3);
-        renderer.render(scene, camera);
-    } else {
-        gate();
-    }
+    /* gate() arranca el loop, o —en reduced-motion— renderiza el frame estático
+       (cristal iluminado) vía renderStaticFrame. Un solo camino para ambos. */
+    gate();
 
     /* ---- dispose ---- */
     canvas.dispose = () => {
