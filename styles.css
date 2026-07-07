@@ -8,17 +8,24 @@
    0. FONTS — self-hosted (font-display: swap)
    ============================================================ */
 @font-face {
-  font-family: 'Instrument Serif';
-  src: url('fonts/instrument-serif-400.woff2') format('woff2');
+  font-family: 'Space Grotesk';
+  src: url('fonts/space-grotesk-400.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Instrument Serif';
-  src: url('fonts/instrument-serif-400italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
+  font-family: 'Space Grotesk';
+  src: url('fonts/space-grotesk-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('fonts/space-grotesk-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
 }
 @font-face {
@@ -101,7 +108,7 @@
   /* The 135deg cyan->violet UI gradient is deleted sitewide. */
 
   /* ---------- TYPE ---------- */
-  --ff-display: 'Instrument Serif', 'Source Serif 4', Georgia, serif;
+  --ff-display: 'Space Grotesk', 'Inter', -apple-system, 'Segoe UI', sans-serif;
   --ff-body:    'Inter', -apple-system, 'Segoe UI', sans-serif;
   --ff-mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
 
@@ -149,7 +156,7 @@ html[lang="es"] {
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 
 body {
   font-family: var(--ff-body);
@@ -178,7 +185,7 @@ s { color: var(--ink-dim); }
 
 :focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; }
 
-h1, h2 { font-family: var(--ff-display); font-weight: 400; color: var(--ink); }
+h1, h2 { font-family: var(--ff-display); font-weight: 700; color: var(--ink); }
 h3, h4, h5, h6 { font-weight: 500; color: var(--ink); }
 
 .container {
@@ -262,11 +269,11 @@ body.bg-static .bg-fallback {
 
 .section-header { margin-bottom: var(--sp-6); max-width: 68ch; }
 .section-title {
-  font-family: var(--ff-display); font-weight: 400;
-  font-size: var(--t-6); line-height: 1.12; letter-spacing: -0.01em;
+  font-family: var(--ff-display); font-weight: 700;
+  font-size: var(--t-6); line-height: 1.08; letter-spacing: -0.02em;
   color: var(--ink); margin-bottom: var(--sp-2);
 }
-.section-title em { font-style: italic; color: var(--steel); }
+.section-title em { font-style: normal; color: var(--steel); }
 .section-subtitle {
   font-size: var(--t-3); color: var(--ink-body); max-width: 60ch;
 }
@@ -547,14 +554,14 @@ html.js-anim .animate-target.is-in { opacity: 1; }
 }
 
 .hero-title {
-  font-family: var(--ff-display); font-weight: 400;
+  font-family: var(--ff-display); font-weight: 700; letter-spacing: -0.03em;
   font-size: var(--t-8); line-height: 1.02; letter-spacing: -0.015em;
   color: var(--ink);
   max-width: 20ch;
   margin-bottom: var(--sp-4);
   overflow-wrap: break-word;
 }
-.hero-title em { font-style: italic; color: var(--steel); }
+.hero-title em { font-style: normal; color: var(--steel); }
 
 .hero-subtitle {
   font-size: var(--t-4); line-height: 1.5; color: var(--ink-body);
@@ -636,7 +643,7 @@ html.js-anim .animate-target.is-in { opacity: 1; }
 }
 .diag-quote {
   grid-column: 2;
-  font-family: var(--ff-display); font-style: italic; font-weight: 400;
+  font-family: var(--ff-display); font-style: normal; font-weight: 400;
   font-size: var(--t-5); line-height: 1.3;
   color: var(--ink);
 }
@@ -650,7 +657,7 @@ html.js-anim .animate-target.is-in { opacity: 1; }
   height: 1px; background: var(--line);
 }
 .diag-bridge {
-  font-family: var(--ff-display); font-style: italic;
+  font-family: var(--ff-display); font-style: normal;
   font-size: var(--t-4); color: var(--ink);
   margin-top: var(--sp-5);
 }
@@ -710,7 +717,7 @@ html.js-anim .animate-target.is-in { opacity: 1; }
   margin-bottom: var(--sp-2);
 }
 .dossier-tagline {
-  font-family: var(--ff-display); font-style: italic;
+  font-family: var(--ff-display); font-style: normal;
   font-size: var(--t-4); color: var(--band-muted);
   margin-bottom: var(--sp-5);
 }
@@ -854,7 +861,7 @@ html.js-anim .animate-target.is-in { opacity: 1; }
 }
 
 .projects-bridge {
-  font-family: var(--ff-display); font-style: italic;
+  font-family: var(--ff-display); font-style: normal;
   font-size: var(--t-5); color: var(--band-text);
   margin-top: var(--sp-6);
 }
@@ -1248,13 +1255,13 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
    16. 06 — THE PLATFORM DECISION (#stack / #ecosistema)
    ============================================================ */
 .platform-quote {
-  font-family: var(--ff-display); font-style: italic; font-weight: 400;
+  font-family: var(--ff-display); font-style: normal; font-weight: 400;
   font-size: var(--t-5); line-height: 1.35;
   color: var(--ink);
   max-width: 44ch;
   margin-top: var(--sp-2);
 }
-.platform-quote em { font-style: italic; color: var(--steel); }
+.platform-quote em { font-style: normal; color: var(--steel); }
 
 .arch-block { margin-bottom: var(--sp-7); }
 .arch-block-title {
@@ -1930,7 +1937,7 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   margin: var(--sp-3) 0;
   max-width: 48ch;
 }
-.contact-lead em { font-style: italic; color: var(--steel); }
+.contact-lead em { font-style: normal; color: var(--steel); }
 .contact-diagnostic {
   font-size: var(--t-3); color: var(--ink-body);
   max-width: 55ch;
@@ -2435,7 +2442,7 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   filter: grayscale(1) sepia(0.12); /* matches the about duotone family */
 }
 .tb-signature {
-  font-family: var(--ff-display); font-style: italic; font-weight: 400;
+  font-family: var(--ff-display); font-style: normal; font-weight: 400;
   font-size: var(--t-4); line-height: 1;
   color: var(--ink);
   text-transform: none; letter-spacing: 0;
@@ -2475,7 +2482,7 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   margin-bottom: var(--sp-2);
 }
 .exhibit-tagline {
-  font-family: var(--ff-display); font-style: italic; font-weight: 400;
+  font-family: var(--ff-display); font-style: normal; font-weight: 400;
   font-size: var(--t-4);
   color: var(--band-muted);
 }
@@ -2733,4 +2740,21 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   .fleet-teaser-inner { grid-template-columns: 1fr; }
   .fleet-teaser-units { border-left: 0; padding-left: 0; border-top: 1px solid var(--band-line); padding-top: var(--sp-3); flex-direction: row; flex-wrap: wrap; gap: var(--sp-2); }
   .ft-unit { border-bottom: 0; }
+}
+
+
+/* --- Acentos de titular con gradiente de marca (base sólida = --steel) ---
+   El gradiente-clip solo donde background-clip:text está soportado (universal
+   moderno); si no, queda el sólido -> nunca invisible. Bloque al final = gana cascada. */
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .hero-title em, .section-title em, .platform-quote em, .contact-lead em {
+    background-image: var(--grad-ai);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+}
+@media (forced-colors: active) {
+  .hero-title em, .section-title em, .platform-quote em, .contact-lead em {
+    -webkit-text-fill-color: currentColor; color: CanvasText; background-image: none;
+  }
 }
