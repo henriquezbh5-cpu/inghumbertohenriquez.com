@@ -88,7 +88,7 @@
         'edu1-d': ['Maestría en Ciencia de Datos', 'MSc in Data Science'],
         'edu1-s': ['UNIVERSIDAD EUROPEA DEL ATLÁNTICO — UNEATLÁNTICO', 'UNIVERSIDAD EUROPEA DEL ATLÁNTICO — UNEATLÁNTICO'],
         'edu1-n': ['La credencial que conecta todo: modelos de datos correctos, estadística aplicada e IA donde realmente agrega valor — no donde está de moda.', 'The credential that connects everything: correct data models, applied statistics, and AI where it truly adds value — not where it\'s fashionable.'],
-        'edu1-b': ['FASE FINAL', 'FINAL PHASE'],
+        'edu1-b': ['COMPLETADA', 'COMPLETED'],
         'edu2-d': ['Maestría en Inteligencia de Negocios', 'MSc in Business Intelligence'],
         'edu2-s': ['UNINI MÉXICO', 'UNINI MÉXICO'],
         'edu2-n': ['Donde el dashboard dejó de ser el producto y pasó a ser el síntoma: lo que importa es el sistema de datos que lo alimenta.', 'Where the dashboard stopped being the product and became the symptom: what matters is the data system feeding it.'],
