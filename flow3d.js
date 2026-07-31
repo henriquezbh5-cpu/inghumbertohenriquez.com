@@ -50,6 +50,43 @@ const CONFIG = {
     crystalPosMobile: { x: 2.5, y: 11.5, z: -4 },
 };
 
+/* Paleta por tema. dark = valores ORIGINALES exactos (no tocar: el modo
+   oscuro debe quedar idéntico). light = azules/teales oscuros desaturados +
+   NormalBlending para que las partículas no se laven sobre papel claro; el
+   glow aditivo ambiental no lee sobre claro y se apaga en vez de degradarlo. */
+const THEME = {
+    dark: {
+        fog: 0x0A0F1A,
+        additive: true,
+        nodeTeal: 0x2DD4BF, nodeViolet: 0x8B5CF6, nodeSteel: 0x5BA8E8, nodeOpacity: 0.92,
+        edgeColor: 0x5BA8E8, edgeOpacity: 0.22,
+        pulseTeal: 0x2DD4BF, pulseBtc: 0xF7931A, pulseOpacity: 0.9,
+        dustColor: 0x8CC3F2, dustOpacity: 0.45,
+        glowOpacity: 0.42,
+        hemiSky: 0x1B4A5A, hemiGround: 0x0A0F1A, hemiInt: 0.55,
+        shellC1: 0x2DD4BF, shellC2: 0x8B5CF6,
+        edgeFlash: 0x2DD4BF,
+        coreEmissive: 0x1CC7B0, coreFx: 1,
+    },
+    light: {
+        fog: 0xF6F8FB,
+        additive: false,
+        nodeTeal: 0x0F766E, nodeViolet: 0x6D28D9, nodeSteel: 0x1D6FB8, nodeOpacity: 0.6,
+        edgeColor: 0x1D6FB8, edgeOpacity: 0.26,
+        pulseTeal: 0x0F766E, pulseBtc: 0xC2410C, pulseOpacity: 0.85,
+        dustColor: 0x1D6FB8, dustOpacity: 0.2,
+        glowOpacity: 0,
+        hemiSky: 0xCFDCEA, hemiGround: 0xF6F8FB, hemiInt: 0.85,
+        shellC1: 0x0F766E, shellC2: 0x6D28D9,
+        edgeFlash: 0x0F766E,
+        coreEmissive: 0x0F766E, coreFx: 0.55,
+    },
+};
+
+function themeName() {
+    return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+}
+
 const canvas = document.getElementById(CONFIG.canvasId);
 const fxBtn = document.getElementById('fxToggle');
 const mqReduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -214,6 +251,10 @@ async function init() {
        ===================================================================== */
     const nodePos = new Float32Array(N * 3);
     const nodeCol = new Float32Array(N * 3);
+    /* roll/mult persistidos: el color se (re)pinta por tema en fillNodeColors
+       con exactamente la misma matemática que el build original */
+    const nodeRoll = new Float32Array(N);
+    const nodeMult = new Float32Array(N);
     for (let i = 0; i < N; i++) {
         const u = Math.random() * 2 - 1, phi = Math.random() * Math.PI * 2;
         const r = Math.cbrt(Math.random());
@@ -221,13 +262,21 @@ async function init() {
         nodePos[i * 3] = s * Math.cos(phi) * r * CONFIG.spreadX;
         nodePos[i * 3 + 1] = u * r * CONFIG.spreadY;
         nodePos[i * 3 + 2] = s * Math.sin(phi) * r * CONFIG.spreadZ;
-        const roll = Math.random();
-        tmp.copy(roll < 0.20 ? cTeal : roll < 0.30 ? cViolet : cSteel).multiplyScalar(0.75 + Math.random() * 0.5);
-        nodeCol[i * 3] = tmp.r; nodeCol[i * 3 + 1] = tmp.g; nodeCol[i * 3 + 2] = tmp.b;
+        nodeRoll[i] = Math.random();
+        nodeMult[i] = 0.75 + Math.random() * 0.5;
     }
     const nodeGeo = new THREE.BufferGeometry();
     nodeGeo.setAttribute('position', new THREE.BufferAttribute(nodePos, 3));
     nodeGeo.setAttribute('color', new THREE.BufferAttribute(nodeCol, 3));
+    function fillNodeColors(th) {
+        const nTeal = new THREE.Color(th.nodeTeal), nViolet = new THREE.Color(th.nodeViolet), nSteel = new THREE.Color(th.nodeSteel);
+        for (let i = 0; i < N; i++) {
+            const roll = nodeRoll[i];
+            tmp.copy(roll < 0.20 ? nTeal : roll < 0.30 ? nViolet : nSteel).multiplyScalar(nodeMult[i]);
+            nodeCol[i * 3] = tmp.r; nodeCol[i * 3 + 1] = tmp.g; nodeCol[i * 3 + 2] = tmp.b;
+        }
+        nodeGeo.attributes.color.needsUpdate = true;
+    }
     const nodeMat = new THREE.PointsMaterial({
         size: 0.52, map: spriteTex, sizeAttenuation: true, vertexColors: true,
         transparent: true, opacity: 0.92, blending: THREE.AdditiveBlending, depthWrite: false,
@@ -271,7 +320,6 @@ async function init() {
     for (let k = 0; k < P; k++) { const a = pick(sources); pulses.push({ a, b: pick(adj[a]), t: Math.random(), speed: 0.15 + Math.random() * 0.3 }); }
     const pulsePos = new Float32Array(P * 3);
     const pulseCol = new Float32Array(P * 3);
-    for (let k = 0; k < P; k++) { tmp.copy(k % 5 === 4 ? cBtc : cTeal); pulseCol[k * 3] = tmp.r; pulseCol[k * 3 + 1] = tmp.g; pulseCol[k * 3 + 2] = tmp.b; }
     const pulseGeo = new THREE.BufferGeometry();
     const pulseAttr = new THREE.BufferAttribute(pulsePos, 3); pulseAttr.setUsage(THREE.DynamicDrawUsage);
     pulseGeo.setAttribute('position', pulseAttr);
@@ -282,6 +330,11 @@ async function init() {
     });
     const pulsePoints = new THREE.Points(pulseGeo, pulseMat); pulsePoints.frustumCulled = false;
     root.add(pulsePoints);
+    function fillPulseColors(th) {
+        const pTeal = new THREE.Color(th.pulseTeal), pBtc = new THREE.Color(th.pulseBtc);
+        for (let k = 0; k < P; k++) { tmp.copy(k % 5 === 4 ? pBtc : pTeal); pulseCol[k * 3] = tmp.r; pulseCol[k * 3 + 1] = tmp.g; pulseCol[k * 3 + 2] = tmp.b; }
+        pulseGeo.attributes.color.needsUpdate = true;
+    }
 
     /* dust de profundidad */
     const D = mobile ? CONFIG.dustMobile : CONFIG.dustDesktop;
@@ -411,7 +464,8 @@ async function init() {
     }
 
     /* -- luces (≤4): glints vivos sobre cristal y cromo -- */
-    scene.add(new THREE.HemisphereLight(0x1B4A5A, 0x0A0F1A, 0.55));
+    const hemi = new THREE.HemisphereLight(0x1B4A5A, 0x0A0F1A, 0.55);
+    scene.add(hemi);
     const lightT = new THREE.PointLight(CONFIG.teal, useTransmission ? 90 : 60, 60, 2);
     const lightV = new THREE.PointLight(CONFIG.violet, useTransmission ? 75 : 52, 60, 2);
     const lightB = new THREE.PointLight(CONFIG.btc, 30, 50, 2);
@@ -422,6 +476,39 @@ async function init() {
     const edgeFlashMat = new THREE.LineBasicMaterial({ color: CONFIG.teal, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
     const edgeFlash = new THREE.LineSegments(edgeFlashGeo, edgeFlashMat);
     assembly.add(edgeFlash);
+
+    /* ---- tema light/dark: aplica paleta a fog, materiales y luz hemisférica.
+       applyTheme('dark') reproduce EXACTAMENTE los valores originales. ---- */
+    const themedMats = [nodeMat, edgeMat, pulseMat, dustMat, glowMat, edgeFlashMat, shellMat];
+    let coreFx = 1;   /* factor de emisión del núcleo (1 = dark exacto; <1 atenúa en light) */
+    function applyTheme(name) {
+        const th = THEME[name === 'dark' ? 'dark' : 'light'];
+        const blend = th.additive ? THREE.AdditiveBlending : THREE.NormalBlending;
+        scene.fog.color.setHex(th.fog);
+        themedMats.forEach((m) => {
+            if (m.blending !== blend) { m.blending = blend; m.needsUpdate = true; }
+        });
+        nodeMat.opacity = th.nodeOpacity;
+        edgeMat.color.setHex(th.edgeColor); edgeMat.opacity = th.edgeOpacity;
+        pulseMat.opacity = th.pulseOpacity;
+        dustMat.color.setHex(th.dustColor); dustMat.opacity = th.dustOpacity;
+        glowMat.opacity = th.glowOpacity;
+        edgeFlashMat.color.setHex(th.edgeFlash);
+        hemi.color.setHex(th.hemiSky); hemi.groundColor.setHex(th.hemiGround); hemi.intensity = th.hemiInt;
+        shellMat.uniforms.uC1.value.setHex(th.shellC1);
+        shellMat.uniforms.uC2.value.setHex(th.shellC2);
+        coreMat.emissive.setHex(th.coreEmissive);
+        coreFx = th.coreFx;
+        fillNodeColors(th);
+        fillPulseColors(th);
+    }
+    applyTheme(themeName());   /* tema inicial leído de <html data-theme> */
+    const onTheme = (e) => {
+        applyTheme(e && e.detail && e.detail.theme ? e.detail.theme : themeName());
+        /* reduced-motion: el loop no corre — repintar el frame estático */
+        if (staticOnly && built) renderStaticFrame();
+    };
+    window.addEventListener('hh-themechange', onTheme);
 
     let heroDim = stacked ? 0.5 : 1;   /* let: se re-evalúa al cruzar el breakpoint */
 
@@ -508,7 +595,7 @@ async function init() {
         /* heartbeat cada ~7s (florece el núcleo + flare del rim) */
         const beat = Math.max(0, 1 - ((t % 7) / 0.9));  /* spike al inicio de cada ciclo, decae en 0.9s */
         const beatE = beat * beat;
-        core.material.emissiveIntensity = 1.4 + Math.sin(t * 1.3) * 0.25 + beatE * 2.2;
+        core.material.emissiveIntensity = (1.4 + Math.sin(t * 1.3) * 0.25 + beatE * 2.2) * coreFx;
         const cs = 1 + Math.sin(t * 1.3) * 0.04 + beatE * 0.10;
         core.scale.setScalar(cs);
         shellMat.uniforms.uFlare.value = 0.15 + beatE * 0.85;
@@ -596,6 +683,7 @@ async function init() {
         setRunning(false);
         removeEventListener('resize', resize);
         removeEventListener('pointermove', onMove);
+        removeEventListener('hh-themechange', onTheme);
         document.removeEventListener('visibilitychange', onVis);
         if (zoneIO) zoneIO.disconnect();
         [nodeGeo, edgeGeo, pulseGeo, dustGeo, crystalGeo, shellGeo, coreGeo, glowGeo, edgeFlashGeo].forEach((g) => g.dispose());

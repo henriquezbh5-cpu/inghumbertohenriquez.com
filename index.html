@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#F6F8FB">
+    <meta name="theme-color" content="#0A0F1A" media="(prefers-color-scheme: dark)">
 
-    <title>Humberto Henríquez — Ingeniero · Fundador de Optimatiza · Creador de Bitcoin Academy</title>
-    <meta name="description" content="Perfil profesional de Humberto Henríquez: ingeniero en sistemas con dos maestrías, certificado por Microsoft en Power Apps, Power Automate y Power BI, fundador de Optimatiza y creador de Bitcoin Academy. Historia, formación, proyectos e intereses.">
+    <title>Humberto Henríquez — Agentes de IA y Automatización · Científico de Datos</title>
+    <meta name="description" content="Construyo agentes digitales con IA y automatización para empresas. Científico de datos: dos maestrías (Ciencia de Datos y Business Intelligence), posgrado en Blockchain y tres certificaciones Microsoft — PL-100 Power Apps, PL-500 Power Automate RPA y PL-300 Power BI. Fundador de Optimatiza y creador de Bitcoin Academy.">
     <meta name="author" content="Humberto Wilfredo Henriquez Benitez">
     <link rel="canonical" href="https://inghumbertohenriquez.com/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Humberto Henríquez — Ingeniero · Fundador de Optimatiza · Creador de Bitcoin Academy">
-    <meta property="og:description" content="Quién soy, de dónde vengo, qué estudié y qué he construido. Expediente profesional, no catálogo de servicios.">
+    <meta property="og:title" content="Humberto Henríquez — Agentes de IA y Automatización · Científico de Datos">
+    <meta property="og:description" content="Agentes de IA y automatización respaldados por dos maestrías, un posgrado en Blockchain y tres certificaciones Microsoft (PL-100 Power Apps, PL-500 Power Automate RPA, PL-300 Power BI). Fundador de Optimatiza · Creador de Bitcoin Academy.">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://inghumbertohenriquez.com/">
     <meta property="og:image" content="https://inghumbertohenriquez.com/img/og-image.jpg">
@@ -36,8 +39,8 @@
       "url": "https://inghumbertohenriquez.com/",
       "image": "https://inghumbertohenriquez.com/humberto.jpg",
       "email": "mailto:henriquezbh5@gmail.com",
-      "jobTitle": "Ingeniero en Sistemas · Especialista en Datos, Automatización e IA",
-      "description": "Fundador de Optimatiza y creador de Bitcoin Academy. Dos maestrías (Ciencia de Datos y Business Intelligence), posgrado en Blockchain y certificaciones Microsoft Power Platform (Power Apps, Power Automate, Power BI).",
+      "jobTitle": "Científico de Datos · Especialista en Agentes de IA y Automatización",
+      "description": "Construye agentes digitales con IA y automatización para empresas. Fundador de Optimatiza y creador de Bitcoin Academy. Dos maestrías (Ciencia de Datos y Business Intelligence), posgrado en Blockchain y tres certificaciones Microsoft Power Platform: PL-100 Power Apps App Maker, PL-500 Power Automate RPA Developer y PL-300 Power BI Data Analyst.",
       "address": { "@type": "PostalAddress", "addressLocality": "San Salvador", "addressCountry": "SV" },
       "alumniOf": [
         { "@type": "CollegeOrUniversity", "name": "Universidad Europea del Atlántico" },
@@ -57,6 +60,9 @@
     <link rel="preload" href="fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Sync, antes del CSS: aplica el tema guardado sin flash (CSP: sin inline) -->
+    <script src="theme-init.js"></script>
 
     <link rel="stylesheet" href="vendor/phosphor/regular/style.css">
     <link rel="stylesheet" href="vendor/phosphor/fill/style.css">
@@ -87,6 +93,7 @@
             <div class="nav-right">
                 <span class="nav-clock mono" data-clock aria-hidden="true">--:--:--</span>
                 <button class="fx-toggle mono" id="fxToggle" hidden aria-pressed="true" aria-label="FX · efectos 3D" title="Efectos 3D">FX</button>
+                <button class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro"><i class="ph ph-moon" aria-hidden="true"></i></button>
                 <div class="lang-toggle" role="group" aria-label="Idioma">
                     <button class="lang-btn active" data-lang="es" aria-pressed="true">ES</button>
                     <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
@@ -113,8 +120,8 @@
                 <div class="hero-main rv">
                     <p class="hero-kicker mono" data-i18n="hero-kicker">ING. HUMBERTO WILFREDO HENRÍQUEZ BENÍTEZ</p>
                     <h1 class="hero-title">
-                        <span class="line-mask"><span class="line" data-i18n="hero-t1">Ingeniero de datos y automatización.</span></span>
-                        <span class="line-mask"><span class="line" data-i18n="hero-t2">Fundador de <em>Optimatiza</em>.</span></span>
+                        <span class="line-mask"><span class="line" data-i18n="hero-t1">Construyo agentes digitales con IA y automatización.</span></span>
+                        <span class="line-mask"><span class="line" data-i18n="hero-t2">Científico de datos — fundador de <em>Optimatiza</em>.</span></span>
                         <span class="line-mask"><span class="line" data-i18n="hero-t3">Creador de <em class="em-btc">Bitcoin Academy</em>.</span></span>
                     </h1>
                     <p class="hero-subtitle" data-i18n="hero-sub">Aquí no hay catálogo de servicios — para eso está <a href="https://optimatiza.com/" target="_blank" rel="noopener">Optimatiza</a>. Este es mi expediente personal: quién soy, de dónde vengo, qué estudié, qué he construido y qué me mantiene despierto a medianoche.</p>

@@ -24,8 +24,8 @@
 
         /* hero */
         'hero-kicker': ['ING. HUMBERTO WILFREDO HENRÍQUEZ BENÍTEZ', 'HUMBERTO WILFREDO HENRÍQUEZ BENÍTEZ, ENG.'],
-        'hero-t1': ['Ingeniero de datos y automatización.', 'Data &amp; automation engineer.'],
-        'hero-t2': ['Fundador de <em>Optimatiza</em>.', 'Founder of <em>Optimatiza</em>.'],
+        'hero-t1': ['Construyo agentes digitales con IA y automatización.', 'I build digital agents with AI &amp; automation.'],
+        'hero-t2': ['Científico de datos — fundador de <em>Optimatiza</em>.', 'Data scientist — founder of <em>Optimatiza</em>.'],
         'hero-t3': ['Creador de <em class="em-btc">Bitcoin Academy</em>.', 'Creator of <em class="em-btc">Bitcoin Academy</em>.'],
         'hero-sub': ['Aquí no hay catálogo de servicios — para eso está <a href="https://optimatiza.com/" target="_blank" rel="noopener">Optimatiza</a>. Este es mi expediente personal: quién soy, de dónde vengo, qué estudié, qué he construido y qué me mantiene despierto a medianoche.', 'There\'s no service catalog here — that\'s what <a href="https://optimatiza.com/" target="_blank" rel="noopener">Optimatiza</a> is for. This is my personal dossier: who I am, where I come from, what I studied, what I\'ve built, and what keeps me up at midnight.'],
         'hero-cta1': ['Leer mi historia', 'Read my story'],
@@ -198,7 +198,11 @@
         'foot-l5': ['Agent Fleet', 'Agent Fleet'],
         'colophon-motto': ['DIBUJADO A MANO · CORRIDO POR MÁQUINAS', 'DRAWN BY HAND · RUN BY MACHINES'],
         'foot-copy': ['© 2026 Humberto Henríquez. Todos los derechos reservados.', '© 2026 Humberto Henríquez. All rights reserved.'],
-        'pill-contact': ['CONTACTO', 'CONTACT']
+        'pill-contact': ['CONTACTO', 'CONTACT'],
+
+        /* theme toggle (aria-label; se aplica manualmente, no via data-i18n) */
+        'theme-toggle': ['Cambiar a modo oscuro', 'Switch to dark mode'],
+        'theme-toggle-light': ['Cambiar a modo claro', 'Switch to light mode']
     };
 
     var translations = { es: {}, en: {} };
@@ -248,6 +252,48 @@
         document.querySelectorAll('.lang-btn').forEach(function (btn) {
             btn.addEventListener('click', function () { applyLanguage(btn.getAttribute('data-lang')); });
         });
+
+        /* ---------- theme (light default; theme-init.js ya aplicó el guardado) ---------- */
+        var THEME_KEY = 'hh-theme';
+        var themeBtn = document.getElementById('themeToggle');
+        var themeAnimT = 0;
+        function currentTheme() {
+            return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        }
+        function syncThemeBtn() {
+            if (!themeBtn) return;
+            var theme = currentTheme();
+            var lang = document.documentElement.lang === 'en' ? 'en' : 'es';
+            var label = translations[lang][theme === 'dark' ? 'theme-toggle-light' : 'theme-toggle'];
+            themeBtn.setAttribute('aria-label', label);
+            themeBtn.title = label;
+            themeBtn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+            var icon = themeBtn.querySelector('i');
+            if (icon) icon.className = theme === 'dark' ? 'ph ph-sun' : 'ph ph-moon';
+        }
+        function setTheme(theme, animate) {
+            if (theme !== 'dark') theme = 'light';
+            if (animate) {
+                document.documentElement.classList.add('theme-anim');
+                clearTimeout(themeAnimT);
+                themeAnimT = setTimeout(function () {
+                    document.documentElement.classList.remove('theme-anim');
+                }, 400);
+            }
+            document.documentElement.dataset.theme = theme;
+            lsSet(THEME_KEY, theme);
+            var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+            if (meta) meta.setAttribute('content', theme === 'dark' ? '#0A0F1A' : '#F6F8FB');
+            syncThemeBtn();
+            window.dispatchEvent(new CustomEvent('hh-themechange', { detail: { theme: theme } }));
+        }
+        if (themeBtn) {
+            themeBtn.addEventListener('click', function () {
+                setTheme(currentTheme() === 'dark' ? 'light' : 'dark', true);
+            });
+            syncThemeBtn(); /* estado inicial (theme-init pudo haber puesto dark) */
+            document.addEventListener('lang:changed', syncThemeBtn);
+        }
 
         /* live GMT-6 clocks (El Salvador has no DST) */
         var clocks = document.querySelectorAll('[data-clock]');
