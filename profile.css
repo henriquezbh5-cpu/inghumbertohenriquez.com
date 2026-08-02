@@ -855,3 +855,34 @@ html.theme-anim *::after {
   .section-title, .hero-title, .feat-title, .edu-degree, .int-title, .j-title, .ev-title { color: #111; }
   a { color: #111; text-decoration: underline; }
 }
+
+/* ============================================================
+   COTIZADOR INTERACTIVO (sección 05)
+   ============================================================ */
+.cotz { margin-top: 56px; border: 1px solid var(--line); border-radius: 16px; padding: 32px 28px; background: var(--paper-1, #fff); }
+.cotz-title { font-size: 1.35rem; color: var(--ink); margin: 0 0 6px; }
+.cotz-sub { color: var(--ink-body); font-size: 0.95rem; max-width: 62ch; margin: 0 0 24px; }
+.cotz-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: start; }
+@media (max-width: 860px) { .cotz-grid { grid-template-columns: 1fr; } }
+.cotz-pick { display: flex; flex-direction: column; gap: 10px; }
+.cotz-pick label { display: flex; gap: 12px; align-items: flex-start; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px; cursor: pointer; transition: border-color .15s, background .15s; }
+.cotz-pick label:hover { border-color: var(--steel); }
+.cotz-pick label.on { border-color: var(--steel); background: rgba(29, 111, 184, 0.06); }
+.cotz-pick input { margin-top: 4px; accent-color: var(--steel); width: 16px; height: 16px; flex: none; }
+.cz-item strong { display: block; color: var(--ink); font-size: 0.92rem; }
+.cz-item small { display: block; color: var(--ink-dim); font-size: 0.8rem; line-height: 1.45; margin-top: 2px; }
+.cotz-side { display: flex; flex-direction: column; gap: 18px; position: sticky; top: 90px; }
+.cotz-est, .cotz-ai { border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+.cotz-ai { border-style: dashed; }
+.cz-label { display: block; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--ink-dim); margin-bottom: 10px; }
+.cz-range { font-size: 1.6rem; font-weight: 600; color: var(--ink); margin-bottom: 14px; }
+.cz-range.cz-empty { font-size: 0.95rem; font-weight: 400; color: var(--ink-dim); }
+.cz-note { font-size: 0.75rem; color: var(--ink-dim); line-height: 1.5; margin: 12px 0 0; }
+.cotz-ai textarea { width: 100%; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; font: inherit; font-size: 0.88rem; color: var(--ink); background: transparent; resize: vertical; margin-bottom: 10px; }
+.cotz-ai textarea:focus { outline: 2px solid var(--steel); outline-offset: 1px; border-color: var(--steel); }
+.btn-ghost { border: 1.5px solid var(--steel); color: var(--steel); background: transparent; border-radius: 10px; padding: 10px 18px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+.btn-ghost:hover { background: rgba(29, 111, 184, 0.08); }
+.btn-ghost:disabled { opacity: 0.6; cursor: wait; }
+.cz-ai-res { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 14px; }
+.cz-tag { display: inline-block; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--live); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; margin-bottom: 8px; }
+.cz-why { font-size: 0.82rem; color: var(--ink-body); line-height: 1.55; margin: 6px 0 0; }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://formspree.io https://quote-ai.henriquezbh5.workers.dev; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#F6F8FB">
@@ -439,6 +439,43 @@
                 </div>
             </div>
 
+            <!-- COTIZADOR INTERACTIVO -->
+            <div class="cotz rv" data-fade id="cotizador">
+                <div class="cotz-head">
+                    <h3 class="cotz-title" data-i18n="cz-title">Arma tu combinación y ve el rango al instante.</h3>
+                    <p class="cotz-sub" data-i18n="cz-sub">Marca lo que necesitas — o descríbelo con tus palabras y deja que la IA lo clasifique con las mismas bandas publicadas.</p>
+                </div>
+                <div class="cotz-grid">
+                    <div class="cotz-pick" id="czPick">
+                        <label><input type="checkbox" data-lo="600" data-hi="1200" data-n="Flujo de facturas y DTE"><span class="cz-item"><strong data-i18n="cz-i1t">Flujo de facturas y DTE</strong><small data-i18n="cz-i1d">Llega el correo → captura los datos → registro en tu sistema, sin digitar.</small></span></label>
+                        <label><input type="checkbox" data-lo="1200" data-hi="3000" data-n="Cobranza automática"><span class="cz-item"><strong data-i18n="cz-i2t">Cobranza automática</strong><small data-i18n="cz-i2d">Recordatorios por WhatsApp sobre toda la cartera, que suben de tono solos.</small></span></label>
+                        <label><input type="checkbox" data-lo="600" data-hi="1200" data-n="Agente de atención 24/7"><span class="cz-item"><strong data-i18n="cz-i3t">Agente de atención 24/7</strong><small data-i18n="cz-i3d">Responde, cotiza y aparta por WhatsApp — día y noche.</small></span></label>
+                        <label><input type="checkbox" data-lo="600" data-hi="1200" data-n="Reportes automáticos"><span class="cz-item"><strong data-i18n="cz-i4t">Reportes automáticos</strong><small data-i18n="cz-i4d">Tus datos → dashboard o resumen listo cada mañana en tu correo.</small></span></label>
+                        <label><input type="checkbox" data-lo="600" data-hi="1200" data-n="Flujo de aprobaciones"><span class="cz-item"><strong data-i18n="cz-i5t">Flujo de aprobaciones</strong><small data-i18n="cz-i5d">Solicitud → aprobador (Teams/correo) → registro y aviso automático.</small></span></label>
+                        <label><input type="checkbox" data-lo="1200" data-hi="3000" data-n="Integraciones y APIs"><span class="cz-item"><strong data-i18n="cz-i6t">Integraciones y APIs</strong><small data-i18n="cz-i6d">CRM, ERP, hojas de cálculo y correo hablando entre sí, con trazabilidad.</small></span></label>
+                        <label><input type="checkbox" data-lo="3000" data-hi="8000" data-n="Desarrollo a la medida"><span class="cz-item"><strong data-i18n="cz-i7t">Desarrollo a la medida</strong><small data-i18n="cz-i7d">Web, app o célula multi-agente construida sobre tu operación.</small></span></label>
+                    </div>
+                    <div class="cotz-side">
+                        <div class="cotz-est">
+                            <span class="cz-label mono" data-i18n="cz-est-l">INVERSIÓN ESTIMADA · UNA VEZ</span>
+                            <div class="cz-range mono" id="czRange">—</div>
+                            <a class="btn btn-ink magnetic" id="czWa" href="https://wa.me/50371928070?text=Hola%2C%20quiero%20cotizar%20una%20automatizaci%C3%B3n." target="_blank" rel="noopener" data-i18n="cz-wa">Pedir cotización exacta →</a>
+                            <p class="cz-note" data-i18n="cz-note">Bandas publicadas. Incluyen diseño, construcción, pruebas, entrega documentada y 30 días de soporte.</p>
+                        </div>
+                        <div class="cotz-ai">
+                            <span class="cz-label mono" data-i18n="cz-ai-l">✳ ¿NO VES TU CASO? DESCRÍBELO CON IA</span>
+                            <textarea id="czDesc" rows="3" maxlength="900"></textarea>
+                            <button type="button" class="btn btn-ghost" id="czGo" data-i18n="cz-ai-btn">Simular con IA →</button>
+                            <div class="cz-ai-res" id="czRes" hidden>
+                                <span class="cz-tag mono" id="czTipo"></span>
+                                <div class="cz-range mono" id="czAiRng"></div>
+                                <p class="cz-why" id="czWhy"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="tar-foot rv" data-fade>
                 <p class="tar-note" data-i18n="tar-inc">Toda unidad incluye: diseño, construcción, pruebas, entrega documentada y 30 días de soporte post-lanzamiento.</p>
                 <p class="tar-note mono" data-i18n="tar-ref">PRECIOS DE REFERENCIA — EL NÚMERO REAL SALE DE UN DIAGNÓSTICO DE 30 MINUTOS.</p>
@@ -599,6 +636,7 @@
     <script defer src="vendor/gsap/ScrollTrigger.min.js"></script>
     <script defer src="vendor/lenis/lenis.min.js"></script>
     <script defer src="profile.js"></script>
+    <script defer src="cotizador.js"></script>
     <script type="module" src="flow3d.js"></script>
 </body>
 </html>
