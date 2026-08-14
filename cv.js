@@ -124,6 +124,118 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     el.style.setProperty('--i', i);
 });
 
+/* ---------- showcase rotatorio: cada herramienta pasa en grande,
+   Power Automate manda (abre más tiempo y regresa cada 4) ---------- */
+(function showcase() {
+    const featured = document.querySelector('.tool-featured');
+    if (!featured || reduced) return;
+
+    const iconWrap = featured.querySelector('.tf-icon');
+    const tagEl = featured.querySelector('.tf-tag');
+    const nameEl = featured.querySelector('.tf-body h3');
+    const descEl = featured.querySelector('.tf-body p');
+    const certEl = featured.querySelector('.tf-cert');
+    if (!iconWrap || !tagEl || !nameEl || !descEl || !certEl) return;
+
+    const PA = {
+        icon: iconWrap.innerHTML,
+        tag: tagEl.textContent,
+        name: nameEl.textContent,
+        desc: descEl.textContent,
+        cert: certEl.innerHTML,
+    };
+
+    const CERTS = {
+        'Power Apps': ['PL-100', 'MICROSOFT CERTIFIED<br>APP MAKER'],
+        'Power BI': ['PL-300', 'MICROSOFT CERTIFIED<br>DATA ANALYST'],
+    };
+    const TAGLINES = {
+        'Power Apps': 'Apps corporativas de captura y aprobación que el negocio usa a diario.',
+        'Power BI': 'Dashboards ejecutivos que consolidan SQL, SharePoint y APIs.',
+        'SharePoint': 'Portales y flujos documentales para equipos corporativos.',
+        'TradingView': 'Indicadores propios en Pine Script para análisis de mercado cripto.',
+        'Copilot Studio': 'Agentes conversacionales conectados a datos reales, por Teams.',
+        'Python': 'ETL, análisis de datos y automatización de pipelines.',
+        'TypeScript': 'Código estricto para aplicaciones web en producción.',
+        'React · Next.js': 'Interfaces modernas, PWAs y sitios de alto rendimiento.',
+        'SQL Server': 'Consultas y modelos sobre bases corporativas críticas.',
+        'PostgreSQL': 'La base de datos de mis aplicaciones web.',
+        'Docker': 'Servicios contenedorizados, reproducibles en cualquier entorno.',
+        'n8n': 'Workflows self-hosted que conectan APIs sin fricción.',
+        'Claude · IA': 'Agentes y automatización potenciada por IA, todos los días.',
+        'Azure': 'App Services, Functions y despliegues cloud.',
+        'GitHub Actions': 'CI/CD automatizado para cada proyecto.',
+        'FastAPI': 'APIs Python rápidas para servicios de datos.',
+        'Bitcoin · Cripto': 'Bitcoin Academy en Google Play y sistemas de análisis de mercado.',
+    };
+
+    const tiles = [...document.querySelectorAll('.tool-grid .tool')];
+    const tools = tiles.map((tile) => ({
+        tile,
+        icon: tile.querySelector('.tool-ic').innerHTML,
+        name: tile.querySelector('.tool-n').textContent,
+        tag: tile.querySelector('.tool-t').textContent,
+    }));
+
+    // secuencia: PA largo al inicio, luego bloques de 4 herramientas con PA entre bloques
+    const seq = [{ pa: true, dwell: 9000 }];
+    tools.forEach((tool, i) => {
+        seq.push({ tool, dwell: 3600 });
+        if ((i + 1) % 4 === 0 && i < tools.length - 1) seq.push({ pa: true, dwell: 6500 });
+    });
+
+    let idx = 0, timer = 0, hovered = false, visible = true;
+
+    function apply(step) {
+        featured.classList.add('tf-swapping');
+        setTimeout(() => {
+            tiles.forEach((t) => t.classList.remove('is-featured'));
+            if (step.pa) {
+                iconWrap.innerHTML = PA.icon;
+                tagEl.textContent = PA.tag;
+                nameEl.textContent = PA.name;
+                descEl.textContent = PA.desc;
+                certEl.innerHTML = PA.cert;
+                featured.classList.add('is-pa');
+            } else {
+                featured.classList.remove('is-pa');
+                iconWrap.innerHTML = step.tool.icon;
+                tagEl.textContent = 'ARSENAL · ' + step.tool.tag;
+                nameEl.textContent = step.tool.name;
+                descEl.textContent = TAGLINES[step.tool.name] || '';
+                const cert = CERTS[step.tool.name];
+                certEl.innerHTML = cert
+                    ? '<span class="cert-code">' + cert[0] + '</span><span>' + cert[1] + '</span>'
+                    : '<span class="cert-code">STACK</span><span>HERRAMIENTA DE<br>USO DIARIO</span>';
+                step.tool.tile.classList.add('is-featured');
+            }
+            featured.classList.remove('tf-swapping');
+        }, 260);
+    }
+
+    function schedule() {
+        clearTimeout(timer);
+        if (hovered || !visible) return;
+        timer = setTimeout(() => {
+            idx = (idx + 1) % seq.length;
+            apply(seq[idx]);
+            schedule();
+        }, seq[idx].dwell);
+    }
+
+    featured.addEventListener('pointerenter', () => { hovered = true; clearTimeout(timer); });
+    featured.addEventListener('pointerleave', () => { hovered = false; schedule(); });
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+            visible = entries[0].isIntersecting;
+            visible ? schedule() : clearTimeout(timer);
+        }, { threshold: 0.2 }).observe(featured);
+    }
+
+    featured.classList.add('is-pa');
+    schedule();
+})();
+
 /* ---------- formulario: envío inline sin salir del sitio ---------- */
 (function contactForm() {
     const form = document.getElementById('contactForm');
@@ -183,7 +295,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         { t: '[00:00.400]', a: 'PERFIL', c: 'la-perfil', m: 'Ingeniero en sistemas · Científico de datos' },
         { t: '[00:00.900]', a: 'EDUCACIÓN', c: 'la-edu', m: 'MSc Data Science (2026) · MSc BI · Posgrado Blockchain' },
         { t: '[00:01.400]', a: 'CERTIFICADO', c: 'la-cert', m: 'Microsoft ×3 — PL-500 RPA · PL-100 · PL-300' },
-        { t: '[00:01.900]', a: 'OPERACIÓN', c: 'la-tool', m: '15+ sistemas en producción · SV · GT · CR · DO' },
+        { t: '[00:01.900]', a: 'OPERACIÓN', c: 'la-tool', m: '15+ sistemas · 170+ bots RPA · SV · GT · CR · DO' },
         { t: '[00:02.400]', a: 'MODO', c: 'la-founder', m: '100% remoto desde 2020 · Power Automate a diario' },
         { t: '[00:02.900]', a: 'ESTADO', c: 'la-estado', m: 'Disponible · respuesta en menos de 24 h' },
     ];
