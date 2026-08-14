@@ -439,7 +439,7 @@ body {
     font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -.015em;
     color: var(--ink); margin-bottom: 10px;
 }
-.tf-body p { font-size: 15px; max-width: 52ch }
+.tf-body p { font-size: 15px; max-width: 52ch; min-height: 3.2em }
 .tf-cert { display: flex; align-items: center; gap: 14px; font-size: 10px; letter-spacing: .05em; color: var(--label); line-height: 1.7 }
 .tf-cert .cert-code { font-size: 15px }
 @media (max-width: 800px) {
@@ -478,8 +478,9 @@ body {
 .rv.in .tool:nth-child(4n) .tool-ic { animation-delay: -2.4s; animation-duration: 6.4s }
 .rv.in .tool:nth-child(3n+1) .tool-ic { animation-direction: alternate }
 
-/* la deriva alcanza a todos los iconos del expediente */
-.tf-icon { animation: tool-float 6.2s ease-in-out infinite }
+/* la deriva alcanza a todos los iconos del expediente
+   (en el svg interno: el wrapper .tf-icon debe poder deslizarse en el swap) */
+.rv.in .tf-icon svg { animation: tool-float 6.2s ease-in-out infinite }
 .rv.in .pnode-box svg { animation: tool-float 6.8s ease-in-out infinite }
 .rv.in .pnode:nth-child(2n) .pnode-box svg { animation-delay: -2.2s; animation-duration: 5.6s }
 .rv.in .pnode:nth-child(3n) .pnode-box svg { animation-delay: -3.8s; animation-duration: 7.4s }
@@ -497,6 +498,15 @@ html.js .tool-grid.in .tool:hover { transform: translateY(-4px); transition-dela
 /* el tilt del featured no debe heredar la transición de .7s del reveal */
 html.js .tool-featured.rv.in { transition: transform .18s ease-out, opacity .7s var(--ease-out) }
 
+/* con la sección fuera de viewport, las animaciones infinitas se pausan (cv.js: animGate) */
+html.js #trayectoria:not(.anim-live) .pnode-box,
+html.js #trayectoria:not(.anim-live) .pnode-box svg,
+html.js #trayectoria:not(.anim-live) .pnode::after,
+html.js #arsenal:not(.anim-live) .tool-ic,
+html.js #arsenal:not(.anim-live) .tf-icon svg,
+html.js #arsenal:not(.anim-live) .tf-ch,
+html.js #arsenal:not(.anim-live) .tool-featured::after { animation-play-state: paused }
+
 /* ---- showcase rotatorio del destacado ---- */
 .tf-icon, .tf-body, .tf-cert { transition: opacity .25s ease, transform .25s ease }
 .tool-featured.tf-swapping .tf-icon,
@@ -510,6 +520,10 @@ html.js .tool-featured.rv.in { transition: transform .18s ease-out, opacity .7s 
     border-color: rgba(56, 189, 248, .6);
     background: var(--panel-2);
     box-shadow: 0 0 22px rgba(56, 189, 248, .12);
+}
+.tool-grid .tool.is-featured:hover {
+    border-color: rgba(56, 189, 248, .85);
+    box-shadow: 0 8px 28px rgba(56, 189, 248, .18);
 }
 .tool-n { display: block; font-size: 12.5px; font-weight: 500; color: var(--ink); margin-bottom: 4px }
 .tool-t { display: block; font-size: 9.5px; letter-spacing: .05em; color: var(--label) }
@@ -606,8 +620,8 @@ html.js .rv.in { opacity: 1; transform: none }
 @media (prefers-reduced-motion: reduce) {
     html.js .rv { opacity: 1; transform: none; transition: none }
     html.js .tool-grid .tool { opacity: 1; transform: none }
-    .status-dot, .log-caret, .tf-ch, .tool-ic, .tf-icon, .pnode-box, .pnode-box svg,
-    .pnode::after, .tool-featured::after { animation: none !important }
+    .status-dot, .log-caret, .tf-ch, .tool-ic, .tf-icon, .tf-icon svg, .pnode-box,
+    .pnode-box svg, .pnode::after, .tool-featured::after { animation: none !important }
     html { scroll-behavior: auto }
     * { transition-duration: .01ms !important }
 }

@@ -124,6 +124,19 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     el.style.setProperty('--i', i);
 });
 
+/* ---------- las animaciones infinitas solo corren con su sección visible ---------- */
+(function animGate() {
+    const secs = ['trayectoria', 'arsenal'].map((id) => document.getElementById(id)).filter(Boolean);
+    if (!('IntersectionObserver' in window)) {
+        secs.forEach((s) => s.classList.add('anim-live'));
+        return;
+    }
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => en.target.classList.toggle('anim-live', en.isIntersecting));
+    }, { rootMargin: '80px 0px' });
+    secs.forEach((s) => io.observe(s));
+})();
+
 /* ---------- showcase rotatorio: cada herramienta pasa en grande,
    Power Automate manda (abre más tiempo y regresa cada 4) ---------- */
 (function showcase() {
@@ -138,7 +151,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     if (!iconWrap || !tagEl || !nameEl || !descEl || !certEl) return;
 
     const PA = {
-        icon: iconWrap.innerHTML,
+        iconNode: iconWrap.querySelector('svg'),
         tag: tagEl.textContent,
         name: nameEl.textContent,
         desc: descEl.textContent,
@@ -170,12 +183,15 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     };
 
     const tiles = [...document.querySelectorAll('.tool-grid .tool')];
-    const tools = tiles.map((tile) => ({
-        tile,
-        icon: tile.querySelector('.tool-ic').innerHTML,
-        name: tile.querySelector('.tool-n').textContent,
-        tag: tile.querySelector('.tool-t').textContent,
-    }));
+    const tools = tiles.map((tile) => {
+        const svg = tile.querySelector('.tool-ic svg');
+        const name = tile.querySelector('.tool-n');
+        const tag = tile.querySelector('.tool-t');
+        return svg && name && tag
+            ? { tile, iconNode: svg.cloneNode(true), name: name.textContent, tag: tag.textContent }
+            : null;
+    }).filter(Boolean);
+    if (!tools.length) return;
 
     // secuencia: PA largo al inicio, luego bloques de 4 herramientas con PA entre bloques
     const seq = [{ pa: true, dwell: 9000 }];
@@ -184,14 +200,16 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         if ((i + 1) % 4 === 0 && i < tools.length - 1) seq.push({ pa: true, dwell: 6500 });
     });
 
-    let idx = 0, timer = 0, hovered = false, visible = true;
+    let idx = 0, timer = 0, swapTimer = 0, hovered = false, inView = true;
+    let tabVisible = document.visibilityState !== 'hidden';
 
     function apply(step) {
         featured.classList.add('tf-swapping');
-        setTimeout(() => {
+        // 260ms ≈ la transición .25s de .tf-swapping en cv.css — mantener sincronizados
+        swapTimer = setTimeout(() => {
             tiles.forEach((t) => t.classList.remove('is-featured'));
             if (step.pa) {
-                iconWrap.innerHTML = PA.icon;
+                iconWrap.replaceChildren(PA.iconNode);
                 tagEl.textContent = PA.tag;
                 nameEl.textContent = PA.name;
                 descEl.textContent = PA.desc;
@@ -199,14 +217,12 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
                 featured.classList.add('is-pa');
             } else {
                 featured.classList.remove('is-pa');
-                iconWrap.innerHTML = step.tool.icon;
+                iconWrap.replaceChildren(step.tool.iconNode);
                 tagEl.textContent = 'ARSENAL · ' + step.tool.tag;
                 nameEl.textContent = step.tool.name;
                 descEl.textContent = TAGLINES[step.tool.name] || '';
-                const cert = CERTS[step.tool.name];
-                certEl.innerHTML = cert
-                    ? '<span class="cert-code">' + cert[0] + '</span><span>' + cert[1] + '</span>'
-                    : '<span class="cert-code">STACK</span><span>HERRAMIENTA DE<br>USO DIARIO</span>';
+                const cert = CERTS[step.tool.name] || ['STACK', 'HERRAMIENTA DE<br>USO DIARIO'];
+                certEl.innerHTML = '<span class="cert-code">' + cert[0] + '</span><span>' + cert[1] + '</span>';
                 step.tool.tile.classList.add('is-featured');
             }
             featured.classList.remove('tf-swapping');
@@ -215,7 +231,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
 
     function schedule() {
         clearTimeout(timer);
-        if (hovered || !visible) return;
+        if (hovered || !inView || !tabVisible) return;
         timer = setTimeout(() => {
             idx = (idx + 1) % seq.length;
             apply(seq[idx]);
@@ -223,14 +239,36 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         }, seq[idx].dwell);
     }
 
-    featured.addEventListener('pointerenter', () => { hovered = true; clearTimeout(timer); });
-    featured.addEventListener('pointerleave', () => { hovered = false; schedule(); });
+    // al ocultarse (scroll o pestaña) se detiene; al volver, re-ancla en Power Automate
+    function gate() {
+        if (inView && tabVisible) {
+            if (idx !== 0) { idx = 0; apply(seq[0]); }
+            schedule();
+        } else {
+            clearTimeout(timer);
+            clearTimeout(swapTimer);
+            featured.classList.remove('tf-swapping');
+        }
+    }
+
+    // pausa por hover solo con puntero real (en táctil, pointerenter sin
+    // pointerleave dejaría la rotación congelada); el foco de teclado también pausa
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        featured.addEventListener('pointerenter', () => { hovered = true; clearTimeout(timer); });
+        featured.addEventListener('pointerleave', () => { hovered = false; schedule(); });
+    }
+    featured.addEventListener('focusin', () => { hovered = true; clearTimeout(timer); });
+    featured.addEventListener('focusout', () => { hovered = false; schedule(); });
     if ('IntersectionObserver' in window) {
         new IntersectionObserver((entries) => {
-            visible = entries[0].isIntersecting;
-            visible ? schedule() : clearTimeout(timer);
+            inView = entries[0].isIntersecting;
+            gate();
         }, { threshold: 0.2 }).observe(featured);
     }
+    document.addEventListener('visibilitychange', () => {
+        tabVisible = document.visibilityState === 'visible';
+        gate();
+    });
 
     featured.classList.add('is-pa');
     schedule();
