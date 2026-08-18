@@ -625,3 +625,313 @@ html.js .rv.in { opacity: 1; transform: none }
     html { scroll-behavior: auto }
     * { transition-duration: .01ms !important }
 }
+
+/* ============================================================
+   TEMA CLARO — override de tokens (data-theme="light" en <html>)
+   Dark sigue siendo el default de la sala de control; esto es el
+   "modo lectura": mismo lenguaje, papel en vez de terminal.
+   ============================================================ */
+:root[data-theme="light"] {
+    --bg: #F2F6FB;
+    --bg-2: #E9EFF7;
+    --panel: rgba(14, 42, 74, .045);
+    --panel-2: rgba(14, 42, 74, .08);
+    --line: rgba(14, 42, 74, .18);
+    --line-soft: rgba(14, 42, 74, .10);
+    --ink: #0C1A2B;
+    --body: #3B4C61;
+    --label: #5D7189;
+    --teal: #0E9488;
+    --teal-rgb: 14, 148, 136;
+    --cyan: #0284C7;
+    --blue: #2563EB;
+    --amber: #B45309;
+    --violet: #7C3AED;
+    --green: #059669;
+    --rose: #DB2777;
+}
+:root[data-theme="light"] body {
+    background:
+        radial-gradient(1100px 500px at 75% -5%, rgba(2, 132, 199, .06), transparent 60%),
+        radial-gradient(900px 600px at 8% 30%, rgba(14, 148, 136, .05), transparent 55%),
+        radial-gradient(rgba(14, 42, 74, .10) 1px, transparent 1px) 0 0 / 26px 26px,
+        var(--bg);
+}
+:root[data-theme="light"] .bg3d { opacity: .3 }
+:root[data-theme="light"] .hero-shade {
+    background: linear-gradient(180deg, rgba(242, 246, 251, 0) 40%, var(--bg) 96%);
+}
+:root[data-theme="light"] .navbar {
+    background: rgba(242, 246, 251, .88);
+}
+
+/* ---------- toggle de tema en el nav ---------- */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--label);
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+    transition: color .2s, border-color .2s, transform .2s;
+}
+.theme-toggle:hover { color: var(--teal); border-color: var(--teal); transform: translateY(-1px) }
+.theme-toggle .tt-moon { display: none }
+:root[data-theme="light"] .theme-toggle .tt-sun { display: none }
+:root[data-theme="light"] .theme-toggle .tt-moon { display: inline }
+
+/* ============================================================
+   NOVA — agente flotante del expediente
+   Mismo ADN que el NOVA de Optimatiza: burbuja con anillo vivo,
+   etiqueta "click me" y panel de chat. Todo sobre tokens, asi
+   que respira igual en dark y en light.
+   ============================================================ */
+.nova {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 240;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    font-family: var(--font-b);
+}
+.nova-launch {
+    position: relative;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--cyan));
+    color: #06251F;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 8px 28px rgba(var(--teal-rgb), .35);
+    transition: transform .25s var(--ease-out), box-shadow .25s;
+}
+.nova-launch:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 12px 34px rgba(var(--teal-rgb), .5) }
+.nova-launch-core {
+    font-family: var(--font-d);
+    font-weight: 700;
+    font-size: 24px;
+}
+.nova-launch-ring {
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 2px solid rgba(var(--teal-rgb), .55);
+    animation: nova-pulse 2.4s ease-out infinite;
+    pointer-events: none;
+}
+@keyframes nova-pulse {
+    0%   { transform: scale(.9); opacity: .9 }
+    70%  { transform: scale(1.35); opacity: 0 }
+    100% { transform: scale(1.35); opacity: 0 }
+}
+.nova-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg-2);
+    color: var(--ink);
+    font-size: 10.5px;
+    letter-spacing: .08em;
+    cursor: pointer;
+    box-shadow: 0 6px 22px rgba(3, 10, 20, .25);
+    animation: nova-bob 3.2s ease-in-out infinite;
+    transition: border-color .2s, transform .2s;
+}
+.nova-tag:hover { border-color: var(--teal); transform: translateY(-2px) }
+.nova-tag.is-quiet { animation: none; opacity: .85 }
+.nova-tag-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, .18);
+    animation: nova-blink 1.6s ease-in-out infinite;
+}
+@keyframes nova-bob {
+    0%, 100% { transform: translateY(0) }
+    50%      { transform: translateY(-4px) }
+}
+@keyframes nova-blink {
+    0%, 100% { opacity: 1 }
+    50%      { opacity: .35 }
+}
+.nova-panel {
+    width: min(370px, calc(100vw - 32px));
+    height: min(540px, calc(100dvh - 120px));
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(3, 10, 20, .45);
+    animation: nova-in .3s var(--ease-out);
+}
+@keyframes nova-in {
+    from { opacity: 0; transform: translateY(14px) scale(.97) }
+    to   { opacity: 1; transform: translateY(0) scale(1) }
+}
+.nova-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line-soft);
+    background: var(--panel-2);
+}
+.nova-head-id { display: flex; align-items: center; gap: 10px }
+.nova-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--cyan));
+    color: #06251F;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-d);
+    font-weight: 700;
+    font-size: 17px;
+}
+.nova-head-txt { display: flex; flex-direction: column; line-height: 1.25 }
+.nova-head-txt strong { color: var(--ink); font-family: var(--font-d); font-size: 15px }
+.nova-head-txt .mono { font-size: 9px; color: var(--green) }
+.nova-close {
+    width: 30px; height: 30px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    color: var(--label);
+    cursor: pointer;
+    transition: color .2s, border-color .2s;
+}
+.nova-close:hover { color: var(--rose); border-color: var(--rose) }
+.nova-feed {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+}
+.nova-msg { max-width: 86%; animation: nova-in .25s var(--ease-out) }
+.nova-msg p {
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.nova-msg.is-nova { align-self: flex-start }
+.nova-msg.is-nova p {
+    background: var(--panel-2);
+    border: 1px solid var(--line-soft);
+    color: var(--body);
+    border-bottom-left-radius: 4px;
+}
+.nova-msg.is-user { align-self: flex-end }
+.nova-msg.is-user p {
+    background: rgba(var(--teal-rgb), .14);
+    border: 1px solid rgba(var(--teal-rgb), .3);
+    color: var(--ink);
+    border-bottom-right-radius: 4px;
+}
+.nova-dots { display: inline-flex; gap: 5px; padding: 12px 14px }
+.nova-dots i {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: nova-dot 1.1s ease-in-out infinite;
+}
+.nova-dots i:nth-child(2) { animation-delay: .15s }
+.nova-dots i:nth-child(3) { animation-delay: .3s }
+@keyframes nova-dot {
+    0%, 100% { opacity: .25; transform: translateY(0) }
+    50%      { opacity: 1; transform: translateY(-3px) }
+}
+.nova-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 14px 10px;
+}
+.nova-chip {
+    padding: 6px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--body);
+    font-size: 11.5px;
+    cursor: pointer;
+    transition: color .2s, border-color .2s, background .2s;
+}
+.nova-chip:hover { color: var(--teal); border-color: var(--teal); background: rgba(var(--teal-rgb), .08) }
+.nova-form {
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--line-soft);
+}
+.nova-input {
+    flex: 1;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    color: var(--ink);
+    font-size: 13.5px;
+    background: var(--panel);
+    transition: border-color .2s;
+}
+.nova-input:focus { outline: none; border-color: var(--teal) }
+.nova-input::placeholder { color: var(--label) }
+.nova-send {
+    width: 40px;
+    border: 1px solid var(--teal);
+    border-radius: 9px;
+    background: rgba(var(--teal-rgb), .12);
+    color: var(--teal);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+}
+.nova-send:hover:not(:disabled) { background: rgba(var(--teal-rgb), .25); transform: translateX(2px) }
+.nova-send:disabled { opacity: .4; cursor: default }
+.nova-foot {
+    padding: 6px 14px 10px;
+    font-size: 8.5px;
+    color: var(--label);
+    text-align: center;
+}
+@media (max-width: 480px) {
+    .nova { right: 12px; bottom: 12px }
+    .nova-panel { width: calc(100vw - 24px); height: min(560px, calc(100dvh - 96px)) }
+    .nova-tag span:last-child { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+}
+@media (prefers-reduced-motion: reduce) {
+    .nova-launch-ring, .nova-tag { animation: none }
+}
+
+
+.nova-panel[hidden] { display: none !important }
+
+
+.nova-tag[hidden] { display: none !important }
+
+
+/* La terminal HH.LOG se queda oscura tambien en tema claro (es una terminal):
+   fondo fijo + colores de texto anclados a la paleta dark. */
+:root[data-theme="light"] .log-panel {
+    background: rgba(10, 19, 34, .92);
+    border-color: rgba(148, 180, 220, .22);
+}
+:root[data-theme="light"] .log-head { color: #6C82A0; border-color: rgba(148, 180, 220, .12) }
+:root[data-theme="light"] .log-body { color: #A9BCD3 }
+:root[data-theme="light"] .log-panel .status-dot { background: #34D399 }

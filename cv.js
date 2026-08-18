@@ -180,6 +180,12 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         'GitHub Actions': 'CI/CD automatizado para cada proyecto.',
         'FastAPI': 'APIs Python rápidas para servicios de datos.',
         'Bitcoin · Cripto': 'Bitcoin Academy en Google Play y sistemas de análisis de mercado.',
+        'Gemini · OpenAI': 'Modelos de lenguaje integrados en agentes y flujos productivos.',
+        'LangChain · RAG': 'Recuperación aumentada con pgvector y Qdrant para respuestas con datos reales.',
+        'NestJS · Node': 'Backends TypeScript estructurados para bots y APIs en producción.',
+        'Cloudflare': 'Workers y Pages: el chat de este sitio corre ahí ahora mismo.',
+        'Dataverse': 'El modelo de datos corporativo detrás de las Power Apps serias.',
+        'WhatsApp API': 'Bots conversacionales con máquina de estados que atienden de verdad.',
     };
 
     const tiles = [...document.querySelectorAll('.tool-grid .tool')];
@@ -402,4 +408,21 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     } else {
         begin();
     }
+})();
+
+/* ---------- toggle de tema (persistido; theme-init.js evita el flash) ---------- */
+(function themeToggle() {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+        var light = document.documentElement.dataset.theme === 'light';
+        if (light) {
+            delete document.documentElement.dataset.theme;
+        } else {
+            document.documentElement.dataset.theme = 'light';
+        }
+        try { localStorage.setItem('hh-theme', light ? 'dark' : 'light'); } catch (e) { /* privado */ }
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', light ? '#0A1322' : '#F2F6FB');
+    });
 })();
