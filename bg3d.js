@@ -13,10 +13,17 @@
 const CONFIG = {
     threePath: './vendor/three/three.module.min.js',
     canvasId: 'bgfx',
-    // paleta: teal → azul (tokens del sitio)
+    // paleta DARK: teal → azul, blending aditivo (luz sobre fondo oscuro)
     colorLow: [0x1C / 255, 0x3F / 255, 0x66 / 255],   // valle: azul profundo
     colorMid: [0x3E / 255, 0x8F / 255, 0xB8 / 255],   // ladera: azul acero
     colorHigh: [0x3B / 255, 0xF0 / 255, 0xD4 / 255],  // cresta: teal
+    // paleta LIGHT: tinta sobre papel — el blending aditivo es invisible sobre
+    // claro (sumar luz a blanco no hace nada), asi que en light se cambia a
+    // NormalBlending con colores oscuros y alpha reforzada (uBoost).
+    lightLow: [0x2B / 255, 0x50 / 255, 0x7A / 255],   // azul tinta
+    lightMid: [0x0E / 255, 0x74 / 255, 0x90 / 255],   // cyan profundo
+    lightHigh: [0x0D / 255, 0x94 / 255, 0x88 / 255],  // teal tinta
+    lightBoost: 1.45,
     gridW: 150, gridH: 90,        // desktop: 13 500 vértices (GPU)
     gridWm: 80, gridHm: 50,       // móvil: 4 000
     particles: 380, particlesM: 130,
@@ -75,6 +82,7 @@ async function init() {
         uMid: { value: new THREE.Vector3(...CONFIG.colorMid) },
         uHigh: { value: new THREE.Vector3(...CONFIG.colorHigh) },
         uPix: { value: renderer.getPixelRatio() },
+        uBoost: { value: 1.0 },
     };
 
     const terrainMat = new THREE.ShaderMaterial({
@@ -107,6 +115,7 @@ async function init() {
             uniform vec3 uLow;
             uniform vec3 uMid;
             uniform vec3 uHigh;
+            uniform float uBoost;
             varying float vH;
             varying float vFog;
             void main() {
@@ -119,8 +128,8 @@ async function init() {
                 vec3 col = hn < 0.55
                     ? mix(uLow, uMid, hn / 0.55)
                     : mix(uMid, uHigh, (hn - 0.55) / 0.45);
-                float a = disc * vFog * (0.5 + hn * 0.5);
-                gl_FragColor = vec4(col, a);
+                float a = disc * vFog * (0.5 + hn * 0.5) * uBoost;
+                gl_FragColor = vec4(col, min(a, 1.0));
             }`,
     });
     const terrain = new THREE.Points(terrainGeo, terrainMat);
@@ -163,16 +172,38 @@ async function init() {
             }`,
         fragmentShader: /* glsl */`
             uniform vec3 uHigh;
+            uniform float uBoost;
             varying float vA;
             void main() {
                 vec2 c = gl_PointCoord - 0.5;
                 float disc = smoothstep(0.5, 0.1, length(c));
                 if (disc < 0.01) discard;
-                gl_FragColor = vec4(uHigh, disc * max(vA, 0.0) * 0.8);
+                gl_FragColor = vec4(uHigh, min(disc * max(vA, 0.0) * 0.8 * uBoost, 1.0));
             }`,
     });
     const particles = new THREE.Points(partGeo, partMat);
     scene.add(particles);
+
+    /* ---------- tema claro/oscuro en vivo ---------- */
+    function applyTheme() {
+        const light = document.documentElement.dataset.theme === 'light';
+        const low = light ? CONFIG.lightLow : CONFIG.colorLow;
+        const mid = light ? CONFIG.lightMid : CONFIG.colorMid;
+        const high = light ? CONFIG.lightHigh : CONFIG.colorHigh;
+        uniforms.uLow.value.set(low[0], low[1], low[2]);
+        uniforms.uMid.value.set(mid[0], mid[1], mid[2]);
+        uniforms.uHigh.value.set(high[0], high[1], high[2]);
+        uniforms.uBoost.value = light ? CONFIG.lightBoost : 1.0;
+        const blend = light ? THREE.NormalBlending : THREE.AdditiveBlending;
+        terrainMat.blending = blend;
+        partMat.blending = blend;
+        terrainMat.needsUpdate = true;
+        partMat.needsUpdate = true;
+    }
+    applyTheme();
+    new MutationObserver(applyTheme).observe(document.documentElement, {
+        attributes: true, attributeFilter: ['data-theme'],
+    });
 
     /* ---------- sizing ---------- */
     function resize() {

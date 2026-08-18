@@ -935,3 +935,72 @@ html.js .rv.in { opacity: 1; transform: none }
 :root[data-theme="light"] .log-head { color: #6C82A0; border-color: rgba(148, 180, 220, .12) }
 :root[data-theme="light"] .log-body { color: #A9BCD3 }
 :root[data-theme="light"] .log-panel .status-dot { background: #34D399 }
+
+/* ============================================================
+   PASE DE LEGIBILIDAD 2026-08-17 (pedido: "construi algo bien
+   para el ojo humano") — stats, HH.LOG y fondo 3D en tema claro.
+   Estas reglas van al final: a igual especificidad, ganan.
+   ============================================================ */
+
+/* ---------- STATS: numeros con la tipografia del titulo ---------- */
+.stat dt {
+    font-family: var(--font-d);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    text-transform: none;
+    font-size: clamp(30px, 3.2vw, 44px);
+    color: var(--teal);
+    line-height: 1;
+}
+.stat dd { font-size: 14px; font-weight: 500; color: var(--ink); margin-top: 9px }
+.stat dd .mono { display: block; font-size: 9px; color: var(--label); margin-top: 5px; font-weight: 400 }
+
+/* Tema claro: tarjeta de papel, no banda navy translucida */
+:root[data-theme="light"] .stats {
+    background: #FFFFFF;
+    border-color: var(--line);
+    box-shadow: 0 10px 34px rgba(14, 42, 74, .08);
+    backdrop-filter: none;
+}
+:root[data-theme="light"] .stat { border-color: var(--line-soft) }
+:root[data-theme="light"] .stat dt { color: var(--teal) }
+:root[data-theme="light"] .stat dd { color: var(--ink) }
+
+/* ---------- HH.LOG: terminal legible (oscura en ambos temas) ---------- */
+.log-panel {
+    background: #0A1322;
+    border: 1px solid rgba(148, 180, 220, .22);
+    backdrop-filter: none;
+}
+.log-head {
+    color: #8FA6C2;
+    border-bottom: 1px solid rgba(148, 180, 220, .14);
+    background: rgba(148, 180, 220, .06);
+}
+.log-body {
+    font-size: 11.5px;
+    line-height: 1.85;
+    color: #C6D3E4;
+}
+.log-line { margin-bottom: 2px }
+.log-time { color: #56688A; font-size: 10px }
+.log-actor { font-weight: 600 }
+/* Colores de actor ANCLADOS a la paleta oscura: el panel no cambia de tema */
+.log-panel .la-sys { color: #8FA6C2 }
+.log-panel .la-perfil { color: #A78BFA }
+.log-panel .la-edu { color: #5BA8E8 }
+.log-panel .la-cert { color: #38BDF8 }
+.log-panel .la-tool { color: #38BDF8 }
+.log-panel .la-founder { color: #34D399 }
+.log-panel .la-estado { color: #34D399 }
+.log-panel .status-dot { background: #34D399 }
+.log-panel .log-replay { color: #8FA6C2; border-color: rgba(148, 180, 220, .3) }
+
+/* ---------- Fondo 3D visible en tema claro ---------- */
+:root[data-theme="light"] .bg3d { opacity: .85 }
+
+/* ---------- NOVA: icono con imagen ---------- */
+.nova-launch-core, .nova-avatar { overflow: hidden }
+.nova-launch-core img { width: 34px; height: 34px; display: block }
+.nova-avatar img { width: 24px; height: 24px; display: block }
+

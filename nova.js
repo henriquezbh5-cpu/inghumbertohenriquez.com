@@ -46,10 +46,21 @@
     root.setAttribute('data-nova', '');
 
     // Burbuja + etiqueta "click me"
+    function botIcon(size) {
+        var img = document.createElement('img');
+        img.src = 'img/nova-bot.svg';
+        img.alt = '';
+        img.width = size;
+        img.height = size;
+        return img;
+    }
+
     var launcher = el('button', 'nova-launch');
     launcher.type = 'button';
     launcher.setAttribute('aria-label', 'Abrir chat con NOVA, el agente de Humberto');
-    launcher.appendChild(el('span', 'nova-launch-core', 'N'));
+    var core = el('span', 'nova-launch-core');
+    core.appendChild(botIcon(34));
+    launcher.appendChild(core);
     launcher.appendChild(el('span', 'nova-launch-ring'));
 
     var tag = el('button', 'nova-tag mono');
@@ -65,7 +76,8 @@
 
     var head = el('header', 'nova-head');
     var headId = el('div', 'nova-head-id');
-    var avatar = el('span', 'nova-avatar', 'N');
+    var avatar = el('span', 'nova-avatar');
+    avatar.appendChild(botIcon(24));
     var headTxt = el('div', 'nova-head-txt');
     headTxt.appendChild(el('strong', null, 'NOVA'));
     headTxt.appendChild(el('span', 'mono', 'AGENTE DE HUMBERTO · EN LÍNEA'));
