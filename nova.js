@@ -46,12 +46,14 @@
     root.setAttribute('data-nova', '');
 
     // Burbuja + etiqueta "click me"
+    // Mismo robot que NOVA usa en Optimatiza: la marca del agente es una sola.
     function botIcon(size) {
         var img = document.createElement('img');
-        img.src = '/img/nova-bot.svg';
+        img.src = '/img/nova/avatar.webp';
         img.alt = '';
         img.width = size;
         img.height = size;
+        img.decoding = 'async';
         return img;
     }
 

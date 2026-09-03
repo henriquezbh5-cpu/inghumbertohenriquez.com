@@ -9,11 +9,11 @@
     <meta name="theme-color" content="#0A1322">
 
     <title>Laboratorio interactivo — Humberto Henríquez</title>
-    <meta name="description" content="Trece sistemas de automatización, datos y agentes de IA que puedes operar en el navegador. Sube tu propio archivo y el motor te devuelve un tablero terminado en segundos.">
+    <meta name="description" content="Trece sistemas de automatización, datos y agentes de IA que puedes probar en el navegador. Sube tu propio Excel y el motor te devuelve un tablero terminado en segundos.">
     <link rel="canonical" href="https://inghumbertohenriquez.com/laboratorio/">
 
     <meta property="og:title" content="Laboratorio interactivo — Humberto Henríquez">
-    <meta property="og:description" content="Trece sistemas de automatización y agentes de IA operables aquí mismo. Sube un archivo y recibe un tablero.">
+    <meta property="og:description" content="Trece sistemas que puedes probar aquí mismo. Sube un archivo y recibe un tablero.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://inghumbertohenriquez.com/laboratorio/">
     <meta property="og:image" content="https://inghumbertohenriquez.com/img/og-image.jpg">
@@ -29,7 +29,7 @@
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       "name": "Laboratorio interactivo",
-      "description": "Trece sistemas de automatización, datos y agentes de IA operables en el navegador, construidos con datos sintéticos.",
+      "description": "Trece sistemas de automatización, datos y agentes de IA que se pueden probar en el navegador, construidos con datos sintéticos.",
       "url": "https://inghumbertohenriquez.com/laboratorio/",
       "isPartOf": { "@type": "WebSite", "name": "Humberto Henríquez — Expediente Profesional", "url": "https://inghumbertohenriquez.com/" },
       "author": { "@type": "Person", "name": "Humberto Wilfredo Henríquez Benítez", "url": "https://inghumbertohenriquez.com/" }
@@ -73,32 +73,23 @@
 
 <!-- ============================== PORTADA ============================== -->
 <header class="lab-hero" id="top">
-    <div class="container">
-        <div class="dochead mono rv">
-            <span>DOC. HH/2026 — LABORATORIO INTERACTIVO</span>
-            <span class="dochead-mid">SAN SALVADOR · GMT-6 <span data-clock></span></span>
-            <span class="dochead-status"><i class="status-dot" aria-hidden="true"></i>DATOS SINTÉTICOS</span>
+    <div class="container lab-hero-grid">
+        <div class="lab-hero-main rv">
+            <p class="hero-kicker mono">LABORATORIO · TODO SE PUEDE TOCAR</p>
+            <h1>No te voy a contar<br>lo que construyo.<br><em>Pruébalo aquí.</em></h1>
+            <p class="lab-lede">Trece sistemas reales, recreados para que los uses en el navegador. Empieza por el primero: <b>sube un Excel tuyo</b> y mira lo que sale.</p>
+
+            <div class="lab-cta-row">
+                <a class="btn btn-primary mono lab-pulse" href="#prisma">SUBIR MI ARCHIVO <span class="arr" aria-hidden="true">↓</span></a>
+                <a class="btn btn-ghost mono" href="#galeria">VER LOS 12 SISTEMAS</a>
+            </div>
+
+            <p class="lab-note"><b>Nada de esto usa datos de clientes.</b> Todo se genera aquí mismo, en tu navegador, para que veas cómo funciona el flujo por dentro.</p>
         </div>
 
-        <div class="rv">
-            <p class="hero-kicker mono lab-kicker">ING. HUMBERTO WILFREDO HENRÍQUEZ BENÍTEZ</p>
-            <h1>No te voy a contar lo que construyo.<br><em>Úsalo aquí mismo.</em></h1>
-            <p class="lab-lede">Trece sistemas de automatización, datos y agentes de IA replicados con datos sintéticos para que los operes en el navegador. El primero recibe tu propio archivo y te devuelve un tablero terminado en segundos.</p>
-
-            <div class="lab-chips hero-chips mono">
-                <span class="chip chip-teal">170+ BOTS Y FLUJOS EN PRODUCCIÓN</span>
-                <span class="chip chip-blue">4 PAÍSES</span>
-                <span class="chip chip-amber">10+ AÑOS EN TECNOLOGÍA</span>
-                <span class="chip">PL-500 · PL-100 · PL-300</span>
-            </div>
-
-            <div class="lab-jump">
-                <a href="#prisma"><i class="dot d-teal"></i>SUBIR MI ARCHIVO</a>
-                <a href="#consola"><i class="dot d-violet"></i>ABRIR LA CONSOLA</a>
-                <a href="../#contacto"><i class="dot d-green"></i>HABLAR CONMIGO</a>
-            </div>
-
-            <p class="lab-note">Cada demostración reproduce la <b>mecánica</b> de un sistema que puse en producción, con datos generados para esta página. No aparece ningún dato, nombre de cliente ni código propietario: lo que se muestra es cómo decide, cómo enruta y cómo se recupera el flujo.</p>
+        <div class="lab-hero-fig rv" aria-hidden="true">
+            <img src="../img/nova/panel.webp" alt="" width="400" height="480" fetchpriority="high" decoding="async">
+            <span class="fig-glow"></span>
         </div>
     </div>
 </header>
@@ -108,29 +99,42 @@
 <!-- ============================== PRISMA ============================== -->
 <section class="lab-sec" id="prisma">
     <div class="container">
-        <div class="sec-head rv">
-            <span class="sec-index mono"><i class="dot d-teal"></i>01 — PRISMA · MOTOR DE TABLEROS</span>
-            <span class="sec-rule" aria-hidden="true"></span>
+        <div class="paso rv">
+            <span class="paso-num mono">01</span>
+            <div>
+                <h2 class="paso-t">Sube tu archivo y mira qué sale</h2>
+                <p class="paso-d">Un Excel o un CSV cualquiera. El motor descubre solo qué columna es fecha, cuál es categoría y cuál es la medida, y te arma el tablero. Tú no configuras nada.</p>
+            </div>
         </div>
-        <h2 class="sec-title rv">Sube un archivo. Recibe un tablero.<br><span class="sec-sub">Detecta solo qué columna es fecha, cuál es categoría y cuál es medida. Tú no configuras nada.</span></h2>
 
         <div class="stack rv lab-gap" id="heroSystem"></div>
     </div>
 </section>
 
-<!-- ============================== CONSOLA ============================== -->
-<section class="lab-sec" id="consola">
+<!-- ============================== GALERÍA ============================== -->
+<section class="lab-sec" id="galeria-sec">
     <div class="container">
-        <div class="sec-head rv">
-            <span class="sec-index mono"><i class="dot d-violet"></i>02 — CONSOLA · DOCE SISTEMAS OPERABLES</span>
-            <span class="sec-rule" aria-hidden="true"></span>
+        <div class="paso rv">
+            <span class="paso-num mono">02</span>
+            <div>
+                <h2 class="paso-t">Elige un sistema y hazlo fallar</h2>
+                <p class="paso-d">Cada tarjeta es un proceso que puse en producción. Ábrelo, mueve lo que quieras y mira cómo reacciona — incluido lo que hace cuando algo sale mal.</p>
+            </div>
         </div>
-        <h2 class="sec-title rv">Los flujos, por dentro.<br><span class="sec-sub">Elige un sistema y opéralo. Cada uno responde a lo que cambies: reglas, montos, tolerancias, fuentes caídas.</span></h2>
 
-        <div class="console rv">
-            <nav class="rail-sys" id="railSys" aria-label="Sistemas del laboratorio"></nav>
-            <div class="stage" id="stage" aria-live="polite"></div>
+        <div class="galeria rv" id="galeria"></div>
+    </div>
+</section>
+
+<!-- ============================== ESCENARIO ============================== -->
+<section class="lab-sec lab-sec-stage" id="escenario">
+    <div class="container">
+        <div class="chips-bar">
+            <span class="chips-lab mono">CAMBIAR DE SISTEMA</span>
+            <div class="chips-row" id="sysChips"></div>
+            <a class="chips-back mono" href="#galeria">↑ VER TODOS</a>
         </div>
+        <div class="stage" id="stage" aria-live="polite"></div>
     </div>
 </section>
 
@@ -138,12 +142,14 @@
 <section class="lab-sec" id="cierre">
     <div class="container">
         <div class="lab-cta rv">
-            <h2>¿Te sirve algo de lo que acabas de operar?</h2>
-            <p>Lo que viste son trece mecánicas que ya corren en producción, replicadas con datos que generé para esta página. Si tienes un proceso que se parece a alguno, la conversación empieza mostrándome el archivo con el que lo llevas hoy.</p>
-            <div class="row">
-                <a class="btn btn-primary mono" href="../#contacto">HABLEMOS DE TU PROCESO</a>
-                <a class="btn btn-ghost mono" href="../docs/CV-Humberto-Henriquez.pdf" download>DESCARGAR CV ↓</a>
-                <a class="btn btn-ghost mono" href="../agentes/">VER LA FLOTA DE AGENTES →</a>
+            <img class="cta-bot" src="../img/nova/entrega.webp" alt="" width="400" height="400" loading="lazy" decoding="async">
+            <div>
+                <h2>¿Alguno se parece a un problema tuyo?</h2>
+                <p>Lo que acabas de mover son mecánicas que ya corren en producción. Si tienes un proceso parecido, la conversación empieza enseñándome el archivo con el que lo llevas hoy.</p>
+                <div class="row">
+                    <a class="btn btn-primary mono" href="../#contacto">HABLEMOS DE TU PROCESO</a>
+                    <a class="btn btn-ghost mono" href="../docs/CV-Humberto-Henriquez.pdf" download>DESCARGAR CV ↓</a>
+                </div>
             </div>
         </div>
     </div>

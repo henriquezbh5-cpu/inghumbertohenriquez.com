@@ -198,9 +198,17 @@
             var S = { datos: null, fuente: '', graficas: {}, arrancado: false };
 
             /* ---------- zona de carga ---------- */
-            var drop = k.el('div', 'drop');
-            drop.appendChild(k.txt('h4', null, 'Arrastra aquí tu CSV o Excel'));
-            drop.appendChild(k.txt('p', null, 'O elige uno de los conjuntos de ejemplo si prefieres verlo funcionar primero.'));
+            var drop = k.el('div', 'drop drop-grande');
+            var bot = document.createElement('img');
+            bot.className = 'drop-bot';
+            bot.src = '../img/nova/laptop.webp';
+            bot.alt = '';
+            bot.width = 400; bot.height = 400;
+            bot.loading = 'lazy';
+            bot.decoding = 'async';
+            drop.appendChild(bot);
+            drop.appendChild(k.txt('h4', null, 'Arrastra aquí tu Excel o tu CSV'));
+            drop.appendChild(k.txt('p', null, 'Cualquier archivo con encabezados sirve. Si prefieres verlo funcionar primero, abre uno de ejemplo.'));
             var btns = k.el('div', 'drop-btns');
             var bFile = k.txt('button', 'btn primary', 'Elegir archivo');
             bFile.type = 'button';
@@ -254,12 +262,21 @@
             fuenteLbl.style.alignSelf = 'flex-end';
             fuenteLbl.style.paddingBottom = '10px';
             ctl.bar.appendChild(fuenteLbl);
-            host.appendChild(ctl.node);
+            var ajustes = document.createElement('details');
+            ajustes.className = 'detalle';
+            var resumen = document.createElement('summary');
+            resumen.className = 'mono';
+            resumen.textContent = 'Ajustar el tablero · dimensión, medida, agregación';
+            ajustes.appendChild(resumen);
+            var ajustesBody = k.el('div', 'detalle-body');
+            ajustesBody.appendChild(ctl.node);
+            ajustes.appendChild(ajustesBody);
+            host.appendChild(ajustes);
             ctl.on(function () { pintar(); });
 
             /* ---------- esquema detectado ---------- */
             var esqPanel = k.el('div', 'panel pad');
-            esqPanel.appendChild(k.txt('div', 'mono-head', 'Esquema detectado automáticamente'));
+            esqPanel.appendChild(k.txt('div', 'mono-head', 'Esto lo detecté solo, leyendo tu archivo'));
             var esqBody = k.el('div');
             esqBody.style.display = 'flex';
             esqBody.style.flexWrap = 'wrap';
