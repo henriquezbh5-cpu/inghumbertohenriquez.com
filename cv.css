@@ -1051,3 +1051,40 @@ html.js .rv.in { opacity: 1; transform: none }
     .term:last-child { grid-column: 1 / -1 }
     .terms .c-value { font-size: 15px }
 }
+
+/* ============================================================
+   PASE DE AUDITORÍA — 2026.09
+   Correcciones de comportamiento detectadas inspeccionando el
+   sitio en producción. Nada de esto cambia el sistema visual.
+   ============================================================ */
+
+/* 1 — El ancla del menú aterrizaba tapada por la barra fija (62 px). */
+[id] { scroll-margin-top: 78px }
+
+/* 2 — Red de seguridad del revelado. Sin JavaScript ya era visible
+   (html.js), aquí se cubre también el movimiento reducido. */
+@media (prefers-reduced-motion: reduce) {
+    html.js .rv { opacity: 1 !important; transform: none !important }
+}
+
+/* 3 — El lanzador del agente se montaba encima de las tarjetas.
+   La etiqueta se colapsa en pantallas medianas y tras unos segundos,
+   y el pie reserva un carril para que la burbuja no tape contenido. */
+.nova-tag.is-collapsed, .nova-tag.is-early { display: none }
+@media (max-width: 520px) {
+    .nova-tag { display: none }
+}
+.footer { padding-bottom: 104px }
+@media (max-width: 640px) {
+    .nova { right: 14px; bottom: 14px }
+    .nova-launch { width: 52px; height: 52px }
+}
+
+/* 4 — Enlace al laboratorio dentro de la malla de proyectos. */
+.sys.sys-lab {
+    border-color: rgba(45, 212, 191, .38);
+    background:
+        radial-gradient(420px 160px at 8% 0%, rgba(45, 212, 191, .10), transparent 68%),
+        var(--bg-2);
+}
+.sys.sys-lab .sys-live { color: var(--teal) }

@@ -42,36 +42,118 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     });
 })();
 
-/* ---------- reveals on scroll ---------- */
+/* ---------- reveals on scroll ----------
+   Regla dura: nada que deba leerse se queda esperando al observador.
+   Además del observador hay una red de seguridad — el ancla de la URL
+   se revela de inmediato y a los 1.4 s no queda nada invisible. */
 (function reveals() {
     const els = document.querySelectorAll('.rv');
     if (!els.length) return;
+
+    const revealAll = (scope) => {
+        (scope || document).querySelectorAll('.rv:not(.in)').forEach((n) => n.classList.add('in'));
+    };
+    const revealTarget = () => {
+        if (!location.hash) return;
+        let s;
+        try { s = document.querySelector(location.hash); } catch (e) { return; }
+        if (!s) return;
+        s.classList.add('in');
+        revealAll(s);
+    };
+
     if (reduced || !('IntersectionObserver' in window)) {
-        els.forEach((el) => el.classList.add('in'));
+        revealAll();
         return;
     }
+
     const io = new IntersectionObserver((entries) => {
         entries.forEach((en) => {
             if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
         });
     }, { threshold: 0.04 });
     els.forEach((el) => io.observe(el));
+
+    revealTarget();
+    window.addEventListener('hashchange', revealTarget);
+    /* clic en el menú: revelar antes de desplazar */
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', () => {
+            const href = a.getAttribute('href');
+            if (!href || href === '#') return;
+            let s;
+            try { s = document.querySelector(href); } catch (e) { return; }
+            if (s) { s.classList.add('in'); revealAll(s); }
+        });
+    });
+
+    /* Red de seguridad geométrica, independiente del observador: nada que
+       esté EN PANTALLA puede quedarse en opacity:0. No revela lo que está
+       más abajo, así que la aparición al desplazar se conserva. */
+    const enPantalla = (el) => {
+        const r = el.getBoundingClientRect();
+        return r.top < window.innerHeight + 140 && r.bottom > -140;
+    };
+    const revealVisibles = () => {
+        document.querySelectorAll('.rv:not(.in)').forEach((n) => {
+            if (enPantalla(n)) n.classList.add('in');
+        });
+    };
+    setTimeout(revealVisibles, 1400);
+    let pendiente = false;
+    window.addEventListener('scroll', () => {
+        if (pendiente) return;
+        pendiente = true;
+        setTimeout(() => { pendiente = false; revealVisibles(); }, 400);
+    }, { passive: true });
+})();
+
+/* ---------- corrección del ancla de entrada ----------
+   Con un #hash en la URL el navegador salta antes de que la portada
+   asiente su altura (fuente, foto, lienzo), y la sección aterriza baja.
+   Se recoloca una sola vez tras la carga, y solo si nadie tocó el scroll. */
+(function anchorFix() {
+    if (!location.hash) return;
+    let target;
+    try { target = document.querySelector(location.hash); } catch (e) { return; }
+    if (!target) return;
+
+    let touched = false;
+    const mark = () => { touched = true; };
+    ['wheel', 'touchstart', 'keydown'].forEach((ev) =>
+        window.addEventListener(ev, mark, { passive: true, once: true }));
+
+    const settle = () => {
+        if (touched) return;
+        const prev = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        target.scrollIntoView({ block: 'start' });
+        document.documentElement.style.scrollBehavior = prev;
+    };
+    window.addEventListener('load', () => {
+        requestAnimationFrame(settle);
+        setTimeout(settle, 320);
+    });
 })();
 
 /* ---------- contadores ---------- */
 (function counters() {
     const odos = document.querySelectorAll('.odo');
     if (!odos.length) return;
+    /* El contador nunca arranca en cero: parte del 60% del valor real y
+       cierra en menos de 700 ms. Una captura del primer segundo tiene que
+       mostrar la cifra correcta, no "1+ años en tecnología". */
     const run = (el) => {
         const target = parseInt(el.dataset.target, 10) || 0;
         const suffix = el.dataset.suffix || '';
         if (reduced) { el.textContent = target + suffix; return; }
+        const from = Math.round(target * 0.6);
         const t0 = performance.now();
-        const dur = 1300;
+        const dur = 650;
         const step = (now) => {
             const p = Math.min((now - t0) / dur, 1);
             const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.round(target * eased) + suffix;
+            el.textContent = Math.round(from + (target - from) * eased) + suffix;
             if (p < 1) requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
@@ -339,7 +421,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         { t: '[00:00.400]', a: 'PERFIL', c: 'la-perfil', m: 'Ingeniero en sistemas · Científico de datos' },
         { t: '[00:00.900]', a: 'EDUCACIÓN', c: 'la-edu', m: 'MSc Data Science (2026) · MSc BI · Posgrado Blockchain' },
         { t: '[00:01.400]', a: 'CERTIFICADO', c: 'la-cert', m: 'Microsoft ×3 — PL-500 RPA · PL-100 · PL-300' },
-        { t: '[00:01.900]', a: 'OPERACIÓN', c: 'la-tool', m: '15+ sistemas · 170+ bots RPA · SV · GT · CR · DO' },
+        { t: '[00:01.900]', a: 'OPERACIÓN', c: 'la-tool', m: '13 sistemas operables · 170+ bots RPA · SV · GT · CR · DO' },
         { t: '[00:02.400]', a: 'MODO', c: 'la-founder', m: '100% remoto desde 2020 · Power Automate a diario' },
         { t: '[00:02.900]', a: 'ESTADO', c: 'la-estado', m: 'Disponible · respuesta en menos de 24 h' },
     ];
@@ -371,7 +453,10 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         timers = [];
         body.textContent = '';
         if (replayBtn) replayBtn.hidden = true;
-        let li = 0;
+        /* La primera línea se escribe completa y de golpe: el recuadro nunca
+           se ve como un borde vacío mientras arranca el efecto. */
+        body.appendChild(render(LINES[0], LINES[0].m));
+        let li = 1;
         (function typeLine() {
             if (li >= LINES.length) {
                 caret.remove();
@@ -399,7 +484,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
 
     if (replayBtn) replayBtn.addEventListener('click', play);
 
-    const begin = () => later(play, 500);
+    const begin = () => later(play, 120);
     if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) { io.disconnect(); begin(); }

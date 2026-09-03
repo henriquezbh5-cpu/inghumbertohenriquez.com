@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https://quote-ai.henriquezbh5.workers.dev; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0A1322">
+
+    <title>Laboratorio interactivo — Humberto Henríquez</title>
+    <meta name="description" content="Trece sistemas de automatización, datos y agentes de IA que puedes operar en el navegador. Sube tu propio archivo y el motor te devuelve un tablero terminado en segundos.">
+    <link rel="canonical" href="https://inghumbertohenriquez.com/laboratorio/">
+
+    <meta property="og:title" content="Laboratorio interactivo — Humberto Henríquez">
+    <meta property="og:description" content="Trece sistemas de automatización y agentes de IA operables aquí mismo. Sube un archivo y recibe un tablero.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inghumbertohenriquez.com/laboratorio/">
+    <meta property="og:image" content="https://inghumbertohenriquez.com/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://inghumbertohenriquez.com/img/og-image.jpg">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A1322'/%3E%3Crect x='6' y='6' width='52' height='52' fill='none' stroke='%232DD4BF' stroke-width='3'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='24' font-weight='bold' text-anchor='middle' fill='%23E8F0F9'%3EHH%3C/text%3E%3C/svg%3E">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Laboratorio interactivo",
+      "description": "Trece sistemas de automatización, datos y agentes de IA operables en el navegador, construidos con datos sintéticos.",
+      "url": "https://inghumbertohenriquez.com/laboratorio/",
+      "isPartOf": { "@type": "WebSite", "name": "Humberto Henríquez — Expediente Profesional", "url": "https://inghumbertohenriquez.com/" },
+      "author": { "@type": "Person", "name": "Humberto Wilfredo Henríquez Benítez", "url": "https://inghumbertohenriquez.com/" }
+    }
+    </script>
+
+    <link rel="preload" href="../fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+
+    <script src="../js-flag.js"></script>
+    <link rel="stylesheet" href="../cv.css">
+    <link rel="stylesheet" href="lab.css">
+</head>
+<body>
+
+<a class="skip-link mono" href="#contenido">Ir al contenido</a>
+
+<!-- ============================== NAV ============================== -->
+<nav class="navbar" id="navbar" aria-label="Navegación principal">
+    <div class="nav-inner">
+        <a href="../" class="nav-logo" aria-label="Volver al expediente">
+            <span class="logo-seal mono" aria-hidden="true">HH</span>
+            <span class="logo-word mono">HUMBERTO HENRÍQUEZ</span>
+        </a>
+        <ul class="nav-links mono" id="navLinks">
+            <li><a href="../#trayectoria"><span class="nav-num">01</span>TRAYECTORIA</a></li>
+            <li><a href="../#credenciales"><span class="nav-num">02</span>CREDENCIALES</a></li>
+            <li><a href="../#arsenal"><span class="nav-num">03</span>ARSENAL</a></li>
+            <li><a href="../#sistemas"><span class="nav-num">04</span>PROYECTOS</a></li>
+            <li><a href="./" class="active"><span class="nav-num">05</span>LABORATORIO</a></li>
+            <li><a href="../#contacto"><span class="nav-num">06</span>CONTACTO</a></li>
+        </ul>
+        <div class="nav-right">
+            <span class="nav-clock mono" data-clock aria-hidden="true"></span>
+            <a class="nav-cta mono" href="../">← EXPEDIENTE</a>
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================== PORTADA ============================== -->
+<header class="lab-hero" id="top">
+    <div class="container">
+        <div class="dochead mono rv">
+            <span>DOC. HH/2026 — LABORATORIO INTERACTIVO</span>
+            <span class="dochead-mid">SAN SALVADOR · GMT-6 <span data-clock></span></span>
+            <span class="dochead-status"><i class="status-dot" aria-hidden="true"></i>DATOS SINTÉTICOS</span>
+        </div>
+
+        <div class="rv">
+            <p class="hero-kicker mono lab-kicker">ING. HUMBERTO WILFREDO HENRÍQUEZ BENÍTEZ</p>
+            <h1>No te voy a contar lo que construyo.<br><em>Úsalo aquí mismo.</em></h1>
+            <p class="lab-lede">Trece sistemas de automatización, datos y agentes de IA replicados con datos sintéticos para que los operes en el navegador. El primero recibe tu propio archivo y te devuelve un tablero terminado en segundos.</p>
+
+            <div class="lab-chips hero-chips mono">
+                <span class="chip chip-teal">170+ BOTS Y FLUJOS EN PRODUCCIÓN</span>
+                <span class="chip chip-blue">4 PAÍSES</span>
+                <span class="chip chip-amber">10+ AÑOS EN TECNOLOGÍA</span>
+                <span class="chip">PL-500 · PL-100 · PL-300</span>
+            </div>
+
+            <div class="lab-jump">
+                <a href="#prisma"><i class="dot d-teal"></i>SUBIR MI ARCHIVO</a>
+                <a href="#consola"><i class="dot d-violet"></i>ABRIR LA CONSOLA</a>
+                <a href="../#contacto"><i class="dot d-green"></i>HABLAR CONMIGO</a>
+            </div>
+
+            <p class="lab-note">Cada demostración reproduce la <b>mecánica</b> de un sistema que puse en producción, con datos generados para esta página. No aparece ningún dato, nombre de cliente ni código propietario: lo que se muestra es cómo decide, cómo enruta y cómo se recupera el flujo.</p>
+        </div>
+    </div>
+</header>
+
+<main id="contenido" tabindex="-1">
+
+<!-- ============================== PRISMA ============================== -->
+<section class="lab-sec" id="prisma">
+    <div class="container">
+        <div class="sec-head rv">
+            <span class="sec-index mono"><i class="dot d-teal"></i>01 — PRISMA · MOTOR DE TABLEROS</span>
+            <span class="sec-rule" aria-hidden="true"></span>
+        </div>
+        <h2 class="sec-title rv">Sube un archivo. Recibe un tablero.<br><span class="sec-sub">Detecta solo qué columna es fecha, cuál es categoría y cuál es medida. Tú no configuras nada.</span></h2>
+
+        <div class="stack rv lab-gap" id="heroSystem"></div>
+    </div>
+</section>
+
+<!-- ============================== CONSOLA ============================== -->
+<section class="lab-sec" id="consola">
+    <div class="container">
+        <div class="sec-head rv">
+            <span class="sec-index mono"><i class="dot d-violet"></i>02 — CONSOLA · DOCE SISTEMAS OPERABLES</span>
+            <span class="sec-rule" aria-hidden="true"></span>
+        </div>
+        <h2 class="sec-title rv">Los flujos, por dentro.<br><span class="sec-sub">Elige un sistema y opéralo. Cada uno responde a lo que cambies: reglas, montos, tolerancias, fuentes caídas.</span></h2>
+
+        <div class="console rv">
+            <nav class="rail-sys" id="railSys" aria-label="Sistemas del laboratorio"></nav>
+            <div class="stage" id="stage" aria-live="polite"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================== CIERRE ============================== -->
+<section class="lab-sec" id="cierre">
+    <div class="container">
+        <div class="lab-cta rv">
+            <h2>¿Te sirve algo de lo que acabas de operar?</h2>
+            <p>Lo que viste son trece mecánicas que ya corren en producción, replicadas con datos que generé para esta página. Si tienes un proceso que se parece a alguno, la conversación empieza mostrándome el archivo con el que lo llevas hoy.</p>
+            <div class="row">
+                <a class="btn btn-primary mono" href="../#contacto">HABLEMOS DE TU PROCESO</a>
+                <a class="btn btn-ghost mono" href="../docs/CV-Humberto-Henriquez.pdf" download>DESCARGAR CV ↓</a>
+                <a class="btn btn-ghost mono" href="../agentes/">VER LA FLOTA DE AGENTES →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <div class="nav-logo"><span class="logo-seal mono">HH</span><span class="logo-word mono">HUMBERTO HENRÍQUEZ</span></div>
+            <p class="mono footer-line">INGENIERO · FUNDADOR DE OPTIMATIZA · CREADOR DE BITCOIN ACADEMY</p>
+        </div>
+        <nav class="footer-links mono" aria-label="Mapa del sitio">
+            <a href="../#trayectoria">01 TRAYECTORIA</a>
+            <a href="../#credenciales">02 CREDENCIALES</a>
+            <a href="../#arsenal">03 ARSENAL</a>
+            <a href="../#sistemas">04 PROYECTOS</a>
+            <a href="./">05 LABORATORIO</a>
+        </nav>
+        <div class="footer-side mono">
+            <a href="https://optimatiza.com/" target="_blank" rel="noopener">OPTIMATIZA.COM ↗</a>
+            <a href="https://bitcoinacademy.tech" target="_blank" rel="noopener">BITCOINACADEMY.TECH ↗</a>
+            <span>SAN SALVADOR · GMT-6 <span data-clock></span></span>
+        </div>
+    </div>
+    <div class="container footer-colophon mono">
+        <span>TODOS LOS DATOS DE ESTA PÁGINA SON SINTÉTICOS Y SE GENERAN EN TU NAVEGADOR</span>
+        <span>inghumbertohenriquez.com · rev. 2026.09 · © 2026 Humberto Henríquez</span>
+    </div>
+</footer>
+
+<script defer src="../vendor/xlsx/xlsx.full.min.js"></script>
+<script defer src="../vendor/chartjs/chart.umd.min.js"></script>
+<script defer src="lab-core.js"></script>
+<script defer src="sys/prisma.js"></script>
+<script defer src="sys/orquesta.js"></script>
+<script defer src="sys/centinela.js"></script>
+<script defer src="sys/relevo.js"></script>
+<script defer src="sys/boveda.js"></script>
+<script defer src="sys/cartero.js"></script>
+<script defer src="sys/oraculo.js"></script>
+<script defer src="sys/escudo.js"></script>
+<script defer src="sys/reloj.js"></script>
+<script defer src="sys/torre.js"></script>
+<script defer src="sys/canal.js"></script>
+<script defer src="sys/pulso.js"></script>
+<script defer src="sys/ruta.js"></script>
+<script defer src="lab-boot.js"></script>
+<script defer src="../nova.js"></script>
+</body>
+</html>

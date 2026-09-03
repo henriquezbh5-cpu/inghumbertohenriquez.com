@@ -48,7 +48,7 @@
     // Burbuja + etiqueta "click me"
     function botIcon(size) {
         var img = document.createElement('img');
-        img.src = 'img/nova-bot.svg';
+        img.src = '/img/nova-bot.svg';
         img.alt = '';
         img.width = size;
         img.height = size;
@@ -66,7 +66,7 @@
     var tag = el('button', 'nova-tag mono');
     tag.type = 'button';
     tag.appendChild(el('span', 'nova-tag-dot'));
-    tag.appendChild(el('span', null, 'CONOZCO A HUMBERTO — ¡PREGÚNTAME!'));
+    tag.appendChild(el('span', null, 'PREGÚNTAME SOBRE HUMBERTO'));
 
     // Panel
     var panel = el('section', 'nova-panel');
@@ -235,4 +235,36 @@
     try {
         if (localStorage.getItem(LS_SEEN)) tag.classList.add('is-quiet');
     } catch (e) { /* privado */ }
+
+    // La etiqueta no puede tapar contenido. Aparece solo cuando el
+    // visitante ya dejó atrás la portada (donde vive el panel HH.LOG),
+    // y se retira sola a los 8 s dejando únicamente la burbuja.
+    var LS_TAG = 'hh-nova-tag-seen';
+    tag.classList.add('is-early');
+    var collapseTimer = 0;
+    function releaseTag() {
+        if (!tag.classList.contains('is-early')) return;
+        // Se muestra una sola vez por sesión: cumple su función de invitar
+        // sin convertirse en un estorbo permanente sobre el contenido.
+        try {
+            if (sessionStorage.getItem(LS_TAG)) return;
+            sessionStorage.setItem(LS_TAG, '1');
+        } catch (e) { /* privado */ }
+        tag.classList.remove('is-early');
+        collapseTimer = setTimeout(function () {
+            if (!root.classList.contains('is-open')) tag.classList.add('is-collapsed');
+        }, 7000);
+    }
+    function onScroll() {
+        if (window.scrollY > 420) {
+            window.removeEventListener('scroll', onScroll);
+            releaseTag();
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    // Si la página no tiene scroll suficiente, la etiqueta igual aparece.
+    setTimeout(function () {
+        if (document.documentElement.scrollHeight <= window.innerHeight + 420) releaseTag();
+    }, 2500);
 })();
