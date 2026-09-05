@@ -33,7 +33,7 @@ button, input, textarea { font: inherit; color: inherit; background: transparent
     --line-soft: rgba(148, 180, 220, .09);
     --ink: #E8F0F9;
     --body: #A9BCD3;
-    --label: #6C82A0;
+    --label: #9CAEC5;
     --teal: #2DD4BF;
     --teal-rgb: 45, 212, 191;
     --cyan: #38BDF8;
@@ -1128,3 +1128,28 @@ html.js .rv.in { opacity: 1; transform: none }
 .sys-lab .sys-fig { border-bottom-color: rgba(45, 212, 191, .28) }
 @media (prefers-reduced-motion: reduce) { .sys-fig img { transition: none } }
 @media (max-width: 560px) { .sys-fig { height: 112px } }
+
+/* Auditoría septiembre 2026: tamaños legibles y controles accesibles. */
+.nav-links{font-size:.875rem;gap:18px}
+.nav-links a{min-height:44px;display:flex;align-items:center}
+.nav-cta,.btn{font-size:.875rem;min-height:44px}
+.nav-toggle{min-width:44px;min-height:44px;align-items:center;justify-content:center}
+.nav-clock,.rail,.rail-note,.dochead,.hero-kicker,.hero-chips,.sec-index,.cred-tag,.sys-chips,.sys-note,.photo-card figcaption,.log-head,.log-replay,.log-time,.pnode-step,.stat dd .mono{font-size:.75rem}
+.log-time{color:var(--label)}
+.log-body,.log-body .log-line{font-size:.8125rem}
+.pnode-d,.sys p,.form-field label,.c-label,.term-note,.form-status,.form-alt,.footer-links,.nova-foot{font-size:.875rem}
+.pnode-d,.sys p{font-size:1rem;line-height:1.65}
+.form-field input,.form-field select,.form-field textarea{font-size:1rem;min-height:44px}
+.contact-rows a{overflow-wrap:anywhere;min-height:44px;display:inline-flex;align-items:center}
+.hero-title{text-wrap:balance;line-height:1.1}
+.hero-sub{max-width:49ch;line-height:1.7}
+.credential-note,.form-data-note{font:400 .875rem/1.7 var(--font-b);color:var(--body);letter-spacing:0;text-transform:none}
+.credential-note{margin:-18px 0 24px;padding-left:16px;border-left:2px solid var(--blue)}
+.credential-note a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
+.form-data-note{margin-top:16px}
+.log-replay{min-height:44px}
+@media(min-width:961px) and (max-width:1440px){.nav-links{gap:12px}.nav-links .nav-num,.nav-clock,.logo-word{display:none}}
+@media(max-width:960px){.nav-links{max-height:calc(100dvh - 62px);overflow-y:auto}.nav-links a{font-size:.875rem}.nav-cta{font-size:.875rem}}
+@media(max-width:600px){.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{text-align:center}.hero-chips{gap:8px}.chip{padding:7px 9px}.stats{margin-top:32px}.stat{padding:18px 14px}.hero-side{flex-direction:column}.log-head{flex-wrap:wrap}.nav-inner{gap:12px}.sec-index{white-space:normal}.contact-rows li{min-width:0}}
+
+.nova-foot{font:400 .875rem/1.5 var(--font-b);letter-spacing:0;text-transform:none}

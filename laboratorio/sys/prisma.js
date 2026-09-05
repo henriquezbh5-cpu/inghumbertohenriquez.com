@@ -208,7 +208,7 @@
             bot.decoding = 'async';
             drop.appendChild(bot);
             drop.appendChild(k.txt('h4', null, 'Arrastra aquí tu Excel o tu CSV'));
-            drop.appendChild(k.txt('p', null, 'Cualquier archivo con encabezados sirve. Si prefieres verlo funcionar primero, abre uno de ejemplo.'));
+            drop.appendChild(k.txt('p', null, 'Excel, CSV o TSV con encabezados en la primera fila. Se analiza la primera hoja: hasta 10 MB, 10.000 filas de datos y 100 columnas. También puedes abrir un ejemplo.'));
             var btns = k.el('div', 'drop-btns');
             var bFile = k.txt('button', 'btn primary', 'Elegir archivo');
             bFile.type = 'button';
@@ -336,13 +336,22 @@
 
             /* ---------- lectura de archivo ---------- */
             function leerArchivo(f) {
+                if (!f) return;
+                if (!/\.(csv|tsv|txt|xlsx|xls)$/i.test(f.name)) { aviso('Usa un archivo Excel, CSV o TSV.'); return; }
+                if (!f.size) { aviso('El archivo está vacío. Elige uno con encabezados y filas de datos.'); return; }
+                if (f.size > 10 * 1024 * 1024) { aviso('El archivo supera 10 MB. Exporta una muestra más pequeña para explorarla aquí.'); return; }
                 var fr = new FileReader();
                 fr.onerror = function () { aviso('No se pudo leer el archivo.'); };
                 fr.onload = function () {
                     try {
                         if (!window.XLSX) { aviso('El lector de archivos todavía está cargando. Inténtalo en un momento.'); return; }
-                        var wb = window.XLSX.read(fr.result, { type: 'array', cellDates: true });
+                        var wb = window.XLSX.read(fr.result, { type: 'array', cellDates: true, sheetRows: 10002 });
                         var hoja = wb.Sheets[wb.SheetNames[0]];
+                        if (!hoja || !hoja['!ref']) { aviso('La primera hoja está vacía. Coloca los datos en la primera hoja.'); return; }
+                        var range = window.XLSX.utils.decode_range(hoja['!fullref'] || hoja['!ref']);
+                        if (range.e.r - range.s.r + 1 > 10001 || range.e.c - range.s.c + 1 > 100) {
+                            aviso('La primera hoja supera 10.000 filas de datos o 100 columnas. Exporta una muestra más pequeña.'); return;
+                        }
                         var rows = window.XLSX.utils.sheet_to_json(hoja, { header: 1, raw: true, defval: '' });
                         rows = rows.filter(function (r) {
                             return r && r.length && r.some(function (c) { return c !== '' && c != null; });

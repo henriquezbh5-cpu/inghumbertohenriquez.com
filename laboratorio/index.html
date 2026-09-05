@@ -41,7 +41,7 @@
     <link rel="preload" href="../fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 
     <script src="../js-flag.js"></script>
-    <link rel="stylesheet" href="../cv.css">
+    <link rel="stylesheet" href="../cv.css?v=479377db7f">
     <link rel="stylesheet" href="lab.css">
 </head>
 <body>
@@ -84,7 +84,7 @@
                 <a class="btn btn-ghost mono" href="#galeria">VER LOS 12 SISTEMAS</a>
             </div>
 
-            <p class="lab-note"><b>Nada de esto usa datos de clientes.</b> Todo se genera aquí mismo, en tu navegador, para que veas cómo funciona el flujo por dentro.</p>
+            <p class="lab-note"><b>Los ejemplos usan datos sintéticos.</b> Si eliges un archivo propio en Prisma, se procesa en tu navegador y no se envía a un servidor.</p>
         </div>
 
         <div class="lab-hero-fig rv" aria-hidden="true">
@@ -103,7 +103,7 @@
             <span class="paso-num mono">01</span>
             <div>
                 <h2 class="paso-t">Sube tu archivo y mira qué sale</h2>
-                <p class="paso-d">Un Excel o un CSV cualquiera. El motor descubre solo qué columna es fecha, cuál es categoría y cuál es la medida, y te arma el tablero. Tú no configuras nada.</p>
+                <p class="paso-d">Un Excel o CSV con encabezados en la primera fila. Prisma analiza la primera hoja (hasta 10 MB y 10.000 filas de datos), detecta las columnas y construye un tablero en tu navegador.</p>
             </div>
         </div>
 
@@ -178,7 +178,7 @@
         </div>
     </div>
     <div class="container footer-colophon mono">
-        <span>TODOS LOS DATOS DE ESTA PÁGINA SON SINTÉTICOS Y SE GENERAN EN TU NAVEGADOR</span>
+        <span>EJEMPLOS CON DATOS SINTÉTICOS · TUS ARCHIVOS SE PROCESAN EN TU NAVEGADOR</span>
         <span>inghumbertohenriquez.com · rev. 2026.09 · © 2026 Humberto Henríquez</span>
     </div>
 </footer>
@@ -186,7 +186,7 @@
 <script defer src="../vendor/xlsx/xlsx.full.min.js"></script>
 <script defer src="../vendor/chartjs/chart.umd.min.js"></script>
 <script defer src="lab-core.js"></script>
-<script defer src="sys/prisma.js"></script>
+<script defer src="sys/prisma.js?v=96fa5afc05"></script>
 <script defer src="sys/orquesta.js"></script>
 <script defer src="sys/centinela.js"></script>
 <script defer src="sys/relevo.js"></script>
@@ -200,6 +200,6 @@
 <script defer src="sys/pulso.js"></script>
 <script defer src="sys/ruta.js"></script>
 <script defer src="lab-boot.js"></script>
-<script defer src="../nova.js"></script>
+<script defer src="../nova.js?v=b18471d528"></script>
 </body>
 </html>

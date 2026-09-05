@@ -30,15 +30,19 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
     if (!toggle || !links) return;
-    toggle.addEventListener('click', () => {
-        const open = links.classList.toggle('open');
+    function setOpen(open, restoreFocus) {
+        links.classList.toggle('open', open);
         toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        if (restoreFocus) toggle.focus();
+    }
+    toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
+    links.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && links.classList.contains('open')) setOpen(false, true);
     });
-    links.addEventListener('click', (e) => {
-        if (e.target.closest('a')) {
-            links.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-        }
+    document.addEventListener('click', (e) => {
+        if (!links.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
     });
 })();
 
@@ -370,23 +374,30 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     const status = document.getElementById('formStatus');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        if (btn.disabled) return;
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
         btn.disabled = true;
-        btn.textContent = 'TRANSMITIENDO…';
+        form.setAttribute('aria-busy', 'true');
+        btn.textContent = 'ENVIANDO…';
         status.className = 'form-status mono';
         status.textContent = '';
         fetch(form.action, {
             method: 'POST',
             body: new FormData(form),
             headers: { Accept: 'application/json' },
+            signal: controller.signal,
         }).then((r) => {
             if (!r.ok) throw new Error('http ' + r.status);
             form.reset();
             status.classList.add('ok');
-            status.textContent = 'MENSAJE RECIBIDO — RESPONDO EN MENOS DE 24 H';
+            status.textContent = 'MENSAJE RECIBIDO. TE RESPONDERÉ EN HORARIO HÁBIL.';
         }).catch(() => {
             status.classList.add('err');
             status.innerHTML = 'NO SE PUDO ENVIAR — <a href="https://wa.me/50371928070" target="_blank" rel="noopener">ESCRÍBEME POR WHATSAPP</a>';
         }).finally(() => {
+            clearTimeout(timeout);
+            form.removeAttribute('aria-busy');
             btn.disabled = false;
             btn.textContent = 'ENVIAR MENSAJE';
         });
@@ -423,7 +434,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         { t: '[00:01.400]', a: 'CERTIFICADO', c: 'la-cert', m: 'Microsoft ×3 — PL-500 RPA · PL-100 · PL-300' },
         { t: '[00:01.900]', a: 'OPERACIÓN', c: 'la-tool', m: '13 sistemas operables · 170+ bots RPA · SV · GT · CR · DO' },
         { t: '[00:02.400]', a: 'MODO', c: 'la-founder', m: '100% remoto desde 2020 · Power Automate a diario' },
-        { t: '[00:02.900]', a: 'ESTADO', c: 'la-estado', m: 'Disponible · respuesta en menos de 24 h' },
+        { t: '[00:02.900]', a: 'ESTADO', c: 'la-estado', m: 'Disponible · contacto directo en horario hábil' },
     ];
 
     const render = (line, msg) => {

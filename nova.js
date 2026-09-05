@@ -24,11 +24,11 @@
 
     /* ---------- respuestas locales (si el worker no responde) ---------- */
     var FALLBACK = [
-        [/power\s*automate|rpa|bot|flujo/i, 'Humberto ha construido mas de 170 bots y flujos con Power Automate Cloud y Desktop que hoy operan en 4 paises. Es Microsoft Certified PL-500, la certificacion especifica de RPA. Mira la seccion 03 — ARSENAL para el detalle.'],
-        [/agente|ia\b|inteligencia|copilot|llm/i, 'De agentes sabe un rato: un agente en Copilot Studio publicado en Teams, un agente de vision que lee documentos con Gemini, bots de WhatsApp con maquina de estados... y yo misma, que soy uno de sus agentes. La seccion 04 — PROYECTOS tiene mas.'],
-        [/estudi|maestr|certific|credencial|titulo/i, 'Dos maestrias (Ciencia de Datos e Inteligencia de Negocios), un posgrado en Blockchain, Ingenieria en Sistemas y triple certificacion Microsoft: PL-500, PL-100 y PL-300. Todo verificable en la seccion 02 — CREDENCIALES.'],
-        [/contrat|contact|vacante|remoto|disponib|trabaj/i, 'Humberto esta abierto a roles remotos y proyectos. Lo mas rapido: WhatsApp +503 7192 8070 o el formulario de la seccion 05 — responde en menos de 24 horas. Tambien puedes descargar su CV en PDF ahi mismo.'],
-        [/precio|cost|tarifa|cotiz|cuanto/i, 'Numeros exactos no doy — para eso esta el cotizador interactivo de la seccion 05, que estima tu proyecto en vivo. Para servicios de empresa, optimatiza.com.'],
+        [/power\s*automate|rpa|bot|flujo/i, 'Humberto ha construido mas de 170 bots y flujos con Power Automate Cloud y Desktop que hoy operan en 4 paises. Es Microsoft Certified PL-500, la certificacion especifica de RPA. Mira Herramientas para el detalle.'],
+        [/agente|ia\b|inteligencia|copilot|llm/i, 'De agentes sabe un rato: un agente en Copilot Studio publicado en Teams, un agente de vision que lee documentos con Gemini, bots de WhatsApp con maquina de estados... y yo misma, que soy uno de sus agentes. La sección Proyectos tiene más.'],
+        [/estudi|maestr|certific|credencial|titulo/i, 'Dos maestrias (Ciencia de Datos e Inteligencia de Negocios), un posgrado en Blockchain, Ingenieria en Sistemas y triple certificacion Microsoft: PL-500, PL-100 y PL-300. Consulta Formación y certificaciones. Puedes solicitar la documentación y los enlaces de verificación por correo.'],
+        [/contrat|contact|vacante|remoto|disponib|trabaj/i, 'Humberto esta abierto a roles remotos y proyectos. Lo mas rapido: WhatsApp +503 7192 8070 o el formulario de Contacto. Responde en horario hábil de El Salvador. Tambien puedes descargar su CV en PDF ahi mismo.'],
+        [/precio|cost|tarifa|cotiz|cuanto/i, 'La inversión depende del alcance y de los sistemas involucrados. Describe tu proceso en Contacto o solicita una evaluación en optimatiza.com/contacto/ para recibir una propuesta.'],
         [/optimatiza/i, 'Optimatiza es el estudio que Humberto fundo: agentes de IA para ventas, cobros y soporte de pymes en Latinoamerica. Esta en optimatiza.com — y su NOVA de alla es prima mia.'],
         [/bitcoin|cripto|blockchain/i, 'Humberto creo Bitcoin Academy, una PWA educativa publicada en Google Play, y tiene un posgrado en Tecnologia Blockchain. Ademas construye indicadores propios en Pine Script.'],
     ];
@@ -72,6 +72,11 @@
 
     // Panel
     var panel = el('section', 'nova-panel');
+    panel.id = 'novaPanel';
+    launcher.setAttribute('aria-controls', 'novaPanel');
+    launcher.setAttribute('aria-expanded', 'false');
+    tag.setAttribute('aria-controls', 'novaPanel');
+    tag.setAttribute('aria-expanded', 'false');
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-label', 'Chat con NOVA');
     panel.hidden = true;
@@ -82,7 +87,7 @@
     avatar.appendChild(botIcon(24));
     var headTxt = el('div', 'nova-head-txt');
     headTxt.appendChild(el('strong', null, 'NOVA'));
-    headTxt.appendChild(el('span', 'mono', 'AGENTE DE HUMBERTO · EN LÍNEA'));
+    headTxt.appendChild(el('span', 'mono', 'ASISTENTE DE IA DE HUMBERTO'));
     headId.appendChild(avatar);
     headId.appendChild(headTxt);
     var closeBtn = el('button', 'nova-close mono', '✕');
@@ -114,7 +119,7 @@
     form.appendChild(input);
     form.appendChild(send);
 
-    var foot = el('p', 'nova-foot mono', 'NOVA ES UN AGENTE DE IA CONSTRUIDO POR HUMBERTO · PUEDE EQUIVOCARSE');
+    var foot = el('p', 'nova-foot mono', 'NOVA puede equivocarse. Para responder, envía tu pregunta y los mensajes recientes al servicio de IA de Humberto. No compartas información confidencial.');
 
     panel.appendChild(head);
     panel.appendChild(feed);
@@ -171,7 +176,7 @@
             if (history.length > 16) history = history.slice(-16);
             busy = false;
             send.disabled = false;
-            input.focus();
+            if (!panel.hidden) input.focus();
         };
 
         var ctrl = ('AbortController' in window) ? new AbortController() : null;
@@ -183,7 +188,7 @@
             body: JSON.stringify({ message: q, history: history.slice(-8, -1) }),
             signal: ctrl ? ctrl.signal : undefined
         }).then(function (r) {
-            if (r.status === 429) return { reply: 'Uy, me estás preguntando muy rápido — dame un minuto para recuperar el aliento. Mientras tanto, la sección 04 tiene los proyectos en producción.' };
+            if (r.status === 429) return { reply: 'Uy, me estás preguntando muy rápido — dame un minuto para recuperar el aliento. Mientras tanto, la sección Proyectos muestra su trabajo.' };
             if (!r.ok) throw new Error('bad status ' + r.status);
             return r.json();
         }).then(function (d) {
@@ -199,6 +204,8 @@
     var opened = false;
     function openPanel() {
         panel.hidden = false;
+        launcher.setAttribute('aria-expanded', 'true');
+        tag.setAttribute('aria-expanded', 'true');
         root.classList.add('is-open');
         tag.hidden = true;
         try { localStorage.setItem(LS_SEEN, '1'); } catch (e) { /* privado */ }
@@ -207,12 +214,15 @@
             addMsg('nova', 'Hola, soy NOVA — el agente de IA que Humberto construyó para este sitio. Sí, hablar conmigo ya es ver su trabajo en acción. ¿Qué quieres saber de él?');
             renderChips();
         }
-        setTimeout(function () { input.focus(); }, 250);
+        setTimeout(function () { if (!panel.hidden) input.focus(); }, 250);
     }
     function closePanel() {
         panel.hidden = true;
         root.classList.remove('is-open');
+        launcher.setAttribute('aria-expanded', 'false');
+        tag.setAttribute('aria-expanded', 'false');
         tag.hidden = false;
+        launcher.focus();
     }
 
     launcher.addEventListener('click', function () { panel.hidden ? openPanel() : closePanel(); });
