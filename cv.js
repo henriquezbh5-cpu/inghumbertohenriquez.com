@@ -150,11 +150,12 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const run = (el) => {
         const target = parseInt(el.dataset.target, 10) || 0;
         const suffix = el.dataset.suffix || '';
-        if (reduced) { el.textContent = target + suffix; return; }
+        if (reduced || window.hhMotion?.paused) { el.textContent = target + suffix; return; }
         const from = Math.round(target * 0.6);
         const t0 = performance.now();
         const dur = 650;
         const step = (now) => {
+            if (window.hhMotion?.paused) { el.textContent = target + suffix; return; }
             const p = Math.min((now - t0) / dur, 1);
             const eased = 1 - Math.pow(1 - p, 3);
             el.textContent = Math.round(from + (target - from) * eased) + suffix;
@@ -296,6 +297,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     let tabVisible = document.visibilityState !== 'hidden';
 
     function apply(step) {
+        clearTimeout(swapTimer);
         featured.classList.add('tf-swapping');
         // 260ms ≈ la transición .25s de .tf-swapping en cv.css — mantener sincronizados
         swapTimer = setTimeout(() => {
@@ -323,7 +325,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
 
     function schedule() {
         clearTimeout(timer);
-        if (hovered || !inView || !tabVisible) return;
+        if (hovered || !inView || !tabVisible || window.hhMotion?.paused) return;
         timer = setTimeout(() => {
             idx = (idx + 1) % seq.length;
             apply(seq[idx]);
@@ -333,7 +335,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
 
     // al ocultarse (scroll o pestaña) se detiene; al volver, re-ancla en Power Automate
     function gate() {
-        if (inView && tabVisible) {
+        if (inView && tabVisible && !window.hhMotion?.paused) {
             if (idx !== 0) { idx = 0; apply(seq[0]); }
             schedule();
         } else {
@@ -351,6 +353,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     }
     featured.addEventListener('focusin', () => { hovered = true; clearTimeout(timer); });
     featured.addEventListener('focusout', () => { hovered = false; schedule(); });
+    window.addEventListener('hh:motion', gate);
     if ('IntersectionObserver' in window) {
         new IntersectionObserver((entries) => {
             inView = entries[0].isIntersecting;
@@ -406,6 +409,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
 
 /* ---------- tilt 3D sutil (solo puntero fino, sin reduced-motion) ---------- */
 (function tilt() {
+    if (document.body.classList.contains('cosmic-site')) return; // Unified controller in cosmos.js.
     if (reduced || !matchMedia('(pointer: fine)').matches) return;
     document.querySelectorAll('.tool-featured, .photo-frame').forEach((el) => {
         el.style.transformStyle = 'preserve-3d';
@@ -459,7 +463,17 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     let timers = [];
     const later = (fn, ms) => timers.push(setTimeout(fn, ms));
 
+    function showCompleteLog() {
+        timers.forEach(clearTimeout);
+        timers = [];
+        body.textContent = '';
+        LINES.forEach((line) => body.appendChild(render(line, line.m)));
+        if (replayBtn) replayBtn.hidden = false;
+    }
+    window.addEventListener('hh:motion', () => { if (window.hhMotion?.paused) showCompleteLog(); });
+
     function play() {
+        if (window.hhMotion?.paused) { showCompleteLog(); return; }
         timers.forEach(clearTimeout);
         timers = [];
         body.textContent = '';

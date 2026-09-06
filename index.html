@@ -70,8 +70,14 @@
 
     <script src="js-flag.js"></script>
     <link rel="stylesheet" href="cv.css?v=479377db7f">
+    <link rel="stylesheet" href="cosmos.css?v=61f90b6b04">
 </head>
-<body>
+<body class="cosmic-site">
+
+<div class="cosmos" aria-hidden="true">
+    <canvas class="cosmos-canvas" id="bgfx"></canvas>
+    <div class="cosmos-veil"></div>
+</div>
 
 <a class="skip-link mono" href="#contenido">Ir al contenido</a>
 
@@ -113,7 +119,6 @@
 
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
-    <canvas class="bg3d" id="bgfx" aria-hidden="true"></canvas>
     <div class="hero-shade" aria-hidden="true"></div>
 
     <div class="container hero-content">
@@ -123,6 +128,10 @@
             <span class="dochead-status"><i class="status-dot" aria-hidden="true"></i>DISPONIBLE · REMOTO</span>
         </div>
 
+        <div class="universe-intro mono rv">
+            <span class="universe-label"><span class="universe-signal" aria-hidden="true"></span> IA · DATOS · AUTOMATIZACIÓN</span>
+            <span class="universe-coordinate" aria-hidden="true">13.69° N / 89.19° W</span>
+        </div>
         <div class="hero-grid">
             <div class="hero-main">
                 <p class="hero-kicker mono rv">ING. HUMBERTO WILFREDO HENRÍQUEZ BENÍTEZ</p>
@@ -516,8 +525,15 @@
     </div>
 </footer>
 
-<script defer src="cv.js?v=f3cbe583e8"></script>
+<script defer src="cosmos.js?v=59ad5e66ee"></script>
+<script defer src="cv.js?v=cd98c536fc"></script>
 <script defer src="nova.js?v=b18471d528"></script>
-<script type="module" src="bg3d.js"></script>
+<div class="motion-dock mono" hidden>
+    <button id="motionToggle" type="button" aria-pressed="false" aria-label="Pausar movimiento ambiental">
+        <svg class="motion-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path class="motion-pause" d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2"/><path class="motion-play" d="m5 3 8 5-8 5V3Z" fill="currentColor"/></svg>
+        <span data-motion-label>PAUSAR MOVIMIENTO</span>
+    </button>
+</div>
+<script type="module" src="bg3d.js?v=af60239d4b"></script>
 </body>
 </html>

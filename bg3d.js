@@ -1,259 +1,272 @@
-/* ============================================================
-   BG3D — "Topografía de datos"
-   Malla de puntos desplazada por ondas en GPU (ShaderMaterial)
-   + capa de partículas a la deriva. Hero del CV digital.
-
-   Guardrails (threejs-pro): init tras idle, bail con
-   prefers-reduced-motion / saveData / sin WebGL, DPR cap 1.75,
-   pausa fuera de viewport y con pestaña oculta, presupuesto
-   móvil reducido, low-power, canvas decorativo.
-   ============================================================ */
+/* HH / COSMOS — a continuous GPU particle scene using self-hosted Three.js.
+   Static fallback, capped DPR, adaptive quality and one gated animation loop. */
 'use strict';
-
-const CONFIG = {
-    threePath: './vendor/three/three.module.min.js',
-    canvasId: 'bgfx',
-    // paleta DARK: teal → azul, blending aditivo (luz sobre fondo oscuro)
-    colorLow: [0x1C / 255, 0x3F / 255, 0x66 / 255],   // valle: azul profundo
-    colorMid: [0x3E / 255, 0x8F / 255, 0xB8 / 255],   // ladera: azul acero
-    colorHigh: [0x3B / 255, 0xF0 / 255, 0xD4 / 255],  // cresta: teal
-    // paleta LIGHT: tinta sobre papel — el blending aditivo es invisible sobre
-    // claro (sumar luz a blanco no hace nada), asi que en light se cambia a
-    // NormalBlending con colores oscuros y alpha reforzada (uBoost).
-    lightLow: [0x2B / 255, 0x50 / 255, 0x7A / 255],   // azul tinta
-    lightMid: [0x0E / 255, 0x74 / 255, 0x90 / 255],   // cyan profundo
-    lightHigh: [0x0D / 255, 0x94 / 255, 0x88 / 255],  // teal tinta
-    lightBoost: 1.45,
-    gridW: 150, gridH: 90,        // desktop: 13 500 vértices (GPU)
-    gridWm: 80, gridHm: 50,       // móvil: 4 000
-    particles: 380, particlesM: 130,
-    dprCap: 1.75,
-    parallax: 0.35,
-};
-
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const saveData = navigator.connection && navigator.connection.saveData;
-const canvas = document.getElementById(CONFIG.canvasId);
-
-if (canvas && !reduced && !saveData) {
-    const start = () => init().catch(() => { /* fallback CSS ya presente */ });
-    'requestIdleCallback' in window
-        ? requestIdleCallback(start, { timeout: 2000 })
-        : setTimeout(start, 1200);
+const canvas = document.getElementById('bgfx');
+const root = document.documentElement;
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const mobileQuery = matchMedia('(max-width: 768px)');
+const pointerQuery = matchMedia('(hover: hover) and (pointer: fine)');
+const connection = navigator.connection;
+const isPaused = () => !!window.hhMotion?.paused || reducedMotion.matches || !!connection?.saveData;
+function randomSource(seed = 240905) {
+    return () => { seed = (Math.imul(1664525, seed) + 1013904223) >>> 0; return seed / 4294967296; };
 }
-
-async function init() {
-    const probe = document.createElement('canvas');
-    if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) return;
-
-    const THREE = await import(CONFIG.threePath);
-
-    const renderer = new THREE.WebGLRenderer({
-        canvas, alpha: true, antialias: false, powerPreference: 'low-power',
-    });
-    renderer.setPixelRatio(Math.min(devicePixelRatio, CONFIG.dprCap));
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(62, 1, 0.1, 220);
-    camera.position.set(0, 9, 26);
-
-    const mobile = matchMedia('(max-width: 768px)').matches;
-
-    /* ---------- terreno de puntos (ondas en el vertex shader) ---------- */
-    const W = mobile ? CONFIG.gridWm : CONFIG.gridW;
-    const H = mobile ? CONFIG.gridHm : CONFIG.gridH;
-    const SPAN_X = 150, SPAN_Z = 80;
-
-    const pos = new Float32Array(W * H * 3);
-    let k = 0;
-    for (let i = 0; i < H; i++) {
-        for (let j = 0; j < W; j++) {
-            pos[k++] = (j / (W - 1) - 0.5) * SPAN_X;
-            pos[k++] = 0;
-            pos[k++] = -(i / (H - 1)) * SPAN_Z + 8;
+function staticSky() {
+    const still = document.createElement('canvas');
+    still.className = canvas.className;
+    still.id = canvas.id;
+    canvas.replaceWith(still);
+    const ctx = still.getContext('2d');
+    if (!ctx) return;
+    function draw() {
+        const w = innerWidth, h = innerHeight;
+        const dpr = Math.min(devicePixelRatio || 1, 1.5);
+        still.width = Math.round(w * dpr); still.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        const random = randomSource();
+        for (let i = 0; i < 330; i++) {
+            const x = random() * w, y = random() * h;
+            ctx.fillStyle = `rgba(180,211,242,${.15 + random() * .55})`;
+            ctx.beginPath(); ctx.arc(x, y, .35 + random() * .7, 0, Math.PI * 2); ctx.fill();
         }
+        ctx.save(); ctx.translate(w * .69, h * .42); ctx.rotate(-.36);
+        for (let i = 0; i < 1500; i++) {
+            const radius = Math.pow(random(), .72) * Math.min(w * .65, 600);
+            const angle = (i % 3) * Math.PI * 2 / 3 + radius * .011 + (random() - .5) * .75;
+            ctx.fillStyle = i % 3 ? 'rgba(109,184,224,.27)' : 'rgba(178,153,237,.32)';
+            ctx.fillRect(Math.cos(angle) * radius, Math.sin(angle) * radius * .35, 1.15, 1.15);
+        }
+        ctx.restore(); root.classList.add('cosmos-ready');
     }
-    const terrainGeo = new THREE.BufferGeometry();
-    terrainGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-
+    draw();
+    let resizeTimer;
+    addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(draw, 150); }, { passive: true });
+}
+async function init() {
+    if (connection?.saveData) { staticSky(); return; }
+    const THREE = await import('./vendor/three/three.module.min.js');
+    const compact = mobileQuery.matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' });
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, compact ? 1.25 : 1.6));
+    renderer.setClearColor(0x050b18, 0);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(52, 1, .1, 180);
+    camera.position.set(0, 0, 45);
+    const random = randomSource();
     const uniforms = {
-        uTime: { value: 0 },
-        uLow: { value: new THREE.Vector3(...CONFIG.colorLow) },
-        uMid: { value: new THREE.Vector3(...CONFIG.colorMid) },
-        uHigh: { value: new THREE.Vector3(...CONFIG.colorHigh) },
-        uPix: { value: renderer.getPixelRatio() },
-        uBoost: { value: 1.0 },
+        uTime: { value: 0 }, uDpr: { value: renderer.getPixelRatio() },
+        uPointer: { value: new THREE.Vector2() }, uPointerActive: { value: 0 },
+        uPrimary: { value: new THREE.Color('#62e5df') },
+        uSecondary: { value: new THREE.Color('#a28af5') }, uEnergy: { value: 1 },
     };
-
-    const terrainMat = new THREE.ShaderMaterial({
-        uniforms,
-        transparent: true,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-        vertexShader: /* glsl */`
-            uniform float uTime;
-            uniform float uPix;
-            varying float vH;
-            varying float vFog;
-            void main() {
-                vec3 p = position;
-                float t = uTime * 0.55;
-                // dos trenes de ondas cruzados + detalle fino
-                float h = sin(p.x * 0.11 + t)        * 2.2
-                        + sin(p.z * 0.16 - t * 0.8)  * 2.0
-                        + sin((p.x + p.z) * 0.055 + t * 0.45) * 3.0
-                        + sin(p.x * 0.32 - t * 1.4)  * 0.45;
-                p.y += h;
-                vH = h;
-                vec4 mv = modelViewMatrix * vec4(p, 1.0);
-                float dist = -mv.z;
-                vFog = smoothstep(115.0, 18.0, dist);       // lejos → 0
-                gl_PointSize = (115.0 / dist) * uPix;
-                gl_Position = projectionMatrix * mv;
-            }`,
-        fragmentShader: /* glsl */`
-            uniform vec3 uLow;
-            uniform vec3 uMid;
-            uniform vec3 uHigh;
-            uniform float uBoost;
-            varying float vH;
-            varying float vFog;
-            void main() {
-                // sprite circular suave
-                vec2 c = gl_PointCoord - 0.5;
-                float d = length(c);
-                float disc = smoothstep(0.5, 0.18, d);
-                if (disc < 0.01) discard;
-                float hn = clamp((vH + 7.2) / 14.4, 0.0, 1.0);
-                vec3 col = hn < 0.55
-                    ? mix(uLow, uMid, hn / 0.55)
-                    : mix(uMid, uHigh, (hn - 0.55) / 0.45);
-                float a = disc * vFog * (0.5 + hn * 0.5) * uBoost;
-                gl_FragColor = vec4(col, min(a, 1.0));
-            }`,
-    });
-    const terrain = new THREE.Points(terrainGeo, terrainMat);
-    scene.add(terrain);
-
-    /* ---------- partículas a la deriva (datos subiendo) ---------- */
-    const N = mobile ? CONFIG.particlesM : CONFIG.particles;
-    const pPos = new Float32Array(N * 3);
-    const pSeed = new Float32Array(N);
-    for (let i = 0; i < N; i++) {
-        pPos[i * 3] = (Math.random() - 0.5) * 110;
-        pPos[i * 3 + 1] = Math.random() * 26 - 2;
-        pPos[i * 3 + 2] = -Math.random() * 60 + 6;
-        pSeed[i] = Math.random() * 6.28;
+    const galaxy = new THREE.Group();
+    const inclination = new THREE.Group();
+    inclination.rotation.set(.98, -.18, -.36);
+    inclination.add(galaxy); scene.add(inclination);
+    function pointCloud(count, isGalaxy) {
+        const positions = new Float32Array(count * 3);
+        const seeds = new Float32Array(count);
+        const sizes = new Float32Array(count);
+        const tones = new Float32Array(count);
+        for (let i = 0; i < count; i++) {
+            if (isGalaxy) {
+                const radius = .2 + Math.pow(random(), .75) * 25;
+                const angle = (i % 3) * Math.PI * 2 / 3 + radius * .28 + (random() - .5) * .7;
+                const scatter = Math.pow(random(), 3) * 3.5;
+                positions[i * 3] = Math.cos(angle) * radius + (random() - .5) * scatter;
+                positions[i * 3 + 1] = Math.sin(angle) * radius + (random() - .5) * scatter;
+                positions[i * 3 + 2] = (random() - .5) * (.45 + radius * .055);
+                tones[i] = Math.min(1, radius / 27 + random() * .22);
+                sizes[i] = (.6 + Math.pow(random(), 4) * 2.8) * (compact ? 1.25 : 1);
+            } else {
+                positions[i * 3] = (random() - .5) * 130;
+                positions[i * 3 + 1] = (random() - .5) * 95;
+                positions[i * 3 + 2] = (random() - .5) * 65 - 12;
+                tones[i] = random(); sizes[i] = .75 + Math.pow(random(), 5) * 2.4;
+            }
+            seeds[i] = random() * Math.PI * 2;
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1));
+        geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+        geometry.setAttribute('aTone', new THREE.BufferAttribute(tones, 1));
+        const material = new THREE.ShaderMaterial({
+            uniforms: { ...uniforms, uGalaxy: { value: isGalaxy ? 1 : 0 } },
+            transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+            vertexShader: `
+                uniform float uTime, uDpr, uGalaxy;
+                uniform vec2 uPointer;
+                uniform float uPointerActive;
+                attribute float aSeed, aSize, aTone;
+                varying float vAlpha, vTone;
+                void main() {
+                    vec3 p = position;
+                    p.z += sin(uTime * .15 + aSeed) * .2 * uGalaxy;
+                    vec4 mv = modelViewMatrix * vec4(p, 1.0);
+                    gl_Position = projectionMatrix * mv;
+                    vec2 delta = gl_Position.xy / gl_Position.w - uPointer;
+                    float influence = (1.0 - smoothstep(0.0, .32, length(delta))) * uPointerActive;
+                    gl_Position.xy += normalize(delta + vec2(.001)) * influence * .024 * gl_Position.w;
+                    gl_PointSize = clamp(aSize * uDpr * 40.0 / max(8.0, -mv.z), .7, 6.0 * uDpr);
+                    gl_PointSize *= 1.0 + influence * .65;
+                    vAlpha = (.68 + .22 * sin(uTime * .48 + aSeed)) * (1.0 - smoothstep(65.0, 115.0, -mv.z));
+                    vTone = aTone;
+                }`,
+            fragmentShader: `
+                uniform vec3 uPrimary, uSecondary;
+                uniform float uGalaxy, uEnergy;
+                varying float vAlpha, vTone;
+                void main() {
+                    float radius = length(gl_PointCoord - .5);
+                    if (radius > .5) discard;
+                    float disc = 1.0 - smoothstep(.05, .5, radius);
+                    vec3 tone = mix(uPrimary, uSecondary, smoothstep(.1, 1.0, vTone));
+                    tone = mix(tone, vec3(.76, .87, 1.0), (1.0 - uGalaxy) * .78);
+                    tone = mix(vec3(.76, .92, 1.0), tone, smoothstep(0.0, .3, vTone));
+                    gl_FragColor = vec4(tone, disc * vAlpha * mix(.82, .68, uGalaxy) * uEnergy);
+                    #include <colorspace_fragment>
+                }`,
+        });
+        return new THREE.Points(geometry, material);
     }
-    const partGeo = new THREE.BufferGeometry();
-    partGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-    partGeo.setAttribute('aSeed', new THREE.BufferAttribute(pSeed, 1));
-
-    const partMat = new THREE.ShaderMaterial({
-        uniforms,
-        transparent: true,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-        vertexShader: /* glsl */`
-            uniform float uTime;
-            uniform float uPix;
-            attribute float aSeed;
-            varying float vA;
+    const spiral = pointCloud(compact ? 5500 : 14500, true);
+    galaxy.add(spiral);
+    const stars = pointCloud(compact ? 350 : 850, false);
+    scene.add(stars);
+    // Procedural light between the points: one plane, no blur or postprocessing passes.
+    const haloMaterial = new THREE.ShaderMaterial({
+        uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+        fragmentShader: `
+            varying vec2 vUv;
+            uniform float uTime, uEnergy;
+            uniform vec3 uPrimary, uSecondary;
             void main() {
-                vec3 p = position;
-                float t = uTime * 0.28 + aSeed;
-                p.y = mod(p.y + uTime * 0.55 + aSeed * 3.0, 26.0) - 2.0;
-                p.x += sin(t) * 1.6;
-                vec4 mv = modelViewMatrix * vec4(p, 1.0);
-                float dist = -mv.z;
-                vA = smoothstep(100.0, 16.0, dist) * (0.45 + 0.4 * sin(t * 2.1));
-                gl_PointSize = (60.0 / dist) * uPix;
-                gl_Position = projectionMatrix * mv;
-            }`,
-        fragmentShader: /* glsl */`
-            uniform vec3 uHigh;
-            uniform float uBoost;
-            varying float vA;
-            void main() {
-                vec2 c = gl_PointCoord - 0.5;
-                float disc = smoothstep(0.5, 0.1, length(c));
-                if (disc < 0.01) discard;
-                gl_FragColor = vec4(uHigh, min(disc * max(vA, 0.0) * 0.8 * uBoost, 1.0));
+                vec2 p = (vUv - .5) * 2.0;
+                p.y *= 1.75;
+                float radius = length(p);
+                float angle = atan(p.y, p.x + .00001);
+                float arms = .5 + .5 * sin(angle * 3.0 - radius * 11.0 + uTime * .04);
+                float cloud = exp(-radius * radius * 3.7) * (.4 + arms * .32);
+                float core = exp(-radius * radius * 100.0);
+                float edge = 1.0 - smoothstep(.65, 1.0, length((vUv - .5) * 2.0));
+                vec3 color = mix(uPrimary, uSecondary, clamp(radius + p.x * .3, 0.0, 1.0));
+                color = mix(color, vec3(.8, .91, 1.0), core * .65);
+                gl_FragColor = vec4(color, (cloud * .12 + core * .24) * edge * uEnergy);
+                #include <colorspace_fragment>
             }`,
     });
-    const particles = new THREE.Points(partGeo, partMat);
-    scene.add(particles);
-
-    /* ---------- tema claro/oscuro en vivo ---------- */
-    function applyTheme() {
-        const light = document.documentElement.dataset.theme === 'light';
-        const low = light ? CONFIG.lightLow : CONFIG.colorLow;
-        const mid = light ? CONFIG.lightMid : CONFIG.colorMid;
-        const high = light ? CONFIG.lightHigh : CONFIG.colorHigh;
-        uniforms.uLow.value.set(low[0], low[1], low[2]);
-        uniforms.uMid.value.set(mid[0], mid[1], mid[2]);
-        uniforms.uHigh.value.set(high[0], high[1], high[2]);
-        uniforms.uBoost.value = light ? CONFIG.lightBoost : 1.0;
-        const blend = light ? THREE.NormalBlending : THREE.AdditiveBlending;
-        terrainMat.blending = blend;
-        partMat.blending = blend;
-        terrainMat.needsUpdate = true;
-        partMat.needsUpdate = true;
+    const halo = new THREE.Mesh(new THREE.PlaneGeometry(68, 52), haloMaterial);
+    halo.rotation.z = -.3; halo.position.z = -5; scene.add(halo);
+    const sections = ['top', 'trayectoria', 'credenciales', 'arsenal', 'sistemas', 'contacto']
+        .map(id => document.getElementById(id)).filter(Boolean);
+    const palettes = [
+        ['#62e5df', '#a28af5'], ['#7bc9e8', '#e3ae7d'], ['#77afff', '#b598f5'],
+        ['#57dfd9', '#639bf4'], ['#ab8df1', '#e08cc2'], ['#67e1b3', '#7db8f0'],
+    ].map(pair => pair.map(color => new THREE.Color(color)));
+    let sectionTops = [], pageHeight = 1, width = 1, height = 1;
+    let targetX = 0, targetY = 0, pointerX = 0, pointerY = 0, pointerActive = 0;
+    let scrollTarget = scrollY, scrollPosition = scrollY, lastScroll = scrollY, scrollSpeed = 0;
+    let frame = 0, last = 0, elapsed = 0, hidden = document.hidden, contextLost = false;
+    let slowFrames = 0, samples = 0, qualityReduced = false;
+    function measureSections() {
+        sectionTops = sections.map(section => section.getBoundingClientRect().top + scrollY);
+        pageHeight = Math.max(1, document.documentElement.scrollHeight - innerHeight);
     }
-    applyTheme();
-    new MutationObserver(applyTheme).observe(document.documentElement, {
-        attributes: true, attributeFilter: ['data-theme'],
-    });
-
-    /* ---------- sizing ---------- */
     function resize() {
-        const w = canvas.clientWidth || canvas.parentElement.clientWidth;
-        const h = canvas.clientHeight || canvas.parentElement.clientHeight;
-        renderer.setSize(w, h, false);
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
+        width = Math.max(1, canvas.clientWidth || innerWidth);
+        height = Math.max(1, canvas.clientHeight || innerHeight);
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height; camera.updateProjectionMatrix();
+        measureSections();
+        if (isPaused() && !contextLost && !hidden) render(0);
     }
-    resize();
-    addEventListener('resize', resize, { passive: true });
-
-    /* ---------- parallax (solo desktop) ---------- */
-    let tx = 0, ty = 0, cx = 0, cy = 0;
-    function onMove(e) {
-        tx = (e.clientX / innerWidth - 0.5) * CONFIG.parallax * 12;
-        ty = (e.clientY / innerHeight - 0.5) * CONFIG.parallax * 5;
-    }
-    if (!mobile) addEventListener('pointermove', onMove, { passive: true });
-
-    /* ---------- loop con compuertas de visibilidad ---------- */
-    let raf = 0, running = false, seen = true, tabVisible = true;
-    const clock = new THREE.Clock();
-    let elapsed = 0;
-
-    function loop() {
-        raf = requestAnimationFrame(loop);
-        elapsed += clock.getDelta();
+    function render(dt) {
+        const smoothing = dt ? 1 - Math.exp(-dt * 3) : 1;
+        pointerX += (targetX - pointerX) * smoothing;
+        pointerY += (targetY - pointerY) * smoothing;
+        scrollPosition += (scrollTarget - scrollPosition) * smoothing;
+        const progress = Math.max(0, Math.min(1, scrollPosition / pageHeight));
+        const viewportWidth = 2 * Math.tan(THREE.MathUtils.degToRad(26)) * 45 * camera.aspect;
+        const viewportHeight = viewportWidth / camera.aspect;
+        const galaxyScale = (camera.aspect < 1 ? .68 : 1) * (.94 + Math.sin(progress * Math.PI) * .08);
+        inclination.scale.setScalar(galaxyScale);
+        inclination.position.set(viewportWidth * (.17 - Math.sin(progress * Math.PI * 2) * .13), viewportHeight * (.06 - progress * .12), 0);
+        inclination.rotation.z = -.36 + progress * .48;
+        galaxy.rotation.z = elapsed * .018 + progress * .55;
+        halo.position.x = inclination.position.x; halo.position.y = inclination.position.y;
+        halo.scale.setScalar(galaxyScale); halo.rotation.z = -.3 + progress * .48;
+        stars.rotation.y = elapsed * .0018 + progress * .045;
+        stars.rotation.z = progress * -.04;
+        camera.position.x = pointerX * .85; camera.position.y = -pointerY * .55;
+        camera.lookAt(0, 0, 0);
         uniforms.uTime.value = elapsed;
-        cx += (tx - cx) * 0.045;
-        cy += (ty - cy) * 0.045;
-        camera.position.x = cx;
-        camera.position.y = 9 + cy;
-        camera.lookAt(0, 1.5, -20);
+        uniforms.uPointer.value.set(pointerX, -pointerY);
+        uniforms.uPointerActive.value += (pointerActive - uniforms.uPointerActive.value) * smoothing;
+        uniforms.uEnergy.value = 1 + Math.min(scrollSpeed * .00012, .12);
+        let sectionIndex = 0;
+        sectionTops.forEach((top, i) => { if (scrollPosition + height * .4 >= top) sectionIndex = i; });
+        const palette = palettes[Math.min(sectionIndex, palettes.length - 1)];
+        uniforms.uPrimary.value.lerp(palette[0], smoothing * .6);
+        uniforms.uSecondary.value.lerp(palette[1], smoothing * .6);
         renderer.render(scene, camera);
     }
-    function setRunning(on) {
-        if (on && !running) { running = true; clock.getDelta(); loop(); }
-        else if (!on && running) { running = false; cancelAnimationFrame(raf); }
+    function tick(now) {
+        frame = 0;
+        if (hidden || isPaused() || contextLost) { last = 0; return; }
+        const interval = compact || qualityReduced ? 1000 / 30 : 1000 / 60;
+        if (last && now - last < interval - 1) { frame = requestAnimationFrame(tick); return; }
+        const rawDelta = last ? now - last : interval;
+        const dt = Math.min(rawDelta / 1000, .06);
+        last = now; elapsed += dt;
+        scrollSpeed += (Math.abs(scrollTarget - lastScroll) / Math.max(dt, .001) - scrollSpeed) * .12;
+        lastScroll = scrollTarget; render(dt);
+        // Degrade only once when the device cannot sustain the initial budget.
+        if (!qualityReduced && ++samples <= 150) {
+            if (rawDelta > 48) slowFrames++;
+            if (samples === 150 && slowFrames > 45) {
+                qualityReduced = true; renderer.setPixelRatio(1); uniforms.uDpr.value = 1;
+                spiral.geometry.setDrawRange(0, compact ? 3200 : 8500);
+                renderer.setSize(width, height, false);
+            }
+        }
+        frame = requestAnimationFrame(tick);
     }
-
-    new IntersectionObserver((entries) => {
-        seen = entries[0].isIntersecting;
-        setRunning(seen && tabVisible);
-    }, { threshold: 0.02 }).observe(canvas);
-
-    document.addEventListener('visibilitychange', () => {
-        tabVisible = document.visibilityState === 'visible';
-        setRunning(seen && tabVisible);
+    function syncPlayback() {
+        if (frame) cancelAnimationFrame(frame);
+        frame = 0; last = 0;
+        if (!hidden && !isPaused() && !contextLost) frame = requestAnimationFrame(tick);
+    }
+    addEventListener('pointermove', event => {
+        if (isPaused() || !pointerQuery.matches || event.pointerType === 'touch') return;
+        targetX = (event.clientX / innerWidth - .5) * 2;
+        targetY = (event.clientY / innerHeight - .5) * 2;
+        pointerActive = 1;
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => { targetX = 0; targetY = 0; pointerActive = 0; });
+    addEventListener('blur', () => { targetX = 0; targetY = 0; pointerActive = 0; });
+    addEventListener('scroll', () => { scrollTarget = scrollY; }, { passive: true });
+    addEventListener('resize', resize, { passive: true });
+    addEventListener('hh:motion', syncPlayback);
+    reducedMotion.addEventListener('change', syncPlayback);
+    connection?.addEventListener('change', syncPlayback);
+    document.addEventListener('visibilitychange', () => { hidden = document.hidden; syncPlayback(); });
+    addEventListener('pagehide', () => { hidden = true; syncPlayback(); });
+    addEventListener('pageshow', () => { hidden = document.hidden; syncPlayback(); });
+    canvas.addEventListener('webglcontextlost', event => {
+        event.preventDefault(); contextLost = true; syncPlayback(); root.classList.remove('cosmos-ready');
     });
-
-    setRunning(true);
+    canvas.addEventListener('webglcontextrestored', () => {
+        contextLost = false; resize(); render(0); root.classList.add('cosmos-ready'); syncPlayback();
+    });
+    if ('ResizeObserver' in window) new ResizeObserver(measureSections).observe(document.body);
+    document.fonts?.ready.then(measureSections);
+    resize(); render(0); root.classList.add('cosmos-ready'); syncPlayback();
+}
+if (canvas) {
+    const start = () => init().catch(() => staticSky());
+    if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 1100 });
+    else setTimeout(start, 180);
 }
