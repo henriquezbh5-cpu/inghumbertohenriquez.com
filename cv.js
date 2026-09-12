@@ -245,9 +245,11 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         cert: certEl.innerHTML,
     };
 
-    const CERTS = {
-        'Power Apps': ['PL-100', 'MICROSOFT CERTIFIED<br>APP MAKER'],
-        'Power BI': ['PL-300', 'MICROSOFT CERTIFIED<br>DATA ANALYST'],
+    // Insignia del recuadro derecho por herramienta. Es el hueco donde antes
+    // vivian los codigos de certificacion: ahora lleva evidencia de uso real.
+    const DESTACADOS = {
+        'Power Apps': ['CANVAS', 'APPS INTERNAS<br>EN PRODUCCIÓN'],
+        'Power BI': ['DAX', 'TABLEROS EJECUTIVOS<br>MULTI-FUENTE'],
     };
     const TAGLINES = {
         'Power Apps': 'Apps corporativas de captura y aprobación que el negocio usa a diario.',
@@ -315,7 +317,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
                 tagEl.textContent = 'ARSENAL · ' + step.tool.tag;
                 nameEl.textContent = step.tool.name;
                 descEl.textContent = TAGLINES[step.tool.name] || '';
-                const cert = CERTS[step.tool.name] || ['STACK', 'HERRAMIENTA DE<br>USO DIARIO'];
+                const cert = DESTACADOS[step.tool.name] || ['STACK', 'HERRAMIENTA DE<br>USO DIARIO'];
                 certEl.innerHTML = '<span class="cert-code">' + cert[0] + '</span><span>' + cert[1] + '</span>';
                 step.tool.tile.classList.add('is-featured');
             }
@@ -435,7 +437,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         { t: '[00:00.000]', a: 'SISTEMA', c: 'la-sys', m: 'Expediente iniciado — HH/2026 · San Salvador, GMT-6' },
         { t: '[00:00.400]', a: 'PERFIL', c: 'la-perfil', m: 'Ingeniero en sistemas · Científico de datos' },
         { t: '[00:00.900]', a: 'EDUCACIÓN', c: 'la-edu', m: 'MSc Data Science (2026) · MSc BI · Posgrado Blockchain' },
-        { t: '[00:01.400]', a: 'CERTIFICADO', c: 'la-cert', m: 'Microsoft ×3 — PL-500 RPA · PL-100 · PL-300' },
+        { t: '[00:01.400]', a: 'AGENTES', c: 'la-cert', m: 'Copilot Studio en Teams · visión documental con Gemini · bots de WhatsApp' },
         { t: '[00:01.900]', a: 'OPERACIÓN', c: 'la-tool', m: '13 sistemas operables · 170+ bots RPA · SV · GT · CR · DO' },
         { t: '[00:02.400]', a: 'MODO', c: 'la-founder', m: '100% remoto desde 2020 · Power Automate a diario' },
         { t: '[00:02.900]', a: 'ESTADO', c: 'la-estado', m: 'Disponible · contacto directo en horario hábil' },
@@ -534,5 +536,32 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         try { localStorage.setItem('hh-theme', light ? 'dark' : 'light'); } catch (e) { /* privado */ }
         var meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.setAttribute('content', light ? '#0A1322' : '#F2F6FB');
+    });
+})();
+
+/* ---------- 02 CREDENCIALES · abrir NOVA desde el banco de pruebas ----------
+   La fila "ABIERTO" de agentes invita a interrogar a NOVA sin salir de la
+   pagina. La CSP prohibe onclick inline, asi que el enlace se hace aqui.
+   nova.js carga con defer DESPUES de cv.js y monta el widget en el body:
+   por eso el listener es delegado y el lanzador se busca al hacer clic. */
+(function proofOpensNova() {
+    function openNova() {
+        var panel = document.getElementById('novaPanel');
+        if (panel && !panel.hidden) {
+            var field = panel.querySelector('input, textarea');
+            if (field) field.focus();
+            return true;
+        }
+        var launcher = document.querySelector('.nova-launch');
+        if (!launcher) return false;
+        launcher.click();
+        return true;
+    }
+
+    document.addEventListener('click', function (e) {
+        var trigger = e.target.closest('[data-open-nova]');
+        if (!trigger) return;
+        e.preventDefault();
+        if (!openNova()) setTimeout(openNova, 500); // nova.js aun no ha montado
     });
 })();

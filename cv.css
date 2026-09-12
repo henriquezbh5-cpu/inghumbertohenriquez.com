@@ -96,6 +96,7 @@ body {
 .d-amber { background: var(--amber) } .d-blue { background: var(--blue) }
 .d-cyan { background: var(--cyan) } .d-violet { background: var(--violet) }
 .d-green { background: var(--green) }
+.d-teal { background: var(--teal) }
 
 .status-dot {
     display: inline-block; width: 7px; height: 7px; border-radius: 50%;
@@ -392,22 +393,63 @@ body {
 @media (max-width: 1000px) { .cred-grid { grid-template-columns: 1fr 1fr } }
 @media (max-width: 560px) { .cred-grid { grid-template-columns: 1fr } }
 
-.cert-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px }
-.cert {
-    display: flex; align-items: center; gap: 18px;
-    border: 1px solid var(--line); background: rgba(56, 189, 248, .04);
-    padding: 18px 20px;
+/* — banco de pruebas: cada fila es una afirmacion y su estado de verificacion.
+     Sustituye a la antigua .cert-row. Codigo de color: teal = lo abres tu
+     ahora; azul = te lo envio; gris punteado = bajo contrato, no se abre.
+     .cert-code SIGUE VIVA: la reusa .tf-cert de la seccion 03 ARSENAL. — */
+.proof { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 14px }
+.pf {
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 20px; align-items: start;
+    border: 1px solid var(--line); background: var(--panel);
+    padding: 20px 22px;
     transition: border-color .2s, transform .2s;
 }
-.cert:hover { border-color: rgba(56, 189, 248, .55); transform: translateY(-3px) }
-.cert-code {
-    font-size: 17px; font-weight: 500; color: var(--cyan);
-    border: 1px solid rgba(56, 189, 248, .5);
-    padding: 10px 12px; white-space: nowrap;
+.pf:not(.is-sealed):hover { border-color: rgba(var(--teal-rgb), .5); transform: translateY(-3px) }
+/* min-width fija: sin ella cada fila dimensiona su propia columna y los
+   titulos quedan escalonados (ABIERTO es mas corto que DOCUMENTADO). */
+.pf-state {
+    font-size: 10px; letter-spacing: .06em; white-space: nowrap;
+    border: 1px solid var(--line); padding: 8px 10px;
+    min-width: 104px; text-align: center;
 }
-.cert h3 { font-family: var(--font-d); font-weight: 500; font-size: 14.5px; color: var(--ink); line-height: 1.3 }
-.cert p { font-size: 10px; letter-spacing: .05em; color: var(--label); margin-top: 4px }
-@media (max-width: 900px) { .cert-row { grid-template-columns: 1fr } }
+.pf-state.is-open { color: var(--teal); border-color: rgba(var(--teal-rgb), .45) }
+.pf-state.is-doc { color: var(--blue); border-color: rgba(91, 168, 232, .45) }
+.pf-state.is-lock { color: var(--label); border-style: dashed }
+.pf-claim {
+    font-family: var(--font-d); font-weight: 500;
+    font-size: 16px; line-height: 1.3; color: var(--ink); margin-bottom: 7px;
+}
+.pf-how { font-size: 14px; line-height: 1.65; color: var(--body) }
+.pf-act { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; text-align: right }
+.pf-go {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    min-height: 44px; padding: 11px 14px;
+    font-size: 10px; letter-spacing: .06em; color: var(--teal);
+    white-space: nowrap; cursor: pointer; background: none;
+    border: 1px solid rgba(var(--teal-rgb), .45);
+    transition: background .2s, border-color .2s, color .2s;
+}
+.pf-go:hover, .pf-go:focus-visible { background: rgba(var(--teal-rgb), .14); border-color: var(--teal); color: var(--ink) }
+.pf-go .arr { display: inline-block; transition: transform .2s var(--ease-out) }
+.pf-go:hover .arr { transform: translateX(4px) }
+.pf-meta { font-size: 10px; letter-spacing: .05em; line-height: 1.5; color: var(--label) }
+.pf.is-sealed { background: transparent; border-style: dashed; border-color: var(--line-soft) }
+.pf.is-sealed .pf-claim { color: var(--body) }
+.pf-meta-lock { border: 1px solid var(--line-soft); padding: 9px 11px }
+/* sin JS no hay NOVA que abrir: el boton no se muestra (js-flag.js pone .js) */
+html:not(.js) .pf-go[data-open-nova] { display: none }
+@media (max-width: 760px) {
+    .pf { grid-template-columns: 1fr; gap: 12px; padding: 18px 16px }
+    .pf-state { justify-self: start }
+    .pf-act { align-items: stretch; text-align: left }
+    .pf-meta, .pf-meta-lock { text-align: left }
+}
+@media (prefers-reduced-motion: reduce) {
+    .pf, .pf-go, .pf-go .arr { transition: none }
+    .pf:not(.is-sealed):hover { transform: none }
+    .pf-go:hover .arr { transform: none }
+}
 
 /* ============================== 03 ARSENAL ============================== */
 .tool-featured {
@@ -1143,9 +1185,7 @@ html.js .rv.in { opacity: 1; transform: none }
 .contact-rows a{overflow-wrap:anywhere;min-height:44px;display:inline-flex;align-items:center}
 .hero-title{text-wrap:balance;line-height:1.1}
 .hero-sub{max-width:49ch;line-height:1.7}
-.credential-note,.form-data-note{font:400 .875rem/1.7 var(--font-b);color:var(--body);letter-spacing:0;text-transform:none}
-.credential-note{margin:-18px 0 24px;padding-left:16px;border-left:2px solid var(--blue)}
-.credential-note a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
+.form-data-note{font:400 .875rem/1.7 var(--font-b);color:var(--body);letter-spacing:0;text-transform:none}
 .form-data-note{margin-top:16px}
 .log-replay{min-height:44px}
 @media(min-width:961px) and (max-width:1440px){.nav-links{gap:12px}.nav-links .nav-num,.nav-clock,.logo-word{display:none}}

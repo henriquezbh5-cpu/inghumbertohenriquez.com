@@ -422,7 +422,7 @@ html.js-anim .animate-target.is-in { opacity: 1; }
    deliberately unstyled: 3D tilt & cursor spotlight are dead effects. */
 
 /* ============================================================
-   7. MARQUEE (hero certs + footer ticker)
+   7. MARQUEE (ticker del pie)
    ============================================================ */
 .marquee { overflow: hidden; }
 .marquee-track {
@@ -1320,62 +1320,6 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   margin-top: var(--sp-4);
 }
 
-/* — certification wall: pressed-ink seals — */
-.cert-wall {
-  border-top: 1px solid var(--line-strong);
-  padding-top: var(--sp-5);
-  margin-bottom: var(--sp-7);
-}
-.cert-count {
-  display: flex; align-items: center; gap: var(--sp-5); flex-wrap: wrap;
-  margin-bottom: var(--sp-5);
-}
-.cert-count-num {
-  font-size: var(--t-slab); font-weight: 500; line-height: 1;
-  color: var(--ink);
-}
-.cert-count-copy h3 {
-  font-family: var(--ff-display); font-weight: 400;
-  font-size: var(--t-4); color: var(--ink);
-  margin-bottom: var(--sp-1);
-}
-.cert-count-copy p { font-size: var(--t-2); color: var(--ink-body); max-width: 52ch; }
-
-.cert-groups {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: var(--sp-5);
-}
-.cert-group { min-width: 0; }
-.cert-group-title {
-  font-size: var(--t-1); font-weight: 500;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--ink-700);
-  border-bottom: 1px solid var(--line-strong);
-  padding-bottom: var(--sp-1);
-  margin-bottom: var(--sp-3);
-}
-.cert-seals { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
-.seal {
-  width: calc(var(--sp-7) + var(--sp-2)); height: calc(var(--sp-7) + var(--sp-2));
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 2px;
-  border: 1.5px solid var(--ink);
-  border-radius: var(--r-pill);
-  padding: var(--sp-1);
-  text-align: center;
-}
-.seal-initial {
-  font-family: var(--ff-display); font-size: var(--t-4);
-  line-height: 1; color: var(--ink);
-}
-.seal-name {
-  font-size: var(--t-0); font-weight: 500;
-  text-transform: uppercase; letter-spacing: 0.02em;
-  line-height: 1.3; color: var(--ink-700);
-}
-/* academic seals: double-struck border */
-.seal-edu { border-style: double; border-width: 4px; border-color: var(--ink-700); }
-
 /* — stack: compact ruled mono index — */
 .stack-index {
   display: grid; grid-template-columns: repeat(6, 1fr);
@@ -2155,7 +2099,6 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   .about-layout { display: block; }
   .about-portrait { margin-bottom: var(--sp-5); }
 
-  .cert-groups { grid-template-columns: 1fr; }
   .anatomy-readout { display: none; } /* pin is desktop-only */
 }
 
@@ -2293,9 +2236,6 @@ html.js-anim .diff-row.animate-in s::after { transform: scaleX(1); }
   .quote-modal { padding: var(--sp-4); }
   .tier-ladder { flex-direction: column; align-items: stretch; }
   .tier-arrow { transform: rotate(90deg); align-self: center; }
-  .cert-count { gap: var(--sp-3); }
-  .seal { width: var(--sp-7); height: var(--sp-7); }
-  .seal-initial { font-size: var(--t-3); }
   .dossier-mini-ind { display: none; }
   .stack-index { gap: var(--sp-3); }
 }

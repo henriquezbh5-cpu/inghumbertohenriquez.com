@@ -70,16 +70,16 @@
 html.js .cosmic-site .sec-head:not(.in) .sec-rule { transform: scaleX(.15) }
 .cosmic-site .sec-head.in .sec-rule { transform: scaleX(1); transition: transform 1.5s var(--ease-out) }
 .cosmic-site .sec-title { text-shadow: 0 2px 26px #050b18 }
-.cosmic-site :is(.pnode, .cred, .cert, .tool, .sys, .log-panel, .terms, .contact-form, .photo-frame) {
+.cosmic-site :is(.pnode, .cred, .pf, .tool, .sys, .log-panel, .terms, .contact-form, .photo-frame) {
     background-color: var(--space-panel);
     border-color: rgba(147, 181, 227, .22);
 }
-.cosmic-site :is(.pnode, .cred, .cert, .tool, .sys, .photo-frame, .log-panel) {
+.cosmic-site :is(.pnode, .cred, .pf, .tool, .sys, .photo-frame, .log-panel) {
     position: relative;
     background-image: radial-gradient(360px circle at var(--spot-x, 50%) var(--spot-y, 0%), rgba(var(--space-accent), var(--spot-alpha, 0)), transparent 75%);
     transition: border-color .3s, box-shadow .3s, transform .35s var(--ease-out), opacity .7s var(--ease-out);
 }
-.cosmic-site :is(.pnode, .cred, .cert, .tool, .sys, .photo-frame, .log-panel):hover,
+.cosmic-site :is(.pnode, .cred, .pf, .tool, .sys, .photo-frame, .log-panel):hover,
 .cosmic-site :is(.sys, .log-panel):focus-within {
     border-color: rgba(var(--space-accent), .55);
     box-shadow: 0 12px 35px rgba(0, 0, 0, .2), 0 0 24px rgba(var(--space-accent), .055);
@@ -138,7 +138,7 @@ html.js .cosmic-site .sec-head:not(.in) .sec-rule { transform: scaleX(.15) }
 .motion-paused { scroll-behavior: auto }
 .motion-paused .cosmic-site *, .motion-paused .cosmic-site *::before, .motion-paused .cosmic-site *::after { transition-duration: 0s !important }
 .motion-paused .cosmic-site .rv, .motion-paused .cosmic-site .tool-grid .tool { opacity: 1 !important; transform: none !important }
-.motion-paused .cosmic-site :is(.btn, .cred, .cert, .pnode, .sys, .tool, .photo-frame, .tool-featured):hover { transform: none }
+.motion-paused .cosmic-site :is(.btn, .cred, .pf, .pnode, .sys, .tool, .photo-frame, .tool-featured):hover { transform: none }
 @media (max-width: 960px) { .universe-coordinate { display: none } }
 @media (max-width: 640px) {
     .cosmic-site .hero { padding-top: 94px }
@@ -151,7 +151,7 @@ html.js .cosmic-site .sec-head:not(.in) .sec-rule { transform: scaleX(.15) }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto }
     .cosmic-site *, .cosmic-site *::before, .cosmic-site *::after { animation: none !important; transition: none !important }
-    .cosmic-site :is(.btn, .cred, .cert, .pnode, .sys, .tool, .photo-frame, .tool-featured):hover,
+    .cosmic-site :is(.btn, .cred, .pf, .pnode, .sys, .tool, .photo-frame, .tool-featured):hover,
     .cosmic-site .sys:hover .sys-fig img { transform: none }
 }
 @media (forced-colors: active) {

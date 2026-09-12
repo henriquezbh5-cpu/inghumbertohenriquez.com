@@ -24,15 +24,15 @@
 
     /* ---------- respuestas locales (si el worker no responde) ---------- */
     var FALLBACK = [
-        [/power\s*automate|rpa|bot|flujo/i, 'Humberto ha construido mas de 170 bots y flujos con Power Automate Cloud y Desktop que hoy operan en 4 paises. Es Microsoft Certified PL-500, la certificacion especifica de RPA. Mira Herramientas para el detalle.'],
+        [/power\s*automate|rpa|bot|flujo/i, 'Humberto ha construido mas de 170 bots y flujos con Power Automate Cloud y Desktop que hoy operan en 4 paises: El Salvador, Guatemala, Costa Rica y Republica Dominicana. Lo usa a diario desde 2020. Mira Herramientas para el detalle.'],
         [/agente|ia\b|inteligencia|copilot|llm/i, 'De agentes sabe un rato: un agente en Copilot Studio publicado en Teams, un agente de vision que lee documentos con Gemini, bots de WhatsApp con maquina de estados... y yo misma, que soy uno de sus agentes. La sección Proyectos tiene más.'],
-        [/estudi|maestr|certific|credencial|titulo/i, 'Dos maestrias (Ciencia de Datos e Inteligencia de Negocios), un posgrado en Blockchain, Ingenieria en Sistemas y triple certificacion Microsoft: PL-500, PL-100 y PL-300. Consulta Formación y certificaciones. Puedes solicitar la documentación y los enlaces de verificación por correo.'],
+        [/estudi|maestr|certific|credencial|titulo/i, 'Cuatro titulos: Maestria en Ciencia de Datos (UNEATLANTICO, 2026), Maestria en Inteligencia de Negocios (UNINI Mexico, 2023), Posgrado en Tecnologia Blockchain (UTEC, 2022) e Ingenieria en Sistemas (UTEC, 2020). Y algo que no necesitas creerle a nadie: en el laboratorio hay 13 sistemas suyos que puedes ejecutar ahora mismo. La documentacion academica se pide por correo.'],
         [/contrat|contact|vacante|remoto|disponib|trabaj/i, 'Humberto esta abierto a roles remotos y proyectos. Lo mas rapido: WhatsApp +503 7192 8070 o el formulario de Contacto. Responde en horario hábil de El Salvador. Tambien puedes descargar su CV en PDF ahi mismo.'],
         [/precio|cost|tarifa|cotiz|cuanto/i, 'La inversión depende del alcance y de los sistemas involucrados. Describe tu proceso en Contacto o solicita una evaluación en optimatiza.com/contacto/ para recibir una propuesta.'],
         [/optimatiza/i, 'Optimatiza es el estudio que Humberto fundo: agentes de IA para ventas, cobros y soporte de pymes en Latinoamerica. Esta en optimatiza.com — y su NOVA de alla es prima mia.'],
         [/bitcoin|cripto|blockchain/i, 'Humberto creo Bitcoin Academy, una PWA educativa publicada en Google Play, y tiene un posgrado en Tecnologia Blockchain. Ademas construye indicadores propios en Pine Script.'],
     ];
-    var FALLBACK_DEFAULT = 'Ahora mismo mi cerebro en la nube no responde, pero te cuento lo esencial: 170+ bots en produccion, agentes de IA reales, triple certificacion Microsoft y dos maestrias. Para lo demas, escribele directo: WhatsApp +503 7192 8070.';
+    var FALLBACK_DEFAULT = 'Ahora mismo mi cerebro en la nube no responde, pero te cuento lo esencial: 170+ bots en produccion en 4 paises, 13 sistemas que puedes ejecutar tu mismo en el laboratorio, agentes de IA reales y cuatro titulos academicos. Para lo demas, escribele directo: WhatsApp +503 7192 8070.';
 
     function localAnswer(q) {
         for (var i = 0; i < FALLBACK.length; i++) {

@@ -30,7 +30,7 @@
     preference.addEventListener('change', sync);
     connection?.addEventListener('change', sync);
     sync();
-    const cards = [...document.querySelectorAll('.pnode, .cred, .cert, .tool, .sys, .photo-frame, .log-panel, .tool-featured')];
+    const cards = [...document.querySelectorAll('.pnode, .cred, .pf, .tool, .sys, .photo-frame, .log-panel, .tool-featured')];
     let pending = 0, active = null, pointerX = 0, pointerY = 0;
     function clearCard() {
         if (pending) cancelAnimationFrame(pending);
