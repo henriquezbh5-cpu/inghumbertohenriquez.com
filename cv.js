@@ -436,7 +436,7 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
     const LINES = [
         { t: '[00:00.000]', a: 'SISTEMA', c: 'la-sys', m: 'Expediente iniciado — HH/2026 · San Salvador, GMT-6' },
         { t: '[00:00.400]', a: 'PERFIL', c: 'la-perfil', m: 'Ingeniero en sistemas · Científico de datos' },
-        { t: '[00:00.900]', a: 'EDUCACIÓN', c: 'la-edu', m: 'MSc Data Science (2026) · MSc BI · Posgrado Blockchain' },
+        { t: '[00:00.900]', a: 'EDUCACIÓN', c: 'la-edu', m: 'MSc en Data Science (UNEATLANTICO) · MSc en Business Intelligence (UNINI) · Posgrado en Blockchain (UTEC)' },
         { t: '[00:01.400]', a: 'AGENTES', c: 'la-cert', m: 'Copilot Studio en Teams · visión documental con Gemini · bots de WhatsApp' },
         { t: '[00:01.900]', a: 'OPERACIÓN', c: 'la-tool', m: '13 sistemas operables · 170+ bots RPA · SV · GT · CR · DO' },
         { t: '[00:02.400]', a: 'MODO', c: 'la-founder', m: '100% remoto desde 2020 · Power Automate a diario' },

@@ -41,8 +41,8 @@
     <link rel="preload" href="../fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 
     <script src="../js-flag.js"></script>
-    <link rel="stylesheet" href="../cv.css?v=479377db7f">
-    <link rel="stylesheet" href="lab.css">
+    <link rel="stylesheet" href="../cv.css?v=70f025c810">
+    <link rel="stylesheet" href="lab.css?v=7794a3cdc5">
 </head>
 <body>
 
@@ -87,10 +87,14 @@
             <p class="lab-note"><b>Los ejemplos usan datos sintéticos.</b> Si eliges un archivo propio en Prisma, se procesa en tu navegador y no se envía a un servidor.</p>
         </div>
 
-        <div class="lab-hero-fig rv" aria-hidden="true">
-            <img src="../img/nova/panel.webp" alt="" width="400" height="480" fetchpriority="high" decoding="async">
-            <span class="fig-glow"></span>
-        </div>
+        <figure class="lab-hero-fig lab-portada rv">
+            <span class="fig-glow" aria-hidden="true"></span>
+            <a class="lab-portada-marco" href="#galeria" aria-label="Explorar los sistemas del laboratorio">
+                <img class="lab-portada-img" src="../img/visual/laboratorio-800.webp?v=b2f9beee" srcset="../img/visual/laboratorio-800.webp?v=b2f9beee 800w, ../img/visual/laboratorio-1536.webp?v=23411da3 1536w" sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1228px) calc((100vw - 88px) * .425), 484px" width="1536" height="1024" alt="Ilustración conceptual: banco de laboratorio de hardware con módulos de metal y cristal iluminados en cian bajo una tapa de acrílico." fetchpriority="high" decoding="async">
+                <img class="lab-portada-bot" src="../img/nova/panel.webp" alt="" width="400" height="480" decoding="async">
+            </a>
+            <figcaption class="lab-portada-cap"><span class="mono">ILUSTRACIÓN CONCEPTUAL</span> Los sistemas de abajo sí funcionan: ábrelos.</figcaption>
+        </figure>
     </div>
 </header>
 

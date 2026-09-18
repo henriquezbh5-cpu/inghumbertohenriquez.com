@@ -66,7 +66,7 @@
     <link rel="preload" href="fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 
     <script src="js-flag.js"></script>
-    <link rel="stylesheet" href="cv.css?v=e87f604726">
+    <link rel="stylesheet" href="cv.css?v=70f025c810">
     <link rel="stylesheet" href="cosmos.css?v=850e6b68b3">
 </head>
 <body class="cosmic-site">
@@ -116,6 +116,11 @@
 
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
+    <!-- Fondo de cabecera: solo aqui. Los cubos iluminados quedan detras de la foto,
+         atenuados por mascara; la mitad izquierda, la del titular, queda oscura. -->
+    <div class="hero-backdrop" aria-hidden="true">
+        <img src="img/visual/fondo-oscuro-1000.webp?v=0f0b204a" srcset="img/visual/fondo-oscuro-1000.webp?v=0f0b204a 1000w, img/visual/fondo-oscuro-1672.webp?v=3cda8048 1672w" sizes="(max-width: 900px) 160vw, 72vw" width="1672" height="941" alt="" decoding="async">
+    </div>
     <div class="hero-shade" aria-hidden="true"></div>
 
     <div class="container hero-content">
@@ -152,11 +157,20 @@
             <div class="hero-side rv">
                 <figure class="photo-card">
                     <div class="photo-frame">
-                        <img src="humberto.jpg" alt="Humberto Henríquez, ingeniero en sistemas, San Salvador" width="470" height="470" loading="eager" fetchpriority="high" decoding="async">
+                        <img src="humberto.jpg" alt="Fotografía de Humberto Henríquez, ingeniero en sistemas, en San Salvador" width="470" height="470" loading="eager" fetchpriority="high" decoding="async">
                         <span class="corner c-tl" aria-hidden="true"></span><span class="corner c-tr" aria-hidden="true"></span>
                         <span class="corner c-bl" aria-hidden="true"></span><span class="corner c-br" aria-hidden="true"></span>
                     </div>
-                    <figcaption class="mono">FIG. 0 — EL INGENIERO · SAN SALVADOR, GMT-6</figcaption>
+                    <figcaption class="photo-plate">
+                        <span class="photo-name">Humberto Henríquez</span>
+                        <ul class="photo-creds">
+                            <li>Ingeniero en Sistemas (UTEC)</li>
+                            <li>MSc en Data Science (UNEATLANTICO)</li>
+                            <li>MSc en Business Intelligence (UNINI)</li>
+                            <li>Posgrado en Blockchain (UTEC)</li>
+                        </ul>
+                        <span class="photo-place mono">SAN SALVADOR, EL SALVADOR · GMT-6</span>
+                    </figcaption>
                 </figure>
 
                 <div class="log-panel" aria-label="Registro de operación">
@@ -386,66 +400,114 @@
             <span class="sec-index mono"><i class="dot d-violet"></i>04 — PROYECTOS · CONSTRUIDOS Y EN PRODUCCIÓN</span>
             <span class="sec-rule" aria-hidden="true"></span>
         </div>
-        <h2 class="sec-title rv">Lo que he construido.<br><span class="sec-sub">Sistemas que hoy están corriendo. Los que no puedo enseñar por contrato, los recreé para que los pruebes tú mismo.</span></h2>
+        <h2 class="sec-title rv">Lo que he construido.<br><span class="sec-sub">Cada proyecto empieza por el problema de negocio que resuelve. Los que no puedo enseñar por contrato, los recreé para que los pruebes tú mismo.</span></h2>
 
         <div class="sys-grid rv">
             <article class="sys sys-lab">
-                <div class="sys-fig" aria-hidden="true"><img src="img/nova/panel.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
-                <div class="sys-top mono"><span class="sys-code">P-00</span><span class="sys-live"><i class="status-dot"></i>OPERABLE AQUÍ</span></div>
-                <h3>Laboratorio interactivo</h3>
-                <p>Trece sistemas que puedes ejecutar en el navegador. Sube tu propio archivo y el motor te devuelve un tablero terminado.</p>
-                <div class="sys-chips mono"><span>TABLEROS</span><span>AGENTES</span><span>RPA</span><span>DATOS</span></div>
-                <a class="sys-link mono" href="laboratorio/">ABRIR EL LABORATORIO →</a>
+                <figure class="sys-thumb sys-cover">
+                    <span class="sys-shot"><img src="img/visual/laboratorio-800.webp?v=b2f9beee" srcset="img/visual/laboratorio-800.webp?v=b2f9beee 800w, img/visual/laboratorio-1536.webp?v=23411da3 1536w" sizes="(max-width: 640px) calc(100vw - 82px), (max-width: 1000px) calc(100vw - 94px), 614px" width="1536" height="1024" alt="Ilustración conceptual: banco de laboratorio con módulos de metal y cristal iluminados en cian bajo una tapa de acrílico" loading="lazy" decoding="async"></span>
+                    <figcaption class="mono">ILUSTRACIÓN CONCEPTUAL · PORTADA DE ACCESO, NO ES UNA FOTO</figcaption>
+                </figure>
+                <div class="sys-lab-body">
+                    <div class="sys-top mono"><span class="sys-code">P-00</span><span class="sys-live"><i class="status-dot"></i>OPERABLE AQUÍ</span></div>
+                    <h3>Laboratorio interactivo</h3>
+                    <dl class="sys-story">
+                        <div class="sys-step is-problem"><dt class="mono">EL PROBLEMA</dt><dd>Un CV dice lo que alguien sabe hacer, pero no te deja comprobarlo.</dd></div>
+                        <div class="sys-step"><dt class="mono">QUÉ CONSTRUÍ</dt><dd>Trece sistemas que puedes ejecutar en el navegador.</dd></div>
+                        <div class="sys-step"><dt class="mono">RESULTADO</dt><dd>Subes tu propio archivo y el motor te devuelve un tablero terminado.</dd></div>
+                    </dl>
+                    <div class="sys-chips mono"><span>TABLEROS</span><span>AGENTES</span><span>RPA</span><span>DATOS</span></div>
+                    <a class="btn btn-primary mono sys-enter" href="laboratorio/">ENTRAR AL LABORATORIO <span class="arr" aria-hidden="true">→</span></a>
+                </div>
             </article>
             <article class="sys">
-                <div class="sys-fig" aria-hidden="true"><img src="img/nova/dos-robots.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
+                <figure class="sys-thumb">
+                    <span class="sys-shot"><img src="img/capturas/proyecto-optimatiza-800.webp?v=66ff7cc5" srcset="img/capturas/proyecto-optimatiza-800.webp?v=66ff7cc5 800w, img/capturas/proyecto-optimatiza.webp?v=4310daae 1600w" sizes="(max-width: 620px) calc(100vw - 82px), (max-width: 1000px) calc(50vw - 77px), (max-width: 1228px) calc(33vw - 71px), 338px" width="1600" height="1000" alt="Captura de la portada de optimatiza.com, con su panel de demostración de un pedido por WhatsApp" loading="lazy" decoding="async"></span>
+                    <figcaption class="mono">CAPTURA REAL DE OPTIMATIZA.COM · EL PANEL ANIMADO ES LA DEMOSTRACIÓN DEL PROPIO SITIO</figcaption>
+                </figure>
                 <div class="sys-top mono"><span class="sys-code">P-01</span><span class="sys-live"><i class="status-dot"></i>EN PRODUCCIÓN</span></div>
                 <h3>Optimatiza</h3>
-                <p>Agentes de IA y automatización como servicio para empresas de Latam. Fundador.</p>
+                <dl class="sys-story">
+                    <div class="sys-step is-problem"><dt class="mono">EL PROBLEMA</dt><dd>Una empresa quiere automatizar, pero no tiene un equipo propio que construya agentes de IA.</dd></div>
+                    <div class="sys-step"><dt class="mono">QUÉ CONSTRUÍ</dt><dd>Fundé Optimatiza: agentes de IA y automatización como servicio para empresas de Latam.</dd></div>
+                    <div class="sys-step"><dt class="mono">RESULTADO</dt><dd>Un servicio en producción: la automatización se contrata sin montar un equipo propio.</dd></div>
+                </dl>
                 <div class="sys-chips mono"><span>AGENTES IA</span><span>AUTOMATIZACIÓN</span><span>CONSULTORÍA</span></div>
                 <a class="sys-link mono" href="https://optimatiza.com/" target="_blank" rel="noopener">OPTIMATIZA.COM ↗</a>
             </article>
             <article class="sys">
-                <div class="sys-fig" aria-hidden="true"><img src="img/nova/vigilancia.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
+                <figure class="sys-thumb">
+                    <span class="sys-shot"><img src="img/capturas/proyecto-bitcoin-academy-800.webp?v=2060a95d" srcset="img/capturas/proyecto-bitcoin-academy-800.webp?v=2060a95d 800w, img/capturas/proyecto-bitcoin-academy.webp?v=4f166ade 1600w" sizes="(max-width: 620px) calc(100vw - 82px), (max-width: 1000px) calc(50vw - 77px), (max-width: 1228px) calc(33vw - 71px), 338px" width="1600" height="1000" alt="Captura de la portada de bitcoinacademy.tech: Aprende Bitcoin de forma divertida" loading="lazy" decoding="async"></span>
+                    <figcaption class="mono">CAPTURA REAL DE BITCOINACADEMY.TECH</figcaption>
+                </figure>
                 <div class="sys-top mono"><span class="sys-code">P-02</span><span class="sys-live"><i class="status-dot"></i>EN GOOGLE PLAY</span></div>
                 <h3>Bitcoin Academy</h3>
-                <p>PWA educativa sobre Bitcoin publicada en Google Play. Creador y desarrollador.</p>
+                <dl class="sys-story">
+                    <div class="sys-step is-problem"><dt class="mono">EL PROBLEMA</dt><dd>Quien quiere entender Bitcoin necesita un punto de partida claro, sin tecnicismos de entrada.</dd></div>
+                    <div class="sys-step"><dt class="mono">QUÉ CONSTRUÍ</dt><dd>Una PWA educativa sobre Bitcoin. La creé y la desarrollo.</dd></div>
+                    <div class="sys-step"><dt class="mono">RESULTADO</dt><dd>Publicada en Google Play.</dd></div>
+                </dl>
                 <div class="sys-chips mono"><span>PWA</span><span>ANDROID</span><span>EDUCACIÓN</span></div>
                 <a class="sys-link mono" href="https://bitcoinacademy.tech" target="_blank" rel="noopener">BITCOINACADEMY.TECH ↗</a>
             </article>
             <article class="sys">
-                <div class="sys-fig" aria-hidden="true"><img src="img/nova/flujos.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
+                <figure class="sys-thumb">
+                    <span class="sys-shot"><img src="img/capturas/proyecto-agent-fleet-800.webp?v=1f1b5957" srcset="img/capturas/proyecto-agent-fleet-800.webp?v=1f1b5957 800w, img/capturas/proyecto-agent-fleet.webp?v=7b78a2b8 1600w" sizes="(max-width: 620px) calc(100vw - 82px), (max-width: 1000px) calc(50vw - 77px), (max-width: 1228px) calc(33vw - 71px), 338px" width="1600" height="1000" alt="Captura de la portada de Agent Fleet: veinte agentes de IA, dibujados y en marcha" loading="lazy" decoding="async"></span>
+                    <figcaption class="mono">CAPTURA REAL DE LA DEMO · EL ROBOT ES UNA ILUSTRACIÓN</figcaption>
+                </figure>
                 <div class="sys-top mono"><span class="sys-code">P-03</span><span class="sys-live"><i class="status-dot"></i>DEMO EN VIVO</span></div>
                 <h3>Agent Fleet</h3>
-                <p>Flota de agentes digitales con simulaciones en vivo de cada flujo de trabajo.</p>
+                <dl class="sys-story">
+                    <div class="sys-step is-problem"><dt class="mono">EL PROBLEMA</dt><dd>Antes de confiarle un proceso a un agente de IA, hay que verlo trabajar.</dd></div>
+                    <div class="sys-step"><dt class="mono">QUÉ CONSTRUÍ</dt><dd>Una flota de agentes digitales con simulaciones en vivo de cada flujo de trabajo.</dd></div>
+                    <div class="sys-step"><dt class="mono">RESULTADO</dt><dd>Una demo en vivo donde ves cada flujo en marcha.</dd></div>
+                </dl>
                 <div class="sys-chips mono"><span>AGENTES IA</span><span>SIMULADOR</span><span>WEB</span></div>
                 <a class="sys-link mono" href="agentes/">VER LA FLOTA →</a>
             </article>
             <article class="sys">
-                <div class="sys-fig" aria-hidden="true"><img src="img/nova/maquina.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
+                <figure class="sys-thumb">
+                    <span class="sys-shot"><img src="img/capturas/proyecto-rpa-supervision-800.webp?v=13e12f4e" srcset="img/capturas/proyecto-rpa-supervision-800.webp?v=13e12f4e 800w, img/capturas/proyecto-rpa-supervision.webp?v=82446a1f 1600w" sizes="(max-width: 620px) calc(100vw - 82px), (max-width: 1000px) calc(50vw - 77px), (max-width: 1228px) calc(33vw - 71px), 338px" width="1600" height="1000" alt="Captura de PULSO, recreación con datos sintéticos de la supervisión de una flota de bots" loading="lazy" decoding="async"></span>
+                    <figcaption class="mono">PROYECTO PRIVADO · LA IMAGEN ES SU RECREACIÓN EN EL LABORATORIO, CON DATOS SINTÉTICOS</figcaption>
+                </figure>
                 <div class="sys-top mono"><span class="sys-code">P-04</span><span class="sys-live"><i class="status-dot"></i>EN PRODUCCIÓN</span></div>
                 <h3>Suite RPA de escritorio</h3>
-                <p>Más de 170 bots de Power Automate construidos, operando procesos corporativos en 4 países.</p>
+                <dl class="sys-story">
+                    <div class="sys-step is-problem"><dt class="mono">EL PROBLEMA</dt><dd>Procesos corporativos repetitivos dependían de trabajo manual en varios países.</dd></div>
+                    <div class="sys-step"><dt class="mono">QUÉ CONSTRUÍ</dt><dd>Más de 170 bots de Power Automate de escritorio.</dd></div>
+                    <div class="sys-step"><dt class="mono">RESULTADO</dt><dd>Operan procesos corporativos en 4 países, en producción.</dd></div>
+                </dl>
                 <div class="sys-chips mono"><span>POWER AUTOMATE</span><span>RPA</span><span>WINDOWS</span></div>
-                <span class="sys-note mono">PROYECTO PRIVADO · DEMO CON DATOS SINTÉTICOS</span>
                 <a class="sys-link mono" href="laboratorio/#pulso">VER CÓMO SE SUPERVISAN →</a>
             </article>
             <article class="sys">
-                <div class="sys-fig" aria-hidden="true"><img src="img/nova/datos.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
+                <figure class="sys-thumb">
+                    <span class="sys-shot"><img src="img/capturas/proyecto-dashboard-ejecutivo-800.webp?v=378b2531" srcset="img/capturas/proyecto-dashboard-ejecutivo-800.webp?v=378b2531 800w, img/capturas/proyecto-dashboard-ejecutivo.webp?v=810472cd 1600w" sizes="(max-width: 620px) calc(100vw - 82px), (max-width: 1000px) calc(50vw - 77px), (max-width: 1228px) calc(33vw - 71px), 338px" width="1600" height="1000" alt="Captura de RELOJ, recreación con datos sintéticos de un cierre de mes que consolida cuatro orígenes" loading="lazy" decoding="async"></span>
+                    <figcaption class="mono">PROYECTO PRIVADO · LA IMAGEN ES SU RECREACIÓN EN EL LABORATORIO, CON DATOS SINTÉTICOS</figcaption>
+                </figure>
                 <div class="sys-top mono"><span class="sys-code">P-05</span><span class="sys-live"><i class="status-dot"></i>EN PRODUCCIÓN</span></div>
                 <h3>Dashboard ejecutivo multi-fuente</h3>
-                <p>Power BI consolidando SQL, SharePoint y APIs para decisiones de dirección.</p>
+                <dl class="sys-story">
+                    <div class="sys-step is-problem"><dt class="mono">EL PROBLEMA</dt><dd>La dirección tenía que decidir con datos repartidos entre SQL, SharePoint y APIs.</dd></div>
+                    <div class="sys-step"><dt class="mono">QUÉ CONSTRUÍ</dt><dd>Un dashboard en Power BI que consolida esas fuentes.</dd></div>
+                    <div class="sys-step"><dt class="mono">RESULTADO</dt><dd>Una sola vista para las decisiones de dirección, en producción.</dd></div>
+                </dl>
                 <div class="sys-chips mono"><span>POWER BI</span><span>DAX</span><span>SQL</span></div>
-                <span class="sys-note mono">PROYECTO PRIVADO · DEMO CON DATOS SINTÉTICOS</span>
                 <a class="sys-link mono" href="laboratorio/#reloj">VER CÓMO SE CONSOLIDA →</a>
             </article>
             <article class="sys">
-                <div class="sys-fig" aria-hidden="true"><img src="img/nova/agente.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
+                <figure class="sys-thumb">
+                    <span class="sys-shot"><img src="img/capturas/proyecto-asistente-tecnico-800.webp?v=727976bc" srcset="img/capturas/proyecto-asistente-tecnico-800.webp?v=727976bc 800w, img/capturas/proyecto-asistente-tecnico.webp?v=ec91bad1 1600w" sizes="(max-width: 620px) calc(100vw - 82px), (max-width: 1000px) calc(50vw - 77px), (max-width: 1228px) calc(33vw - 71px), 338px" width="1600" height="1000" alt="Captura de CANAL, recreación con datos sintéticos de un agente que responde preguntas sobre los datos de una empresa" loading="lazy" decoding="async"></span>
+                    <figcaption class="mono">PROYECTO PRIVADO · LA IMAGEN ES SU RECREACIÓN EN EL LABORATORIO, CON DATOS SINTÉTICOS</figcaption>
+                </figure>
                 <div class="sys-top mono"><span class="sys-code">P-06</span><span class="sys-live"><i class="status-dot"></i>EN PRODUCCIÓN</span></div>
                 <h3>Asistente técnico con IA</h3>
-                <p>Agente conversacional que responde con datos reales de sistemas internos.</p>
+                <dl class="sys-story">
+                    <div class="sys-step is-problem"><dt class="mono">EL PROBLEMA</dt><dd>Encontrar un dato en los sistemas internos exigía saber dónde y cómo consultarlo.</dd></div>
+                    <div class="sys-step"><dt class="mono">QUÉ CONSTRUÍ</dt><dd>Un agente conversacional con Copilot Studio en Teams, conectado por OData.</dd></div>
+                    <div class="sys-step"><dt class="mono">RESULTADO</dt><dd>Responde con datos reales de los sistemas internos.</dd></div>
+                </dl>
                 <div class="sys-chips mono"><span>COPILOT STUDIO</span><span>TEAMS</span><span>ODATA</span></div>
-                <span class="sys-note mono">PROYECTO PRIVADO · DEMO CON DATOS SINTÉTICOS</span>
                 <a class="sys-link mono" href="laboratorio/#canal">VER CÓMO RESPONDE →</a>
             </article>
         </div>
@@ -589,7 +651,7 @@
 </footer>
 
 <script defer src="cosmos.js?v=cedd243dff"></script>
-<script defer src="cv.js?v=88ce7e38b0"></script>
+<script defer src="cv.js?v=594c783ab6"></script>
 <script defer src="nova.js?v=7d7901c3a4"></script>
 <div class="motion-dock mono" hidden>
     <button id="motionToggle" type="button" aria-pressed="false" aria-label="Pausar movimiento ambiental">

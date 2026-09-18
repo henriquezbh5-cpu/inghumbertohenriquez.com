@@ -68,7 +68,7 @@
 .drop-privacy {
     margin-top: 16px;
     font-family: var(--font-m);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .09em;
     text-transform: uppercase;
     color: var(--green);
@@ -101,7 +101,7 @@
 .ficha div { background: var(--bg-2); padding: 13px 15px }
 .ficha dt {
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--label);
@@ -130,12 +130,12 @@
 .field.grow { flex: 1 1 240px }
 .field > span {
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--label);
 }
-.ctl-out { color: var(--teal); font-size: 12px; font-variant-numeric: tabular-nums }
+.ctl-out { color: var(--teal); font-size: 12.5px; font-variant-numeric: tabular-nums }
 .field select,
 .field input[type="text"],
 .field textarea {
@@ -176,7 +176,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 }
 .kpi .k {
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--label);
@@ -193,8 +193,8 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     border-radius: 11px;
     padding: 13px 15px;
     font-family: var(--font-m);
-    font-size: 12px;
-    line-height: 1.85;
+    font-size: 13px;
+    line-height: 1.8;
     height: 216px;
     overflow-y: auto;
     scrollbar-width: thin;
@@ -212,7 +212,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .tw table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 540px }
 .tw th {
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--label);
@@ -233,13 +233,13 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .tw td.r, .tw th.r { text-align: right }
 .tw tbody tr { transition: background .25s }
 .tw tbody tr.hit { background: rgba(45, 212, 191, .09) }
-.tw tbody tr.dim { opacity: .3 }
+.tw tbody tr.dim { opacity: .66 } /* atenuada pero legible: >= 4.5:1 sobre el panel */
 
 /* ---------- etiquetas de estado ---------- */
 .pill {
     display: inline-flex; align-items: center; gap: 6px;
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .07em;
     text-transform: uppercase;
     padding: 3px 9px;
@@ -272,7 +272,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     border: 1px solid var(--line);
     display: grid; place-items: center;
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12.5px;
     color: var(--label);
     transition: border-color .25s, color .25s, background .25s;
 }
@@ -283,7 +283,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .step.fail .b { border-color: var(--rose); color: var(--rose); background: rgba(244, 114, 182, .12) }
 .step .ms {
     font-family: var(--font-m);
-    font-size: 11px;
+    font-size: 12.5px;
     color: var(--label);
     font-variant-numeric: tabular-nums;
 }
@@ -305,7 +305,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .node .nn { font-size: 13.5px; color: var(--ink); font-weight: 500 }
 .node .nm {
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--label);
@@ -313,7 +313,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 }
 .node .nv {
     font-family: var(--font-m);
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--teal);
     margin-top: 7px;
     font-variant-numeric: tabular-nums;
@@ -323,14 +323,14 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 
 /* ---------- barras ---------- */
 .bars { display: flex; flex-direction: column; gap: 10px }
-.bar { display: grid; grid-template-columns: 152px 1fr 62px; gap: 13px; align-items: center; font-size: 13px }
+.bar { display: grid; grid-template-columns: 152px 1fr 68px; gap: 13px; align-items: center; font-size: 13px }
 .bar .bl { color: var(--body); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .bar .track { height: 9px; border-radius: 5px; background: var(--panel-2); overflow: hidden }
 .bar .fill { height: 100%; border-radius: 5px; transition: width .7s var(--ease-out), background .3s }
 .bar .val {
     text-align: right;
     font-family: var(--font-m);
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--ink);
     font-variant-numeric: tabular-nums;
 }
@@ -352,7 +352,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     flex: none;
     display: grid; place-items: center;
     font-family: var(--font-m);
-    font-size: 11px;
+    font-size: 12.5px;
     margin-top: 1px;
 }
 .insight .itxt { min-width: 0 }
@@ -367,14 +367,14 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .chartbox h4 { font-family: var(--font-d); font-size: 14.5px; font-weight: 500; color: var(--ink) }
 .chartbox .cap {
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .09em;
     text-transform: uppercase;
     color: var(--label);
     margin-top: 4px;
 }
 .cv { position: relative; height: 236px; margin-top: 14px }
-.chart-off { display: grid; place-items: center; height: 100%; color: var(--label); font-size: 11px }
+.chart-off { display: grid; place-items: center; height: 100%; color: var(--label); font-size: 13px }
 
 /* ---------- rejillas ---------- */
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px }
@@ -383,7 +383,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .pad { padding: 18px }
 .mono-head {
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .11em;
     text-transform: uppercase;
     color: var(--label);
@@ -406,7 +406,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .msg .src {
     display: block; margin-top: 8px;
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--label);
@@ -417,7 +417,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     border: 1px solid var(--line);
     border-radius: 999px;
     padding: 6px 13px;
-    font-size: 12.5px;
+    font-size: 13px;
     color: var(--body);
     cursor: pointer;
     transition: border-color .2s, color .2s;
@@ -436,7 +436,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     background: var(--bg-2);
     padding: 11px 15px;
     display: grid;
-    grid-template-columns: 168px 1fr 108px;
+    grid-template-columns: 168px 1fr 136px;
     gap: 14px;
     align-items: center;
     font-size: 13.5px;
@@ -444,7 +444,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 }
 .fx .fk {
     font-family: var(--font-m);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--label);
@@ -455,10 +455,10 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .conf .f { height: 100%; border-radius: 3px; transition: width .45s var(--ease-out) }
 .conf span {
     font-family: var(--font-m);
-    font-size: 10px;
+    font-size: 12.5px;
     color: var(--label);
     font-variant-numeric: tabular-nums;
-    min-width: 30px;
+    min-width: 38px;
     text-align: right;
 }
 
@@ -477,9 +477,9 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     font-size: 13.5px;
 }
 .rule-r .rt { color: var(--ink); font-weight: 500 }
-.rule-r small { display: block; color: var(--label); font-size: 12px; margin-top: 2px; font-weight: 400 }
+.rule-r small { display: block; color: var(--label); font-size: 13px; margin-top: 2px; font-weight: 400 }
 .rule-r .rr { display: flex; align-items: center; gap: 15px; flex: none }
-.rule-r .rc { font-family: var(--font-m); font-size: 10px; color: var(--label); white-space: nowrap }
+.rule-r .rc { font-family: var(--font-m); font-size: 12.5px; color: var(--label); white-space: nowrap }
 
 /* ---------- mapa de ruta (operación de campo) ---------- */
 .routemap { position: relative; background: #070E19; border: 1px solid var(--line); border-radius: 11px; overflow: hidden }
@@ -494,7 +494,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     border: 1px solid transparent;
     display: grid; place-items: center;
     font-family: var(--font-m);
-    font-size: 10px;
+    font-size: 12.5px;
     color: var(--label);
     transition: background .3s, border-color .3s;
 }
@@ -506,8 +506,8 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;
     margin-bottom: 6px;
     font-family: var(--font-m);
-    font-size: 9px;
-    letter-spacing: .06em;
+    font-size: 12px;
+    letter-spacing: 0;
     color: var(--label);
     text-align: center;
 }
@@ -520,7 +520,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 }
 @media (max-width: 640px) {
     .lab-hero { padding: 108px 0 42px }
-    .bar { grid-template-columns: 104px 1fr 54px }
+    .bar { grid-template-columns: 96px 1fr 64px }
     .fx { grid-template-columns: 1fr; gap: 6px }
     .fx .conf { max-width: 200px }
     .impact { gap: 18px }
@@ -551,7 +551,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     color: var(--ink);
     background: transparent;
     font-family: var(--font-m);
-    font-size: 10.5px;
+    font-size: 12px;
     letter-spacing: .1em;
     text-transform: uppercase;
     padding: 10px 17px;
@@ -595,15 +595,55 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .lab-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px }
 .lab-note { margin-top: 26px; max-width: 52ch; font-size: 13px }
 
-/* el robot: presencia, no adorno */
-.lab-hero-fig { position: relative; display: grid; place-items: center }
-.lab-hero-fig img {
-    width: min(100%, 380px);
-    height: auto;
+/* portada: ilustración del banco de pruebas + el robot de siempre.
+   La ilustración va rotulada como tal en el pie; enlaza a la galería. */
+.lab-hero-fig { position: relative; display: grid; place-items: center; margin: 0; min-width: 0 }
+.lab-portada-marco {
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 24px 44px rgba(3, 12, 24, .55));
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: #070E19;
+    box-shadow: 0 26px 60px rgba(3, 10, 20, .55);
+    transition: border-color .25s, transform .3s var(--ease-out);
+}
+.lab-portada-marco:hover { border-color: rgba(45, 212, 191, .5); transform: translateY(-3px) }
+.lab-portada-marco:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px }
+.lab-portada-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+.lab-portada-bot {
+    position: absolute;
+    left: -34px;
+    bottom: -30px;
+    width: 29%;
+    height: auto;
+    filter: drop-shadow(0 18px 30px rgba(3, 12, 24, .6));
     animation: bot-flota 6.5s ease-in-out infinite;
+}
+.lab-portada-cap {
+    position: relative;
+    z-index: 1;
+    justify-self: stretch;
+    margin-top: 16px;
+    padding-left: calc(29% - 14px);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--body);
+}
+.lab-portada-cap .mono {
+    display: block;
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--teal);
+    margin-bottom: 3px;
 }
 .fig-glow {
     position: absolute;
@@ -711,7 +751,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1 }
 .card-tag {
     align-self: flex-start;
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: .14em;
     color: var(--teal);
     border: 1px solid rgba(45, 212, 191, .3);
@@ -729,7 +769,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 }
 .card-body p { font-size: 14px; line-height: 1.5; color: var(--body); flex: 1 }
 .card-go {
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .12em;
     color: var(--label);
     transition: color .2s, transform .2s var(--ease-out);
@@ -746,14 +786,14 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     margin-bottom: 22px;
     border-bottom: 1px solid var(--line-soft);
 }
-.chips-lab { font-size: 9px; letter-spacing: .13em; color: var(--label); flex: none }
+.chips-lab { font-size: 12px; letter-spacing: .13em; color: var(--label); flex: none }
 .chips-row { display: flex; gap: 7px; overflow-x: auto; flex: 1; scrollbar-width: thin; padding-bottom: 2px }
 .chip-sys {
     flex: none;
     border: 1px solid var(--line);
     border-radius: 999px;
     padding: 6px 13px;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .1em;
     color: var(--body);
     background: transparent;
@@ -762,12 +802,12 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 }
 .chip-sys:hover { border-color: var(--teal); color: var(--teal) }
 .chip-sys[aria-current="true"] { background: var(--teal); border-color: var(--teal); color: #06251F; font-weight: 500 }
-.chips-back { font-size: 9.5px; letter-spacing: .12em; color: var(--label); flex: none }
+.chips-back { font-size: 12px; letter-spacing: .12em; color: var(--label); flex: none }
 .chips-back:hover { color: var(--teal) }
 
 /* ---------- encabezado del sistema abierto ---------- */
 .stage-head-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px }
-.stage-fam { font-size: 9.5px; letter-spacing: .12em; color: var(--label) }
+.stage-fam { font-size: 12px; letter-spacing: .12em; color: var(--label) }
 .stage-head h3 {
     font-family: var(--font-d);
     font-size: clamp(24px, 3.2vw, 34px);
@@ -797,7 +837,7 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 .detalle > summary {
     cursor: pointer;
     padding: 13px 17px;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .12em;
     color: var(--label);
     list-style: none;
@@ -847,7 +887,8 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     .lab-hero { padding: 100px 0 44px }
     .lab-hero-grid { grid-template-columns: 1fr; gap: 26px }
     .lab-hero-fig { order: -1 }
-    .lab-hero-fig img { width: min(64%, 250px) }
+    .lab-portada-bot { left: -8px; bottom: -22px; width: 24% }
+    .lab-portada-cap { padding-left: calc(24% + 4px); margin-top: 12px }
     .lab-cta { grid-template-columns: 1fr; padding: 24px }
     .cta-bot { width: 160px }
     .paso { gap: 14px }
@@ -860,7 +901,9 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     .card-fig { height: 148px }
 }
 @media (prefers-reduced-motion: reduce) {
-    .lab-hero-fig img, .fig-glow, .lab-pulse::after { animation: none }
+    .lab-portada-bot, .fig-glow, .lab-pulse::after { animation: none }
+    .lab-portada-marco { transition: none }
+    .lab-portada-marco:hover { transform: none }
     .card-sys, .card-fig img, .card-go { transition: none }
 }
 
@@ -890,3 +933,25 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
     .drop-grande h4 { font-size: 19px }
 }
 @media (prefers-reduced-motion: reduce) { .drop.over .drop-bot { transform: none } }
+
+/* ---------- legibilidad de las notas que pintan los simuladores ----------
+   Algunos sistemas escriben notas con tamaño y color en línea desde su
+   propio JS (entre 10 y 11.5 px, gris #6C82A0 al límite de 4.5:1). En vez
+   de tocar los simuladores, se suben aquí: 12.5 px y el gris de etiqueta
+   del sitio (7.9:1 sobre el panel). Solo afecta a la presentación. */
+.stage [style*="font-size: 10px"], #heroSystem [style*="font-size: 10px"],
+.stage [style*="font-size: 10.5px"], #heroSystem [style*="font-size: 10.5px"],
+.stage [style*="font-size: 11px"], #heroSystem [style*="font-size: 11px"],
+.stage [style*="font-size: 11.5px"], #heroSystem [style*="font-size: 11.5px"] {
+    font-size: 12.5px !important;
+}
+.stage [style*="color: rgb(108, 130, 160)"], #heroSystem [style*="color: rgb(108, 130, 160)"] {
+    color: var(--label) !important;
+}
+
+/* El calendario de corridas (13 semanas) con la letra ya legible: en
+   pantallas estrechas se cierra el hueco entre celdas para que quepa. */
+.cal-cell { line-height: 1; min-width: 0 }
+@media (max-width: 560px) {
+    .cal, .cal-head { gap: 2px }
+}
