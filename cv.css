@@ -639,6 +639,18 @@ html.js #arsenal:not(.anim-live) .tool-featured::after { animation-play-state: p
 .form-status a { color: var(--amber); text-decoration: underline }
 .form-alt { font-size: 9px; color: var(--label); text-align: center; margin-top: 14px }
 
+/* --- formas de pago: ficha de consultoria ---------------------------------
+   Reusa el marco .terms y su rejilla; aqui solo vive lo que no existe ya.
+   Va DENTRO de contacto a proposito: como se paga es una condicion de trabajo
+   mas, no una tienda. El detalle ruta por ruta esta en optimatiza.com. */
+/* Tamanos en la escala que fijo la auditoria de septiembre 2026 al final de esta
+   hoja: .875rem para texto de contenido y .75rem para notas de apoyo. En rem para
+   que respeten el tamano de fuente del navegador. Los 9px del dossier antiguo no
+   se reintroducen. */
+.pay-fine { font-size: .875rem; color: var(--body); line-height: 1.65; margin-top: 18px; max-width: 68ch }
+.pay-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 20px }
+.pay-scope { font-size: .75rem; color: var(--label); line-height: 1.5; letter-spacing: .05em }
+
 /* ============================== FOOTER ============================== */
 .footer { padding: 48px 0 28px }
 .footer-grid {
