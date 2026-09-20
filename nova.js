@@ -110,7 +110,7 @@
     form.appendChild(input);
     form.appendChild(send);
 
-    var foot = el('p', 'nova-foot mono', 'NOVA puede equivocarse. Para responder, envía tu pregunta y los mensajes recientes al servicio de IA de Humberto. No compartas información confidencial.');
+    var foot = el('p', 'nova-foot mono', 'El servicio de IA de Humberto procesa tu consulta y los mensajes recientes para responderte.');
 
     panel.appendChild(head);
     panel.appendChild(feed);
