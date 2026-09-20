@@ -10,7 +10,6 @@
     'use strict';
 
     var ENDPOINT = 'https://quote-ai.henriquezbh5.workers.dev/chat';
-    var LS_SEEN = 'hh-nova-seen';
     var history = [];   // [{role:'user'|'nova', text}]
     var busy = false;
 
@@ -45,7 +44,7 @@
     var root = el('div', 'nova');
     root.setAttribute('data-nova', '');
 
-    // Burbuja + etiqueta "click me"
+    // Disparador accesible; la presentación interactiva vive en nova-companion.js.
     // Mismo robot que NOVA usa en Optimatiza: la marca del agente es una sola.
     function botIcon(size) {
         var img = document.createElement('img');
@@ -64,18 +63,11 @@
     core.appendChild(botIcon(34));
     launcher.appendChild(core);
 
-    var tag = el('button', 'nova-tag mono');
-    tag.type = 'button';
-    tag.appendChild(el('span', 'nova-tag-dot'));
-    tag.appendChild(el('span', null, 'PREGÚNTAME SOBRE HUMBERTO'));
-
     // Panel
     var panel = el('section', 'nova-panel');
     panel.id = 'novaPanel';
     launcher.setAttribute('aria-controls', 'novaPanel');
     launcher.setAttribute('aria-expanded', 'false');
-    tag.setAttribute('aria-controls', 'novaPanel');
-    tag.setAttribute('aria-expanded', 'false');
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-label', 'Chat con NOVA');
     panel.hidden = true;
@@ -127,7 +119,6 @@
     panel.appendChild(foot);
 
     root.appendChild(panel);
-    root.appendChild(tag);
     root.appendChild(launcher);
 
     /* ---------- mensajes ---------- */
@@ -204,10 +195,7 @@
     function openPanel() {
         panel.hidden = false;
         launcher.setAttribute('aria-expanded', 'true');
-        tag.setAttribute('aria-expanded', 'true');
         root.classList.add('is-open');
-        tag.hidden = true;
-        try { localStorage.setItem(LS_SEEN, '1'); } catch (e) { /* privado */ }
         if (!opened) {
             opened = true;
             addMsg('nova', 'Hola, soy NOVA — el agente de IA que Humberto construyó para este sitio. Sí, hablar conmigo ya es ver su trabajo en acción. ¿Qué quieres saber de él?');
@@ -219,13 +207,10 @@
         panel.hidden = true;
         root.classList.remove('is-open');
         launcher.setAttribute('aria-expanded', 'false');
-        tag.setAttribute('aria-expanded', 'false');
-        tag.hidden = false;
         launcher.focus();
     }
 
     launcher.addEventListener('click', function () { panel.hidden ? openPanel() : closePanel(); });
-    tag.addEventListener('click', openPanel);
     closeBtn.addEventListener('click', closePanel);
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && !panel.hidden) closePanel();
@@ -242,40 +227,4 @@
     /* ---------- montaje ---------- */
     document.body.appendChild(root);
 
-    // La etiqueta "click me" respira sola; si ya lo conoces, entra discreta.
-    try {
-        if (localStorage.getItem(LS_SEEN)) tag.classList.add('is-quiet');
-    } catch (e) { /* privado */ }
-
-    // La etiqueta no puede tapar contenido. Aparece solo cuando el
-    // visitante ya dejó atrás la portada (donde vive el panel HH.LOG),
-    // y se retira sola a los 8 s dejando únicamente la burbuja.
-    var LS_TAG = 'hh-nova-tag-seen';
-    tag.classList.add('is-early');
-    var collapseTimer = 0;
-    function releaseTag() {
-        if (!tag.classList.contains('is-early')) return;
-        // Se muestra una sola vez por sesión: cumple su función de invitar
-        // sin convertirse en un estorbo permanente sobre el contenido.
-        try {
-            if (sessionStorage.getItem(LS_TAG)) return;
-            sessionStorage.setItem(LS_TAG, '1');
-        } catch (e) { /* privado */ }
-        tag.classList.remove('is-early');
-        collapseTimer = setTimeout(function () {
-            if (!root.classList.contains('is-open')) tag.classList.add('is-collapsed');
-        }, 7000);
-    }
-    function onScroll() {
-        if (window.scrollY > 420) {
-            window.removeEventListener('scroll', onScroll);
-            releaseTag();
-        }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    // Si la página no tiene scroll suficiente, la etiqueta igual aparece.
-    setTimeout(function () {
-        if (document.documentElement.scrollHeight <= window.innerHeight + 420) releaseTag();
-    }, 2500);
 })();

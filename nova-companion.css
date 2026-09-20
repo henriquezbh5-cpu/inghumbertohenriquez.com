@@ -1,0 +1,75 @@
+/* The button stays fixed. Only the transparent robot inside it moves. */
+.nc-root .nc-launcher, #nova .nc-launcher {
+  transform: none !important; animation: none !important; transition: none !important;
+  background: transparent; box-shadow: none; padding: 0; overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+}
+.nc-root .nc-launcher:hover, #nova .nc-launcher:hover { transform: none !important; box-shadow: none; filter: none }
+.nc-root .nc-launcher :is(.nc-float, .nc-look, .nc-mood) { display: block; width: 100%; height: 100%; pointer-events: none }
+.nc-root .nc-float { animation: nc-drift 7s ease-in-out infinite }
+.nc-root .nc-look { transform: translate(var(--nc-x, 0px), var(--nc-y, 0px)) rotate(var(--nc-turn, 0deg)); transition: transform .28s ease, filter .35s ease }
+.nc-root.nc-near .nc-look { filter: brightness(1.07) saturate(1.1) }
+.nc-root.nc-greet .nc-mood { animation: nc-welcome 1.1s ease-in-out both }
+.nc-root.nc-engaged .nc-float, .nc-root.nc-still .nc-float { animation-play-state: paused }
+.nc-root.nc-still .nc-mood, .nc-root.nc-engaged .nc-mood { animation: none }
+.nc-root.nc-still .nc-look { transform: none; transition: none; filter: none }
+.nc-root.nc-still .nc-control, .nc-root.nc-still .nc-ask { transition: none }
+@keyframes nc-drift { 0%, 100% { transform: translateY(2px) } 50% { transform: translateY(-4px) } }
+@keyframes nc-welcome {
+  0%, 100% { transform: rotate(0) scale(1) }
+  30% { transform: rotate(-5deg) scale(1.06) }
+  62% { transform: rotate(4deg) scale(1.04) }
+  82% { transform: rotate(-1deg) scale(1.02) }
+}
+.nc-root .nc-invite {
+  --nc-bg: #fff; --nc-ink: #102b38; --nc-body: #395667; --nc-accent: #066b62; --nc-line: #c1d8d5;
+  position: absolute; bottom: 88px; right: 0; left: auto; width: min(304px, calc(100vw - 48px));
+  box-sizing: border-box; border: 1px solid var(--nc-line); border-radius: 16px;
+  background: var(--nc-bg); color: var(--nc-ink); box-shadow: 0 14px 45px #001a2d26;
+  font-family: Inter, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; text-align: left;
+  z-index: 2; padding: 5px 7px 7px; overflow: visible; letter-spacing: normal;
+}
+.nc-root .nc-invite[hidden] { display: none !important }
+.nc-root .nc-invite::after {
+  content: ''; position: absolute; bottom: -7px; right: 29px; width: 12px; height: 12px;
+  background: var(--nc-bg); border-right: 1px solid var(--nc-line); border-bottom: 1px solid var(--nc-line); transform: rotate(45deg);
+}
+.nc-root.nc-left .nc-invite { left: 0; right: auto }
+.nc-root.nc-left .nc-invite::after { left: 29px; right: auto }
+.nc-root.nc-personal .nc-invite { --nc-bg: #102638; --nc-ink: #eef7ff; --nc-body: #c2d5e3; --nc-accent: #9eeadb; --nc-line: #496b80 }
+.nc-root .nc-invite-bar { display: flex; align-items: center; gap: 0; padding-left: 11px }
+.nc-root .nc-name { flex: 1; color: var(--nc-accent); font-size: 12px; font-weight: 700; letter-spacing: .06em; white-space: nowrap }
+.nc-root .nc-control {
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 44px;
+  width: 44px; height: 44px; min-height: 44px; min-width: 44px; padding: 0;
+  border: 0; border-radius: 10px; color: var(--nc-body); background: transparent;
+  cursor: pointer; font: 500 18px/1 Inter, 'Segoe UI', sans-serif; transition: background .2s ease;
+}
+.nc-root .nc-dismiss { font-size: 25px }
+.nc-root .nc-control:hover { background: color-mix(in srgb, var(--nc-accent) 10%, transparent) }
+.nc-root .nc-control:disabled { opacity: .55; cursor: default }
+.nc-root .nc-ask {
+  display: block; width: 100%; box-sizing: border-box; min-height: 44px; text-align: left;
+  padding: 1px 11px 12px; margin: 0; border: 0; border-radius: 10px;
+  background: transparent; color: inherit; cursor: pointer; font: inherit;
+}
+.nc-root .nc-title { display: block; font-size: 16px; line-height: 1.4; font-weight: 700; color: var(--nc-ink); margin-bottom: 7px }
+.nc-root .nc-description { display: block; color: var(--nc-body); font-size: 14px; line-height: 1.55 }
+.nc-root .nc-cta { display: block; margin-top: 13px; color: var(--nc-accent); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px }
+.nc-root .nc-ask:hover .nc-cta { text-decoration-thickness: 2px }
+.nc-root :is(.nc-control, .nc-ask):focus-visible { outline: 2px solid var(--nc-accent); outline-offset: -2px }
+@media (max-width: 640px) { .nc-root .nc-invite { bottom: 77px } }
+@media (max-height: 420px) {
+  .nc-root .nc-invite { max-height: calc(100dvh - 114px); overflow-y: auto; overscroll-behavior: contain }
+  .nc-root .nc-invite::after { display: none }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nc-root :is(.nc-float, .nc-mood) { animation: none !important }
+  .nc-root .nc-look { transform: none !important; transition: none !important; filter: none !important }
+}
+@media (forced-colors: active) {
+  .nc-root .nc-invite { background: Canvas; color: CanvasText; border-color: ButtonText }
+  .nc-root .nc-invite::after { background: Canvas; border-color: ButtonText }
+  .nc-root :is(.nc-name, .nc-title, .nc-description, .nc-cta, .nc-control) { color: CanvasText }
+}
+@media print { .nc-root { display: none !important } }
