@@ -18,6 +18,7 @@
         if (button) {
             button.setAttribute('aria-pressed', String(motion.paused));
             button.setAttribute('aria-label', motion.paused ? 'Activar movimiento ambiental' : 'Pausar movimiento ambiental');
+            button.setAttribute('title', motion.paused ? 'Activar movimiento ambiental' : 'Pausar movimiento ambiental');
             button.querySelector('[data-motion-label]').textContent = motion.paused ? 'ACTIVAR MOVIMIENTO' : 'PAUSAR MOVIMIENTO';
         }
         window.dispatchEvent(new CustomEvent('hh:motion', { detail: { paused: motion.paused } }));

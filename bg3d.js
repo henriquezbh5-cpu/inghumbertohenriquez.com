@@ -6,8 +6,10 @@ const root = document.documentElement;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const mobileQuery = matchMedia('(max-width: 768px)');
 const pointerQuery = matchMedia('(hover: hover) and (pointer: fine)');
+const forcedColors = matchMedia('(forced-colors: active)');
 const connection = navigator.connection;
-const isPaused = () => !!window.hhMotion?.paused || reducedMotion.matches || !!connection?.saveData;
+let printing = false;
+const isPaused = () => !!window.hhMotion?.paused || reducedMotion.matches || !!connection?.saveData || forcedColors.matches || printing;
 function randomSource(seed = 240905) {
     return () => { seed = (Math.imul(1664525, seed) + 1013904223) >>> 0; return seed / 4294967296; };
 }
@@ -46,7 +48,8 @@ function staticSky() {
 async function init() {
     if (connection?.saveData) { staticSky(); return; }
     const THREE = await import('./vendor/three/three.module.min.js');
-    const compact = mobileQuery.matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
+    const lowMemory = !!navigator.deviceMemory && navigator.deviceMemory <= 4;
+    let compact = mobileQuery.matches || lowMemory;
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' });
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, compact ? 1.25 : 1.6));
     renderer.setClearColor(0x050b18, 0);
@@ -112,6 +115,12 @@ async function init() {
                     gl_PointSize = clamp(aSize * uDpr * 40.0 / max(8.0, -mv.z), .7, 6.0 * uDpr);
                     gl_PointSize *= 1.0 + influence * .65;
                     vAlpha = (.68 + .22 * sin(uTime * .48 + aSeed)) * (1.0 - smoothstep(65.0, 115.0, -mv.z));
+                    // Staggered stellar lives: fade fully before a new star is born.
+                    float phase = fract(uTime / (20.0 + aSeed * 4.0) + aSeed);
+                    float life = smoothstep(0.0, .18, phase) * (1.0 - smoothstep(.7, 1.0, phase));
+                    float evolve = step(4.6, aSeed);
+                    vAlpha *= mix(1.0, life, evolve);
+                    gl_PointSize *= mix(1.0, .7 + .7 * smoothstep(.1, .8, phase), evolve);
                     vTone = aTone;
                 }`,
             fragmentShader: `
@@ -131,10 +140,63 @@ async function init() {
         });
         return new THREE.Points(geometry, material);
     }
-    const spiral = pointCloud(compact ? 5500 : 14500, true);
+    // Allocate once; draw ranges adapt when the viewport changes.
+    const spiral = pointCloud(lowMemory ? 5500 : 14500, true);
     galaxy.add(spiral);
-    const stars = pointCloud(compact ? 350 : 850, false);
+    const stars = pointCloud(lowMemory ? 350 : 850, false);
     scene.add(stars);
+    // One small batch of stellar nurseries. No timers, textures or extra render loops.
+    const nurseryPositions = new Float32Array(28 * 3);
+    const nurserySeeds = new Float32Array(28);
+    for (let i = 0; i < 28; i++) {
+        const radius = 5 + random() * 23;
+        const angle = i * 2.39996 + radius * .28;
+        nurseryPositions[i * 3] = Math.cos(angle) * radius;
+        nurseryPositions[i * 3 + 1] = Math.sin(angle) * radius;
+        nurseryPositions[i * 3 + 2] = (random() - .5) * 3;
+        nurserySeeds[i] = random();
+    }
+    const nurseryGeometry = new THREE.BufferGeometry();
+    nurseryGeometry.setAttribute('position', new THREE.BufferAttribute(nurseryPositions, 3));
+    nurseryGeometry.setAttribute('aSeed', new THREE.BufferAttribute(nurserySeeds, 1));
+    const nursery = new THREE.Points(nurseryGeometry, new THREE.ShaderMaterial({
+        uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        vertexShader: `
+            uniform float uTime, uDpr;
+            attribute float aSeed;
+            varying float vPhase, vSeed;
+            void main() {
+                vPhase = fract(uTime / (22.0 + aSeed * 19.0) + aSeed * 7.0);
+                vSeed = aSeed;
+                vec4 mv = modelViewMatrix * vec4(position, 1.0);
+                gl_Position = projectionMatrix * mv;
+                gl_PointSize = clamp((52.0 + aSeed * 32.0) * uDpr * 40.0 / max(16.0, -mv.z), 18.0, 100.0 * uDpr);
+            }`,
+        fragmentShader: `
+            uniform vec3 uPrimary, uSecondary;
+            varying float vPhase, vSeed;
+            void main() {
+                vec2 p = gl_PointCoord - .5;
+                float r = length(p);
+                if (r > .5) discard;
+                float birth = smoothstep(0.0, .22, vPhase);
+                float release = smoothstep(.48, .88, vPhase);
+                float life = birth * (1.0 - smoothstep(.68, 1.0, vPhase));
+                float core = exp(-r * r * 1700.0) * (1.0 - release * .84);
+                float glow = exp(-r * r * 90.0) * .2;
+                float ringRadius = .035 + release * .39;
+                float shell = exp(-pow((r - ringRadius) / (.014 + release * .018), 2.0));
+                shell *= release * (1.0 - release) * .6;
+                float rays = exp(-abs(p.x) * 180.0) * exp(-abs(p.y) * 18.0)
+                           + exp(-abs(p.y) * 180.0) * exp(-abs(p.x) * 18.0);
+                vec3 color = mix(uPrimary, uSecondary, vSeed);
+                color = mix(color, vec3(.88, .96, 1.0), core * .7);
+                float alpha = (core + glow + shell + rays * .18 * (1.0 - release)) * life;
+                gl_FragColor = vec4(color, alpha);
+                #include <colorspace_fragment>
+            }`,
+    }));
+    galaxy.add(nursery);
     // Procedural light between the points: one plane, no blur or postprocessing passes.
     const haloMaterial = new THREE.ShaderMaterial({
         uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
@@ -148,13 +210,16 @@ async function init() {
                 p.y *= 1.75;
                 float radius = length(p);
                 float angle = atan(p.y, p.x + .00001);
-                float arms = .5 + .5 * sin(angle * 3.0 - radius * 11.0 + uTime * .04);
-                float cloud = exp(-radius * radius * 3.7) * (.4 + arms * .32);
+                float wave = sin(p.x * 9.0 + uTime * .035) * cos(p.y * 12.0 - uTime * .025);
+                float arms = .5 + .5 * sin(angle * 3.0 - radius * 11.0 + wave * .65 + uTime * .04);
+                float cloud = exp(-radius * radius * 3.7) * (.32 + arms * .5);
+                float mist = exp(-length(p - vec2(.34, .08)) * 5.0) * (.65 + wave * .22);
+                float dust = exp(-length(p + vec2(.32, .12)) * 5.5) * arms;
                 float core = exp(-radius * radius * 100.0);
                 float edge = 1.0 - smoothstep(.65, 1.0, length((vUv - .5) * 2.0));
                 vec3 color = mix(uPrimary, uSecondary, clamp(radius + p.x * .3, 0.0, 1.0));
                 color = mix(color, vec3(.8, .91, 1.0), core * .65);
-                gl_FragColor = vec4(color, (cloud * .12 + core * .24) * edge * uEnergy);
+                gl_FragColor = vec4(color, (cloud * .2 + core * .3 + mist * .085 + dust * .075) * edge * uEnergy);
                 #include <colorspace_fragment>
             }`,
     });
@@ -171,17 +236,27 @@ async function init() {
     let scrollTarget = scrollY, scrollPosition = scrollY, lastScroll = scrollY, scrollSpeed = 0;
     let frame = 0, last = 0, elapsed = 0, hidden = document.hidden, contextLost = false;
     let slowFrames = 0, samples = 0, qualityReduced = false;
+    let resizeTimer = 0;
+    function applyQuality() {
+        compact = mobileQuery.matches || lowMemory;
+        renderer.setPixelRatio(Math.min(devicePixelRatio || 1, qualityReduced ? 1 : compact ? 1.25 : 1.6));
+        uniforms.uDpr.value = renderer.getPixelRatio();
+        spiral.geometry.setDrawRange(0, qualityReduced ? (compact ? 3200 : 8500) : (compact ? 5500 : 14500));
+        stars.geometry.setDrawRange(0, compact ? 350 : 850);
+        nursery.geometry.setDrawRange(0, compact || qualityReduced ? 10 : 28);
+    }
     function measureSections() {
         sectionTops = sections.map(section => section.getBoundingClientRect().top + scrollY);
         pageHeight = Math.max(1, document.documentElement.scrollHeight - innerHeight);
     }
     function resize() {
+        applyQuality();
         width = Math.max(1, canvas.clientWidth || innerWidth);
         height = Math.max(1, canvas.clientHeight || innerHeight);
         renderer.setSize(width, height, false);
         camera.aspect = width / height; camera.updateProjectionMatrix();
         measureSections();
-        if (isPaused() && !contextLost && !hidden) render(0);
+        if (isPaused() && !contextLost && !hidden && !forcedColors.matches && !printing) render(0);
     }
     function render(dt) {
         const smoothing = dt ? 1 - Math.exp(-dt * 3) : 1;
@@ -223,13 +298,13 @@ async function init() {
         last = now; elapsed += dt;
         scrollSpeed += (Math.abs(scrollTarget - lastScroll) / Math.max(dt, .001) - scrollSpeed) * .12;
         lastScroll = scrollTarget; render(dt);
-        // Degrade only once when the device cannot sustain the initial budget.
-        if (!qualityReduced && ++samples <= 150) {
-            if (rawDelta > 48) slowFrames++;
-            if (samples === 150 && slowFrames > 45) {
-                qualityReduced = true; renderer.setPixelRatio(1); uniforms.uDpr.value = 1;
-                spiral.geometry.setDrawRange(0, compact ? 3200 : 8500);
-                renderer.setSize(width, height, false);
+        // Re-evaluate in bounded windows; only lower quality, never oscillate.
+        if (!qualityReduced) {
+            samples++;
+            if (rawDelta > interval * 1.65) slowFrames++;
+            if (samples >= 180) {
+                if (slowFrames > 72) { qualityReduced = true; applyQuality(); renderer.setSize(width, height, false); }
+                samples = 0; slowFrames = 0;
             }
         }
         frame = requestAnimationFrame(tick);
@@ -237,6 +312,7 @@ async function init() {
     function syncPlayback() {
         if (frame) cancelAnimationFrame(frame);
         frame = 0; last = 0;
+        if (isPaused()) { targetX = 0; targetY = 0; pointerActive = 0; }
         if (!hidden && !isPaused() && !contextLost) frame = requestAnimationFrame(tick);
     }
     addEventListener('pointermove', event => {
@@ -248,10 +324,14 @@ async function init() {
     document.addEventListener('pointerleave', () => { targetX = 0; targetY = 0; pointerActive = 0; });
     addEventListener('blur', () => { targetX = 0; targetY = 0; pointerActive = 0; });
     addEventListener('scroll', () => { scrollTarget = scrollY; }, { passive: true });
-    addEventListener('resize', resize, { passive: true });
+    addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(resize, 100); }, { passive: true });
     addEventListener('hh:motion', syncPlayback);
     reducedMotion.addEventListener('change', syncPlayback);
     connection?.addEventListener('change', syncPlayback);
+    forcedColors.addEventListener('change', syncPlayback);
+    pointerQuery.addEventListener('change', () => { targetX = 0; targetY = 0; pointerActive = 0; });
+    addEventListener('beforeprint', () => { printing = true; syncPlayback(); });
+    addEventListener('afterprint', () => { printing = false; syncPlayback(); });
     document.addEventListener('visibilitychange', () => { hidden = document.hidden; syncPlayback(); });
     addEventListener('pagehide', () => { hidden = true; syncPlayback(); });
     addEventListener('pageshow', () => { hidden = document.hidden; syncPlayback(); });

@@ -349,8 +349,8 @@
                             <textarea id="agMsg" name="message" rows="3" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-ink" data-i18n="ag-form-send">ENVIAR</button>
-                        <p id="agFormOk" class="form-success" hidden data-i18n="ag-form-ok">Enviado. Respondo en menos de 24 horas.</p>
-                        <p id="agFormFallback" class="form-fallback" hidden></p>
+                        <p id="agFormOk" class="form-success" role="status" aria-live="polite" hidden data-i18n="ag-form-ok">Enviado. Respondo en menos de 24 horas.</p>
+                        <p id="agFormFallback" class="form-fallback" role="alert" hidden></p>
                         <p class="form-privacy" data-i18n="ag-form-privacy">Tus datos se procesan v&iacute;a Formspree solo para responderte. No se venden ni se usan para marketing.</p>
                     </form>
                 </div>
@@ -625,6 +625,6 @@
     </dialog>
 
     <script defer src="agents-data.js"></script>
-    <script defer src="agentes.js?v=13a598f039"></script>
+    <script defer src="agentes.js?v=8b8f50e39a"></script>
 </body>
 </html>

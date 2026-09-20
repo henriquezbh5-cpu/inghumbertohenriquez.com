@@ -1641,27 +1641,45 @@
     if (!form || !window.fetch) return;
     var okEl = $('#agFormOk');
     var fbEl = $('#agFormFallback');
+    var busy = false;
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (busy) return;
+      busy = true;
+      form.setAttribute('aria-busy', 'true');
       var btn = form.querySelector('button[type="submit"]');
       var original = btn ? btn.innerHTML : '';
       if (btn) { btn.innerHTML = t('ag-x-form-sending'); btn.disabled = true; }
       if (fbEl) fbEl.hidden = true;
+      if (okEl) okEl.hidden = true;
+      var controller = window.AbortController ? new AbortController() : null;
+      var timeout;
+      var deadline = new Promise(function (_, reject) {
+        timeout = setTimeout(function () {
+          if (controller) controller.abort();
+          reject(new Error('Request timed out'));
+        }, 15000);
+      });
 
-      fetch(form.action, {
+      var request = fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(function (res) {
-        if (btn) { btn.innerHTML = original; btn.disabled = false; }
+        headers: { 'Accept': 'application/json' },
+        signal: controller ? controller.signal : undefined
+      });
+      Promise.race([request, deadline]).then(function (res) {
         if (res.ok) {
           form.reset();
           if (okEl) okEl.hidden = false;
         } else { showFallback(); }
       }).catch(function () {
-        if (btn) { btn.innerHTML = original; btn.disabled = false; }
         showFallback();
+      }).finally(function () {
+        clearTimeout(timeout);
+        busy = false;
+        form.removeAttribute('aria-busy');
+        if (btn) { btn.innerHTML = original; btn.disabled = false; }
       });
 
       function showFallback() {

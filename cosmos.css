@@ -117,7 +117,7 @@ html.js .cosmic-site .sec-head:not(.in) .sec-rule { transform: scaleX(.15) }
 .cosmic-site .scroll-progress { height: 3px; background: linear-gradient(90deg, #54e3d2, #81bbff, #b298ff) }
 .cosmic-site .footer { background: rgba(5, 11, 24, .7) }
 .motion-dock {
-    position: fixed; z-index: 65; left: 18px; bottom: 20px;
+    position: fixed; z-index: 65; left: 18px; bottom: max(20px, env(safe-area-inset-bottom));
     border: 1px solid rgba(151, 189, 231, .3);
     background: rgba(7, 16, 31, .94);
     border-radius: 3px;
@@ -130,11 +130,13 @@ html.js .cosmic-site .sec-head:not(.in) .sec-rule { transform: scaleX(.15) }
     color: #afc9df; cursor: pointer; font-size: .75rem; letter-spacing: .055em;
 }
 .motion-dock button:hover { color: #89eee4 }
+.motion-dock button:focus-visible { outline: 2px solid #89eee4; outline-offset: 4px }
 .motion-icon { flex: 0 0 16px; color: #74ddd5 }
 .motion-play { display: none }
 .motion-paused .motion-play { display: block }
 .motion-paused .motion-pause { display: none }
-.motion-paused *, .motion-paused *::before, .motion-paused *::after { animation: none !important }
+.motion-paused *, .motion-paused *::before, .motion-paused *::after { animation-play-state: paused !important }
+.motion-paused .nova-panel { animation: none !important }
 .motion-paused { scroll-behavior: auto }
 .motion-paused .cosmic-site *, .motion-paused .cosmic-site *::before, .motion-paused .cosmic-site *::after { transition-duration: 0s !important }
 .motion-paused .cosmic-site .rv, .motion-paused .cosmic-site .tool-grid .tool { opacity: 1 !important; transform: none !important }
@@ -144,9 +146,57 @@ html.js .cosmic-site .sec-head:not(.in) .sec-rule { transform: scaleX(.15) }
     .cosmic-site .hero { padding-top: 94px }
     .universe-intro { margin-bottom: 24px; letter-spacing: .09em }
     .cosmos-veil { background: rgba(5, 11, 24, .3) }
-    .motion-dock { left: 14px; bottom: 18px }
+    .motion-dock { left: 14px; bottom: max(18px, env(safe-area-inset-bottom)) }
     .motion-dock [data-motion-label] { display: none }
     .motion-dock button { padding: 10px }
+}
+
+/* Founder story: a clear bridge between the professional and his company. */
+.founder-section { position: relative; padding: 20px 0 64px; scroll-margin-top: 96px }
+.founder-card {
+    display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: clamp(28px, 4vw, 60px);
+    padding: clamp(24px, 4vw, 52px); border: 1px solid #31536b; border-radius: 16px;
+    background: linear-gradient(125deg, rgba(11, 31, 45, .98), rgba(8, 20, 37, .97) 70%);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, .22), 0 0 70px rgba(79, 206, 210, .045);
+}
+.founder-kicker { display: flex; align-items: center; gap: 10px; font-size: .72rem; color: #a3d9d6; letter-spacing: .1em; margin: 0 0 18px }
+.founder-kicker > span { width: 6px; height: 6px; border-radius: 50%; background: #a7eee1 }
+.founder-brand { display: inline-flex; align-items: baseline; font: 700 clamp(28px, 3vw, 38px)/1 var(--font-d); color: #f0f7ff; letter-spacing: -.04em; margin-bottom: 25px }
+.founder-brand > span:first-child { color: #a8ecdd }
+.founder-brand .founder-brand-arrow { margin-left: 15px; color: #8cbbce; font-size: 20px }
+.founder-copy h2 { font: 700 clamp(27px, 3vw, 36px)/1.18 var(--font-d); letter-spacing: -.035em; color: #f0f7ff; margin: 0 0 18px }
+.founder-copy > p:not(.founder-kicker) { color: #becfe0; font-size: 1rem; line-height: 1.8; margin: 0 }
+.founder-specialties { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 22px 0 26px; list-style: none }
+.founder-specialties li { font-size: .78rem; color: #c8e8e5; background: #142e3e; border: 1px solid #345465; border-radius: 5px; padding: 6px 9px }
+.founder-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px }
+.founder-actions .btn { font-size: .72rem; padding-inline: 16px }
+.founder-demo { display: inline-flex; align-items: center; min-height: 44px; gap: 10px; color: #b0e9df; font-size: .87rem; text-decoration: underline; text-underline-offset: 5px }
+.founder-film { margin: 0; overflow: hidden; border: 1px solid #3a5b6d; border-radius: 13px; background: #0a1b2b; box-shadow: 0 18px 50px #0003 }
+.founder-film video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: contain; background: #0a1b2b }
+.founder-film figcaption { color: #c1d5e3; font-size: .72rem; padding: 10px 13px; background: #112c3b; line-height: 1.5 }
+.founder-film-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px }
+.founder-film-footer p { color: #b7cddb; font-size: .83rem; line-height: 1.8; margin: 0 }
+.founder-film-footer strong { color: #e4f1f8; font-weight: 600 }
+.founder-video-toggle { flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 9px 11px; border: 1px solid #537081; border-radius: 6px; background: #0c2131; color: #d5e7f2; font-size: .75rem; cursor: pointer }
+.founder-video-toggle[hidden] { display: none }
+.founder-video-toggle:hover { background: #173a49; border-color: #8fe5d8 }
+.founder-card :is(a, button):focus-visible { outline: 2px solid #a7eee1; outline-offset: 5px }
+.pnode-t[href] { text-decoration: underline; text-underline-offset: 4px }
+@media (max-width: 900px) {
+    .founder-card { grid-template-columns: 1fr; gap: 30px }
+    .founder-copy h2 br { display: none }
+    .founder-visual { max-width: 680px; width: 100%; margin-inline: auto }
+}
+@media (max-width: 420px) {
+    .founder-card { padding: 22px 18px; border-radius: 12px }
+    .founder-film-footer { align-items: flex-start; flex-direction: column }
+    .founder-kicker { font-size: .65rem }
+}
+@media print {
+    .founder-section { padding: 12px 0 }
+    .founder-card { display: block; background: white; box-shadow: none; border-color: #777 }
+    .founder-visual { display: none }
+    .founder-copy :is(h2, p, a, span, li) { color: #111 !important }
 }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto }

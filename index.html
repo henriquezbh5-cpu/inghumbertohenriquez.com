@@ -66,8 +66,8 @@
     <link rel="preload" href="fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 
     <script src="js-flag.js"></script>
-    <link rel="stylesheet" href="cv.css?v=70f025c810">
-    <link rel="stylesheet" href="cosmos.css?v=850e6b68b3">
+    <link rel="stylesheet" href="cv.css?v=7b68b69515">
+    <link rel="stylesheet" href="cosmos.css?v=bb06cf8b69">
 </head>
 <body class="cosmic-site">
 
@@ -116,11 +116,7 @@
 
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
-    <!-- Fondo de cabecera: solo aqui. Los cubos iluminados quedan detras de la foto,
-         atenuados por mascara; la mitad izquierda, la del titular, queda oscura. -->
-    <div class="hero-backdrop" aria-hidden="true">
-        <img src="img/visual/fondo-oscuro-1000.webp?v=0f0b204a" srcset="img/visual/fondo-oscuro-1000.webp?v=0f0b204a 1000w, img/visual/fondo-oscuro-1672.webp?v=3cda8048 1672w" sizes="(max-width: 900px) 160vw, 72vw" width="1672" height="941" alt="" decoding="async">
-    </div>
+    <!-- La galaxia continua acompaña la fotografía real y el expediente. -->
     <div class="hero-shade" aria-hidden="true"></div>
 
     <div class="container hero-content">
@@ -140,7 +136,7 @@
                 <h1 class="hero-title rv">
                     Construyo <em>agentes de IA</em> y automatización para operaciones reales.
                 </h1>
-                <p class="hero-sub rv">Ingeniero y científico de datos, con sistemas en empresas de 4 países. Fundador de <a href="https://optimatiza.com/" target="_blank" rel="noopener">Optimatiza</a> · Creador de <a href="https://bitcoinacademy.tech" target="_blank" rel="noopener">Bitcoin Academy</a>.</p>
+                <p class="hero-sub rv">Ingeniero y científico de datos, con sistemas en empresas de 4 países. Fundador de <a href="#optimatiza">Optimatiza</a> · Creador de <a href="https://bitcoinacademy.tech" target="_blank" rel="noopener">Bitcoin Academy</a>.</p>
                 <div class="hero-chips mono rv">
                     <span class="chip chip-teal">2 MAESTRÍAS + POSGRADO</span>
                     <span class="chip chip-blue">13 SISTEMAS QUE PUEDES PROBAR</span>
@@ -240,10 +236,44 @@
             <li class="pnode is-now">
                 <span class="pnode-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9L21 11l-6.6 2.1L12 20l-2.4-6.9L3 11l6.6-2.1L12 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
                 <span class="pnode-step mono">HOY</span>
-                <span class="pnode-t">Fundador · Optimatiza</span>
+                <a class="pnode-t" href="#optimatiza">Fundador · Optimatiza ↗</a>
                 <span class="pnode-d">Agentes de IA trabajando para empresas de la región.</span>
             </li>
         </ol>
+    </div>
+</section>
+
+<!-- ============================== FUNDADOR DE OPTIMATIZA ============================== -->
+<section class="founder-section" id="optimatiza" aria-labelledby="founder-title">
+    <div class="container">
+        <div class="founder-card rv">
+            <div class="founder-copy">
+                <p class="founder-kicker mono"><span aria-hidden="true"></span> LA EMPRESA QUE FUNDÉ</p>
+                <a class="founder-brand" href="https://optimatiza.com/" target="_blank" rel="noopener" aria-label="Visitar Optimatiza">Opti<span>matiza</span><span class="founder-brand-arrow" aria-hidden="true">↗</span></a>
+                <h2 id="founder-title">Convierto procesos en<br>tiempo para crecer.</h2>
+                <p>Fundé Optimatiza para llevar mi experiencia en automatización a las empresas de Latinoamérica. Conectamos las herramientas que ya utilizan y construimos aplicaciones, flujos y agentes de IA alrededor de su operación.</p>
+                <ul class="founder-specialties" aria-label="Especialidades de Optimatiza">
+                    <li>Power Platform</li><li>Automatización</li><li>Agentes de IA</li>
+                </ul>
+                <div class="founder-actions">
+                    <a class="btn btn-primary mono" href="https://optimatiza.com/" target="_blank" rel="noopener">CONOCER OPTIMATIZA <span aria-hidden="true">↗</span></a>
+                    <a class="founder-demo" href="https://optimatiza.com/#demostracion" target="_blank" rel="noopener">Ver los flujos en acción <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+            <div class="founder-visual">
+                <figure class="founder-film">
+                    <video id="founderVideo" muted loop playsinline preload="none" width="1280" height="720" poster="media/optimatiza/optima-automatizacion-hero-poster.webp" aria-hidden="true">
+                        <source data-src="media/optimatiza/optima-automatizacion-hero.webm" type="video/webm">
+                        <source data-src="media/optimatiza/optima-automatizacion-hero.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>El robot de Optimatiza · Ilustración conceptual</figcaption>
+                </figure>
+                <div class="founder-film-footer">
+                    <p>Su equipo decide.<br><strong>La tecnología se encarga del resto.</strong></p>
+                    <button id="founderVideoToggle" class="founder-video-toggle" type="button" aria-controls="founderVideo" aria-label="Reproducir vídeo de Optimatiza" hidden><span aria-hidden="true">▷</span><span data-video-label>Reproducir vídeo</span></button>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -650,15 +680,16 @@
     </div>
 </footer>
 
-<script defer src="cosmos.js?v=cedd243dff"></script>
-<script defer src="cv.js?v=594c783ab6"></script>
-<script defer src="nova.js?v=7d7901c3a4"></script>
+<script defer src="cosmos.js?v=8b89ed5033"></script>
+<script defer src="founder.js?v=840e7e0189"></script>
+<script defer src="cv.js?v=cea650481c"></script>
+<script defer src="nova.js?v=e98af08d47"></script>
 <div class="motion-dock mono" hidden>
     <button id="motionToggle" type="button" aria-pressed="false" aria-label="Pausar movimiento ambiental">
         <svg class="motion-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path class="motion-pause" d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2"/><path class="motion-play" d="m5 3 8 5-8 5V3Z" fill="currentColor"/></svg>
         <span data-motion-label>PAUSAR MOVIMIENTO</span>
     </button>
 </div>
-<script type="module" src="bg3d.js?v=af60239d4b"></script>
+<script type="module" src="bg3d.js?v=0d431df614"></script>
 </body>
 </html>

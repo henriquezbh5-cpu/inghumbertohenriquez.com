@@ -410,7 +410,9 @@
         D.color = C.label;
         D.borderColor = C.soft;
         D.maintainAspectRatio = false;
-        D.animation = reduce ? false : { duration: 700, easing: 'easeOutCubic' };
+        // Preserve Chart.js interpolation defaults (type/fn/from/to) for colors.
+        if (reduce) D.animation = false;
+        else Object.assign(D.animation, { duration: 700, easing: 'easeOutCubic' });
         D.plugins.tooltip.backgroundColor = '#0B1524';
         D.plugins.tooltip.borderColor = C.line;
         D.plugins.tooltip.borderWidth = 1;

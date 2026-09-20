@@ -22,7 +22,11 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
         els.forEach((el) => { el.textContent = t; });
     };
     tick();
-    setInterval(tick, 1000);
+    let timer = document.hidden ? 0 : setInterval(tick, 1000);
+    document.addEventListener('visibilitychange', () => {
+        clearInterval(timer); timer = 0;
+        if (!document.hidden) { tick(); timer = setInterval(tick, 1000); }
+    });
 })();
 
 /* ---------- menú móvil ---------- */
@@ -214,12 +218,17 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
 /* ---------- las animaciones infinitas solo corren con su sección visible ---------- */
 (function animGate() {
     const secs = ['trayectoria', 'arsenal'].map((id) => document.getElementById(id)).filter(Boolean);
+    const visible = new Set();
+    const sync = () => secs.forEach(s => s.classList.toggle('anim-live', visible.has(s) && !document.hidden && !window.hhMotion?.paused));
+    document.addEventListener('visibilitychange', sync);
+    window.addEventListener('hh:motion', sync);
     if (!('IntersectionObserver' in window)) {
-        secs.forEach((s) => s.classList.add('anim-live'));
+        secs.forEach(s => visible.add(s)); sync();
         return;
     }
     const io = new IntersectionObserver((entries) => {
-        entries.forEach((en) => en.target.classList.toggle('anim-live', en.isIntersecting));
+        entries.forEach(en => { if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target); });
+        sync();
     }, { rootMargin: '80px 0px' });
     secs.forEach((s) => io.observe(s));
 })();
@@ -473,9 +482,10 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
         if (replayBtn) replayBtn.hidden = false;
     }
     window.addEventListener('hh:motion', () => { if (window.hhMotion?.paused) showCompleteLog(); });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) showCompleteLog(); });
 
     function play() {
-        if (window.hhMotion?.paused) { showCompleteLog(); return; }
+        if (window.hhMotion?.paused || document.hidden) { showCompleteLog(); return; }
         timers.forEach(clearTimeout);
         timers = [];
         body.textContent = '';

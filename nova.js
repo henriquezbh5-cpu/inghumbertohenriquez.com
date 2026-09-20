@@ -49,7 +49,7 @@
     // Mismo robot que NOVA usa en Optimatiza: la marca del agente es una sola.
     function botIcon(size) {
         var img = document.createElement('img');
-        img.src = '/img/nova/avatar.webp';
+        img.src = '/img/nova/nova-head-256.webp';
         img.alt = '';
         img.width = size;
         img.height = size;
@@ -63,7 +63,6 @@
     var core = el('span', 'nova-launch-core');
     core.appendChild(botIcon(34));
     launcher.appendChild(core);
-    launcher.appendChild(el('span', 'nova-launch-ring'));
 
     var tag = el('button', 'nova-tag mono');
     tag.type = 'button';
