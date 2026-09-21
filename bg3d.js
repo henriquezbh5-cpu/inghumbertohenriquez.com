@@ -9,7 +9,7 @@ const pointerQuery = matchMedia('(hover: hover) and (pointer: fine)');
 const forcedColors = matchMedia('(forced-colors: active)');
 const connection = navigator.connection;
 let printing = false;
-const isPaused = () => !!window.hhMotion?.paused || reducedMotion.matches || !!connection?.saveData || forcedColors.matches || printing;
+const isPaused = () => !!window.hhMotion?.paused || root.dataset.backgroundVideoPlaying === 'true' || reducedMotion.matches || !!connection?.saveData || forcedColors.matches || printing;
 function randomSource(seed = 240905) {
     return () => { seed = (Math.imul(1664525, seed) + 1013904223) >>> 0; return seed / 4294967296; };
 }
@@ -326,6 +326,7 @@ async function init() {
     addEventListener('scroll', () => { scrollTarget = scrollY; }, { passive: true });
     addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(resize, 100); }, { passive: true });
     addEventListener('hh:motion', syncPlayback);
+    addEventListener('hh:background-video', syncPlayback);
     reducedMotion.addEventListener('change', syncPlayback);
     connection?.addEventListener('change', syncPlayback);
     forcedColors.addEventListener('change', syncPlayback);

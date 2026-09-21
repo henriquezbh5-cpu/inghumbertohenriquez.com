@@ -1,0 +1,45 @@
+/* The poster remains present for reduced motion, mobile, errors and no JavaScript. */
+.background-film {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: #050b18;
+}
+.background-film > :is(img, video) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.background-film > video { opacity: 0; z-index: 1 }
+.background-film.is-playing > video.is-current { opacity: 1 }
+.background-film > video.is-incoming { z-index: 2; opacity: 0; transition: opacity .8s linear }
+.background-film.is-blending > video.is-incoming { opacity: 1 }
+.background-film::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(90deg, rgba(5, 11, 24, .78), rgba(5, 11, 24, .48) 48%, rgba(5, 11, 24, .25)),
+        linear-gradient(0deg, #050b18, transparent 30%);
+}
+.cosmic-site .hero.hero-film { background: #050b18 }
+.hero-film .hero-shade { display: none }
+.cosmic-site .systems-film { isolation: isolate; background: #050b18 }
+.systems-film > .container { position: relative; z-index: 1 }
+.systems-film .background-film { height: min(100%, 900px) }
+.systems-film .background-film::after {
+    background: linear-gradient(180deg, #050b18, rgba(5, 11, 24, .38) 17%, rgba(5, 11, 24, .38) 65%, #050b18);
+}
+@media (max-width: 768px) {
+    .hero-film .background-film > img { object-position: 39% center }
+    .background-film::after { background: rgba(5, 11, 24, .62) }
+    .background-film > video { display: none }
+}
+@media (prefers-reduced-motion: reduce) { .background-film > video { display: none } }
+@media (forced-colors: active) { .background-film { display: none } }
+@media print { .background-film { display: none } }

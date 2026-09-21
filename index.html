@@ -68,6 +68,7 @@
     <script src="js-flag.js"></script>
     <link rel="stylesheet" href="cv.css?v=7b68b69515">
     <link rel="stylesheet" href="cosmos.css?v=bb06cf8b69">
+    <link rel="stylesheet" href="portfolio-video.css?v=20260921">
 <link rel="stylesheet" href="/nova-companion.css?v=63eac024ac">
 </head>
 <body class="cosmic-site">
@@ -90,7 +91,7 @@
         </a>
         <ul class="nav-links mono" id="navLinks">
             <li><a href="#trayectoria"><span class="nav-num">01</span>TRAYECTORIA</a></li>
-            <li><a href="#credenciales"><span class="nav-num">02</span>CREDENCIALES</a></li>
+            <li><a href="#credenciales"><span class="nav-num">02</span>FORMACIÓN</a></li>
             <li><a href="#arsenal"><span class="nav-num">03</span>ARSENAL</a></li>
             <li><a href="#sistemas"><span class="nav-num">04</span>PROYECTOS</a></li>
             <li><a href="laboratorio/"><span class="nav-num">05</span>LABORATORIO</a></li>
@@ -107,7 +108,7 @@
 <!-- ============================== ÍNDICE LATERAL (desktop) ============================== -->
 <aside class="rail mono" id="rail" aria-hidden="true">
     <a href="#trayectoria" data-rail="trayectoria" tabindex="-1"><i class="dot d-amber"></i>01 TRAYECTORIA</a>
-    <a href="#credenciales" data-rail="credenciales" tabindex="-1"><i class="dot d-blue"></i>02 CREDENCIALES</a>
+    <a href="#credenciales" data-rail="credenciales" tabindex="-1"><i class="dot d-blue"></i>02 FORMACIÓN</a>
     <a href="#arsenal" data-rail="arsenal" tabindex="-1"><i class="dot d-cyan"></i>03 ARSENAL</a>
     <a href="#sistemas" data-rail="sistemas" tabindex="-1"><i class="dot d-violet"></i>04 PROYECTOS</a>
     <a href="laboratorio/" tabindex="-1"><i class="dot d-teal"></i>05 LABORATORIO</a>
@@ -116,8 +117,12 @@
 </aside>
 
 <!-- ============================== HERO ============================== -->
-<header class="hero" id="top">
-    <!-- La galaxia continua acompaña la fotografía real y el expediente. -->
+<header class="hero hero-film" id="top">
+    <div class="background-film" data-background-film aria-hidden="true">
+        <img src="media/backgrounds/humberto-galaxia-poster.webp" width="1280" height="720" alt="" decoding="async" fetchpriority="low">
+        <video muted playsinline preload="none" tabindex="-1" data-src="media/backgrounds/humberto-galaxia.mp4"></video>
+        <video muted playsinline preload="none" tabindex="-1" data-src="media/backgrounds/humberto-galaxia.mp4"></video>
+    </div>
     <div class="hero-shade" aria-hidden="true"></div>
 
     <div class="container hero-content">
@@ -184,7 +189,7 @@
             </div>
             <div class="stat">
                 <dt class="mono"><span class="odo" data-target="4">4</span></dt>
-                <dd>Credenciales académicas<span class="mono">INGENIERÍA · 2 MSC · POSGRADO</span></dd>
+                <dd>Títulos académicos<span class="mono">INGENIERÍA · 2 MSC · POSGRADO</span></dd>
             </div>
             <div class="stat">
                 <dt class="mono"><span class="odo" data-target="170" data-suffix="+">170+</span></dt>
@@ -278,11 +283,11 @@
     </div>
 </section>
 
-<!-- ============================== 02 CREDENCIALES ============================== -->
+<!-- ============================== 02 FORMACIÓN ============================== -->
 <section class="section" id="credenciales">
     <div class="container">
         <div class="sec-head rv">
-            <span class="sec-index mono"><i class="dot d-blue"></i>02 — CREDENCIALES · TÍTULOS Y VERIFICACIÓN</span>
+            <span class="sec-index mono"><i class="dot d-blue"></i>02 — FORMACIÓN · TÍTULOS Y VERIFICACIÓN</span>
             <span class="sec-rule" aria-hidden="true"></span>
         </div>
         <h2 class="sec-title rv">Cuatro títulos. Y una forma de comprobar el resto.<br><span class="sec-sub">Formación en ciencia de datos e inteligencia de negocios. Debajo, lo que puedes abrir tú mismo, lo que te envío si lo pides y lo que no voy a poder enseñarte.</span></h2>
@@ -310,8 +315,7 @@
             </article>
         </div>
 
-        <!-- Banco de pruebas: sustituye a la fila de certificaciones y a la nota
-             de credenciales. Cada fila declara una afirmacion y su estado real de
+        <!-- Banco de pruebas: cada fila declara una afirmacion y su estado real de
              verificacion (abierto / documentado / reservado). -->
         <ol class="proof rv" aria-label="Qué puedes comprobar de mi trabajo y cómo">
 
@@ -425,7 +429,12 @@
 </section>
 
 <!-- ============================== 04 SISTEMAS ============================== -->
-<section class="section" id="sistemas">
+<section class="section systems-film" id="sistemas">
+    <div class="background-film" data-background-film aria-hidden="true">
+        <img src="media/backgrounds/humberto-sistemas-poster.webp" width="1280" height="720" alt="" loading="lazy" decoding="async">
+        <video muted playsinline preload="none" tabindex="-1" data-src="media/backgrounds/humberto-sistemas.mp4"></video>
+        <video muted playsinline preload="none" tabindex="-1" data-src="media/backgrounds/humberto-sistemas.mp4"></video>
+    </div>
     <div class="container">
         <div class="sec-head rv">
             <span class="sec-index mono"><i class="dot d-violet"></i>04 — PROYECTOS · CONSTRUIDOS Y EN PRODUCCIÓN</span>
@@ -663,7 +672,7 @@
         </div>
         <nav class="footer-links mono" aria-label="Mapa del sitio">
             <a href="#trayectoria">01 TRAYECTORIA</a>
-            <a href="#credenciales">02 CREDENCIALES</a>
+            <a href="#credenciales">02 FORMACIÓN</a>
             <a href="#arsenal">03 ARSENAL</a>
             <a href="#sistemas">04 PROYECTOS</a>
             <a href="laboratorio/">05 LABORATORIO</a>
@@ -682,9 +691,10 @@
 </footer>
 
 <script defer src="cosmos.js?v=8b89ed5033"></script>
+<script defer src="portfolio-video.js?v=20260921"></script>
 <script defer src="founder.js?v=840e7e0189"></script>
 <script defer src="cv.js?v=cea650481c"></script>
-<script defer src="nova.js?v=b276e4f677"></script>
+<script defer src="nova.js?v=20260921"></script>
 <script defer src="/nova-companion.js?v=4e3b4d3943"></script>
 <div class="motion-dock mono" hidden>
     <button id="motionToggle" type="button" aria-pressed="false" aria-label="Pausar movimiento ambiental">
@@ -692,6 +702,6 @@
         <span data-motion-label>PAUSAR MOVIMIENTO</span>
     </button>
 </div>
-<script type="module" src="bg3d.js?v=0d431df614"></script>
+<script type="module" src="bg3d.js?v=20260921"></script>
 </body>
 </html>

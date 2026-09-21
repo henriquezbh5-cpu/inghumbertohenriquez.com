@@ -25,7 +25,7 @@
     var FALLBACK = [
         [/power\s*automate|rpa|bot|flujo/i, 'Humberto ha construido mas de 170 bots y flujos con Power Automate Cloud y Desktop que hoy operan en 4 paises: El Salvador, Guatemala, Costa Rica y Republica Dominicana. Lo usa a diario desde 2020. Mira Herramientas para el detalle.'],
         [/agente|ia\b|inteligencia|copilot|llm/i, 'De agentes sabe un rato: un agente en Copilot Studio publicado en Teams, un agente de vision que lee documentos con Gemini, bots de WhatsApp con maquina de estados... y yo misma, que soy uno de sus agentes. La sección Proyectos tiene más.'],
-        [/estudi|maestr|certific|credencial|titulo/i, 'Cuatro titulos: Maestria en Ciencia de Datos (UNEATLANTICO, 2026), Maestria en Inteligencia de Negocios (UNINI Mexico, 2023), Posgrado en Tecnologia Blockchain (UTEC, 2022) e Ingenieria en Sistemas (UTEC, 2020). Y algo que no necesitas creerle a nadie: en el laboratorio hay 13 sistemas suyos que puedes ejecutar ahora mismo. La documentacion academica se pide por correo.'],
+        [/estudi|maestr|formaci[oó]n|certific|credencial|titulo/i, 'Cuatro titulos: Maestria en Ciencia de Datos (UNEATLANTICO, 2026), Maestria en Inteligencia de Negocios (UNINI Mexico, 2023), Posgrado en Tecnologia Blockchain (UTEC, 2022) e Ingenieria en Sistemas (UTEC, 2020). Y algo que no necesitas creerle a nadie: en el laboratorio hay 13 sistemas suyos que puedes ejecutar ahora mismo. La documentacion academica se pide por correo.'],
         [/contrat|contact|vacante|remoto|disponib|trabaj/i, 'Humberto esta abierto a roles remotos y proyectos. Lo mas rapido: WhatsApp +503 7192 8070 o el formulario de Contacto. Responde en horario hábil de El Salvador. Tambien puedes descargar su CV en PDF ahi mismo.'],
         [/precio|cost|tarifa|cotiz|cuanto/i, 'La inversión depende del alcance y de los sistemas involucrados. Describe tu proceso en Contacto o solicita una evaluación en optimatiza.com/contacto/ para recibir una propuesta.'],
         [/optimatiza/i, 'Optimatiza es el estudio que Humberto fundo: agentes de IA para ventas, cobros y soporte de pymes en Latinoamerica. Esta en optimatiza.com — y su NOVA de alla es prima mia.'],
@@ -94,7 +94,7 @@
     var CHIPS = [
         '¿Qué ha construido con Power Automate?',
         '¿Qué agentes de IA ha hecho?',
-        '¿Cuáles son sus credenciales?',
+        '¿Cuál es su formación académica?',
         '¿Cómo lo contacto?'
     ];
 
