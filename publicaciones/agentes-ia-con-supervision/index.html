@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data:; base-uri 'self'; object-src 'none'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#0A1322" />
+    <meta name="color-scheme" content="dark" />
+    <title>
+      Agentes de IA con supervisión: tareas, permisos y evidencia | Humberto
+      Henríquez
+    </title>
+    <meta
+      name="description"
+      content="Criterios de diseño para supervisar agentes: estados de tarea, permisos, evaluación y trazabilidad."
+    />
+    <meta name="author" content="Humberto Wilfredo Henríquez Benítez" />
+    <link
+      rel="canonical"
+      href="https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Agentes de IA con supervisión: tareas, permisos y evidencia | Humberto Henríquez"
+    />
+    <meta
+      property="og:description"
+      content="Criterios de diseño para supervisar agentes: estados de tarea, permisos, evaluación y trazabilidad."
+    />
+    <meta
+      property="og:url"
+      content="https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/"
+    />
+    <meta property="og:site_name" content="Humberto Henríquez" />
+    <meta property="og:locale" content="es_SV" />
+    <meta
+      property="og:image"
+      content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923"
+    />
+    <link rel="stylesheet" href="/cv.css?v=7b68b69515" />
+    <link rel="stylesheet" href="/profile.css?v=31b84b624c" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A1322'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='25' text-anchor='middle' fill='%232DD4BF'%3EHH%3C/text%3E%3C/svg%3E"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://inghumbertohenriquez.com/#person",
+            "name": "Humberto Wilfredo Henríquez Benítez",
+            "alternateName": "Humberto Henríquez",
+            "url": "https://inghumbertohenriquez.com/perfil/",
+            "image": "https://inghumbertohenriquez.com/humberto.jpg",
+            "jobTitle": "Ingeniero en sistemas y científico de datos",
+            "description": "Especialista en IA aplicada, automatización empresarial y Microsoft Power Platform en San Salvador, El Salvador.",
+            "sameAs": [
+              "https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/"
+            ],
+            "worksFor": {
+              "@type": "Organization",
+              "@id": "https://optimatiza.com/#org",
+              "name": "Optimatiza",
+              "url": "https://optimatiza.com/"
+            },
+            "knowsAbout": [
+              "Ciencia de datos",
+              "Agentes de inteligencia artificial",
+              "Automatización de procesos",
+              "Microsoft Power Platform",
+              "Business Intelligence"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "San Salvador",
+              "addressCountry": "SV"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/#webpage",
+            "url": "https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/",
+            "name": "Agentes de IA con supervisión: tareas, permisos y evidencia | Humberto Henríquez",
+            "description": "Criterios de diseño para supervisar agentes: estados de tarea, permisos, evaluación y trazabilidad.",
+            "inLanguage": "es",
+            "dateModified": "2026-09-23",
+            "mainEntity": {
+              "@id": "https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/#article"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Inicio",
+                "item": "https://inghumbertohenriquez.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Publicaciones",
+                "item": "https://inghumbertohenriquez.com/publicaciones/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Agentes de IA con supervisión",
+                "item": "https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/"
+              }
+            ]
+          },
+          {
+            "@type": "Article",
+            "@id": "https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/#article",
+            "headline": "Agentes de IA con supervisión: tareas, permisos y evidencia",
+            "description": "Criterios de diseño para supervisar agentes: estados de tarea, permisos, evaluación y trazabilidad.",
+            "datePublished": "2026-09-23",
+            "dateModified": "2026-09-23",
+            "inLanguage": "es",
+            "author": {
+              "@id": "https://inghumbertohenriquez.com/#person",
+              "@type": "Person",
+              "name": "Humberto Wilfredo Henríquez Benítez",
+              "url": "https://inghumbertohenriquez.com/perfil/"
+            },
+            "image": "https://inghumbertohenriquez.com/humberto.jpg",
+            "mainEntityOfPage": {
+              "@id": "https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/#webpage"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="profile-page">
+    <a class="skip-link mono" href="#contenido">Ir al contenido</a>
+    <header class="profile-nav">
+      <div class="profile-nav-inner">
+        <a class="profile-brand" href="/">Humberto Henríquez</a>
+        <nav aria-label="Navegación principal">
+          <a href="/perfil/">Perfil</a><a href="/#sistemas">Proyectos</a
+          ><a href="/publicaciones/">Publicaciones</a
+          ><a href="/laboratorio/">Laboratorio</a
+          ><a href="/#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+    <main id="contenido" class="profile-shell" tabindex="-1">
+      <nav class="profile-breadcrumbs" aria-label="Ruta de navegación">
+        <a href="/">Inicio</a> <span aria-hidden="true">/</span>
+        <a href="/publicaciones/">Publicaciones</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Agentes de IA con supervisión</span>
+      </nav>
+      <header class="profile-hero">
+        <p class="profile-eyebrow">Nota técnica · Diseño de sistemas</p>
+        <h1>Agentes de IA con supervisión: tareas, permisos y evidencia</h1>
+        <p class="profile-lede">
+          Un agente resulta más útil cuando se puede saber qué recibió, qué está
+          haciendo y qué necesita para continuar. Estas son las decisiones de
+          diseño que propongo para hacerlo visible.
+        </p>
+        <p class="profile-meta profile-byline">
+          <img
+            src="/humberto.jpg"
+            width="40"
+            height="40"
+            alt=""
+            class="profile-avatar"
+          />Por <a href="/perfil/">Humberto Wilfredo Henríquez Benítez</a> ·
+          <time datetime="2026-09-23">23 de septiembre de 2026</time>
+        </p>
+      </header>
+      <article class="profile-article">
+        <section class="profile-section">
+          <h2>La unidad de control es la tarea</h2>
+          <p>
+            Un panel con robots animados puede ayudar a entender un sistema,
+            pero la animación no demuestra ejecución. Mi criterio de diseño es
+            que cada cambio visual represente un estado respaldado por un
+            evento: tarea recibida, ejecución iniciada, resultado generado o
+            revisión solicitada.
+          </p>
+          <p>
+            El registro de una tarea debería identificar el encargo, su
+            responsable, los datos autorizados, el resultado esperado y el
+            criterio de aceptación. La fecha de actualización y el motivo de un
+            bloqueo permiten distinguir trabajo activo de una operación que dejó
+            de avanzar.
+          </p>
+          <p>
+            En
+            <a href="https://optimatiza.com/oficina-viva/">Oficina Viva</a>
+            exploro esta relación entre organización del trabajo y seguimiento
+            de agentes. El vídeo y la descripción del proyecto delimitan lo
+            demostrado; las recomendaciones de este artículo amplían el criterio
+            de diseño y no implican que todas estén implementadas en ese
+            sistema.
+          </p>
+        </section>
+        <section class="profile-section">
+          <h2>Estados que expliquen qué sucede</h2>
+          <p>
+            Propongo una máquina de estados explícita. Cada transición debe
+            tener una causa y conservar una referencia a la ejecución. Por
+            ejemplo:
+          </p>
+          <ol
+            class="profile-flow"
+            aria-label="Secuencia propuesta de una tarea"
+          >
+            <li>Pendiente</li>
+            <li>En ejecución</li>
+            <li>Requiere revisión</li>
+            <li>Aprobada</li>
+            <li>Completada</li>
+          </ol>
+          <p>
+            También hacen falta estados de bloqueo, fallo y cancelación. Una
+            tarea bloqueada debería explicar si falta un dato, un permiso o una
+            dependencia. «En ejecución» no debe mantenerse indefinidamente
+            después de perder el contacto con el proceso que la ejecuta.
+          </p>
+          <p>
+            Cuando se reintenta una operación, conviene conservar los intentos
+            por separado y vincularlos al mismo encargo. Así se puede investigar
+            un fallo sin confundir el nuevo intento con una tarea adicional.
+          </p>
+        </section>
+        <section class="profile-section">
+          <h2>Permisos proporcionales a la acción</h2>
+          <p>
+            Preparar un borrador, enviar un correo y modificar un registro
+            contable tienen consecuencias diferentes. La autorización debe
+            evaluarse sobre la acción concreta y los datos que afectará, antes
+            de ejecutarla.
+          </p>
+          <p>
+            OWASP describe la autonomía excesiva como un riesgo asociado a
+            demasiadas funciones, permisos o capacidad de actuar. Entre sus
+            mitigaciones incluye reducir herramientas y privilegios y exigir
+            aprobación humana para acciones de alto impacto.
+            <a
+              href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+              >Referencia: OWASP, Excessive Agency</a
+            >.
+          </p>
+          <p>
+            Mi propuesta práctica es una revisión que muestre destinatario,
+            contenido, cambios y alcance. Si esos elementos cambian después de
+            aprobar, la autorización debe volver a evaluarse. La aprobación de
+            un borrador no equivale por sí sola a permiso para publicarlo.
+          </p>
+        </section>
+        <section class="profile-section">
+          <h2>Probar fallos antes de ampliar la autonomía</h2>
+          <p>
+            Una evaluación útil necesita entradas, resultados esperados y
+            criterios de rechazo definidos antes de ajustar instrucciones. Esta
+            matriz ilustra una base de pruebas; no presenta resultados medidos
+            de una implementación.
+          </p>
+          <div
+            class="profile-table-wrap"
+            role="region"
+            aria-label="Escenarios de evaluación propuestos"
+            tabindex="0"
+          >
+            <table class="profile-table">
+              <thead>
+                <tr>
+                  <th scope="col">Escenario</th>
+                  <th scope="col">Comportamiento esperado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Falta un dato obligatorio</td>
+                  <td>
+                    Solicitarlo o bloquear la tarea; no inventarlo para
+                    completar la respuesta.
+                  </td>
+                </tr>
+                <tr>
+                  <td>La herramienta agota el tiempo</td>
+                  <td>
+                    Registrar el fallo y aplicar una política limitada de
+                    reintentos, con espera.
+                  </td>
+                </tr>
+                <tr>
+                  <td>La misma tarea llega dos veces</td>
+                  <td>
+                    Reconocer la identidad del encargo y evitar duplicar el
+                    efecto externo.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Un documento ordena ignorar las reglas</td>
+                  <td>
+                    Tratar esa instrucción como contenido no confiable, sin
+                    ampliar permisos.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Se modifica un resultado aprobado</td>
+                  <td>
+                    Solicitar una nueva revisión antes de ejecutar el cambio.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Además de la calidad de la respuesta, mediría tareas aceptadas,
+            correcciones humanas, latencia, fallos de herramientas y coste por
+            tarea. Los umbrales deberían acordarse según el impacto del proceso;
+            una sola tasa de acierto no describe todos esos riesgos.
+          </p>
+        </section>
+        <section class="profile-section">
+          <h2>IA local y trazabilidad con límites claros</h2>
+          <p>
+            La inferencia local permite decidir dónde se ejecuta el modelo. La
+            confidencialidad también depende de permisos, herramientas,
+            registros, copias de seguridad y conexiones externas. Por eso
+            describiría la arquitectura y los flujos de datos, en lugar de
+            presentar «local» como una garantía absoluta.
+          </p>
+          <p>
+            Para investigar una tarea, propondría conservar identificadores,
+            versiones de instrucciones, herramientas utilizadas, estados,
+            tiempos y decisiones de aprobación. Los registros deben minimizar
+            datos sensibles y tener controles de acceso y retención. No
+            necesitan capturar razonamientos internos del modelo para mostrar
+            qué acciones ocurrieron.
+          </p>
+        </section>
+        <section class="profile-section">
+          <h2>Aplicarlo a la distribución del trabajo</h2>
+          <p>
+            Una cola visible permite comparar pendientes, bloqueos y capacidad
+            disponible. El número de tareas por sí solo no mide la carga:
+            importa la complejidad, la prioridad, las dependencias y el tiempo
+            esperado. Para un equipo humano añadiría esos factores y un
+            mecanismo para que la persona explique impedimentos.
+          </p>
+          <p>
+            El objetivo de mi propuesta es que quien coordina tenga contexto
+            para decidir, y quien ejecuta tenga un encargo claro. Una interfaz
+            de seguimiento aporta valor cuando sus estados corresponden a hechos
+            observables y sus permisos corresponden a decisiones explícitas.
+          </p>
+        </section>
+      </article>
+      <aside class="profile-callout">
+        <h2>Del criterio al proyecto</h2>
+        <p>
+          Consulta la demostración de Oficina Viva o explora un caso de datos
+          donde una decisión de control cambia el resultado publicado.
+        </p>
+        <div class="profile-actions">
+          <a class="profile-button" href="https://optimatiza.com/oficina-viva/"
+            >Ver Oficina Viva</a
+          ><a
+            class="profile-button secondary"
+            href="/proyectos/consolidacion-datos/"
+            >Caso de consolidación</a
+          >
+        </div>
+      </aside>
+    </main>
+    <footer class="profile-footer">
+      <div class="profile-shell profile-footer-inner">
+        <span
+          >© 2026 Humberto Wilfredo Henríquez Benítez · San Salvador, El
+          Salvador</span
+        >
+        <nav class="profile-footer-links" aria-label="Enlaces del pie">
+          <a href="/perfil/">Perfil profesional</a
+          ><a
+            href="https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/"
+            >LinkedIn</a
+          ><a href="https://optimatiza.com/">Optimatiza</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data:; base-uri 'self'; object-src 'none'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#0A1322" />
+    <meta name="color-scheme" content="dark" />
+    <title>
+      Consolidación de datos y control del cierre | Humberto Henríquez
+    </title>
+    <meta
+      name="description"
+      content="Caso técnico RELOJ: demo de consolidación con cuatro fuentes, frescura de datos y decisiones de publicación. Escenario sintético ejecutable en el navegador."
+    />
+    <meta name="author" content="Humberto Wilfredo Henríquez Benítez" />
+    <link
+      rel="canonical"
+      href="https://inghumbertohenriquez.com/proyectos/consolidacion-datos/"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Consolidación de datos y control del cierre | Humberto Henríquez"
+    />
+    <meta
+      property="og:description"
+      content="Caso técnico RELOJ: demo de consolidación con cuatro fuentes, frescura de datos y decisiones de publicación. Escenario sintético ejecutable en el navegador."
+    />
+    <meta
+      property="og:url"
+      content="https://inghumbertohenriquez.com/proyectos/consolidacion-datos/"
+    />
+    <meta property="og:site_name" content="Humberto Henríquez" />
+    <meta property="og:locale" content="es_SV" />
+    <meta
+      property="og:image"
+      content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923"
+    />
+    <link rel="stylesheet" href="/cv.css?v=7b68b69515" />
+    <link rel="stylesheet" href="/profile.css?v=31b84b624c" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A1322'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='25' text-anchor='middle' fill='%232DD4BF'%3EHH%3C/text%3E%3C/svg%3E"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://inghumbertohenriquez.com/#person",
+            "name": "Humberto Wilfredo Henríquez Benítez",
+            "alternateName": "Humberto Henríquez",
+            "url": "https://inghumbertohenriquez.com/perfil/",
+            "image": "https://inghumbertohenriquez.com/humberto.jpg",
+            "jobTitle": "Ingeniero en sistemas y científico de datos",
+            "description": "Especialista en IA aplicada, automatización empresarial y Microsoft Power Platform en San Salvador, El Salvador.",
+            "sameAs": [
+              "https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/"
+            ],
+            "worksFor": {
+              "@type": "Organization",
+              "@id": "https://optimatiza.com/#org",
+              "name": "Optimatiza",
+              "url": "https://optimatiza.com/"
+            },
+            "knowsAbout": [
+              "Ciencia de datos",
+              "Agentes de inteligencia artificial",
+              "Automatización de procesos",
+              "Microsoft Power Platform",
+              "Business Intelligence"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "San Salvador",
+              "addressCountry": "SV"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://inghumbertohenriquez.com/proyectos/consolidacion-datos/#webpage",
+            "url": "https://inghumbertohenriquez.com/proyectos/consolidacion-datos/",
+            "name": "Consolidación de datos y control del cierre | Humberto Henríquez",
+            "description": "Caso técnico RELOJ: demo de consolidación con cuatro fuentes, frescura de datos y decisiones de publicación. Escenario sintético ejecutable en el navegador.",
+            "inLanguage": "es",
+            "dateModified": "2026-09-23"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://inghumbertohenriquez.com/proyectos/consolidacion-datos/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Inicio",
+                "item": "https://inghumbertohenriquez.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Proyectos",
+                "item": "https://inghumbertohenriquez.com/#sistemas"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Consolidación de datos",
+                "item": "https://inghumbertohenriquez.com/proyectos/consolidacion-datos/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="profile-page">
+    <a class="skip-link mono" href="#contenido">Ir al contenido</a>
+    <header class="profile-nav">
+      <div class="profile-nav-inner">
+        <a class="profile-brand" href="/">Humberto Henríquez</a>
+        <nav aria-label="Navegación principal">
+          <a href="/perfil/">Perfil</a><a href="/#sistemas">Proyectos</a
+          ><a href="/publicaciones/">Publicaciones</a
+          ><a href="/laboratorio/">Laboratorio</a
+          ><a href="/#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+    <main id="contenido" class="profile-shell" tabindex="-1">
+      <nav class="profile-breadcrumbs" aria-label="Ruta de navegación">
+        <a href="/">Inicio</a> <span aria-hidden="true">/</span>
+        <a href="/#sistemas">Proyectos</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Consolidación de datos</span>
+      </nav>
+      <header class="profile-hero">
+        <p class="profile-eyebrow">
+          Caso técnico · Demostración con datos sintéticos
+        </p>
+        <h1>Consolidación de datos:<br />publicar con criterio.</h1>
+        <p class="profile-lede">
+          RELOJ explora un problema del cierre mensual: cuatro fuentes llegan
+          con distinta antigüedad y una puede dejar de responder. La decisión de
+          aceptar, marcar o detener cambia lo que se publica.
+        </p>
+        <p class="profile-meta">
+          Proyecto y explicación:
+          <a href="/perfil/">Humberto Wilfredo Henríquez Benítez</a> ·
+          Actualizado el
+          <time datetime="2026-09-23">23 de septiembre de 2026</time>
+        </p>
+        <div class="profile-actions">
+          <a class="profile-button" href="/laboratorio/#reloj">Probar RELOJ</a
+          ><a class="profile-button secondary" href="/laboratorio/sys/reloj.js"
+            >Consultar el motor de la demo</a
+          >
+        </div>
+      </header>
+      <section class="profile-section">
+        <h2>El problema que representa</h2>
+        <p>
+          Un total puede parecer correcto aunque una fuente pertenezca al
+          periodo anterior. La demostración permite observar cómo la frescura,
+          las reglas de validación y la política de publicación afectan al
+          cierre. El trabajo técnico consiste en modelar esas decisiones y hacer
+          visibles sus consecuencias.
+        </p>
+        <p class="profile-note">
+          <strong>Alcance:</strong> simulación interactiva ejecutada en el
+          navegador con datos sintéticos y semilla fija. No se conecta a
+          sistemas de clientes. Los tiempos, cantidades y diferencias mostrados
+          son valores del escenario; no son métricas de impacto de un cliente ni
+          un benchmark.
+        </p>
+        <figure class="profile-figure">
+          <img
+            src="/img/capturas/proyecto-dashboard-ejecutivo.webp?v=810472cd"
+            width="1600"
+            height="1000"
+            loading="lazy"
+            decoding="async"
+            alt="Captura de RELOJ, demostración de consolidación de cuatro fuentes con datos sintéticos"
+          />
+          <figcaption>
+            Captura real de la interfaz del laboratorio. Sus datos representan
+            un escenario sintético.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="profile-section">
+        <h2>Cómo está construido el escenario</h2>
+        <p>
+          El motor JavaScript calcula el estado de las fuentes y el resultado
+          del cierre según los controles seleccionados. La cadena representada
+          recorre extracción, preparación, validación, modelo y publicación.
+        </p>
+        <ol
+          class="profile-flow"
+          aria-label="Cadena representada en la demostración"
+        >
+          <li>Cuatro fuentes</li>
+          <li>Preparación</li>
+          <li>Validación</li>
+          <li>Modelo semántico</li>
+          <li>Publicación</li>
+        </ol>
+        <div
+          class="profile-table-wrap"
+          role="region"
+          aria-label="Fuentes del escenario"
+          tabindex="0"
+        >
+          <table class="profile-table">
+            <thead>
+              <tr>
+                <th scope="col">Origen representado</th>
+                <th scope="col">Condición que permite explorar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Base transaccional</td>
+                <td>Consulta incremental con un corte reciente.</td>
+              </tr>
+              <tr>
+                <td>Listas de apoyo</td>
+                <td>
+                  Datos de colaboración con otro momento de actualización.
+                </td>
+              </tr>
+              <tr>
+                <td>Servicio de tesorería</td>
+                <td>
+                  Caída simulada y recuperación de un extracto del periodo
+                  anterior.
+                </td>
+              </tr>
+              <tr>
+                <td>Archivos de sucursal</td>
+                <td>
+                  Libros de Excel con una antigüedad superior a la de los otros
+                  orígenes.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          La representación agrupa 42 controles por familias: llaves, integridad
+          referencial, cuadre, frescura y formato. El motor deriva
+          incumplimientos del escenario; no ejecuta 42 consultas sobre una base
+          de datos externa.
+        </p>
+      </section>
+      <section class="profile-section">
+        <h2>Recorrido para comprobar el comportamiento</h2>
+        <ol class="profile-steps">
+          <li>
+            <strong>Ejecuta la configuración inicial.</strong> Revisa el corte
+            de cada origen y el resultado de la cadena.
+          </li>
+          <li>
+            <strong>Reduce el umbral de frescura.</strong> Una fuente puede
+            quedar fuera del límite aunque siga respondiendo.
+          </li>
+          <li>
+            <strong>Selecciona «No aceptar».</strong> Si hay un origen vencido,
+            observa cómo la cadena se detiene en la fuente.
+          </li>
+          <li>
+            <strong>Selecciona «Aceptar con marca».</strong> Activa «Simular
+            servicio caído» y conserva «Detener si la validación falla». El
+            escenario debe detenerse en validación.
+          </li>
+          <li>
+            <strong>Desactiva esa detención.</strong> Compara el resultado
+            publicado con avisos y revisa qué información acompaña al dato
+            diferido.
+          </li>
+        </ol>
+        <p>
+          El registro, la tabla de orígenes y el resultado final permiten
+          contrastar la política elegida con sus consecuencias. «Aceptar en
+          silencio» representa deliberadamente el riesgo de ocultar la
+          antigüedad, no una recomendación de operación.
+        </p>
+      </section>
+      <section class="profile-section">
+        <h2>Decisiones de diseño y límites</h2>
+        <div class="profile-grid">
+          <article class="profile-card">
+            <h3>Frescura visible</h3>
+            <p>
+              La antigüedad se evalúa por fuente y se expresa con texto. El
+              color acompaña la explicación.
+            </p>
+          </article>
+          <article class="profile-card">
+            <h3>Política separada</h3>
+            <p>
+              El mismo escenario puede detenerse o publicarse con avisos según
+              la decisión de control.
+            </p>
+          </article>
+          <article class="profile-card">
+            <h3>Escenario reproducible</h3>
+            <p>
+              La semilla fija y las reglas del motor permiten comparar
+              decisiones sobre la misma base sintética.
+            </p>
+          </article>
+        </div>
+        <p class="profile-note">
+          Llevar este patrón a producción requiere contratos y validaciones
+          sobre datos reales, credenciales protegidas, persistencia de
+          ejecuciones, controles de acceso, pruebas de recuperación y métricas
+          operativas. Esos componentes no se acreditan mediante esta demo.
+        </p>
+      </section>
+      <aside class="profile-callout">
+        <h2>Otros casos del mismo enfoque</h2>
+        <p>
+          Visibilidad de tareas en Oficina Viva y automatización documental en
+          Capturista digital: problemas distintos con responsabilidades y
+          alcances explícitos.
+        </p>
+        <div class="profile-actions">
+          <a class="profile-button" href="https://optimatiza.com/oficina-viva/"
+            >Oficina Viva</a
+          ><a
+            class="profile-button secondary"
+            href="https://optimatiza.com/casos/capturista-digital/"
+            >Capturista digital</a
+          >
+        </div>
+      </aside>
+    </main>
+    <footer class="profile-footer">
+      <div class="profile-shell profile-footer-inner">
+        <span
+          >© 2026 Humberto Wilfredo Henríquez Benítez · San Salvador, El
+          Salvador</span
+        >
+        <nav class="profile-footer-links" aria-label="Enlaces del pie">
+          <a href="/perfil/">Perfil profesional</a
+          ><a
+            href="https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/"
+            >LinkedIn</a
+          ><a href="https://optimatiza.com/">Optimatiza</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

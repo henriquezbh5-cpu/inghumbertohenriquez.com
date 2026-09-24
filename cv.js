@@ -3,51 +3,65 @@
    Reloj GMT-6 · typewriter HH.LOG · contadores · reveals ·
    índice lateral activo · menú móvil. Vanilla, sin dependencias.
    ============================================================ */
-'use strict';
+"use strict";
 
-document.documentElement.classList.add('js');
+document.documentElement.classList.add("js");
 
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- reloj San Salvador ---------- */
 (function clock() {
-    const els = document.querySelectorAll('[data-clock]');
-    if (!els.length) return;
-    const fmt = new Intl.DateTimeFormat('es-SV', {
-        timeZone: 'America/El_Salvador',
-        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+  const els = document.querySelectorAll("[data-clock]");
+  if (!els.length) return;
+  const fmt = new Intl.DateTimeFormat("es-SV", {
+    timeZone: "America/El_Salvador",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+  const tick = () => {
+    const t = fmt.format(new Date());
+    els.forEach((el) => {
+      el.textContent = t;
     });
-    const tick = () => {
-        const t = fmt.format(new Date());
-        els.forEach((el) => { el.textContent = t; });
-    };
-    tick();
-    let timer = document.hidden ? 0 : setInterval(tick, 1000);
-    document.addEventListener('visibilitychange', () => {
-        clearInterval(timer); timer = 0;
-        if (!document.hidden) { tick(); timer = setInterval(tick, 1000); }
-    });
+  };
+  tick();
+  let timer = document.hidden ? 0 : setInterval(tick, 1000);
+  document.addEventListener("visibilitychange", () => {
+    clearInterval(timer);
+    timer = 0;
+    if (!document.hidden) {
+      tick();
+      timer = setInterval(tick, 1000);
+    }
+  });
 })();
 
 /* ---------- menú móvil ---------- */
 (function mobileNav() {
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    if (!toggle || !links) return;
-    function setOpen(open, restoreFocus) {
-        links.classList.toggle('open', open);
-        toggle.setAttribute('aria-expanded', String(open));
-        toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-        if (restoreFocus) toggle.focus();
-    }
-    toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
-    links.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && links.classList.contains('open')) setOpen(false, true);
-    });
-    document.addEventListener('click', (e) => {
-        if (!links.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
-    });
+  const toggle = document.getElementById("navToggle");
+  const links = document.getElementById("navLinks");
+  if (!toggle || !links) return;
+  function setOpen(open, restoreFocus) {
+    links.classList.toggle("open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    if (restoreFocus) toggle.focus();
+  }
+  toggle.addEventListener("click", () =>
+    setOpen(!links.classList.contains("open")),
+  );
+  links.addEventListener("click", (e) => {
+    if (e.target.closest("a")) setOpen(false);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && links.classList.contains("open"))
+      setOpen(false, true);
+  });
+  document.addEventListener("click", (e) => {
+    if (!links.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+  });
 })();
 
 /* ---------- reveals on scroll ----------
@@ -55,65 +69,91 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
    Además del observador hay una red de seguridad — el ancla de la URL
    se revela de inmediato y a los 1.4 s no queda nada invisible. */
 (function reveals() {
-    const els = document.querySelectorAll('.rv');
-    if (!els.length) return;
+  const els = document.querySelectorAll(".rv");
+  if (!els.length) return;
 
-    const revealAll = (scope) => {
-        (scope || document).querySelectorAll('.rv:not(.in)').forEach((n) => n.classList.add('in'));
-    };
-    const revealTarget = () => {
-        if (!location.hash) return;
-        let s;
-        try { s = document.querySelector(location.hash); } catch (e) { return; }
-        if (!s) return;
-        s.classList.add('in');
-        revealAll(s);
-    };
-
-    if (reduced || !('IntersectionObserver' in window)) {
-        revealAll();
-        return;
+  const revealAll = (scope) => {
+    (scope || document)
+      .querySelectorAll(".rv:not(.in)")
+      .forEach((n) => n.classList.add("in"));
+  };
+  const revealTarget = () => {
+    if (!location.hash) return;
+    let s;
+    try {
+      s = document.querySelector(location.hash);
+    } catch {
+      return;
     }
+    if (!s) return;
+    s.classList.add("in");
+    revealAll(s);
+  };
 
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach((en) => {
-            if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-        });
-    }, { threshold: 0.04 });
-    els.forEach((el) => io.observe(el));
+  if (reduced || !("IntersectionObserver" in window)) {
+    revealAll();
+    return;
+  }
 
-    revealTarget();
-    window.addEventListener('hashchange', revealTarget);
-    /* clic en el menú: revelar antes de desplazar */
-    document.querySelectorAll('a[href^="#"]').forEach((a) => {
-        a.addEventListener('click', () => {
-            const href = a.getAttribute('href');
-            if (!href || href === '#') return;
-            let s;
-            try { s = document.querySelector(href); } catch (e) { return; }
-            if (s) { s.classList.add('in'); revealAll(s); }
-        });
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add("in");
+          io.unobserve(en.target);
+        }
+      });
+    },
+    { threshold: 0.04 },
+  );
+  els.forEach((el) => io.observe(el));
+
+  revealTarget();
+  window.addEventListener("hashchange", revealTarget);
+  /* clic en el menú: revelar antes de desplazar */
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", () => {
+      const href = a.getAttribute("href");
+      if (!href || href === "#") return;
+      let s;
+      try {
+        s = document.querySelector(href);
+      } catch {
+        return;
+      }
+      if (s) {
+        s.classList.add("in");
+        revealAll(s);
+      }
     });
+  });
 
-    /* Red de seguridad geométrica, independiente del observador: nada que
+  /* Red de seguridad geométrica, independiente del observador: nada que
        esté EN PANTALLA puede quedarse en opacity:0. No revela lo que está
        más abajo, así que la aparición al desplazar se conserva. */
-    const enPantalla = (el) => {
-        const r = el.getBoundingClientRect();
-        return r.top < window.innerHeight + 140 && r.bottom > -140;
-    };
-    const revealVisibles = () => {
-        document.querySelectorAll('.rv:not(.in)').forEach((n) => {
-            if (enPantalla(n)) n.classList.add('in');
-        });
-    };
-    setTimeout(revealVisibles, 1400);
-    let pendiente = false;
-    window.addEventListener('scroll', () => {
-        if (pendiente) return;
-        pendiente = true;
-        setTimeout(() => { pendiente = false; revealVisibles(); }, 400);
-    }, { passive: true });
+  const enPantalla = (el) => {
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight + 140 && r.bottom > -140;
+  };
+  const revealVisibles = () => {
+    document.querySelectorAll(".rv:not(.in)").forEach((n) => {
+      if (enPantalla(n)) n.classList.add("in");
+    });
+  };
+  setTimeout(revealVisibles, 1400);
+  let pendiente = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (pendiente) return;
+      pendiente = true;
+      setTimeout(() => {
+        pendiente = false;
+        revealVisibles();
+      }, 400);
+    },
+    { passive: true },
+  );
 })();
 
 /* ---------- corrección del ancla de entrada ----------
@@ -121,432 +161,620 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
    asiente su altura (fuente, foto, lienzo), y la sección aterriza baja.
    Se recoloca una sola vez tras la carga, y solo si nadie tocó el scroll. */
 (function anchorFix() {
-    if (!location.hash) return;
-    let target;
-    try { target = document.querySelector(location.hash); } catch (e) { return; }
-    if (!target) return;
+  if (!location.hash) return;
+  let target;
+  try {
+    target = document.querySelector(location.hash);
+  } catch {
+    return;
+  }
+  if (!target) return;
 
-    let touched = false;
-    const mark = () => { touched = true; };
-    ['wheel', 'touchstart', 'keydown'].forEach((ev) =>
-        window.addEventListener(ev, mark, { passive: true, once: true }));
+  let touched = false;
+  const mark = () => {
+    touched = true;
+  };
+  ["wheel", "touchstart", "keydown"].forEach((ev) =>
+    window.addEventListener(ev, mark, { passive: true, once: true }),
+  );
 
-    const settle = () => {
-        if (touched) return;
-        const prev = document.documentElement.style.scrollBehavior;
-        document.documentElement.style.scrollBehavior = 'auto';
-        target.scrollIntoView({ block: 'start' });
-        document.documentElement.style.scrollBehavior = prev;
-    };
-    window.addEventListener('load', () => {
-        requestAnimationFrame(settle);
-        setTimeout(settle, 320);
-    });
+  const settle = () => {
+    if (touched) return;
+    const prev = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    target.scrollIntoView({ block: "start" });
+    document.documentElement.style.scrollBehavior = prev;
+  };
+  window.addEventListener("load", () => {
+    requestAnimationFrame(settle);
+    setTimeout(settle, 320);
+  });
 })();
 
 /* ---------- contadores ---------- */
 (function counters() {
-    const odos = document.querySelectorAll('.odo');
-    if (!odos.length) return;
-    /* El contador nunca arranca en cero: parte del 60% del valor real y
+  const odos = document.querySelectorAll(".odo");
+  if (!odos.length) return;
+  /* El contador nunca arranca en cero: parte del 60% del valor real y
        cierra en menos de 700 ms. Una captura del primer segundo tiene que
        mostrar la cifra correcta, no "1+ años en tecnología". */
-    const run = (el) => {
-        const target = parseInt(el.dataset.target, 10) || 0;
-        const suffix = el.dataset.suffix || '';
-        if (reduced || window.hhMotion?.paused) { el.textContent = target + suffix; return; }
-        const from = Math.round(target * 0.6);
-        const t0 = performance.now();
-        const dur = 650;
-        const step = (now) => {
-            if (window.hhMotion?.paused) { el.textContent = target + suffix; return; }
-            const p = Math.min((now - t0) / dur, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.round(from + (target - from) * eased) + suffix;
-            if (p < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
+  const run = (el) => {
+    const target = parseInt(el.dataset.target, 10) || 0;
+    const suffix = el.dataset.suffix || "";
+    if (reduced || window.hhMotion?.paused) {
+      el.textContent = target + suffix;
+      return;
+    }
+    const from = Math.round(target * 0.6);
+    const t0 = performance.now();
+    const dur = 650;
+    const step = (now) => {
+      if (window.hhMotion?.paused) {
+        el.textContent = target + suffix;
+        return;
+      }
+      const p = Math.min((now - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (target - from) * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
     };
-    if (!('IntersectionObserver' in window)) { odos.forEach(run); return; }
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach((en) => {
-            if (en.isIntersecting) { run(en.target); io.unobserve(en.target); }
-        });
-    }, { threshold: 0.4 });
-    odos.forEach((el) => io.observe(el));
+    requestAnimationFrame(step);
+  };
+  if (!("IntersectionObserver" in window)) {
+    odos.forEach(run);
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          run(en.target);
+          io.unobserve(en.target);
+        }
+      });
+    },
+    { threshold: 0.4 },
+  );
+  odos.forEach((el) => io.observe(el));
 })();
 
 /* ---------- índice lateral + nav activos ---------- */
 (function rail() {
-    if (!('IntersectionObserver' in window)) return;
-    const railLinks = [...document.querySelectorAll('.rail a[data-rail]')];
-    const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-    const mark = (id) => {
-        railLinks.forEach((l) => l.classList.toggle('active', l.dataset.rail === id));
-        navLinks.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
-    };
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach((en) => { if (en.isIntersecting) mark(en.target.id); });
-    }, { rootMargin: '-30% 0px -55% 0px' });
-    ['trayectoria', 'credenciales', 'arsenal', 'sistemas', 'contacto'].forEach((id) => {
-        const sec = document.getElementById(id);
-        if (sec) io.observe(sec);
-    });
+  if (!("IntersectionObserver" in window)) return;
+  const railLinks = [...document.querySelectorAll(".rail a[data-rail]")];
+  const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const mark = (id) => {
+    railLinks.forEach((l) =>
+      l.classList.toggle("active", l.dataset.rail === id),
+    );
+    navLinks.forEach((l) =>
+      l.classList.toggle("active", l.getAttribute("href") === "#" + id),
+    );
+  };
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) mark(en.target.id);
+      });
+    },
+    { rootMargin: "-30% 0px -55% 0px" },
+  );
+  ["trayectoria", "credenciales", "arsenal", "sistemas", "contacto"].forEach(
+    (id) => {
+      const sec = document.getElementById(id);
+      if (sec) io.observe(sec);
+    },
+  );
 })();
 
 /* ---------- barra de progreso de scroll ---------- */
 (function progress() {
-    const bar = document.getElementById('scrollProgress');
-    if (!bar) return;
-    let ticking = false;
-    const update = () => {
-        ticking = false;
-        const max = document.documentElement.scrollHeight - innerHeight;
-        bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(scrollY / max, 1) : 0) + ')';
-    };
-    addEventListener('scroll', () => {
-        if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
+  const bar = document.getElementById("scrollProgress");
+  if (!bar) return;
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform =
+      "scaleX(" + (max > 0 ? Math.min(scrollY / max, 1) : 0) + ")";
+  };
+  addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true },
+  );
+  update();
 })();
 
 /* ---------- índice de stagger para el grid de herramientas ---------- */
-document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
-    el.style.setProperty('--i', i);
+document.querySelectorAll(".tool-grid .tool").forEach((el, i) => {
+  el.style.setProperty("--i", i);
 });
 
 /* ---------- las animaciones infinitas solo corren con su sección visible ---------- */
 (function animGate() {
-    const secs = ['trayectoria', 'arsenal'].map((id) => document.getElementById(id)).filter(Boolean);
-    const visible = new Set();
-    const sync = () => secs.forEach(s => s.classList.toggle('anim-live', visible.has(s) && !document.hidden && !window.hhMotion?.paused));
-    document.addEventListener('visibilitychange', sync);
-    window.addEventListener('hh:motion', sync);
-    if (!('IntersectionObserver' in window)) {
-        secs.forEach(s => visible.add(s)); sync();
-        return;
-    }
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach(en => { if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target); });
-        sync();
-    }, { rootMargin: '80px 0px' });
-    secs.forEach((s) => io.observe(s));
+  const secs = ["trayectoria", "arsenal"]
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  const visible = new Set();
+  const sync = () =>
+    secs.forEach((s) =>
+      s.classList.toggle(
+        "anim-live",
+        visible.has(s) && !document.hidden && !window.hhMotion?.paused,
+      ),
+    );
+  document.addEventListener("visibilitychange", sync);
+  window.addEventListener("hh:motion", sync);
+  if (!("IntersectionObserver" in window)) {
+    secs.forEach((s) => visible.add(s));
+    sync();
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) visible.add(en.target);
+        else visible.delete(en.target);
+      });
+      sync();
+    },
+    { rootMargin: "80px 0px" },
+  );
+  secs.forEach((s) => io.observe(s));
 })();
 
 /* ---------- showcase rotatorio: cada herramienta pasa en grande,
    Power Automate manda (abre más tiempo y regresa cada 4) ---------- */
 (function showcase() {
-    const featured = document.querySelector('.tool-featured');
-    if (!featured || reduced) return;
+  const featured = document.querySelector(".tool-featured");
+  if (!featured || reduced) return;
 
-    const iconWrap = featured.querySelector('.tf-icon');
-    const tagEl = featured.querySelector('.tf-tag');
-    const nameEl = featured.querySelector('.tf-body h3');
-    const descEl = featured.querySelector('.tf-body p');
-    const certEl = featured.querySelector('.tf-cert');
-    if (!iconWrap || !tagEl || !nameEl || !descEl || !certEl) return;
+  const iconWrap = featured.querySelector(".tf-icon");
+  const tagEl = featured.querySelector(".tf-tag");
+  const nameEl = featured.querySelector(".tf-body h3");
+  const descEl = featured.querySelector(".tf-body p");
+  const certEl = featured.querySelector(".tf-cert");
+  if (!iconWrap || !tagEl || !nameEl || !descEl || !certEl) return;
 
-    const PA = {
-        iconNode: iconWrap.querySelector('svg'),
-        tag: tagEl.textContent,
-        name: nameEl.textContent,
-        desc: descEl.textContent,
-        cert: certEl.innerHTML,
-    };
+  const PA = {
+    iconNode: iconWrap.querySelector("svg"),
+    tag: tagEl.textContent,
+    name: nameEl.textContent,
+    desc: descEl.textContent,
+    cert: certEl.innerHTML,
+  };
 
-    // Insignia del recuadro derecho por herramienta. Es el hueco donde antes
-    // vivian los codigos de certificacion: ahora lleva evidencia de uso real.
-    const DESTACADOS = {
-        'Power Apps': ['CANVAS', 'APPS INTERNAS<br>EN PRODUCCIÓN'],
-        'Power BI': ['DAX', 'TABLEROS EJECUTIVOS<br>MULTI-FUENTE'],
-    };
-    const TAGLINES = {
-        'Power Apps': 'Apps corporativas de captura y aprobación que el negocio usa a diario.',
-        'Power BI': 'Dashboards ejecutivos que consolidan SQL, SharePoint y APIs.',
-        'SharePoint': 'Portales y flujos documentales para equipos corporativos.',
-        'TradingView': 'Indicadores propios en Pine Script para análisis de mercado cripto.',
-        'Copilot Studio': 'Agentes conversacionales conectados a datos reales, por Teams.',
-        'Python': 'ETL, análisis de datos y automatización de pipelines.',
-        'TypeScript': 'Código estricto para aplicaciones web en producción.',
-        'React · Next.js': 'Interfaces modernas, PWAs y sitios de alto rendimiento.',
-        'SQL Server': 'Consultas y modelos sobre bases corporativas críticas.',
-        'PostgreSQL': 'La base de datos de mis aplicaciones web.',
-        'Docker': 'Servicios contenedorizados, reproducibles en cualquier entorno.',
-        'n8n': 'Workflows self-hosted que conectan APIs sin fricción.',
-        'Claude · IA': 'Agentes y automatización potenciada por IA, todos los días.',
-        'Azure': 'App Services, Functions y despliegues cloud.',
-        'GitHub Actions': 'CI/CD automatizado para cada proyecto.',
-        'FastAPI': 'APIs Python rápidas para servicios de datos.',
-        'Bitcoin · Cripto': 'Bitcoin Academy en Google Play y sistemas de análisis de mercado.',
-        'Gemini · OpenAI': 'Modelos de lenguaje integrados en agentes y flujos productivos.',
-        'LangChain · RAG': 'Recuperación aumentada con pgvector y Qdrant para respuestas con datos reales.',
-        'NestJS · Node': 'Backends TypeScript estructurados para bots y APIs en producción.',
-        'Cloudflare': 'Workers y Pages: el chat de este sitio corre ahí ahora mismo.',
-        'Dataverse': 'El modelo de datos corporativo detrás de las Power Apps serias.',
-        'WhatsApp API': 'Bots conversacionales con máquina de estados que atienden de verdad.',
-    };
+  // Insignia del recuadro derecho por herramienta. Es el hueco donde antes
+  // vivian los codigos de certificacion: ahora lleva evidencia de uso real.
+  const DESTACADOS = {
+    "Power Apps": ["CANVAS", "APPS INTERNAS<br>EN PRODUCCIÓN"],
+    "Power BI": ["DAX", "TABLEROS EJECUTIVOS<br>MULTI-FUENTE"],
+  };
+  const TAGLINES = {
+    "Power Apps":
+      "Apps corporativas de captura y aprobación que el negocio usa a diario.",
+    "Power BI": "Dashboards ejecutivos que consolidan SQL, SharePoint y APIs.",
+    SharePoint: "Portales y flujos documentales para equipos corporativos.",
+    TradingView:
+      "Indicadores propios en Pine Script para análisis de mercado cripto.",
+    "Copilot Studio":
+      "Agentes conversacionales conectados a datos reales, por Teams.",
+    Python: "ETL, análisis de datos y automatización de pipelines.",
+    TypeScript: "Código estricto para aplicaciones web en producción.",
+    "React · Next.js":
+      "Interfaces modernas, PWAs y sitios de alto rendimiento.",
+    "SQL Server": "Consultas y modelos sobre bases corporativas críticas.",
+    PostgreSQL: "La base de datos de mis aplicaciones web.",
+    Docker: "Servicios contenedorizados, reproducibles en cualquier entorno.",
+    n8n: "Workflows self-hosted que conectan APIs sin fricción.",
+    "Claude · IA":
+      "Agentes y automatización potenciada por IA, todos los días.",
+    Azure: "App Services, Functions y despliegues cloud.",
+    "GitHub Actions": "CI/CD automatizado para cada proyecto.",
+    FastAPI: "APIs Python rápidas para servicios de datos.",
+    "Bitcoin · Cripto":
+      "Bitcoin Academy en Google Play y sistemas de análisis de mercado.",
+    "Gemini · OpenAI":
+      "Modelos de lenguaje integrados en agentes y flujos productivos.",
+    "LangChain · RAG":
+      "Recuperación aumentada con pgvector y Qdrant para respuestas con datos reales.",
+    "NestJS · Node":
+      "Backends TypeScript estructurados para bots y APIs en producción.",
+    Cloudflare: "Workers y Pages: el chat de este sitio corre ahí ahora mismo.",
+    Dataverse:
+      "El modelo de datos corporativo detrás de las Power Apps serias.",
+    "WhatsApp API":
+      "Bots conversacionales con máquina de estados que atienden de verdad.",
+  };
 
-    const tiles = [...document.querySelectorAll('.tool-grid .tool')];
-    const tools = tiles.map((tile) => {
-        const svg = tile.querySelector('.tool-ic svg');
-        const name = tile.querySelector('.tool-n');
-        const tag = tile.querySelector('.tool-t');
-        return svg && name && tag
-            ? { tile, iconNode: svg.cloneNode(true), name: name.textContent, tag: tag.textContent }
-            : null;
-    }).filter(Boolean);
-    if (!tools.length) return;
+  const tiles = [...document.querySelectorAll(".tool-grid .tool")];
+  const tools = tiles
+    .map((tile) => {
+      const svg = tile.querySelector(".tool-ic svg");
+      const name = tile.querySelector(".tool-n");
+      const tag = tile.querySelector(".tool-t");
+      return svg && name && tag
+        ? {
+            tile,
+            iconNode: svg.cloneNode(true),
+            name: name.textContent,
+            tag: tag.textContent,
+          }
+        : null;
+    })
+    .filter(Boolean);
+  if (!tools.length) return;
 
-    // secuencia: PA largo al inicio, luego bloques de 4 herramientas con PA entre bloques
-    const seq = [{ pa: true, dwell: 9000 }];
-    tools.forEach((tool, i) => {
-        seq.push({ tool, dwell: 3600 });
-        if ((i + 1) % 4 === 0 && i < tools.length - 1) seq.push({ pa: true, dwell: 6500 });
+  // secuencia: PA largo al inicio, luego bloques de 4 herramientas con PA entre bloques
+  const seq = [{ pa: true, dwell: 9000 }];
+  tools.forEach((tool, i) => {
+    seq.push({ tool, dwell: 3600 });
+    if ((i + 1) % 4 === 0 && i < tools.length - 1)
+      seq.push({ pa: true, dwell: 6500 });
+  });
+
+  let idx = 0,
+    timer = 0,
+    swapTimer = 0,
+    hovered = false,
+    inView = true;
+  let tabVisible = document.visibilityState !== "hidden";
+
+  function apply(step) {
+    clearTimeout(swapTimer);
+    featured.classList.add("tf-swapping");
+    // 260ms ≈ la transición .25s de .tf-swapping en cv.css — mantener sincronizados
+    swapTimer = setTimeout(() => {
+      tiles.forEach((t) => t.classList.remove("is-featured"));
+      if (step.pa) {
+        iconWrap.replaceChildren(PA.iconNode);
+        tagEl.textContent = PA.tag;
+        nameEl.textContent = PA.name;
+        descEl.textContent = PA.desc;
+        certEl.innerHTML = PA.cert;
+        featured.classList.add("is-pa");
+      } else {
+        featured.classList.remove("is-pa");
+        iconWrap.replaceChildren(step.tool.iconNode);
+        tagEl.textContent = "ARSENAL · " + step.tool.tag;
+        nameEl.textContent = step.tool.name;
+        descEl.textContent = TAGLINES[step.tool.name] || "";
+        const cert = DESTACADOS[step.tool.name] || [
+          "STACK",
+          "HERRAMIENTA DE<br>USO DIARIO",
+        ];
+        certEl.innerHTML =
+          '<span class="cert-code">' +
+          cert[0] +
+          "</span><span>" +
+          cert[1] +
+          "</span>";
+        step.tool.tile.classList.add("is-featured");
+      }
+      featured.classList.remove("tf-swapping");
+    }, 260);
+  }
+
+  function schedule() {
+    clearTimeout(timer);
+    if (hovered || !inView || !tabVisible || window.hhMotion?.paused) return;
+    timer = setTimeout(() => {
+      idx = (idx + 1) % seq.length;
+      apply(seq[idx]);
+      schedule();
+    }, seq[idx].dwell);
+  }
+
+  // al ocultarse (scroll o pestaña) se detiene; al volver, re-ancla en Power Automate
+  function gate() {
+    if (inView && tabVisible && !window.hhMotion?.paused) {
+      if (idx !== 0) {
+        idx = 0;
+        apply(seq[0]);
+      }
+      schedule();
+    } else {
+      clearTimeout(timer);
+      clearTimeout(swapTimer);
+      featured.classList.remove("tf-swapping");
+    }
+  }
+
+  // pausa por hover solo con puntero real (en táctil, pointerenter sin
+  // pointerleave dejaría la rotación congelada); el foco de teclado también pausa
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    featured.addEventListener("pointerenter", () => {
+      hovered = true;
+      clearTimeout(timer);
     });
-
-    let idx = 0, timer = 0, swapTimer = 0, hovered = false, inView = true;
-    let tabVisible = document.visibilityState !== 'hidden';
-
-    function apply(step) {
-        clearTimeout(swapTimer);
-        featured.classList.add('tf-swapping');
-        // 260ms ≈ la transición .25s de .tf-swapping en cv.css — mantener sincronizados
-        swapTimer = setTimeout(() => {
-            tiles.forEach((t) => t.classList.remove('is-featured'));
-            if (step.pa) {
-                iconWrap.replaceChildren(PA.iconNode);
-                tagEl.textContent = PA.tag;
-                nameEl.textContent = PA.name;
-                descEl.textContent = PA.desc;
-                certEl.innerHTML = PA.cert;
-                featured.classList.add('is-pa');
-            } else {
-                featured.classList.remove('is-pa');
-                iconWrap.replaceChildren(step.tool.iconNode);
-                tagEl.textContent = 'ARSENAL · ' + step.tool.tag;
-                nameEl.textContent = step.tool.name;
-                descEl.textContent = TAGLINES[step.tool.name] || '';
-                const cert = DESTACADOS[step.tool.name] || ['STACK', 'HERRAMIENTA DE<br>USO DIARIO'];
-                certEl.innerHTML = '<span class="cert-code">' + cert[0] + '</span><span>' + cert[1] + '</span>';
-                step.tool.tile.classList.add('is-featured');
-            }
-            featured.classList.remove('tf-swapping');
-        }, 260);
-    }
-
-    function schedule() {
-        clearTimeout(timer);
-        if (hovered || !inView || !tabVisible || window.hhMotion?.paused) return;
-        timer = setTimeout(() => {
-            idx = (idx + 1) % seq.length;
-            apply(seq[idx]);
-            schedule();
-        }, seq[idx].dwell);
-    }
-
-    // al ocultarse (scroll o pestaña) se detiene; al volver, re-ancla en Power Automate
-    function gate() {
-        if (inView && tabVisible && !window.hhMotion?.paused) {
-            if (idx !== 0) { idx = 0; apply(seq[0]); }
-            schedule();
-        } else {
-            clearTimeout(timer);
-            clearTimeout(swapTimer);
-            featured.classList.remove('tf-swapping');
-        }
-    }
-
-    // pausa por hover solo con puntero real (en táctil, pointerenter sin
-    // pointerleave dejaría la rotación congelada); el foco de teclado también pausa
-    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        featured.addEventListener('pointerenter', () => { hovered = true; clearTimeout(timer); });
-        featured.addEventListener('pointerleave', () => { hovered = false; schedule(); });
-    }
-    featured.addEventListener('focusin', () => { hovered = true; clearTimeout(timer); });
-    featured.addEventListener('focusout', () => { hovered = false; schedule(); });
-    window.addEventListener('hh:motion', gate);
-    if ('IntersectionObserver' in window) {
-        new IntersectionObserver((entries) => {
-            inView = entries[0].isIntersecting;
-            gate();
-        }, { threshold: 0.2 }).observe(featured);
-    }
-    document.addEventListener('visibilitychange', () => {
-        tabVisible = document.visibilityState === 'visible';
-        gate();
+    featured.addEventListener("pointerleave", () => {
+      hovered = false;
+      schedule();
     });
-
-    featured.classList.add('is-pa');
+  }
+  featured.addEventListener("focusin", () => {
+    hovered = true;
+    clearTimeout(timer);
+  });
+  featured.addEventListener("focusout", () => {
+    hovered = false;
     schedule();
+  });
+  window.addEventListener("hh:motion", gate);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      (entries) => {
+        inView = entries[0].isIntersecting;
+        gate();
+      },
+      { threshold: 0.2 },
+    ).observe(featured);
+  }
+  document.addEventListener("visibilitychange", () => {
+    tabVisible = document.visibilityState === "visible";
+    gate();
+  });
+
+  featured.classList.add("is-pa");
+  schedule();
+})();
+
+/* ---------- preserve the contact reason selected in a collaboration card ---------- */
+(function contactReason() {
+  const reason = document.getElementById("cf-tipo");
+  if (!reason) return;
+  document.querySelectorAll("[data-contact-reason]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const value = link.dataset.contactReason;
+      if (Array.from(reason.options).some((option) => option.value === value)) {
+        reason.value = value;
+      }
+    });
+  });
 })();
 
 /* ---------- formulario: envío inline sin salir del sitio ---------- */
 (function contactForm() {
-    const form = document.getElementById('contactForm');
-    if (!form || !window.fetch) return;
-    const btn = document.getElementById('formSend');
-    const status = document.getElementById('formStatus');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (btn.disabled) return;
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 15000);
-        btn.disabled = true;
-        form.setAttribute('aria-busy', 'true');
-        btn.textContent = 'ENVIANDO…';
-        status.className = 'form-status mono';
-        status.textContent = '';
-        fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { Accept: 'application/json' },
-            signal: controller.signal,
-        }).then((r) => {
-            if (!r.ok) throw new Error('http ' + r.status);
-            form.reset();
-            status.classList.add('ok');
-            status.textContent = 'MENSAJE RECIBIDO. TE RESPONDERÉ EN HORARIO HÁBIL.';
-        }).catch(() => {
-            status.classList.add('err');
-            status.innerHTML = 'NO SE PUDO ENVIAR — <a href="https://wa.me/50371928070" target="_blank" rel="noopener">ESCRÍBEME POR WHATSAPP</a>';
-        }).finally(() => {
-            clearTimeout(timeout);
-            form.removeAttribute('aria-busy');
-            btn.disabled = false;
-            btn.textContent = 'ENVIAR MENSAJE';
-        });
-    });
+  const form = document.getElementById("contactForm");
+  if (!form || !window.fetch) return;
+  const btn = document.getElementById("formSend");
+  const status = document.getElementById("formStatus");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (btn.disabled) return;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    btn.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    btn.textContent = "ENVIANDO…";
+    status.className = "form-status mono";
+    status.textContent = "";
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+    })
+      .then((r) => {
+        if (!r.ok) throw new Error("http " + r.status);
+        form.reset();
+        status.classList.add("ok");
+        status.textContent =
+          "MENSAJE RECIBIDO. TE RESPONDERÉ EN HORARIO HÁBIL.";
+      })
+      .catch(() => {
+        status.classList.add("err");
+        status.innerHTML =
+          'NO SE PUDO ENVIAR — <a href="https://wa.me/50371928070" target="_blank" rel="noopener">ESCRÍBEME POR WHATSAPP</a>';
+      })
+      .finally(() => {
+        clearTimeout(timeout);
+        form.removeAttribute("aria-busy");
+        btn.disabled = false;
+        btn.textContent = "ENVIAR MENSAJE";
+      });
+  });
 })();
 
 /* ---------- tilt 3D sutil (solo puntero fino, sin reduced-motion) ---------- */
 (function tilt() {
-    if (document.body.classList.contains('cosmic-site')) return; // Unified controller in cosmos.js.
-    if (reduced || !matchMedia('(pointer: fine)').matches) return;
-    document.querySelectorAll('.tool-featured, .photo-frame').forEach((el) => {
-        el.style.transformStyle = 'preserve-3d';
-        el.style.willChange = 'transform';
-        el.addEventListener('pointermove', (e) => {
-            const r = el.getBoundingClientRect();
-            const rx = ((e.clientY - r.top) / r.height - 0.5) * -5;
-            const ry = ((e.clientX - r.left) / r.width - 0.5) * 5;
-            el.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
-        });
-        el.addEventListener('pointerleave', () => {
-            el.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
-        });
+  if (document.body.classList.contains("cosmic-site")) return; // Unified controller in cosmos.js.
+  if (reduced || !matchMedia("(pointer: fine)").matches) return;
+  document.querySelectorAll(".tool-featured, .photo-frame").forEach((el) => {
+    el.style.transformStyle = "preserve-3d";
+    el.style.willChange = "transform";
+    el.addEventListener("pointermove", (e) => {
+      const r = el.getBoundingClientRect();
+      const rx = ((e.clientY - r.top) / r.height - 0.5) * -5;
+      const ry = ((e.clientX - r.left) / r.width - 0.5) * 5;
+      el.style.transform =
+        "perspective(900px) rotateX(" +
+        rx.toFixed(2) +
+        "deg) rotateY(" +
+        ry.toFixed(2) +
+        "deg)";
     });
+    el.addEventListener("pointerleave", () => {
+      el.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+    });
+  });
 })();
 
 /* ---------- HH.LOG typewriter ---------- */
 (function hhlog() {
-    const body = document.getElementById('logBody');
-    if (!body) return;
+  const body = document.getElementById("logBody");
+  if (!body) return;
 
-    const LINES = [
-        { t: '[00:00.000]', a: 'SISTEMA', c: 'la-sys', m: 'Expediente iniciado — HH/2026 · San Salvador, GMT-6' },
-        { t: '[00:00.400]', a: 'PERFIL', c: 'la-perfil', m: 'Ingeniero en sistemas · Científico de datos' },
-        { t: '[00:00.900]', a: 'EDUCACIÓN', c: 'la-edu', m: 'MSc en Data Science (UNEATLANTICO) · MSc en Business Intelligence (UNINI) · Posgrado en Blockchain (UTEC)' },
-        { t: '[00:01.400]', a: 'AGENTES', c: 'la-cert', m: 'Copilot Studio en Teams · visión documental con Gemini · bots de WhatsApp' },
-        { t: '[00:01.900]', a: 'OPERACIÓN', c: 'la-tool', m: '13 sistemas operables · 170+ bots RPA · SV · GT · CR · DO' },
-        { t: '[00:02.400]', a: 'MODO', c: 'la-founder', m: '100% remoto desde 2020 · Power Automate a diario' },
-        { t: '[00:02.900]', a: 'ESTADO', c: 'la-estado', m: 'Disponible · contacto directo en horario hábil' },
-    ];
+  const LINES = [
+    {
+      t: "[00:00.000]",
+      a: "SISTEMA",
+      c: "la-sys",
+      m: "Expediente iniciado — HH/2026 · San Salvador, GMT-6",
+    },
+    {
+      t: "[00:00.400]",
+      a: "PERFIL",
+      c: "la-perfil",
+      m: "Ingeniero en sistemas · Científico de datos",
+    },
+    {
+      t: "[00:00.900]",
+      a: "EDUCACIÓN",
+      c: "la-edu",
+      m: "MSc en Data Science (UNEATLANTICO) · MSc en Business Intelligence (UNINI) · Posgrado en Blockchain (UTEC)",
+    },
+    {
+      t: "[00:01.400]",
+      a: "AGENTES",
+      c: "la-cert",
+      m: "Copilot Studio en Teams · visión documental con Gemini · bots de WhatsApp",
+    },
+    {
+      t: "[00:01.900]",
+      a: "OPERACIÓN",
+      c: "la-tool",
+      m: "13 demostraciones · Power Platform · IA aplicada · datos",
+    },
+    {
+      t: "[00:02.400]",
+      a: "MODO",
+      c: "la-founder",
+      m: "100% remoto desde 2020 · Power Automate a diario",
+    },
+    {
+      t: "[00:02.900]",
+      a: "ESTADO",
+      c: "la-estado",
+      m: "Disponible · contacto directo en horario hábil",
+    },
+  ];
 
-    const render = (line, msg) => {
-        const el = document.createElement('span');
-        el.className = 'log-line';
-        el.innerHTML = '<span class="log-time">' + line.t + '</span> '
-            + '<span class="log-actor ' + line.c + '">' + line.a + '</span> &gt; '
-            + '<span class="log-msg"></span>';
-        el.querySelector('.log-msg').textContent = msg;
-        return el;
-    };
+  const render = (line, msg) => {
+    const el = document.createElement("span");
+    el.className = "log-line";
+    el.innerHTML =
+      '<span class="log-time">' +
+      line.t +
+      "</span> " +
+      '<span class="log-actor ' +
+      line.c +
+      '">' +
+      line.a +
+      "</span> &gt; " +
+      '<span class="log-msg"></span>';
+    el.querySelector(".log-msg").textContent = msg;
+    return el;
+  };
 
-    const replayBtn = document.getElementById('logReplay');
+  const replayBtn = document.getElementById("logReplay");
 
-    if (reduced) {
-        LINES.forEach((l) => body.appendChild(render(l, l.m)));
-        return;
+  if (reduced) {
+    LINES.forEach((l) => body.appendChild(render(l, l.m)));
+    return;
+  }
+
+  const caret = document.createElement("span");
+  caret.className = "log-caret";
+  let timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+
+  function showCompleteLog() {
+    timers.forEach(clearTimeout);
+    timers = [];
+    body.textContent = "";
+    LINES.forEach((line) => body.appendChild(render(line, line.m)));
+    if (replayBtn) replayBtn.hidden = false;
+  }
+  window.addEventListener("hh:motion", () => {
+    if (window.hhMotion?.paused) showCompleteLog();
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) showCompleteLog();
+  });
+
+  function play() {
+    if (window.hhMotion?.paused || document.hidden) {
+      showCompleteLog();
+      return;
     }
-
-    const caret = document.createElement('span');
-    caret.className = 'log-caret';
-    let timers = [];
-    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
-
-    function showCompleteLog() {
-        timers.forEach(clearTimeout);
-        timers = [];
-        body.textContent = '';
-        LINES.forEach((line) => body.appendChild(render(line, line.m)));
-        if (replayBtn) replayBtn.hidden = false;
-    }
-    window.addEventListener('hh:motion', () => { if (window.hhMotion?.paused) showCompleteLog(); });
-    document.addEventListener('visibilitychange', () => { if (document.hidden) showCompleteLog(); });
-
-    function play() {
-        if (window.hhMotion?.paused || document.hidden) { showCompleteLog(); return; }
-        timers.forEach(clearTimeout);
-        timers = [];
-        body.textContent = '';
-        if (replayBtn) replayBtn.hidden = true;
-        /* La primera línea se escribe completa y de golpe: el recuadro nunca
+    timers.forEach(clearTimeout);
+    timers = [];
+    body.textContent = "";
+    if (replayBtn) replayBtn.hidden = true;
+    /* La primera línea se escribe completa y de golpe: el recuadro nunca
            se ve como un borde vacío mientras arranca el efecto. */
-        body.appendChild(render(LINES[0], LINES[0].m));
-        let li = 1;
-        (function typeLine() {
-            if (li >= LINES.length) {
-                caret.remove();
-                if (replayBtn) replayBtn.hidden = false;
-                return;
-            }
-            const line = LINES[li];
-            const el = render(line, '');
-            const msgEl = el.querySelector('.log-msg');
-            body.appendChild(el);
-            el.appendChild(caret);
-            let ci = 0;
-            const iv = setInterval(() => {
-                ci += 2;
-                msgEl.textContent = line.m.slice(0, ci);
-                if (ci >= line.m.length) {
-                    clearInterval(iv);
-                    li += 1;
-                    later(typeLine, 260);
-                }
-            }, 18);
-            timers.push(iv);
-        })();
-    }
+    body.appendChild(render(LINES[0], LINES[0].m));
+    let li = 1;
+    (function typeLine() {
+      if (li >= LINES.length) {
+        caret.remove();
+        if (replayBtn) replayBtn.hidden = false;
+        return;
+      }
+      const line = LINES[li];
+      const el = render(line, "");
+      const msgEl = el.querySelector(".log-msg");
+      body.appendChild(el);
+      el.appendChild(caret);
+      let ci = 0;
+      const iv = setInterval(() => {
+        ci += 2;
+        msgEl.textContent = line.m.slice(0, ci);
+        if (ci >= line.m.length) {
+          clearInterval(iv);
+          li += 1;
+          later(typeLine, 260);
+        }
+      }, 18);
+      timers.push(iv);
+    })();
+  }
 
-    if (replayBtn) replayBtn.addEventListener('click', play);
+  if (replayBtn) replayBtn.addEventListener("click", play);
 
-    const begin = () => later(play, 120);
-    if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) { io.disconnect(); begin(); }
-        }, { threshold: 0.3 });
-        io.observe(body);
-    } else {
-        begin();
-    }
+  const begin = () => later(play, 120);
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          io.disconnect();
+          begin();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    io.observe(body);
+  } else {
+    begin();
+  }
 })();
 
 /* ---------- toggle de tema (persistido; theme-init.js evita el flash) ---------- */
 (function themeToggle() {
-    var btn = document.getElementById('themeToggle');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-        var light = document.documentElement.dataset.theme === 'light';
-        if (light) {
-            delete document.documentElement.dataset.theme;
-        } else {
-            document.documentElement.dataset.theme = 'light';
-        }
-        try { localStorage.setItem('hh-theme', light ? 'dark' : 'light'); } catch (e) { /* privado */ }
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', light ? '#0A1322' : '#F2F6FB');
-    });
+  var btn = document.getElementById("themeToggle");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    var light = document.documentElement.dataset.theme === "light";
+    if (light) {
+      delete document.documentElement.dataset.theme;
+    } else {
+      document.documentElement.dataset.theme = "light";
+    }
+    try {
+      localStorage.setItem("hh-theme", light ? "dark" : "light");
+    } catch {
+      /* privado */
+    }
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", light ? "#0A1322" : "#F2F6FB");
+  });
 })();
 
 /* ---------- 02 CREDENCIALES · abrir NOVA desde el banco de pruebas ----------
@@ -555,23 +783,23 @@ document.querySelectorAll('.tool-grid .tool').forEach((el, i) => {
    nova.js carga con defer DESPUES de cv.js y monta el widget en el body:
    por eso el listener es delegado y el lanzador se busca al hacer clic. */
 (function proofOpensNova() {
-    function openNova() {
-        var panel = document.getElementById('novaPanel');
-        if (panel && !panel.hidden) {
-            var field = panel.querySelector('input, textarea');
-            if (field) field.focus();
-            return true;
-        }
-        var launcher = document.querySelector('.nova-launch');
-        if (!launcher) return false;
-        launcher.click();
-        return true;
+  function openNova() {
+    var panel = document.getElementById("novaPanel");
+    if (panel && !panel.hidden) {
+      var field = panel.querySelector("input, textarea");
+      if (field) field.focus();
+      return true;
     }
+    var launcher = document.querySelector(".nova-launch");
+    if (!launcher) return false;
+    launcher.click();
+    return true;
+  }
 
-    document.addEventListener('click', function (e) {
-        var trigger = e.target.closest('[data-open-nova]');
-        if (!trigger) return;
-        e.preventDefault();
-        if (!openNova()) setTimeout(openNova, 500); // nova.js aun no ha montado
-    });
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest("[data-open-nova]");
+    if (!trigger) return;
+    e.preventDefault();
+    if (!openNova()) setTimeout(openNova, 500); // nova.js aun no ha montado
+  });
 })();
