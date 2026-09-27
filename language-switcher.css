@@ -1,0 +1,84 @@
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+  isolation: isolate;
+  padding: 3px;
+  border: 1px solid rgba(116, 140, 160, 0.4);
+  border-radius: 8px;
+  background: #fff;
+  color: #102b46;
+}
+.language-switcher a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 45px;
+  min-height: 40px;
+  padding: 4px 7px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font:
+    600 11px/1 system-ui,
+    sans-serif;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+.language-switcher a[aria-current="true"] {
+  border-color: #246e82;
+  background: #e4f2f5;
+}
+.language-switcher a:hover {
+  background: #e4f2f5;
+}
+.language-switcher a:focus-visible {
+  outline: 3px solid #18879f;
+  outline-offset: 2px;
+}
+.language-switcher img {
+  display: block;
+  width: 23px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.language-switcher--floating {
+  position: fixed;
+  top: 10px;
+  right: 12px;
+  z-index: 10000;
+}
+.nav-right .language-switcher,
+.lab-top .language-switcher {
+  background: #0d1729;
+  color: #e8f0f9;
+}
+.nav-right .language-switcher a[aria-current="true"],
+.nav-right .language-switcher a:hover {
+  background: #18354b;
+  border-color: #2dd4bf;
+}
+@media (max-width: 720px) {
+  .language-switcher {
+    padding: 2px;
+    gap: 1px;
+  }
+  .language-switcher a {
+    min-width: 38px;
+    min-height: 38px;
+    padding: 3px 5px;
+  }
+  .language-switcher a span {
+    display: none;
+  }
+  .cnav > .language-switcher {
+    margin-left: auto;
+  }
+  .nav-right .language-switcher {
+    margin-left: 0;
+  }
+}

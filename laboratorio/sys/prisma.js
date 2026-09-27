@@ -105,7 +105,7 @@
     function aNumero(v) {
         if (typeof v === 'number') return v;
         if (v == null) return NaN;
-        var s = String(v).replace(/[$,\s%]/g, '').replace(/ /g, '');
+        var s = String(v).replace(/[$,\s%]/g, '').replace(/\u00a0/g, '');
         if (s === '' || s === '-') return NaN;
         return Number(s);
     }
@@ -318,7 +318,7 @@
 
             /* ---------- vista previa ---------- */
             var prev = k.el('div', 'panel pad');
-            var prevHead = k.el('div');
+            var prevHead = k.el('div', 'preview-heading');
             prevHead.style.display = 'flex';
             prevHead.style.justifyContent = 'space-between';
             prevHead.style.alignItems = 'center';
@@ -357,7 +357,7 @@
                             return r && r.length && r.some(function (c) { return c !== '' && c != null; });
                         }).map(function (r) {
                             return r.map(function (c) {
-                                return c instanceof Date ? (c.getFullYear() + '-' + k.pad(c.getMonth() + 1) + '-' + k.pad(c.getDate())) : c;
+                                return c instanceof Date ? (c.getUTCFullYear() + '-' + k.pad(c.getUTCMonth() + 1) + '-' + k.pad(c.getUTCDate())) : c;
                             });
                         });
                         if (rows.length < 2) {

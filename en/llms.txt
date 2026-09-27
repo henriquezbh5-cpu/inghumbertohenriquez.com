@@ -1,0 +1,19 @@
+# Humberto Wilfredo Henríquez Benítez
+
+> Systems engineer, data scientist and senior consultant in Microsoft Power Platform, data, automation and applied AI. Works remotely from San Salvador, El Salvador.
+
+## Personal website
+
+- [Home and ways to collaborate](https://inghumbertohenriquez.com/en/#colaboracion): technical profile, team collaboration and working arrangements.
+- [Professional profile](https://inghumbertohenriquez.com/en/perfil/): education, career and professional approach.
+- [Technical cases](https://inghumbertohenriquez.com/en/perfil/#proyectos): Oficina Viva, Capturista Digital and data consolidation, with the scope of each case.
+- [Laboratory](https://inghumbertohenriquez.com/en/laboratorio/): 13 interactive demonstrations with synthetic data. They do not represent commercial outcomes achieved for clients.
+- [Publications](https://inghumbertohenriquez.com/en/publicaciones/): technical perspectives and articles authored by Humberto.
+- [Contact](https://inghumbertohenriquez.com/en/#contacto): external collaboration, defined projects and fully remote employment opportunities.
+
+## Professional services through Optimatiza
+
+- [Ongoing support](https://optimatiza.com/en/servicios-profesionales/): development, maintenance and improvement of solutions with shared priorities.
+- [Support for consulting firms](https://optimatiza.com/en/servicios-profesionales/): senior collaboration within the team on Power Platform, data and automation.
+
+Employment opportunities are discussed directly with Humberto. Professional services are managed through Optimatiza. Time commitment, start date, scope and terms are agreed on a case-by-case basis. This website does not advertise immediate availability, fixed rates or Microsoft Partner credentials.

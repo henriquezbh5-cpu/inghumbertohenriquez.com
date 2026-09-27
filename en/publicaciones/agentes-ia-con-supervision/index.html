@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data:; base-uri 'self'; object-src 'none'; connect-src 'self' https://quote-ai.henriquezbh5.workers.dev;" http-equiv="Content-Security-Policy"/>
+<meta content="strict-origin-when-cross-origin" name="referrer"/>
+<meta content="#0A1322" name="theme-color"/>
+<meta content="dark" name="color-scheme"/>
+<title>
+      AI Agents with Oversight: Tasks, Permissions and Evidence | Humberto Henríquez
+    </title>
+<meta content="Design principles for overseeing agents: task states, permissions, evaluation and traceability." name="description"/>
+<meta content="Humberto Wilfredo Henríquez Benítez" name="author"/>
+<link href="https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="AI Agents with Oversight: Tasks, Permissions and Evidence | Humberto Henríquez" property="og:title"/>
+<meta content="Design principles for overseeing agents: task states, permissions, evaluation and traceability." property="og:description"/>
+<meta content="https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/" property="og:url"/>
+<meta content="Humberto Henríquez" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923" name="twitter:image"/>
+<link href="/cv.css?v=f400b08bae6d" rel="stylesheet"/>
+<link href="/profile.css?v=6df1fb3740ed" rel="stylesheet"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A1322'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='25' text-anchor='middle' fill='%232DD4BF'%3EHH%3C/text%3E%3C/svg%3E" rel="icon"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://inghumbertohenriquez.com/en/#person",
+      "name": "Humberto Wilfredo Henríquez Benítez",
+      "alternateName": "Humberto Henríquez",
+      "url": "https://inghumbertohenriquez.com/en/perfil/",
+      "image": "https://inghumbertohenriquez.com/humberto.jpg",
+      "jobTitle": "Systems engineer and data scientist",
+      "description": "Specialist in applied AI, business automation and Microsoft Power Platform in San Salvador, El Salvador.",
+      "sameAs": [
+        "https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "https://optimatiza.com/en/#org",
+        "name": "Optimatiza",
+        "url": "https://optimatiza.com/en/"
+      },
+      "knowsAbout": [
+        "Data science",
+        "Artificial intelligence agents",
+        "Process automation",
+        "Microsoft Power Platform",
+        "Business Intelligence"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Salvador",
+        "addressCountry": "SV"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/#webpage",
+      "url": "https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/",
+      "name": "AI Agents with Oversight: Tasks, Permissions and Evidence | Humberto Henríquez",
+      "description": "Design principles for overseeing agents: task states, permissions, evaluation and traceability.",
+      "inLanguage": "en-US",
+      "dateModified": "2026-09-23",
+      "mainEntity": {
+        "@id": "https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/#article"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://inghumbertohenriquez.com/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Publications",
+          "item": "https://inghumbertohenriquez.com/en/publicaciones/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI agents with oversight",
+          "item": "https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/#article",
+      "headline": "AI agents with oversight: tasks, permissions and evidence",
+      "description": "Design principles for overseeing agents: task states, permissions, evaluation and traceability.",
+      "datePublished": "2026-09-23",
+      "dateModified": "2026-09-23",
+      "inLanguage": "en-US",
+      "author": {
+        "@id": "https://inghumbertohenriquez.com/en/#person",
+        "@type": "Person",
+        "name": "Humberto Wilfredo Henríquez Benítez",
+        "url": "https://inghumbertohenriquez.com/en/perfil/"
+      },
+      "image": "https://inghumbertohenriquez.com/humberto.jpg",
+      "mainEntityOfPage": {
+        "@id": "https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/#webpage"
+      }
+    }
+  ]
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="alternate" hreflang="es" href="https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/">
+<link rel="alternate" hreflang="en" href="https://inghumbertohenriquez.com/en/publicaciones/agentes-ia-con-supervision/">
+<link rel="alternate" hreflang="x-default" href="https://inghumbertohenriquez.com/publicaciones/agentes-ia-con-supervision/">
+<link rel="stylesheet" href="/language-switcher.css?v=8f00ff27eb3f">
+<script src="/lang.js?v=898e180bf60c" data-country-endpoint="https://quote-ai.henriquezbh5.workers.dev/cdn-cgi/trace" defer></script>
+</head>
+<body class="profile-page"><nav class="language-switcher language-switcher--floating" aria-label="Language selection"><a href="/publicaciones/agentes-ia-con-supervision/" data-lang="es" lang="es" hreflang="es" aria-label="Español" title="Español"><img src="/img/flags/es.svg?v=b5a085c42d39" alt="" width="23" height="16"><span>ES</span></a><a href="/en/publicaciones/agentes-ia-con-supervision/" data-lang="en" lang="en" hreflang="en" aria-label="English" title="English" aria-current="true"><img src="/img/flags/us.svg?v=5b97ab65300e" alt="" width="23" height="16"><span>EN</span></a></nav>
+<a class="skip-link mono" href="#contenido">Skip to content</a>
+<header class="profile-nav">
+<div class="profile-nav-inner">
+<a class="profile-brand" href="/en/">Humberto Henríquez</a>
+<nav aria-label="Main navigation">
+<a href="/en/perfil/">Profile</a><a href="/en/#sistemas">Projects</a><a href="/en/publicaciones/">Publications</a><a href="/en/laboratorio/">Laboratory</a><a href="/en/#contacto">Contact</a>
+</nav>
+</div>
+</header>
+<main class="profile-shell" id="contenido" tabindex="-1">
+<nav aria-label="Breadcrumb navigation" class="profile-breadcrumbs">
+<a href="/en/">Home</a> <span aria-hidden="true">/</span>
+<a href="/en/publicaciones/">Publications</a>
+<span aria-hidden="true">/</span>
+<span aria-current="page">AI agents with oversight</span>
+</nav>
+<header class="profile-hero">
+<p class="profile-eyebrow">Technical note · Systems design</p>
+<h1>AI agents with oversight: tasks, permissions and evidence</h1>
+<p class="profile-lede">
+          An agent is more useful when you can tell what it received, what it is doing and what it needs to continue. These are the design decisions I propose to make that visible.
+        </p>
+<p class="profile-meta profile-byline">
+<img alt="" class="profile-avatar" height="40" src="/humberto.jpg" width="40"/>By <a href="/en/perfil/">Humberto Wilfredo Henríquez Benítez</a> ·
+          <time datetime="2026-09-23">September 23, 2026</time>
+</p>
+</header>
+<article class="profile-article">
+<section class="profile-section">
+<h2>The task is the unit of control</h2>
+<p>
+            A panel with animated robots can help explain a system, but animation does not prove execution. My design principle is that each visual change should represent a state backed by an event: task received, execution started, result generated or review requested.
+          </p>
+<p>
+            A task record should identify the assignment, its owner, the authorized data, the expected result and the acceptance criteria. The last update and the reason for a block help distinguish active work from an operation that has stopped progressing.
+          </p>
+<p>
+            In
+            <a href="https://optimatiza.com/en/oficina-viva/">Oficina Viva</a>
+            I explore this relationship between work organization and agent tracking. The video and project description define what has been demonstrated; the recommendations in this article expand on the design principles and do not imply that all of them are implemented in that system.
+          </p>
+</section>
+<section class="profile-section">
+<h2>States that explain what is happening</h2>
+<p>
+            I propose an explicit state machine. Each transition must have a cause and retain a reference to the execution. For example:
+          </p>
+<ol aria-label="Proposed task sequence" class="profile-flow">
+<li>Pending</li>
+<li>Running</li>
+<li>Review required</li>
+<li>Approved</li>
+<li>Completed</li>
+</ol>
+<p>
+            Blocked, failed and canceled states are also needed. A blocked task should explain whether it is missing data, a permission or a dependency. “Running” must not persist indefinitely after contact with the executing process is lost.
+          </p>
+<p>
+            When an operation is retried, keep the attempts separate and link them to the same assignment. This makes it possible to investigate a failure without mistaking the new attempt for an additional task.
+          </p>
+</section>
+<section class="profile-section">
+<h2>Permissions proportionate to the action</h2>
+<p>
+            Preparing a draft, sending an email and changing an accounting record have different consequences. Authorization must be evaluated for the specific action and the data it will affect before execution.
+          </p>
+<p>
+            OWASP describes excessive agency as a risk associated with too much functionality, too many permissions or too much autonomy. Its mitigations include limiting tools and privileges and requiring human approval for high-impact actions.
+            <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/">Reference: OWASP, Excessive Agency</a>.
+          </p>
+<p>
+            My practical proposal is a review that shows the recipient, content, changes and scope. If those elements change after approval, authorization must be evaluated again. Approval of a draft alone does not grant permission to publish it.
+          </p>
+</section>
+<section class="profile-section">
+<h2>Test failures before expanding autonomy</h2>
+<p>
+            A useful evaluation needs inputs, expected results and rejection criteria defined before instructions are adjusted. This matrix illustrates a testing foundation; it does not present measured results from an implementation.
+          </p>
+<div aria-label="Proposed evaluation scenarios" class="profile-table-wrap" role="region" tabindex="0">
+<table class="profile-table">
+<thead>
+<tr>
+<th scope="col">Scenario</th>
+<th scope="col">Expected behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A required field is missing</td>
+<td>
+                    Request it or block the task; do not invent it to complete the answer.
+                  </td>
+</tr>
+<tr>
+<td>The tool times out</td>
+<td>
+                    Record the failure and apply a bounded retry policy with delays.
+                  </td>
+</tr>
+<tr>
+<td>The same task arrives twice</td>
+<td>
+                    Recognize the assignment's identity and avoid duplicating the external effect.
+                  </td>
+</tr>
+<tr>
+<td>A document instructs the agent to ignore the rules</td>
+<td>
+                    Treat that instruction as untrusted content without expanding permissions.
+                  </td>
+</tr>
+<tr>
+<td>An approved result is changed</td>
+<td>
+                    Request another review before executing the change.
+                  </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            In addition to answer quality, I would measure accepted tasks, human corrections, latency, tool failures and cost per task. Thresholds should be agreed according to the process's impact; a single accuracy rate does not describe all those risks.
+          </p>
+</section>
+<section class="profile-section">
+<h2>Local AI and traceability with clear limits</h2>
+<p>
+            Local inference lets you decide where the model runs. Confidentiality also depends on permissions, tools, logs, backups and external connections. That is why I would describe the architecture and data flows rather than present “local” as an absolute guarantee.
+          </p>
+<p>
+            To investigate a task, I would retain identifiers, instruction versions, tools used, states, timestamps and approval decisions. Logs must minimize sensitive data and have access and retention controls. They do not need to capture the model's internal reasoning to show what actions occurred.
+          </p>
+</section>
+<section class="profile-section">
+<h2>Applying this to work allocation</h2>
+<p>
+            A visible queue lets you compare pending work, blocks and available capacity. Task count alone does not measure workload: complexity, priority, dependencies and expected time matter. For a human team, I would include those factors and a way for people to explain impediments.
+          </p>
+<p>
+            The goal of my proposal is to give coordinators context for decisions and those doing the work a clear assignment. A tracking interface adds value when its states correspond to observable events and its permissions reflect explicit decisions.
+          </p>
+</section>
+</article>
+<aside class="profile-callout">
+<h2>From principles to a project</h2>
+<p>
+          View the Oficina Viva demonstration or explore a data case study where a control decision changes the published result.
+        </p>
+<div class="profile-actions">
+<a class="profile-button" href="https://optimatiza.com/en/oficina-viva/">Explore Oficina Viva</a><a class="profile-button secondary" href="/en/proyectos/consolidacion-datos/">Consolidation case study</a>
+</div>
+</aside>
+</main>
+<footer class="profile-footer">
+<div class="profile-shell profile-footer-inner">
+<span>© 2026 Humberto Wilfredo Henríquez Benítez · San Salvador, El
+          Salvador</span>
+<nav aria-label="Footer links" class="profile-footer-links">
+<a href="/en/perfil/">Professional profile</a><a href="https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/">LinkedIn</a><a href="https://optimatiza.com/en/">Optimatiza</a>
+</nav>
+</div>
+</footer>
+</body>
+</html>
+

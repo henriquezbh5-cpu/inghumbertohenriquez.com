@@ -40,7 +40,6 @@
 
   function warn(mod, err) { try { console.warn('[agentes] ' + mod + ':', err); } catch (e) { /* noop */ } }
 
-  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* noop */ } }
   function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
   function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* noop */ } }
@@ -374,7 +373,7 @@
     }
   };
 
-  var currentLang = (lsGet('preferred-lang') === 'en') ? 'en' : 'es';
+  var currentLang = /^en\b/i.test(doc.documentElement.lang) ? 'en' : 'es';
 
   function t(key) {
     var d = AG_DICT[currentLang] || AG_DICT.es;

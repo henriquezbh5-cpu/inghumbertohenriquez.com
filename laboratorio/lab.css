@@ -955,3 +955,6 @@ label.check input { accent-color: var(--teal); width: 15px; height: 15px }
 @media (max-width: 560px) {
     .cal, .cal-head { gap: 2px }
 }
+.preview-heading { flex-wrap: wrap; }
+.run-calendar { overflow-x: auto; }
+.run-calendar .cal, .run-calendar .cal-head { min-width: 340px; }
