@@ -65,14 +65,14 @@ export function createGalaxy(type, count, seed = 260930) {
         type === "barred"
           ? Math.max(0, radius - 0.35) * 5.5
           : Math.log(1 + radius * 13) * 2.35;
-      const spread = dust ? 0.085 : random() < 0.78 ? 0.14 : 0.63;
+      const spread = dust ? 0.12 : random() < 0.78 ? 0.14 : 0.63;
       const angle = arm + winding + normal() * spread;
       x = Math.cos(angle) * radius;
       y = Math.sin(angle) * radius;
       z = normal() * (0.009 + radius * 0.016);
     }
     position.set([x, y, z], i * 3);
-    size[i] = dust ? 8 + random() * 15 : 0.75 + Math.pow(random(), 5) * 3.1;
+    size[i] = dust ? 9 + random() * 17 : 0.55 + Math.pow(random(), 5) * 1.85;
     tone[i] =
       type === "elliptical"
         ? Math.min(0.25, radius * 0.3)

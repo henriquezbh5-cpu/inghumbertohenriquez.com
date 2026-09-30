@@ -43,7 +43,7 @@ async function initialize() {
   try {
     const [THREE, model] = await Promise.all([
       import("/vendor/three/three.module.min.js"),
-      import("/galaxy-model.js?v=20260930"),
+      import("/galaxy-model.js?v=20260930b"),
     ]);
     if (disposed || !canInitialize()) return;
     engine = createScene(THREE, model);
@@ -117,6 +117,10 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
   let pointerUntil = 0;
   let slowFrames = 0;
   let samples = 0;
+  let renderedFrames = 0;
+  let measuredFrames = 0;
+  let measuredTime = 0;
+  let measuredRender = 0;
   let resizeTimer;
   let width = 1;
   let height = 1;
@@ -144,7 +148,7 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
       vTone = aTone;
       vPhase = aPhase;
       vCloud = aCloud;
-      vAlpha = uOpacity * mix(.66 + .2 * sin(aPhase + uTime * .8), .034, aCloud);
+      vAlpha = uOpacity * mix(.29 + .1 * sin(aPhase + uTime * .8), .046, aCloud);
       vAlpha *= 1.0 + influence * .7;
     }
   `;
@@ -154,13 +158,14 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
       vec2 uv = gl_PointCoord - .5;
       float r = length(uv);
       if (r > .5) discard;
-      vec3 warm = vec3(1.0, .74, .39);
-      vec3 cool = vec3(.31, .60, 1.0);
+      vec3 warm = vec3(1.0, .39, .07);
+      vec3 cool = vec3(.035, .26, .72);
       vec3 color = mix(warm, cool, smoothstep(.1, .53, vTone));
-      color = mix(color, vec3(.69, .37, .88), smoothstep(.48, .95, vTone) * .48);
+      color = mix(color, vec3(.30, .06, .58), smoothstep(.48, .95, vTone) * .56);
       float nursery = step(.94, fract(vPhase * 3.719)) * smoothstep(.2, .5, vTone);
-      color = mix(color, vec3(1.0, .34, .61), nursery * .8);
-      color = mix(color, vec3(.92, .96, 1.0), (1.0 - vCloud) * .35);
+      color = mix(color, vec3(1.0, .08, .22), nursery * .8);
+      float brightStar = step(.975, fract(vPhase * 9.18));
+      color = mix(color, vec3(.8, .9, 1.0), (1.0 - vCloud) * brightStar * .7);
       float disc = 1.0 - smoothstep(.1, .5, r);
       float glow = exp(-r * r * 18.0) * (1.0 - smoothstep(.32, .5, r));
       gl_FragColor = vec4(color, mix(disc, glow, vCloud) * vAlpha);
@@ -203,27 +208,67 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
     scene.add(group);
     geometries.push(geometry);
     materials.push(material);
-    const entry = { type, count, group, points, geometry, uniforms };
+    const entry = {
+      type,
+      count,
+      group,
+      points,
+      geometry,
+      uniforms,
+      dust: null,
+    };
     clouds.push(entry);
 
-    // A compact, analytic stellar bulge fills the space between individual stars.
+    // Continuous dust and stellar light connect the sharp, individually resolved stars.
     if (type !== "irregular") {
-      const coreGeometry = new THREE.PlaneGeometry(2, 2);
+      const coreGeometry = new THREE.PlaneGeometry(2.4, 2.4);
       const coreMaterial = new THREE.ShaderMaterial({
-        uniforms: { uOpacity: uniforms.uOpacity },
+        uniforms: {
+          uOpacity: uniforms.uOpacity,
+          uTidal: uniforms.uTidal,
+          uType: {
+            value: type === "elliptical" ? 2 : type === "barred" ? 1 : 0,
+          },
+          uArms: { value: type === "spiral" ? 3 : 2 },
+        },
         transparent: true,
         depthWrite: false,
         blending: THREE.AdditiveBlending,
         side: THREE.DoubleSide,
         vertexShader:
           "varying vec2 vUv; void main(){vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}",
-        fragmentShader: `uniform float uOpacity; varying vec2 vUv;
-          void main(){float r=length((vUv-.5)*2.0); float alpha=exp(-r*18.0)*.45+exp(-r*r*40.0)*.055;
-          gl_FragColor=vec4(vec3(1.0,.65,.3),alpha*uOpacity); #include <colorspace_fragment> }`
-          .replace("#include", "\n#include")
-          .replace("> }", ">\n}"),
+        fragmentShader: `
+          uniform float uOpacity, uTidal, uType, uArms;
+          varying vec2 vUv;
+          float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+          float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);
+            return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
+          void main(){
+            vec2 p=(vUv-.5)*2.4;
+            float r=length(p);
+            float theta=atan(p.y,p.x);
+            float winding=mix(log(1.0+r*13.0)*2.35,max(0.0,r-.35)*5.5,step(.5,uType));
+            float phase=(theta+uTidal*r*r*.75-winding)*uArms;
+            float arms=pow(.5+.5*cos(phase),8.0);
+            float lane=pow(.5+.5*cos(phase+.6),24.0);
+            float cloud=.4+.4*noise(p*15.0)+.2*noise(p*47.0);
+            float edge=1.0-smoothstep(.8,1.12,r);
+            float core=exp(-r*15.0)*.46+exp(-r*r*48.0)*.06;
+            float dust=arms*smoothstep(.08,.23,r)*edge*cloud*.17;
+            dust*=1.0-lane*.72;
+            float disc=exp(-r*3.5)*.026*edge;
+            if(uType>1.5){core=exp(-r*6.5)*.20;dust=0.0;disc=0.0;}
+            if(uType>.5&&uType<1.5){core+=exp(-abs(p.x)*5.0-p.y*p.y*400.0)*.1;}
+            vec3 dustColor=mix(vec3(.025,.20,.70),vec3(.36,.045,.48),smoothstep(.4,.95,r));
+            vec3 warm=vec3(1.0,.34,.055);
+            vec3 color=(warm*core+dustColor*(dust+disc))/max(.001,core+dust+disc);
+            gl_FragColor=vec4(color,(core+dust+disc)*uOpacity);
+            #include <colorspace_fragment>
+          }
+        `,
       });
       const core = new THREE.Mesh(coreGeometry, coreMaterial);
+      entry.dust = core;
       core.position.z = -0.015;
       group.add(core);
       geometries.push(coreGeometry);
@@ -332,6 +377,7 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
   function resize() {
     width = Math.max(1, canvas.clientWidth || innerWidth);
     height = Math.max(1, canvas.clientHeight || innerHeight);
+    if (compact !== mobile.matches) budget = mobile.matches ? 0.36 : 1;
     compact = mobile.matches;
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
     shared.uDpr.value = renderer.getPixelRatio();
@@ -344,11 +390,20 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
       camera.position.z;
     worldWidth = worldHeight * camera.aspect;
     applyBudget();
-    if (!frame && !lost) render(0);
+    if (
+      !frame &&
+      !lost &&
+      visible &&
+      !document.hidden &&
+      !printing &&
+      !pageSuspended
+    )
+      render(0, true);
   }
 
-  function render(dt) {
-    const blend = 1 - Math.exp(-dt * 2.2);
+  function render(dt, snapComposition = false) {
+    const blend =
+      snapComposition || elapsed === 0 ? 1 : 1 - Math.exp(-dt * 2.2);
     exploreMix += ((exploring ? 1 : 0) - exploreMix) * blend;
     pointer.lerp(pointerTarget, 1 - Math.exp(-Math.max(dt, 0.016) * 4));
     shared.uActive.value +=
@@ -424,6 +479,7 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
         elapsed *
         (item.type === "elliptical" ? 0.02 : 0.075) *
         (index % 2 ? -1 : 1);
+      if (item.dust) item.dust.rotation.z = item.points.rotation.z;
     }
     bridgeUniforms.uFrom.value.copy(lead.group.position);
     bridgeUniforms.uTo.value.copy(companion.group.position);
@@ -445,7 +501,21 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
     lastFrame = now;
     const dt = Math.min(rawDt, 0.05);
     elapsed += dt;
+    const renderStart = performance.now();
     render(dt);
+    measuredRender += performance.now() - renderStart;
+    measuredTime += rawDt;
+    measuredFrames++;
+    renderedFrames++;
+    if (renderedFrames % 30 === 0)
+      canvas.dataset.frame = String(renderedFrames);
+    if (measuredFrames >= 120) {
+      canvas.dataset.fps = (measuredFrames / measuredTime).toFixed(1);
+      canvas.dataset.renderMs = (measuredRender / measuredFrames).toFixed(2);
+      measuredFrames = 0;
+      measuredTime = 0;
+      measuredRender = 0;
+    }
     samples++;
     if (rawDt > 0.025) slowFrames++;
     if (samples >= 240) {
@@ -469,7 +539,7 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
     canvas.dataset.state = paused ? "paused" : "running";
     root.classList.add("galaxy-ready");
     if (paused) {
-      if (!document.hidden && !printing && !pageSuspended) render(0);
+      if (visible && !document.hidden && !printing && !pageSuspended) render(0);
     } else frame = requestAnimationFrame(tick);
   }
 
@@ -485,7 +555,7 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
     canvas.dataset.scene = value;
     const selectElement = document.getElementById("galaxy-scene-select");
     if (selectElement) selectElement.value = value;
-    if (animationPaused()) render(1);
+    if (animationPaused()) render(0, true);
     sync();
   }
 
@@ -501,7 +571,7 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
     exploring = !!event.detail?.active;
     if (animationPaused()) {
       exploreMix = exploring ? 1 : 0;
-      render(1);
+      render(0, true);
     }
     sync();
   });
