@@ -411,9 +411,11 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
       (1 - Math.exp(-dt * 3));
     shared.uTime.value = elapsed;
     const homeX = worldWidth * (compact ? 0.08 : 0.2) * (1 - exploreMix);
-    const homeY = worldHeight * 0.045 * (1 - exploreMix);
+    const homeY =
+      worldHeight *
+      (0.045 * (1 - exploreMix) + (compact ? 0.11 : 0.05) * exploreMix);
     const baseScale = compact
-      ? Math.min(17, worldWidth * 0.47)
+      ? Math.min(17, worldWidth * 0.47) * (1 - 0.2 * exploreMix)
       : Math.min(23, worldWidth * 0.24);
     const encounter = sceneName === "merger" || sceneName === "voyage";
     const approach = encounter
