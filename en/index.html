@@ -198,8 +198,19 @@
       property="og:image:alt"
       content="Humberto Henríquez — Power Platform, Data Science, Automation"
     />
+    <link rel="stylesheet" href="/galaxy.css?v=5264c1f4934c" />
   </head>
-  <body class="cosmic-site">
+  <body class="cosmic-site galaxy-site">
+    <div class="galaxy-backdrop" aria-hidden="true">
+      <div class="galaxy-fallback"></div>
+      <canvas
+        id="galaxy-canvas"
+        class="galaxy-canvas"
+        aria-hidden="true"
+        data-state="loading"
+      ></canvas>
+      <div class="galaxy-veil"></div>
+    </div>
     <a class="skip-link mono" href="#contenido">Skip to content</a>
     <div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
     <!-- ============================== NAV ============================== -->
@@ -308,8 +319,6 @@
     <!-- ============================== HERO ============================== -->
     <main id="contenido" tabindex="-1">
       <header class="hero" id="top">
-        <div class="engineering-field" aria-hidden="true"></div>
-
         <div class="container hero-content">
           <div class="dochead mono rv">
             <span>PROFESSIONAL PROFILE / 2026</span>
@@ -326,9 +335,34 @@
               ><span aria-hidden="true" class="universe-signal"></span> AI ·
               DATA · AUTOMATION</span
             >
-            <span aria-hidden="true" class="universe-coordinate"
-              >13.69° N / 89.19° W</span
+            <button
+              class="galaxy-entry"
+              type="button"
+              data-galaxy-open
+              aria-haspopup="dialog"
+              aria-controls="galaxy-observatory"
             >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <ellipse
+                  cx="12"
+                  cy="12"
+                  rx="10"
+                  ry="4.5"
+                  transform="rotate(-35 12 12)"
+                  stroke="currentColor"
+                />
+                <ellipse
+                  cx="12"
+                  cy="12"
+                  rx="6.5"
+                  ry="3"
+                  transform="rotate(-35 12 12)"
+                  stroke="currentColor"
+                  opacity=".6"
+                />
+                <circle cx="12" cy="12" r="1.5" fill="currentColor" /></svg
+              ><span>Explore galaxies</span>
+            </button>
           </div>
           <div class="hero-grid">
             <div class="hero-main">
@@ -2138,6 +2172,31 @@
     <script defer="" src="/en/nova-companion.js?v=291855d34ac2"></script>
     <div class="motion-dock mono" hidden="">
       <button
+        id="galaxy-explore"
+        aria-label="Explore galaxies"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="galaxy-observatory"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="22"
+          height="22"
+          fill="none"
+          aria-hidden="true"
+        >
+          <ellipse
+            cx="12"
+            cy="12"
+            rx="10"
+            ry="4.5"
+            transform="rotate(-35 12 12)"
+            stroke="currentColor"
+          />
+          <circle cx="12" cy="12" r="2" fill="currentColor" /></svg
+        ><span class="galaxy-dock-label">Explore galaxies</span>
+      </button>
+      <button
         aria-label="Pause background motion"
         aria-pressed="false"
         id="motionToggle"
@@ -2166,5 +2225,59 @@
         <span data-motion-label="">PAUSE MOTION</span>
       </button>
     </div>
+
+    <dialog
+      id="galaxy-observatory"
+      class="galaxy-observatory"
+      aria-labelledby="galaxy-title"
+      aria-describedby="galaxy-help"
+    >
+      <div class="galaxy-view-head">
+        <div>
+          <p class="eyebrow">A universe in motion</p>
+          <h2 id="galaxy-title">Explore the cosmos</h2>
+        </div>
+        <button id="galaxy-close" type="button" autofocus>
+          Back to profile <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div
+        id="galaxy-view"
+        class="galaxy-view"
+        tabindex="0"
+        role="group"
+        aria-label="Interactive galaxy view. Move your pointer, drag, or use the arrow keys."
+      ></div>
+      <div class="galaxy-controls">
+        <div class="galaxy-control-row">
+          <div class="galaxy-choice">
+            <label for="galaxy-scene-select">Choose a scene</label
+            ><select id="galaxy-scene-select">
+              <option value="voyage">Cosmic journey</option>
+              <option value="spiral">Spiral galaxy</option>
+              <option value="andromeda">Andromeda</option>
+              <option value="barred">Barred spiral</option>
+              <option value="elliptical">Elliptical galaxy</option>
+              <option value="irregular">Irregular galaxy</option>
+              <option value="merger">Galactic encounter</option>
+            </select>
+          </div>
+          <button id="galaxy-encounter" type="button">
+            Bring galaxies together
+          </button>
+          <button id="galaxy-motion" type="button" aria-pressed="false">
+            Pause motion
+          </button>
+          <button id="galaxy-reset" type="button">Restart journey</button>
+        </div>
+        <p id="galaxy-help">
+          Move your pointer or slide your finger to explore. Use the arrow keys
+          when the galaxy view has focus.
+        </p>
+        <p class="galaxy-art-note">An artistic interpretation of the cosmos.</p>
+      </div>
+    </dialog>
+    <script defer src="/galaxy-ui.js?v=fc7459050d18"></script>
+    <script type="module" src="/galaxy-scene.js?v=4eaeb596d796"></script>
   </body>
 </html>

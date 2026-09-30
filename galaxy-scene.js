@@ -43,7 +43,7 @@ async function initialize() {
   try {
     const [THREE, model] = await Promise.all([
       import("/vendor/three/three.module.min.js"),
-      import("/galaxy-model.js?v=20260930b"),
+      import("/galaxy-model.js?v=1e4be843e8db"),
     ]);
     if (disposed || !canInitialize()) return;
     engine = createScene(THREE, model);
@@ -421,6 +421,7 @@ function createScene(THREE, { createGalaxy, randomSource, encounterEnvelope }) {
     const approach = encounter
       ? encounterEnvelope(
           elapsed - encounterStart + (sceneName === "voyage" ? 11 : 0),
+          sceneName === "merger" ? 24 : 48,
         )
       : 0;
     const selected = Math.max(
