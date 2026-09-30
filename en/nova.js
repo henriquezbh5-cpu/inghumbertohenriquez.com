@@ -185,6 +185,8 @@
 
   function ask(q) {
     if (busy || !q) return;
+    // Preserve keyboard focus before removing a focused suggestion button.
+    if (panel.contains(document.activeElement)) input.focus();
     busy = true;
     send.disabled = true;
     chipsWrap.replaceChildren();
@@ -199,7 +201,8 @@
       if (history.length > 16) history = history.slice(-16);
       busy = false;
       send.disabled = false;
-      if (!panel.hidden) input.focus();
+      if (!panel.hidden && panel.contains(document.activeElement))
+        input.focus();
     };
 
     var ctrl = "AbortController" in window ? new AbortController() : null;

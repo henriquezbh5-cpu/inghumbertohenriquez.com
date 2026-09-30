@@ -1,0 +1,546 @@
+/* Shared editorial finish. All decorative lines remain vector at every DPR. */
+:root {
+  --pro-bg: #0b121a;
+  --pro-surface: #101d27;
+  --pro-ink: #edf3f4;
+  --pro-body: #b7c6cf;
+  --pro-accent: #a5d7c8;
+  --pro-line: #2c3e49;
+  --pro-radius: 12px;
+  --pro-section: clamp(64px, 7vw, 104px);
+}
+.cosmic-site,
+.profile-page {
+  --bg: var(--pro-bg);
+  --bg-2: var(--pro-surface);
+  --ink: var(--pro-ink);
+  --body: var(--pro-body);
+  --teal: var(--pro-accent);
+  --line: var(--pro-line);
+  --space-panel: var(--pro-surface);
+  background: var(--pro-bg);
+}
+.cosmic-site .cosmos {
+  display: none;
+}
+.cosmic-site .hero {
+  padding: 112px 0 48px;
+  background: var(--pro-bg);
+  isolation: isolate;
+}
+.engineering-field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("/img/engineering-field.svg") right top / auto 100% no-repeat;
+}
+.hero-content {
+  z-index: auto;
+}
+.cosmic-site .hero-grid {
+  grid-template-columns: minmax(0, 1fr) 328px;
+  gap: clamp(40px, 7vw, 100px);
+  align-items: start;
+}
+.cosmic-site .hero-kicker {
+  font: 500 clamp(18px, 2vw, 22px)/1.4 var(--font-d);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--pro-ink);
+  margin-bottom: 20px;
+}
+.cosmic-site .hero-title {
+  font-size: clamp(36px, 4.2vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  text-shadow: none;
+  text-wrap: balance;
+}
+.cosmic-site .hero-title em {
+  background: none;
+  color: var(--pro-accent);
+  -webkit-text-fill-color: currentColor;
+}
+.cosmic-site .hero-sub {
+  max-width: 53ch;
+  color: var(--pro-body);
+  text-shadow: none;
+  line-height: 1.75;
+}
+.cosmic-site .hero-sub a {
+  color: var(--pro-accent);
+  border-color: var(--pro-accent);
+}
+.cosmic-site .dochead {
+  margin-bottom: 24px;
+  font-size: 11px;
+  border-color: var(--pro-line);
+}
+.universe-intro {
+  margin-bottom: 28px;
+  color: var(--pro-accent);
+}
+.universe-coordinate {
+  display: none;
+}
+.universe-signal,
+.status-dot {
+  box-shadow: none;
+}
+.cosmic-site .hero-chips {
+  gap: 8px 18px;
+  margin: 26px 0;
+}
+.cosmic-site .hero-chips .chip {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--pro-body);
+  font-size: 11px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+.cosmic-site .hero-chips .chip:first-child {
+  color: var(--pro-accent);
+}
+.cosmic-site .hero-actions {
+  gap: 12px;
+}
+.cosmic-site .btn {
+  min-height: 48px;
+  border-radius: 5px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.cosmic-site .btn-primary {
+  color: #102820;
+  background: var(--pro-accent);
+  border-color: var(--pro-accent);
+  box-shadow: none;
+}
+.cosmic-site .btn-primary:hover {
+  background: #c0e8dc;
+}
+.cosmic-site .btn-ghost {
+  background: var(--pro-bg);
+  border-color: #526571;
+  color: var(--pro-ink);
+}
+.cosmic-site .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+.cosmic-site .hero .photo-card {
+  max-width: 328px;
+  margin-inline: auto;
+}
+.cosmic-site .hero .photo-frame {
+  width: 264px;
+  margin-inline: auto;
+  padding: 0;
+  border: 1px solid var(--pro-line);
+  border-radius: var(--pro-radius);
+  overflow: hidden;
+  background: var(--pro-surface);
+  transform: none !important;
+  box-shadow: none;
+}
+.cosmic-site .hero .photo-frame img {
+  border-radius: 0;
+  aspect-ratio: 469 / 470;
+}
+.photo-frame .corner {
+  display: none;
+}
+.cosmic-site .photo-plate {
+  margin-top: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: center;
+}
+.cosmic-site .photo-name {
+  font-size: 20px;
+}
+.cosmic-site .photo-creds {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--pro-body);
+}
+.cosmic-site .photo-place {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+.profile-log {
+  border-block: 1px solid var(--pro-line);
+}
+.profile-log > summary {
+  padding: 14px 8px;
+  color: var(--pro-accent);
+  cursor: pointer;
+  font: 400 12px/1.6 var(--font-m);
+}
+.profile-log .log-panel {
+  border: 0;
+  box-shadow: none;
+}
+.cosmic-site .stats {
+  margin-top: 42px;
+  background: none;
+  box-shadow: none;
+  border-color: var(--pro-line);
+}
+.cosmic-site .stat {
+  padding: 22px 24px;
+}
+.cosmic-site .stat dt {
+  color: var(--pro-ink);
+  font-size: 32px;
+}
+.cosmic-site .stat dd {
+  color: var(--pro-body);
+  font-size: 14px;
+}
+.cosmic-site .stat dd .mono {
+  font-size: 10px;
+  line-height: 1.7;
+}
+.cosmic-site .navbar {
+  background: rgba(11, 18, 26, 0.97);
+  border-color: var(--pro-line);
+}
+.cosmic-site .nav-inner {
+  min-height: 72px;
+}
+.cosmic-site .nav-logo {
+  flex-shrink: 0;
+}
+.cosmic-site .nav-cta {
+  white-space: nowrap;
+}
+.cosmic-site .nav-clock {
+  display: none;
+}
+.cosmic-site .nav-links {
+  gap: 18px;
+}
+.cosmic-site .nav-links .nav-num {
+  display: none;
+}
+.cosmic-site .nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.cosmic-site .rail {
+  display: none;
+}
+.cosmic-site .scroll-progress {
+  background: var(--pro-accent);
+  height: 2px;
+  box-shadow: none;
+}
+.cosmic-site .section {
+  background: var(--pro-bg);
+  padding-block: var(--pro-section);
+}
+.cosmic-site :is(#trayectoria, #credenciales, #arsenal, #sistemas, #contacto) {
+  --space-accent: 165, 215, 200;
+}
+.cosmic-site .sec-title {
+  text-shadow: none;
+  letter-spacing: -0.035em;
+}
+.cosmic-site .sec-sub {
+  color: var(--pro-body);
+  line-height: 1.65;
+}
+.cosmic-site .sec-index {
+  color: var(--pro-accent);
+}
+.cosmic-site .sec-index .dot {
+  background: var(--pro-accent);
+}
+.cosmic-site :is(.pnode, .cred, .pf, .tool, .sys, .terms, .contact-form) {
+  border-color: var(--pro-line);
+  background-image: none;
+  box-shadow: none;
+}
+.cosmic-site :is(.pnode, .cred, .pf, .tool, .sys):hover {
+  box-shadow: none;
+  border-color: #678279;
+}
+.cosmic-site .profile-home-grid {
+  padding-top: 40px;
+  gap: 28px;
+}
+.cosmic-site .profile-home-card {
+  border: 0;
+  border-top: 1px solid var(--pro-line);
+  border-radius: 0;
+  padding: 24px 0;
+  background: none;
+}
+.cosmic-site .profile-home-card h2 {
+  font-size: 21px;
+}
+.cosmic-site .founder-card {
+  background: var(--pro-surface);
+  border-color: var(--pro-line);
+  box-shadow: none;
+}
+.cosmic-site .founder-film {
+  box-shadow: none;
+}
+.cosmic-site .founder-visual {
+  max-width: 640px;
+}
+.cosmic-site .sys-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.cosmic-site .sys {
+  padding: 26px;
+  border-radius: var(--pro-radius);
+}
+.cosmic-site .sys-shot {
+  border-radius: 6px;
+  box-shadow: none;
+}
+.cosmic-site .sys-thumb figcaption {
+  font-family: var(--font-b);
+  font-size: 11px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.cosmic-site .footer {
+  background: var(--pro-surface);
+}
+.profile-page .profile-hero {
+  background: url("/img/engineering-field.svg") right top / auto 100% no-repeat;
+}
+.profile-page .profile-eyebrow {
+  font-size: 12px;
+}
+.profile-page .profile-card {
+  background: var(--pro-surface);
+}
+.profile-page .profile-portrait img {
+  aspect-ratio: 469 / 470;
+}
+.motion-dock {
+  opacity: 0.85;
+}
+.motion-dock button {
+  font-size: 10px;
+}
+.cosmic-site :is(a, button, summary):focus-visible {
+  outline: 2px solid var(--pro-accent);
+  outline-offset: 4px;
+}
+@media (max-width: 1120px) and (min-width: 961px) {
+  .cosmic-site .nav-links {
+    gap: 10px;
+  }
+  .cosmic-site .nav-cta {
+    display: none;
+  }
+}
+@media (max-width: 960px) {
+  .cosmic-site .nav-links {
+    top: 72px;
+  }
+  .cosmic-site .nav-links a {
+    font-size: 14px;
+    min-height: 44px;
+  }
+}
+@media (max-width: 900px) {
+  .cosmic-site .hero-grid {
+    grid-template-columns: minmax(0, 1fr) 264px;
+    gap: 32px;
+  }
+  .cosmic-site .hero-title {
+    font-size: 38px;
+  }
+  .cosmic-site .hero-kicker {
+    font-size: 18px;
+  }
+  .cosmic-site .hero .photo-frame {
+    width: 232px;
+  }
+  .cosmic-site .hero-sub {
+    font-size: 16px;
+  }
+}
+@media (max-width: 700px) {
+  .profile-nav-inner {
+    flex-direction: row;
+    align-items: center;
+  }
+  .profile-nav-inner > .profile-brand {
+    font-size: 16px;
+  }
+  .cosmic-site .hero {
+    padding: 96px 0 36px;
+  }
+  .cosmic-site .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  .cosmic-site .hero-title {
+    font-size: clamp(34px, 8.8vw, 46px);
+  }
+  .cosmic-site .hero-kicker {
+    max-width: 27ch;
+  }
+  .cosmic-site .dochead {
+    font-size: 10px;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .cosmic-site .dochead-mid {
+    display: none;
+  }
+  .universe-intro {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-bottom: 22px;
+  }
+  .engineering-field {
+    background-size: auto 680px;
+    opacity: 0.65;
+  }
+  .cosmic-site .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .cosmic-site .hero .photo-card {
+    max-width: 328px;
+  }
+  .cosmic-site .hero .photo-frame {
+    width: 232px;
+  }
+  .cosmic-site .hero-side {
+    max-width: 100%;
+  }
+  .profile-log {
+    max-width: 360px;
+    width: 100%;
+    margin-inline: auto;
+  }
+  .cosmic-site .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cosmic-site .stat {
+    padding: 18px 14px;
+  }
+  .cosmic-site .sys-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cosmic-site .sys {
+    padding: 20px;
+  }
+  .cosmic-site .profile-home-grid {
+    gap: 8px;
+  }
+  .cosmic-site .nav-inner {
+    width: calc(100% - 32px);
+    gap: 12px;
+  }
+  .cosmic-site .nav-cta {
+    display: none;
+  }
+  .cosmic-site .logo-word {
+    display: block;
+    font-size: 10px;
+    max-width: 100px;
+  }
+  .profile-nav-inner {
+    gap: 16px;
+  }
+}
+/* Essential content is readable even when enhancement scripts fail to load. */
+html.js .cosmic-site .rv,
+html.js .cosmic-site .tool-grid .tool {
+  opacity: 1;
+  transform: none;
+}
+.profile-nav-inner {
+  flex-wrap: wrap;
+}
+.profile-nav-inner > .profile-brand {
+  order: 0;
+}
+.profile-nav-inner > nav:not(.language-switcher) {
+  order: 1;
+  margin-left: auto;
+}
+.profile-nav-inner > .language-switcher {
+  order: 2;
+}
+.profile-nav .language-switcher {
+  gap: 3px;
+  font-size: 11px;
+  background: var(--pro-surface);
+  color: var(--pro-ink);
+}
+.profile-nav .language-switcher a {
+  min-height: 44px;
+}
+.profile-nav .language-switcher a:is(:hover, [aria-current="true"]) {
+  color: #102820;
+  background: var(--pro-accent);
+}
+@media (max-width: 700px) {
+  .profile-nav-inner > .language-switcher {
+    order: 1;
+    margin-left: auto;
+  }
+  .profile-nav-inner > nav:not(.language-switcher) {
+    order: 2;
+    flex-basis: 100%;
+    margin: 0;
+    gap: 4px 12px;
+    font-size: 12px;
+  }
+  .profile-nav-inner {
+    padding-block: 14px;
+    row-gap: 8px;
+  }
+  .profile-nav-inner > nav:not(.language-switcher) a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-site *,
+  .profile-page * {
+    scroll-behavior: auto;
+  }
+}
+@media (forced-colors: active) {
+  .engineering-field {
+    display: none;
+  }
+  .cosmic-site .hero-title em {
+    color: CanvasText;
+  }
+}
+@media print {
+  .engineering-field,
+  .profile-log {
+    display: none;
+  }
+  .cosmic-site,
+  .profile-page,
+  .cosmic-site .hero,
+  .cosmic-site .section {
+    background: white;
+    color: black;
+  }
+  .cosmic-site .hero-grid {
+    grid-template-columns: 1fr 220px;
+  }
+}

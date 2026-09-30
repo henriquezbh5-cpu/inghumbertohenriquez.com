@@ -1,267 +1,438 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https://quote-ai.henriquezbh5.workers.dev; base-uri 'self'; object-src 'none'" http-equiv="Content-Security-Policy"/>
-<meta content="strict-origin-when-cross-origin" name="referrer"/>
-<meta content="dark" name="color-scheme"/>
-<meta content="#0A1322" name="theme-color"/>
-<title>Interactive Laboratory — Humberto Henríquez</title>
-<meta content="Thirteen automation, data and AI agent systems you can try in your browser. Upload your own Excel file and the engine builds a complete dashboard in seconds." name="description"/>
-<link href="https://inghumbertohenriquez.com/en/laboratorio/" rel="canonical"/>
-<meta content="Interactive Laboratory — Humberto Henríquez" property="og:title"/>
-<meta content="Thirteen systems you can try right here. Upload a file and get a dashboard." property="og:description"/>
-<meta content="website" property="og:type"/>
-<meta content="https://inghumbertohenriquez.com/en/laboratorio/" property="og:url"/>
-<meta content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923" property="og:image"/>
-<meta content="469" property="og:image:width"/>
-<meta content="470" property="og:image:height"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923" name="twitter:image"/>
-<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A1322'/%3E%3Crect x='6' y='6' width='52' height='52' fill='none' stroke='%232DD4BF' stroke-width='3'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='24' font-weight='bold' text-anchor='middle' fill='%23E8F0F9'%3EHH%3C/text%3E%3C/svg%3E" rel="icon"/>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Interactive laboratory",
-  "description": "Thirteen automation, data, and AI agent systems you can try in your browser, built with synthetic data.",
-  "url": "https://inghumbertohenriquez.com/en/laboratorio/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Humberto Henríquez — Professional Profile",
-    "url": "https://inghumbertohenriquez.com/en/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Humberto Wilfredo Henríquez Benítez",
-    "url": "https://inghumbertohenriquez.com/en/"
-  }
-}
-</script>
-<link as="font" crossorigin="" href="/fonts/inter-400.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="/fonts/space-grotesk-700.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="/fonts/ibm-plex-mono-400.woff2" rel="preload" type="font/woff2"/>
-<script src="/en/js-flag.js?v=07e9e867f8ac"></script>
-<link href="/cv.css?v=f400b08bae6d" rel="stylesheet"/>
-<link href="/laboratorio/lab.css?v=5666fda05f81" rel="stylesheet"/>
-<link href="/nova-companion.css?v=7e86a1a9e5d8" rel="stylesheet"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https://quote-ai.henriquezbh5.workers.dev; base-uri 'self'; object-src 'none'"
+      http-equiv="Content-Security-Policy"
+    />
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+    <meta content="dark" name="color-scheme" />
+    <meta content="#0A1322" name="theme-color" />
+    <title>Interactive Laboratory — Humberto Henríquez</title>
+    <meta
+      content="Thirteen automation, data and AI agent systems you can try in your browser. Upload your own Excel file and the engine builds a complete dashboard in seconds."
+      name="description"
+    />
+    <link
+      href="https://inghumbertohenriquez.com/en/laboratorio/"
+      rel="canonical"
+    />
+    <meta
+      content="Interactive Laboratory — Humberto Henríquez"
+      property="og:title"
+    />
+    <meta
+      content="Thirteen systems you can try right here. Upload a file and get a dashboard."
+      property="og:description"
+    />
+    <meta content="website" property="og:type" />
+    <meta
+      content="https://inghumbertohenriquez.com/en/laboratorio/"
+      property="og:url"
+    />
+    <meta
+      content="https://inghumbertohenriquez.com/img/og-profile-20260930.jpg"
+      property="og:image"
+    />
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta
+      content="https://inghumbertohenriquez.com/img/og-profile-20260930.jpg"
+      name="twitter:image"
+    />
+    <link
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A1322'/%3E%3Crect x='6' y='6' width='52' height='52' fill='none' stroke='%232DD4BF' stroke-width='3'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='24' font-weight='bold' text-anchor='middle' fill='%23E8F0F9'%3EHH%3C/text%3E%3C/svg%3E"
+      rel="icon"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Interactive laboratory",
+        "description": "Thirteen automation, data, and AI agent systems you can try in your browser, built with synthetic data.",
+        "url": "https://inghumbertohenriquez.com/en/laboratorio/",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Humberto Henríquez — Professional Profile",
+          "url": "https://inghumbertohenriquez.com/en/"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Humberto Wilfredo Henríquez Benítez",
+          "url": "https://inghumbertohenriquez.com/en/"
+        }
+      }
+    </script>
+    <link
+      as="font"
+      crossorigin=""
+      href="/fonts/inter-400.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin=""
+      href="/fonts/space-grotesk-700.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin=""
+      href="/fonts/ibm-plex-mono-400.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <script src="/en/js-flag.js?v=07e9e867f8ac"></script>
+    <link href="/cv.css?v=f400b08bae6d" rel="stylesheet" />
+    <link href="/laboratorio/lab.css?v=5666fda05f81" rel="stylesheet" />
+    <link href="/nova-companion.css?v=7e86a1a9e5d8" rel="stylesheet" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="alternate" hreflang="es" href="https://inghumbertohenriquez.com/laboratorio/">
-<link rel="alternate" hreflang="en" href="https://inghumbertohenriquez.com/en/laboratorio/">
-<link rel="alternate" hreflang="x-default" href="https://inghumbertohenriquez.com/laboratorio/">
-<link rel="stylesheet" href="/language-switcher.css?v=8f00ff27eb3f">
-<script src="/lang.js?v=898e180bf60c" data-country-endpoint="https://quote-ai.henriquezbh5.workers.dev/cdn-cgi/trace" defer></script>
-</head>
-<body>
-<a class="skip-link mono" href="#contenido">Skip to content</a>
-<!-- ============================== NAV ============================== -->
-<nav aria-label="Main navigation" class="navbar" id="navbar">
-<div class="nav-inner">
-<a aria-label="Back to profile" class="nav-logo" href="/en/">
-<span aria-hidden="true" class="logo-seal mono">HH</span>
-<span class="logo-word mono">HUMBERTO HENRÍQUEZ</span>
-</a>
-<ul class="nav-links mono" id="navLinks">
-<li>
-<a href="/en/#trayectoria"><span class="nav-num">01</span>EXPERIENCE</a>
-</li>
-<li>
-<a href="/en/#credenciales"><span class="nav-num">02</span>EDUCATION</a>
-</li>
-<li>
-<a href="/en/#arsenal"><span class="nav-num">03</span>TOOLKIT</a>
-</li>
-<li>
-<a href="/en/#sistemas"><span class="nav-num">04</span>PROJECTS</a>
-</li>
-<li>
-<a class="active" href="/en/laboratorio/"><span class="nav-num">05</span>LABORATORY</a>
-</li>
-<li>
-<a href="/en/#contacto"><span class="nav-num">06</span>CONTACT</a>
-</li>
-</ul>
-<div class="nav-right"><nav class="language-switcher" aria-label="Language selection"><a href="/laboratorio/" data-lang="es" lang="es" hreflang="es" aria-label="Español" title="Español"><img src="/img/flags/es.svg?v=b5a085c42d39" alt="" width="23" height="16"><span>ES</span></a><a href="/en/laboratorio/" data-lang="en" lang="en" hreflang="en" aria-label="English" title="English" aria-current="true"><img src="/img/flags/us.svg?v=5b97ab65300e" alt="" width="23" height="16"><span>EN</span></a></nav>
-<span aria-hidden="true" class="nav-clock mono" data-clock=""></span>
-<a class="nav-cta mono" href="/en/">← PROFILE</a>
-<button aria-expanded="false" aria-label="Open menu" class="nav-toggle" id="navToggle" type="button">
-<span></span><span></span>
-</button>
-</div>
-</div>
-</nav>
-<!-- ============================== PORTADA ============================== -->
-<header class="lab-hero" id="top">
-<div class="container lab-hero-grid">
-<div class="lab-hero-main rv">
-<p class="hero-kicker mono">LABORATORY · EVERYTHING IS INTERACTIVE</p>
-<h1>
-            See for yourself<br/>what I build.<br/><em>Try it here.</em>
-</h1>
-<p class="lab-lede">
-            Thirteen real systems, recreated for you to use in your browser. Start with the first one: <b>upload your own Excel file</b> and see the results.
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://inghumbertohenriquez.com/laboratorio/"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://inghumbertohenriquez.com/en/laboratorio/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://inghumbertohenriquez.com/laboratorio/"
+    />
+    <link rel="stylesheet" href="/language-switcher.css?v=8f00ff27eb3f" />
+    <script
+      src="/lang.js?v=898e180bf60c"
+      data-country-endpoint="https://quote-ai.henriquezbh5.workers.dev/cdn-cgi/trace"
+      defer
+    ></script>
+    <meta
+      property="og:image:alt"
+      content="Humberto Henríquez — Power Platform, Data Science, Automation"
+    />
+  </head>
+  <body>
+    <a class="skip-link mono" href="#contenido">Skip to content</a>
+    <!-- ============================== NAV ============================== -->
+    <nav aria-label="Main navigation" class="navbar" id="navbar">
+      <div class="nav-inner">
+        <a aria-label="Back to profile" class="nav-logo" href="/en/">
+          <span aria-hidden="true" class="logo-seal mono">HH</span>
+          <span class="logo-word mono">HUMBERTO HENRÍQUEZ</span>
+        </a>
+        <ul class="nav-links mono" id="navLinks">
+          <li>
+            <a href="/en/#trayectoria"
+              ><span class="nav-num">01</span>EXPERIENCE</a
+            >
+          </li>
+          <li>
+            <a href="/en/#credenciales"
+              ><span class="nav-num">02</span>EDUCATION</a
+            >
+          </li>
+          <li>
+            <a href="/en/#arsenal"><span class="nav-num">03</span>TOOLKIT</a>
+          </li>
+          <li>
+            <a href="/en/#sistemas"><span class="nav-num">04</span>PROJECTS</a>
+          </li>
+          <li>
+            <a class="active" href="/en/laboratorio/"
+              ><span class="nav-num">05</span>LABORATORY</a
+            >
+          </li>
+          <li>
+            <a href="/en/#contacto"><span class="nav-num">06</span>CONTACT</a>
+          </li>
+        </ul>
+        <div class="nav-right">
+          <nav class="language-switcher" aria-label="Language selection">
+            <a
+              href="/laboratorio/"
+              data-lang="es"
+              lang="es"
+              hreflang="es"
+              aria-label="Español"
+              title="Español"
+              ><img
+                src="/img/flags/es.svg?v=b5a085c42d39"
+                alt=""
+                width="23"
+                height="16"
+              /><span>ES</span></a
+            ><a
+              href="/en/laboratorio/"
+              data-lang="en"
+              lang="en"
+              hreflang="en"
+              aria-label="English"
+              title="English"
+              aria-current="true"
+              ><img
+                src="/img/flags/us.svg?v=5b97ab65300e"
+                alt=""
+                width="23"
+                height="16"
+              /><span>EN</span></a
+            >
+          </nav>
+          <span aria-hidden="true" class="nav-clock mono" data-clock=""></span>
+          <a class="nav-cta mono" href="/en/">← PROFILE</a>
+          <button
+            aria-expanded="false"
+            aria-label="Open menu"
+            class="nav-toggle"
+            id="navToggle"
+            type="button"
+          >
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <!-- ============================== PORTADA ============================== -->
+    <header class="lab-hero" id="top">
+      <div class="container lab-hero-grid">
+        <div class="lab-hero-main rv">
+          <p class="hero-kicker mono">LABORATORY · EVERYTHING IS INTERACTIVE</p>
+          <h1>
+            See for yourself<br />what I build.<br /><em>Try it here.</em>
+          </h1>
+          <p class="lab-lede">
+            Thirteen real systems, recreated for you to use in your browser.
+            Start with the first one: <b>upload your own Excel file</b> and see
+            the results.
           </p>
-<div class="lab-cta-row">
-<a class="btn btn-primary mono lab-pulse" href="#prisma">UPLOAD MY FILE <span aria-hidden="true" class="arr">↓</span></a>
-<a class="btn btn-ghost mono" href="#galeria">EXPLORE THE 12 SYSTEMS</a>
-</div>
-<p class="lab-note">
-<b>The examples use synthetic data.</b> If you select your own file in Prisma, it is processed in your browser and never sent to a server.
+          <div class="lab-cta-row">
+            <a class="btn btn-primary mono lab-pulse" href="#prisma"
+              >UPLOAD MY FILE <span aria-hidden="true" class="arr">↓</span></a
+            >
+            <a class="btn btn-ghost mono" href="#galeria"
+              >EXPLORE THE 12 SYSTEMS</a
+            >
+          </div>
+          <p class="lab-note">
+            <b>The examples use synthetic data.</b> If you select your own file
+            in Prisma, it is processed in your browser and never sent to a
+            server.
           </p>
-</div>
-<figure class="lab-hero-fig lab-portada rv">
-<span aria-hidden="true" class="fig-glow"></span>
-<a aria-label="Explore the laboratory systems" class="lab-portada-marco" href="#galeria">
-<img alt="Conceptual illustration: a hardware laboratory bench with metal and glass modules lit in cyan beneath an acrylic cover." class="lab-portada-img" decoding="async" fetchpriority="high" height="1024" sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1228px) calc((100vw - 88px) * .425), 484px" src="/img/visual/laboratorio-800.webp?v=b2f9beee" srcset="/img/visual/laboratorio-800.webp?v=b2f9beee   800w, /img/visual/laboratorio-1536.webp?v=23411da3 1536w" width="1536"/>
-<img alt="" class="lab-portada-bot" decoding="async" height="480" src="/img/nova/panel.webp" width="400"/>
-</a>
-<figcaption class="lab-portada-cap">
-<span class="mono">CONCEPTUAL ILLUSTRATION</span> The systems below are interactive: open them.
+        </div>
+        <figure class="lab-hero-fig lab-portada rv">
+          <span aria-hidden="true" class="fig-glow"></span>
+          <a
+            aria-label="Explore the laboratory systems"
+            class="lab-portada-marco"
+            href="#galeria"
+          >
+            <img
+              alt="Conceptual illustration: a hardware laboratory bench with metal and glass modules lit in cyan beneath an acrylic cover."
+              class="lab-portada-img"
+              decoding="async"
+              fetchpriority="high"
+              height="1024"
+              sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1228px) calc((100vw - 88px) * .425), 484px"
+              src="/img/visual/laboratorio-800.webp?v=b2f9beee"
+              srcset="
+                /img/visual/laboratorio-800.webp?v=b2f9beee   800w,
+                /img/visual/laboratorio-1536.webp?v=23411da3 1536w
+              "
+              width="1536"
+            />
+            <img
+              alt=""
+              class="lab-portada-bot"
+              decoding="async"
+              height="480"
+              src="/img/nova/panel.webp"
+              width="400"
+            />
+          </a>
+          <figcaption class="lab-portada-cap">
+            <span class="mono">CONCEPTUAL ILLUSTRATION</span> The systems below
+            are interactive: open them.
           </figcaption>
-</figure>
-</div>
-</header>
-<main id="contenido" tabindex="-1">
-<!-- ============================== PRISMA ============================== -->
-<section class="lab-sec" id="prisma">
-<div class="container">
-<div class="paso rv">
-<span class="paso-num mono">01</span>
-<div>
-<h2 class="paso-t">Upload your file and see the results</h2>
-<p class="paso-d">
-                An Excel or CSV file with column headers in the first row. Prisma analyzes the first sheet (up to 10 MB and 10,000 data rows), detects the columns and builds a dashboard in your browser.
+        </figure>
+      </div>
+    </header>
+    <main id="contenido" tabindex="-1">
+      <!-- ============================== PRISMA ============================== -->
+      <section class="lab-sec" id="prisma">
+        <div class="container">
+          <div class="paso rv">
+            <span class="paso-num mono">01</span>
+            <div>
+              <h2 class="paso-t">Upload your file and see the results</h2>
+              <p class="paso-d">
+                An Excel or CSV file with column headers in the first row.
+                Prisma analyzes the first sheet (up to 10 MB and 10,000 data
+                rows), detects the columns and builds a dashboard in your
+                browser.
               </p>
-</div>
-</div>
-<div class="stack rv lab-gap" id="heroSystem"></div>
-</div>
-</section>
-<!-- ============================== GALERÍA ============================== -->
-<section class="lab-sec" id="galeria-sec">
-<div class="container">
-<div class="paso rv">
-<span class="paso-num mono">02</span>
-<div>
-<h2 class="paso-t">Choose a system and test its limits</h2>
-<p class="paso-d">
-                Each card represents a process I put into production. Open it, change the controls and see how it responds, including what happens when something goes wrong.
+            </div>
+          </div>
+          <div class="stack rv lab-gap" id="heroSystem"></div>
+        </div>
+      </section>
+      <!-- ============================== GALERÍA ============================== -->
+      <section class="lab-sec" id="galeria-sec">
+        <div class="container">
+          <div class="paso rv">
+            <span class="paso-num mono">02</span>
+            <div>
+              <h2 class="paso-t">Choose a system and test its limits</h2>
+              <p class="paso-d">
+                Each card represents a process I put into production. Open it,
+                change the controls and see how it responds, including what
+                happens when something goes wrong.
               </p>
-</div>
-</div>
-<div class="galeria rv" id="galeria"></div>
-</div>
-</section>
-<!-- ============================== ESCENARIO ============================== -->
-<section class="lab-sec lab-sec-stage" id="escenario">
-<div class="container">
-<div class="chips-bar">
-<span class="chips-lab mono">SWITCH SYSTEM</span>
-<div class="chips-row" id="sysChips"></div>
-<a class="chips-back mono" href="#galeria">↑ VIEW ALL</a>
-</div>
-<div aria-live="polite" class="stage" id="stage"></div>
-</div>
-</section>
-<!-- ============================== CIERRE ============================== -->
-<section class="lab-sec" id="cierre">
-<div class="container">
-<div class="lab-cta rv">
-<img alt="" class="cta-bot" decoding="async" height="400" loading="lazy" src="/img/nova/entrega.webp" width="400"/>
-<div>
-<h2>Does any of this look like a problem you face?</h2>
-<p>
-                The mechanisms you just explored already run in production. If you have a similar process, we can start by looking at the file you use to manage it today.
+            </div>
+          </div>
+          <div class="galeria rv" id="galeria"></div>
+        </div>
+      </section>
+      <!-- ============================== ESCENARIO ============================== -->
+      <section class="lab-sec lab-sec-stage" id="escenario">
+        <div class="container">
+          <div class="chips-bar">
+            <span class="chips-lab mono">SWITCH SYSTEM</span>
+            <div class="chips-row" id="sysChips"></div>
+            <a class="chips-back mono" href="#galeria">↑ VIEW ALL</a>
+          </div>
+          <div aria-live="polite" class="stage" id="stage"></div>
+        </div>
+      </section>
+      <!-- ============================== CIERRE ============================== -->
+      <section class="lab-sec" id="cierre">
+        <div class="container">
+          <div class="lab-cta rv">
+            <img
+              alt=""
+              class="cta-bot"
+              decoding="async"
+              height="400"
+              loading="lazy"
+              src="/img/nova/entrega.webp"
+              width="400"
+            />
+            <div>
+              <h2>Does any of this look like a problem you face?</h2>
+              <p>
+                The mechanisms you just explored already run in production. If
+                you have a similar process, we can start by looking at the file
+                you use to manage it today.
               </p>
-<div class="row">
-<a class="btn btn-primary mono" href="/en/#contacto">LET'S TALK ABOUT YOUR PROCESS</a>
-<a class="btn btn-ghost mono" download="" href="/en/docs/CV-Humberto-Henriquez.pdf">DOWNLOAD CV (ENGLISH) ↓</a>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- ============================== FOOTER ============================== -->
-<footer class="footer">
-<div class="container footer-grid">
-<div>
-<div class="nav-logo">
-<span class="logo-seal mono">HH</span><span class="logo-word mono">HUMBERTO HENRÍQUEZ</span>
-</div>
-<p class="mono footer-line">
+              <div class="row">
+                <a class="btn btn-primary mono" href="/en/#contacto"
+                  >LET'S TALK ABOUT YOUR PROCESS</a
+                >
+                <a
+                  class="btn btn-ghost mono"
+                  download=""
+                  href="/en/docs/CV-Humberto-Henriquez.pdf"
+                  >DOWNLOAD CV (ENGLISH) ↓</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ============================== FOOTER ============================== -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="nav-logo">
+            <span class="logo-seal mono">HH</span
+            ><span class="logo-word mono">HUMBERTO HENRÍQUEZ</span>
+          </div>
+          <p class="mono footer-line">
             ENGINEER · FOUNDER OF OPTIMATIZA · CREATOR OF BITCOIN ACADEMY
           </p>
-</div>
-<nav aria-label="Site map" class="footer-links mono">
-<a href="/en/#trayectoria">01 EXPERIENCE</a>
-<a href="/en/#credenciales">02 EDUCATION</a>
-<a href="/en/#arsenal">03 TOOLKIT</a>
-<a href="/en/#sistemas">04 PROJECTS</a>
-<a href="/en/laboratorio/">05 LABORATORY</a>
-</nav>
-<div class="footer-side mono">
-<a href="https://optimatiza.com/en/" rel="noopener" target="_blank">OPTIMATIZA.COM ↗</a>
-<a href="https://bitcoinacademy.tech" rel="noopener" target="_blank">BITCOINACADEMY.TECH ↗</a>
-<span>SAN SALVADOR · GMT-6 <span data-clock=""></span></span>
-</div>
-</div>
-<div class="container footer-colophon mono">
-<span>SYNTHETIC-DATA EXAMPLES · YOUR FILES ARE PROCESSED IN YOUR BROWSER</span>
-<span>inghumbertohenriquez.com · rev. 2026.09 · © 2026 Humberto
-          Henríquez</span>
-</div>
-</footer>
-<script defer="" src="/vendor/xlsx/xlsx.full.min.js?v=06b0589566e5"></script>
-<script defer="" src="/vendor/chartjs/chart.umd.min.js?v=81ffafe13c37"></script>
-<script defer="" src="/en/laboratorio/lab-core.js?v=680697f0d244"></script>
-<script defer="" src="/en/laboratorio/sys/prisma.js?v=8c838abec639"></script>
-<script defer="" src="/en/laboratorio/sys/orquesta.js?v=cbc8e1ea2b5c"></script>
-<script defer="" src="/en/laboratorio/sys/centinela.js?v=dacf13d63931"></script>
-<script defer="" src="/en/laboratorio/sys/relevo.js?v=bc6ffdae338a"></script>
-<script defer="" src="/en/laboratorio/sys/boveda.js?v=0bd6b4472a5a"></script>
-<script defer="" src="/en/laboratorio/sys/cartero.js?v=3057b051c505"></script>
-<script defer="" src="/en/laboratorio/sys/oraculo.js?v=b4cf74bac406"></script>
-<script defer="" src="/en/laboratorio/sys/escudo.js?v=590d98351fd2"></script>
-<script defer="" src="/en/laboratorio/sys/reloj.js?v=43f4bab52edf"></script>
-<script defer="" src="/en/laboratorio/sys/torre.js?v=3bba9d0c7bc7"></script>
-<script defer="" src="/en/laboratorio/sys/canal.js?v=413c94be1dda"></script>
-<script defer="" src="/en/laboratorio/sys/pulso.js?v=944245cd2a7a"></script>
-<script defer="" src="/en/laboratorio/sys/ruta.js?v=61276bd2259a"></script>
-<script defer="" src="/en/laboratorio/lab-boot.js?v=77d36fbd098c"></script>
-<script defer="" src="/en/nova.js?v=3117b37b6c14"></script>
-<script defer="" src="/en/nova-companion.js?v=291855d34ac2"></script>
-</body>
+        </div>
+        <nav aria-label="Site map" class="footer-links mono">
+          <a href="/en/#trayectoria">01 EXPERIENCE</a>
+          <a href="/en/#credenciales">02 EDUCATION</a>
+          <a href="/en/#arsenal">03 TOOLKIT</a>
+          <a href="/en/#sistemas">04 PROJECTS</a>
+          <a href="/en/laboratorio/">05 LABORATORY</a>
+        </nav>
+        <div class="footer-side mono">
+          <a href="https://optimatiza.com/en/" rel="noopener" target="_blank"
+            >OPTIMATIZA.COM ↗</a
+          >
+          <a href="https://bitcoinacademy.tech" rel="noopener" target="_blank"
+            >BITCOINACADEMY.TECH ↗</a
+          >
+          <span>SAN SALVADOR · GMT-6 <span data-clock=""></span></span>
+        </div>
+      </div>
+      <div class="container footer-colophon mono">
+        <span
+          >SYNTHETIC-DATA EXAMPLES · YOUR FILES ARE PROCESSED IN YOUR
+          BROWSER</span
+        >
+        <span
+          >inghumbertohenriquez.com · rev. 2026.09 · © 2026 Humberto
+          Henríquez</span
+        >
+      </div>
+    </footer>
+    <script
+      defer=""
+      src="/vendor/xlsx/xlsx.full.min.js?v=06b0589566e5"
+    ></script>
+    <script
+      defer=""
+      src="/vendor/chartjs/chart.umd.min.js?v=81ffafe13c37"
+    ></script>
+    <script defer="" src="/en/laboratorio/lab-core.js?v=680697f0d244"></script>
+    <script
+      defer=""
+      src="/en/laboratorio/sys/prisma.js?v=8c838abec639"
+    ></script>
+    <script
+      defer=""
+      src="/en/laboratorio/sys/orquesta.js?v=cbc8e1ea2b5c"
+    ></script>
+    <script
+      defer=""
+      src="/en/laboratorio/sys/centinela.js?v=dacf13d63931"
+    ></script>
+    <script
+      defer=""
+      src="/en/laboratorio/sys/relevo.js?v=bc6ffdae338a"
+    ></script>
+    <script
+      defer=""
+      src="/en/laboratorio/sys/boveda.js?v=0bd6b4472a5a"
+    ></script>
+    <script
+      defer=""
+      src="/en/laboratorio/sys/cartero.js?v=3057b051c505"
+    ></script>
+    <script
+      defer=""
+      src="/en/laboratorio/sys/oraculo.js?v=b4cf74bac406"
+    ></script>
+    <script
+      defer=""
+      src="/en/laboratorio/sys/escudo.js?v=590d98351fd2"
+    ></script>
+    <script defer="" src="/en/laboratorio/sys/reloj.js?v=43f4bab52edf"></script>
+    <script defer="" src="/en/laboratorio/sys/torre.js?v=3bba9d0c7bc7"></script>
+    <script defer="" src="/en/laboratorio/sys/canal.js?v=413c94be1dda"></script>
+    <script defer="" src="/en/laboratorio/sys/pulso.js?v=944245cd2a7a"></script>
+    <script defer="" src="/en/laboratorio/sys/ruta.js?v=61276bd2259a"></script>
+    <script defer="" src="/en/laboratorio/lab-boot.js?v=77d36fbd098c"></script>
+    <script defer="" src="/en/nova.js?v=b08ec5f20185"></script>
+    <script defer="" src="/en/nova-companion.js?v=291855d34ac2"></script>
+  </body>
 </html>
-

@@ -1,304 +1,415 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data:; base-uri 'self'; object-src 'none'; connect-src 'self' https://quote-ai.henriquezbh5.workers.dev;" http-equiv="Content-Security-Policy"/>
-<meta content="strict-origin-when-cross-origin" name="referrer"/>
-<meta content="#0A1322" name="theme-color"/>
-<meta content="dark" name="color-scheme"/>
-<title>
-      Data Consolidation and Close Controls | Humberto Henríquez
-    </title>
-<meta content="RELOJ technical case study: a four-source consolidation demo covering data freshness and publication decisions. A synthetic scenario you can run in your browser." name="description"/>
-<meta content="Humberto Wilfredo Henríquez Benítez" name="author"/>
-<link href="https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/" rel="canonical"/>
-<meta content="website" property="og:type"/>
-<meta content="Data Consolidation and Close Controls | Humberto Henríquez" property="og:title"/>
-<meta content="RELOJ technical case study: a four-source consolidation demo covering data freshness and publication decisions. A synthetic scenario you can run in your browser." property="og:description"/>
-<meta content="https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/" property="og:url"/>
-<meta content="Humberto Henríquez" property="og:site_name"/>
-<meta content="en_US" property="og:locale"/>
-<meta content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="https://inghumbertohenriquez.com/img/og-image.jpg?v=20260923" name="twitter:image"/>
-<link href="/cv.css?v=f400b08bae6d" rel="stylesheet"/>
-<link href="/profile.css?v=6df1fb3740ed" rel="stylesheet"/>
-<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A1322'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='25' text-anchor='middle' fill='%232DD4BF'%3EHH%3C/text%3E%3C/svg%3E" rel="icon"/>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://inghumbertohenriquez.com/en/#person",
-      "name": "Humberto Wilfredo Henríquez Benítez",
-      "alternateName": "Humberto Henríquez",
-      "url": "https://inghumbertohenriquez.com/en/perfil/",
-      "image": "https://inghumbertohenriquez.com/humberto.jpg",
-      "jobTitle": "Systems engineer and data scientist",
-      "description": "Specialist in applied AI, business automation and Microsoft Power Platform in San Salvador, El Salvador.",
-      "sameAs": [
-        "https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/"
-      ],
-      "worksFor": {
-        "@type": "Organization",
-        "@id": "https://optimatiza.com/en/#org",
-        "name": "Optimatiza",
-        "url": "https://optimatiza.com/en/"
-      },
-      "knowsAbout": [
-        "Data science",
-        "Artificial intelligence agents",
-        "Process automation",
-        "Microsoft Power Platform",
-        "Business Intelligence"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "San Salvador",
-        "addressCountry": "SV"
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta
+      content="default-src 'self'; script-src 'self'; font-src 'self' data:; img-src 'self' data:; base-uri 'self'; object-src 'none'; connect-src 'self' https://quote-ai.henriquezbh5.workers.dev;"
+      http-equiv="Content-Security-Policy"
+    />
+    <meta content="strict-origin-when-cross-origin" name="referrer" />
+    <meta content="#0A1322" name="theme-color" />
+    <meta content="dark" name="color-scheme" />
+    <title>Data Consolidation and Close Controls | Humberto Henríquez</title>
+    <meta
+      content="RELOJ technical case study: a four-source consolidation demo covering data freshness and publication decisions. A synthetic scenario you can run in your browser."
+      name="description"
+    />
+    <meta content="Humberto Wilfredo Henríquez Benítez" name="author" />
+    <link
+      href="https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/"
+      rel="canonical"
+    />
+    <meta content="website" property="og:type" />
+    <meta
+      content="Data Consolidation and Close Controls | Humberto Henríquez"
+      property="og:title"
+    />
+    <meta
+      content="RELOJ technical case study: a four-source consolidation demo covering data freshness and publication decisions. A synthetic scenario you can run in your browser."
+      property="og:description"
+    />
+    <meta
+      content="https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/"
+      property="og:url"
+    />
+    <meta content="Humberto Henríquez" property="og:site_name" />
+    <meta content="en_US" property="og:locale" />
+    <meta
+      content="https://inghumbertohenriquez.com/img/og-profile-20260930.jpg"
+      property="og:image"
+    />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta
+      content="https://inghumbertohenriquez.com/img/og-profile-20260930.jpg"
+      name="twitter:image"
+    />
+    <link href="/cv.css?v=f400b08bae6d" rel="stylesheet" />
+    <link href="/profile.css?v=6df1fb3740ed" rel="stylesheet" />
+    <link
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A1322'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='25' text-anchor='middle' fill='%232DD4BF'%3EHH%3C/text%3E%3C/svg%3E"
+      rel="icon"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://inghumbertohenriquez.com/en/#person",
+            "name": "Humberto Wilfredo Henríquez Benítez",
+            "alternateName": "Humberto Henríquez",
+            "url": "https://inghumbertohenriquez.com/en/perfil/",
+            "image": "https://inghumbertohenriquez.com/humberto.jpg",
+            "jobTitle": "Systems engineer and data scientist",
+            "description": "Specialist in applied AI, business automation and Microsoft Power Platform in San Salvador, El Salvador.",
+            "sameAs": [
+              "https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/"
+            ],
+            "worksFor": {
+              "@type": "Organization",
+              "@id": "https://optimatiza.com/en/#org",
+              "name": "Optimatiza",
+              "url": "https://optimatiza.com/en/"
+            },
+            "knowsAbout": [
+              "Data science",
+              "Artificial intelligence agents",
+              "Process automation",
+              "Microsoft Power Platform",
+              "Business Intelligence"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "San Salvador",
+              "addressCountry": "SV"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/#webpage",
+            "url": "https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/",
+            "name": "Data Consolidation and Close Controls | Humberto Henríquez",
+            "description": "RELOJ technical case study: a four-source consolidation demo covering data freshness and publication decisions. A synthetic scenario you can run in your browser.",
+            "inLanguage": "en-US",
+            "dateModified": "2026-09-23"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://inghumbertohenriquez.com/en/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Projects",
+                "item": "https://inghumbertohenriquez.com/en/#sistemas"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Data consolidation",
+                "item": "https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/"
+              }
+            ]
+          }
+        ]
       }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/#webpage",
-      "url": "https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/",
-      "name": "Data Consolidation and Close Controls | Humberto Henríquez",
-      "description": "RELOJ technical case study: a four-source consolidation demo covering data freshness and publication decisions. A synthetic scenario you can run in your browser.",
-      "inLanguage": "en-US",
-      "dateModified": "2026-09-23"
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/#breadcrumbs",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://inghumbertohenriquez.com/en/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Projects",
-          "item": "https://inghumbertohenriquez.com/en/#sistemas"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Data consolidation",
-          "item": "https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/"
-        }
-      ]
-    }
-  ]
-}
-</script>
+    </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="alternate" hreflang="es" href="https://inghumbertohenriquez.com/proyectos/consolidacion-datos/">
-<link rel="alternate" hreflang="en" href="https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/">
-<link rel="alternate" hreflang="x-default" href="https://inghumbertohenriquez.com/proyectos/consolidacion-datos/">
-<link rel="stylesheet" href="/language-switcher.css?v=8f00ff27eb3f">
-<script src="/lang.js?v=898e180bf60c" data-country-endpoint="https://quote-ai.henriquezbh5.workers.dev/cdn-cgi/trace" defer></script>
-</head>
-<body class="profile-page"><nav class="language-switcher language-switcher--floating" aria-label="Language selection"><a href="/proyectos/consolidacion-datos/" data-lang="es" lang="es" hreflang="es" aria-label="Español" title="Español"><img src="/img/flags/es.svg?v=b5a085c42d39" alt="" width="23" height="16"><span>ES</span></a><a href="/en/proyectos/consolidacion-datos/" data-lang="en" lang="en" hreflang="en" aria-label="English" title="English" aria-current="true"><img src="/img/flags/us.svg?v=5b97ab65300e" alt="" width="23" height="16"><span>EN</span></a></nav>
-<a class="skip-link mono" href="#contenido">Skip to content</a>
-<header class="profile-nav">
-<div class="profile-nav-inner">
-<a class="profile-brand" href="/en/">Humberto Henríquez</a>
-<nav aria-label="Main navigation">
-<a href="/en/perfil/">Profile</a><a href="/en/#sistemas">Projects</a><a href="/en/publicaciones/">Publications</a><a href="/en/laboratorio/">Laboratory</a><a href="/en/#contacto">Contact</a>
-</nav>
-</div>
-</header>
-<main class="profile-shell" id="contenido" tabindex="-1">
-<nav aria-label="Breadcrumb navigation" class="profile-breadcrumbs">
-<a href="/en/">Home</a> <span aria-hidden="true">/</span>
-<a href="/en/#sistemas">Projects</a> <span aria-hidden="true">/</span>
-<span aria-current="page">Data consolidation</span>
-</nav>
-<header class="profile-hero">
-<p class="profile-eyebrow">
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://inghumbertohenriquez.com/proyectos/consolidacion-datos/"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://inghumbertohenriquez.com/proyectos/consolidacion-datos/"
+    />
+    <link rel="stylesheet" href="/language-switcher.css?v=8f00ff27eb3f" />
+    <script
+      src="/lang.js?v=898e180bf60c"
+      data-country-endpoint="https://quote-ai.henriquezbh5.workers.dev/cdn-cgi/trace"
+      defer
+    ></script>
+    <link rel="stylesheet" href="/professional.css?v=ee5a73724216" />
+    <meta
+      property="og:image:alt"
+      content="Humberto Henríquez — Power Platform, Data Science, Automation"
+    />
+  </head>
+  <body class="profile-page">
+    <a class="skip-link mono" href="#contenido">Skip to content</a>
+    <header class="profile-nav">
+      <div class="profile-nav-inner">
+        <nav class="language-switcher" aria-label="Language selection">
+          <a
+            href="/proyectos/consolidacion-datos/"
+            data-lang="es"
+            lang="es"
+            hreflang="es"
+            aria-label="Español"
+            title="Español"
+            ><img
+              src="/img/flags/es.svg?v=b5a085c42d39"
+              alt=""
+              width="23"
+              height="16"
+            /><span>ES</span></a
+          ><a
+            href="/en/proyectos/consolidacion-datos/"
+            data-lang="en"
+            lang="en"
+            hreflang="en"
+            aria-label="English"
+            title="English"
+            aria-current="true"
+            ><img
+              src="/img/flags/us.svg?v=5b97ab65300e"
+              alt=""
+              width="23"
+              height="16"
+            /><span>EN</span></a
+          >
+        </nav>
+        <a class="profile-brand" href="/en/">Humberto Henríquez</a>
+        <nav aria-label="Main navigation">
+          <a href="/en/perfil/">Profile</a><a href="/en/#sistemas">Projects</a
+          ><a href="/en/publicaciones/">Publications</a
+          ><a href="/en/laboratorio/">Laboratory</a
+          ><a href="/en/#contacto">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main class="profile-shell" id="contenido" tabindex="-1">
+      <nav aria-label="Breadcrumb navigation" class="profile-breadcrumbs">
+        <a href="/en/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/en/#sistemas">Projects</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">Data consolidation</span>
+      </nav>
+      <header class="profile-hero">
+        <p class="profile-eyebrow">
           Technical case study · Synthetic-data demonstration
         </p>
-<h1>Data consolidation:<br/>publish with sound judgment.</h1>
-<p class="profile-lede">
-          RELOJ explores a month-end close problem: four sources arrive with different levels of freshness, and one may stop responding. The decision to accept, flag or stop changes what gets published.
+        <h1>Data consolidation:<br />publish with sound judgment.</h1>
+        <p class="profile-lede">
+          RELOJ explores a month-end close problem: four sources arrive with
+          different levels of freshness, and one may stop responding. The
+          decision to accept, flag or stop changes what gets published.
         </p>
-<p class="profile-meta">
+        <p class="profile-meta">
           Project and explanation:
-          <a href="/en/perfil/">Humberto Wilfredo Henríquez Benítez</a> · Updated
+          <a href="/en/perfil/">Humberto Wilfredo Henríquez Benítez</a> ·
+          Updated
           <time datetime="2026-09-23">September 23, 2026</time>
-</p>
-<div class="profile-actions">
-<a class="profile-button" href="/en/laboratorio/#reloj">Try RELOJ</a><a class="profile-button secondary" href="/laboratorio/sys/reloj.js?v=33e8193c5aae">View the demo engine</a>
-</div>
-</header>
-<section class="profile-section">
-<h2>The problem it illustrates</h2>
-<p>
-          A total may look correct even when one source belongs to the previous period. The demonstration shows how freshness, validation rules and publication policy affect the close. The technical work involves modeling those decisions and making their consequences visible.
         </p>
-<p class="profile-note">
-<strong>Scope:</strong> an interactive browser simulation using synthetic data and a fixed seed. It does not connect to client systems. The displayed times, quantities and differences are scenario values; they are neither client impact metrics nor a benchmark.
+        <div class="profile-actions">
+          <a class="profile-button" href="/en/laboratorio/#reloj">Try RELOJ</a
+          ><a
+            class="profile-button secondary"
+            href="/laboratorio/sys/reloj.js?v=33e8193c5aae"
+            >View the demo engine</a
+          >
+        </div>
+      </header>
+      <section class="profile-section">
+        <h2>The problem it illustrates</h2>
+        <p>
+          A total may look correct even when one source belongs to the previous
+          period. The demonstration shows how freshness, validation rules and
+          publication policy affect the close. The technical work involves
+          modeling those decisions and making their consequences visible.
         </p>
-<figure class="profile-figure">
-<img alt="Screenshot of RELOJ, a four-source consolidation demonstration using synthetic data" decoding="async" height="1000" loading="lazy" src="/img/capturas/proyecto-dashboard-ejecutivo.webp?v=810472cd" width="1600"/>
-<figcaption>
-            Actual screenshot of the laboratory interface. Its data represents a synthetic scenario.
+        <p class="profile-note">
+          <strong>Scope:</strong> an interactive browser simulation using
+          synthetic data and a fixed seed. It does not connect to client
+          systems. The displayed times, quantities and differences are scenario
+          values; they are neither client impact metrics nor a benchmark.
+        </p>
+        <figure class="profile-figure">
+          <img
+            alt="Screenshot of RELOJ, a four-source consolidation demonstration using synthetic data"
+            decoding="async"
+            height="1000"
+            loading="lazy"
+            src="/img/capturas/proyecto-dashboard-ejecutivo.webp?v=810472cd"
+            width="1600"
+          />
+          <figcaption>
+            Actual screenshot of the laboratory interface. Its data represents a
+            synthetic scenario.
           </figcaption>
-</figure>
-</section>
-<section class="profile-section">
-<h2>How the scenario is built</h2>
-<p>
-          The JavaScript engine calculates source states and the close result based on the selected controls. The illustrated pipeline covers extraction, preparation, validation, modeling and publication.
+        </figure>
+      </section>
+      <section class="profile-section">
+        <h2>How the scenario is built</h2>
+        <p>
+          The JavaScript engine calculates source states and the close result
+          based on the selected controls. The illustrated pipeline covers
+          extraction, preparation, validation, modeling and publication.
         </p>
-<ol aria-label="Pipeline illustrated in the demonstration" class="profile-flow">
-<li>Four sources</li>
-<li>Preparation</li>
-<li>Validation</li>
-<li>Semantic model</li>
-<li>Publication</li>
-</ol>
-<div aria-label="Scenario sources" class="profile-table-wrap" role="region" tabindex="0">
-<table class="profile-table">
-<thead>
-<tr>
-<th scope="col">Illustrated source</th>
-<th scope="col">Condition you can explore</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Transactional database</td>
-<td>Incremental query with a recent cutoff.</td>
-</tr>
-<tr>
-<td>Supporting lists</td>
-<td>
-                  Collaboration data refreshed at a different time.
+        <ol
+          aria-label="Pipeline illustrated in the demonstration"
+          class="profile-flow"
+        >
+          <li>Four sources</li>
+          <li>Preparation</li>
+          <li>Validation</li>
+          <li>Semantic model</li>
+          <li>Publication</li>
+        </ol>
+        <div
+          aria-label="Scenario sources"
+          class="profile-table-wrap"
+          role="region"
+          tabindex="0"
+        >
+          <table class="profile-table">
+            <thead>
+              <tr>
+                <th scope="col">Illustrated source</th>
+                <th scope="col">Condition you can explore</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Transactional database</td>
+                <td>Incremental query with a recent cutoff.</td>
+              </tr>
+              <tr>
+                <td>Supporting lists</td>
+                <td>Collaboration data refreshed at a different time.</td>
+              </tr>
+              <tr>
+                <td>Treasury service</td>
+                <td>
+                  Simulated outage and recovery using a statement from the
+                  previous period.
                 </td>
-</tr>
-<tr>
-<td>Treasury service</td>
-<td>
-                  Simulated outage and recovery using a statement from the previous period.
-                </td>
-</tr>
-<tr>
-<td>Branch files</td>
-<td>
-                  Excel workbooks older than the other sources.
-                </td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>
-          The representation groups 42 checks into categories: keys, referential integrity, reconciliation, freshness and format. The engine derives failures from the scenario; it does not run 42 queries against an external database.
+              </tr>
+              <tr>
+                <td>Branch files</td>
+                <td>Excel workbooks older than the other sources.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          The representation groups 42 checks into categories: keys, referential
+          integrity, reconciliation, freshness and format. The engine derives
+          failures from the scenario; it does not run 42 queries against an
+          external database.
         </p>
-</section>
-<section class="profile-section">
-<h2>A walkthrough to verify the behavior</h2>
-<ol class="profile-steps">
-<li>
-<strong>Run the default configuration.</strong> Review each source's cutoff and the pipeline result.
+      </section>
+      <section class="profile-section">
+        <h2>A walkthrough to verify the behavior</h2>
+        <ol class="profile-steps">
+          <li>
+            <strong>Run the default configuration.</strong> Review each source's
+            cutoff and the pipeline result.
           </li>
-<li>
-<strong>Reduce the freshness threshold.</strong> A source can exceed the limit even while it continues to respond.
+          <li>
+            <strong>Reduce the freshness threshold.</strong> A source can exceed
+            the limit even while it continues to respond.
           </li>
-<li>
-<strong>Select “Reject.”</strong> If a source is stale, watch the pipeline stop at that source.
+          <li>
+            <strong>Select “Reject.”</strong> If a source is stale, watch the
+            pipeline stop at that source.
           </li>
-<li>
-<strong>Select “Accept and flag.”</strong> Enable “Simulate service outage” and keep “Stop if validation fails” selected. The scenario should stop at validation.
+          <li>
+            <strong>Select “Accept and flag.”</strong> Enable “Simulate service
+            outage” and keep “Stop if validation fails” selected. The scenario
+            should stop at validation.
           </li>
-<li>
-<strong>Disable that stop condition.</strong> Compare the result published with warnings and review the information accompanying the deferred data.
+          <li>
+            <strong>Disable that stop condition.</strong> Compare the result
+            published with warnings and review the information accompanying the
+            deferred data.
           </li>
-</ol>
-<p>
-          The log, source table and final result let you compare the selected policy with its consequences. “Accept silently” deliberately illustrates the risk of hiding staleness; it is not an operational recommendation.
+        </ol>
+        <p>
+          The log, source table and final result let you compare the selected
+          policy with its consequences. “Accept silently” deliberately
+          illustrates the risk of hiding staleness; it is not an operational
+          recommendation.
         </p>
-</section>
-<section class="profile-section">
-<h2>Design decisions and limitations</h2>
-<div class="profile-grid">
-<article class="profile-card">
-<h3>Visible freshness</h3>
-<p>
-              Age is evaluated for each source and described in text. Color supports the explanation.
+      </section>
+      <section class="profile-section">
+        <h2>Design decisions and limitations</h2>
+        <div class="profile-grid">
+          <article class="profile-card">
+            <h3>Visible freshness</h3>
+            <p>
+              Age is evaluated for each source and described in text. Color
+              supports the explanation.
             </p>
-</article>
-<article class="profile-card">
-<h3>Separate policy</h3>
-<p>
-              The same scenario can stop or be published with warnings depending on the control decision.
+          </article>
+          <article class="profile-card">
+            <h3>Separate policy</h3>
+            <p>
+              The same scenario can stop or be published with warnings depending
+              on the control decision.
             </p>
-</article>
-<article class="profile-card">
-<h3>Reproducible scenario</h3>
-<p>
-              The fixed seed and engine rules let you compare decisions against the same synthetic dataset.
+          </article>
+          <article class="profile-card">
+            <h3>Reproducible scenario</h3>
+            <p>
+              The fixed seed and engine rules let you compare decisions against
+              the same synthetic dataset.
             </p>
-</article>
-</div>
-<p class="profile-note">
-          Taking this pattern into production requires contracts and validation for real data, protected credentials, persisted execution records, access controls, recovery tests and operational metrics. This demo does not establish that those components are in place.
+          </article>
+        </div>
+        <p class="profile-note">
+          Taking this pattern into production requires contracts and validation
+          for real data, protected credentials, persisted execution records,
+          access controls, recovery tests and operational metrics. This demo
+          does not establish that those components are in place.
         </p>
-</section>
-<aside class="profile-callout">
-<h2>Other case studies using the same approach</h2>
-<p>
-          Task visibility in Oficina Viva and document automation in Capturista Digital: different problems with explicit responsibilities and scopes.
+      </section>
+      <aside class="profile-callout">
+        <h2>Other case studies using the same approach</h2>
+        <p>
+          Task visibility in Oficina Viva and document automation in Capturista
+          Digital: different problems with explicit responsibilities and scopes.
         </p>
-<div class="profile-actions">
-<a class="profile-button" href="https://optimatiza.com/en/oficina-viva/">Oficina Viva</a><a class="profile-button secondary" href="https://optimatiza.com/en/casos/capturista-digital/">Capturista Digital</a>
-</div>
-</aside>
-</main>
-<footer class="profile-footer">
-<div class="profile-shell profile-footer-inner">
-<span>© 2026 Humberto Wilfredo Henríquez Benítez · San Salvador, El
-          Salvador</span>
-<nav aria-label="Footer links" class="profile-footer-links">
-<a href="/en/perfil/">Professional profile</a><a href="https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/">LinkedIn</a><a href="https://optimatiza.com/en/">Optimatiza</a>
-</nav>
-</div>
-</footer>
-</body>
+        <div class="profile-actions">
+          <a
+            class="profile-button"
+            href="https://optimatiza.com/en/oficina-viva/"
+            >Oficina Viva</a
+          ><a
+            class="profile-button secondary"
+            href="https://optimatiza.com/en/casos/capturista-digital/"
+            >Capturista Digital</a
+          >
+        </div>
+      </aside>
+    </main>
+    <footer class="profile-footer">
+      <div class="profile-shell profile-footer-inner">
+        <span
+          >© 2026 Humberto Wilfredo Henríquez Benítez · San Salvador, El
+          Salvador</span
+        >
+        <nav aria-label="Footer links" class="profile-footer-links">
+          <a href="/en/perfil/">Professional profile</a
+          ><a
+            href="https://www.linkedin.com/in/humberto-wilfredo-henriquez-benitez/"
+            >LinkedIn</a
+          ><a href="https://optimatiza.com/en/">Optimatiza</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
 </html>
-
