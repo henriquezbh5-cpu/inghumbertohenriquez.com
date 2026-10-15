@@ -11,9 +11,11 @@
 - [Publications](https://inghumbertohenriquez.com/en/publicaciones/): technical perspectives and articles authored by Humberto.
 - [Contact](https://inghumbertohenriquez.com/en/#contacto): external collaboration, defined projects and fully remote employment opportunities.
 
+- [Professional pack](https://inghumbertohenriquez.com/en/colaboracion/): one-page summary, current ES/EN CVs, three own-project/demonstration cases, code review guide and engagement terms. Remote overlap with Spain is agreed for each engagement.
+
 ## Professional services through Optimatiza
 
-- [Ongoing support](https://optimatiza.com/en/servicios-profesionales/): development, maintenance and improvement of solutions with shared priorities.
-- [Support for consulting firms](https://optimatiza.com/en/servicios-profesionales/): senior collaboration within the team on Power Platform, data and automation.
+- [Ongoing support](https://optimatiza.com/en/acompanamiento-tecnologico/#continuidad): development, maintenance and improvement of solutions with shared priorities.
+- [Support for consulting firms](https://optimatiza.com/en/acompanamiento-tecnologico/#consultoras): senior collaboration within the team on Power Platform, data and automation.
 
 Employment opportunities are discussed directly with Humberto. Professional services are managed through Optimatiza. Time commitment, start date, scope and terms are agreed on a case-by-case basis. This website does not advertise immediate availability, fixed rates or Microsoft Partner credentials.

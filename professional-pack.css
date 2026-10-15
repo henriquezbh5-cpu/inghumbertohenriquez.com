@@ -1,0 +1,69 @@
+/* The shareable summary uses a paper surface within the existing portfolio. */
+.pack-page .profile-hero { border-bottom: 0; }
+.pack-page button.profile-button { cursor: pointer; }
+.pack-secondary { margin-top: 18px; font-size: 13px; }
+.pack-secondary a, .pack-guide a { color: var(--teal); text-decoration: underline; text-underline-offset: 4px; }
+.pack-guide { margin-top: 22px; }
+.pack-summary {
+  --paper-ink: #152b43;
+  --paper-muted: #425b70;
+  --paper-teal: #087a70;
+  background: #fff;
+  color: var(--paper-ink);
+  padding: 46px 50px 32px;
+  border-radius: 8px;
+  border-top: 6px solid #2dd4bf;
+  box-shadow: 0 20px 80px #0002;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.pack-summary a { color: var(--paper-teal); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.pack-summary-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.pack-summary-kicker { color: var(--paper-teal); font: 500 11px var(--font-m); text-transform: uppercase; letter-spacing: .09em; margin-bottom: 14px; }
+.pack-summary h2 { font: 700 clamp(27px, 4.5vw, 42px)/1.1 var(--font-d); color: var(--paper-ink); letter-spacing: -.035em; }
+.pack-summary-role { margin-top: 14px; color: var(--paper-muted); font-weight: 600; }
+.pack-monogram { display: grid; place-items: center; width: 78px; height: 78px; flex: 0 0 78px; border: 1px solid #d7e7e8; color: var(--paper-teal); font: 500 28px var(--font-d); border-radius: 12px; }
+.pack-summary-intro { margin-top: 24px; max-width: 800px; }
+.pack-summary-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px; }
+.pack-summary h3 { font: 600 17px/1.3 var(--font-d); color: var(--paper-ink); margin-bottom: 10px; }
+.pack-summary ul { list-style: disc; padding-left: 18px; }
+.pack-summary li + li { margin-top: 5px; }
+.pack-summary-cases { margin-top: 24px; padding-block: 20px; border-block: 1px solid #d7e3ea; }
+.pack-summary-cases > p + p { margin-top: 9px; }
+.pack-summary-cases strong { margin-right: 5px; }
+.pack-summary-disclosure { color: var(--paper-muted); font-size: 12px; }
+.pack-summary-terms { font-size: 13px; }
+.pack-summary-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #d7e3ea; font-size: 12px; }
+.pack-summary-footer p + p { margin-top: 5px; }
+.pack-summary-footer small { display: block; margin-top: 10px; color: var(--paper-muted); font-size: 11px; }
+@media (max-width: 620px) {
+  .pack-summary { padding: 30px 22px 24px; }
+  .pack-summary-columns { grid-template-columns: 1fr; gap: 20px; }
+  .pack-monogram { display: none; }
+}
+@page { size: A4; margin: 15mm 16mm; }
+@media print {
+  :root { color-scheme: light; }
+  html, body.pack-page { background: #fff !important; color: #152b43; }
+  .pack-page > :not(main), .pack-page main > :not(.pack-summary) { display: none !important; }
+  .pack-page .profile-shell { width: auto; margin: 0; }
+  .pack-summary { box-shadow: none; border-radius: 0; border-top: 4px solid #087a70; padding: 20px 0 0; margin: 0; font-size: 10.2pt; line-height: 1.45; }
+  .pack-summary-head { gap: 18px; }
+  .pack-summary h2 { font-size: 29pt; }
+  .pack-summary-kicker { margin-bottom: 10px; font-size: 8pt; }
+  .pack-summary-role { margin-top: 10px; font-size: 10pt; }
+  .pack-monogram { width: 58px; height: 58px; flex-basis: 58px; font-size: 22px; }
+  .pack-summary-intro { margin-top: 18px; }
+  .pack-summary-columns { grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 18px; }
+  .pack-summary h3 { font-size: 12pt; margin-bottom: 7px; }
+  .pack-summary li + li { margin-top: 4px; }
+  .pack-summary-cases { margin-top: 18px; padding-block: 15px; }
+  .pack-summary-cases > p + p { margin-top: 7px; }
+  .pack-summary-disclosure { font-size: 8.8pt; }
+  .pack-summary-terms { font-size: 9.2pt; }
+  .pack-summary-footer { margin-top: 18px; padding-top: 12px; font-size: 8.7pt; }
+  .pack-summary-footer small { font-size: 8pt; margin-top: 7px; }
+  .pack-summary a { color: #087a70; }
+  .pack-summary section, .pack-summary-head, .pack-summary-footer { break-inside: avoid; }
+}
