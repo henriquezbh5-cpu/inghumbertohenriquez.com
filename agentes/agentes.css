@@ -961,3 +961,6 @@ html.js-anim .stage-stamp:not([hidden]) { animation: stampIn .26s var(--ease-tex
   .ag-dot { display: none; }
   html.js-anim .rv { opacity: 1 !important; translate: none !important; }
 }
+
+/* Accessible text on the light agent pages and dark contact panel. */
+.lang-btn:not(.active){color:#445568}.form-privacy{color:#cbdce8}.footer-clock,.footer-clock .clock{color:#0b655e}.footer-colophon,.colophon-line,[data-i18n="ag-foot-copy"]{color:#4d5b69}

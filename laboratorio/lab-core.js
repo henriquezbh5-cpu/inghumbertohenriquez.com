@@ -127,7 +127,7 @@
                 refs[s.k] = cb;
             } else {
                 var id = 'ctl-' + s.k + '-' + Math.floor(Math.random() * 1e6);
-                var sp = txt('span', null, s.label);
+                var sp = txt('label', null, s.label);
                 sp.setAttribute('for', id);
                 f.appendChild(sp);
                 var input;
@@ -239,6 +239,9 @@
     /* Consola de ejecución con sello de hora. */
     function logbox(h) {
         var box = el('div', 'log');
+        box.tabIndex = 0;
+        box.setAttribute('role', 'region');
+        box.setAttribute('aria-label', 'Registro de la demostración');
         if (h) box.style.height = h;
         return {
             node: box,
@@ -258,6 +261,9 @@
        Una celda puede ser {html:'<span…>'} para marcado propio. */
     function table(cols, rows) {
         var wrap = el('div', 'tw');
+        wrap.tabIndex = 0;
+        wrap.setAttribute('role', 'region');
+        wrap.setAttribute('aria-label', 'Tabla de datos de ejemplo');
         var t = document.createElement('table');
         var thead = document.createElement('thead');
         var tr = document.createElement('tr');

@@ -128,7 +128,7 @@
 .ctl { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end }
 .field { display: flex; flex-direction: column; gap: 6px; min-width: 0 }
 .field.grow { flex: 1 1 240px }
-.field > span {
+.field > span, .field > label {
     font-family: var(--font-m);
     font-size: 12px;
     letter-spacing: .1em;
