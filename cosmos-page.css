@@ -1,43 +1,222 @@
 /* Standalone visual exploration, deliberately separate from the profile. */
-.observatory-page { --pro-bg: #07101b; --body: #bdcbd6; --ink: #edf4f7; --teal: #a5d7c8; isolation: isolate; background: transparent; min-height: 100vh; }
-.observatory-page a { text-underline-offset: .25em; }
-.observatory-page :focus-visible { outline: 2px solid #b2e9dc; outline-offset: 5px; }
-.observatory-header, .observatory-footer { width: min(1180px, calc(100% - 48px)); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.observatory-header { min-height: 96px; border-bottom: 1px solid #ffffff24; }
-.observatory-brand { color: var(--ink); font-weight: 600; font-size: 18px; }
-.observatory-nav { display: flex; align-items: center; gap: 24px; font-size: 14px; }
-.observatory-nav a { padding-block: 12px; }
-.observatory-nav a:hover, .observatory-footer a:hover { color: var(--ink); text-decoration: underline; }
-.observatory-languages { display: flex; gap: 12px; padding-left: 20px; border-left: 1px solid #ffffff30; }
-.observatory-languages [aria-current] { color: #b4e4d7; text-decoration: underline; }
-.visual-intro { width: min(1180px, calc(100% - 48px)); min-height: calc(100svh - 194px); margin-inline: auto; padding-block: clamp(64px, 12vh, 144px); display: flex; align-items: center; }
-.visual-copy { max-width: 600px; }
-.visual-copy .visual-context { color: #b4e4d7; font-size: 15px; margin: 0 0 20px; }
-.visual-copy h1 { font: 500 clamp(42px, 5.2vw, 70px)/1.08 var(--font-d); letter-spacing: -.045em; color: var(--ink); margin: 0 0 28px; }
-.visual-copy p { font-size: 18px; line-height: 1.7; margin: 0 0 20px; }
-.visual-copy .visual-note { font-size: 14px; color: #a5bac9; margin-top: 28px; max-width: 52ch; }
-.observatory-page .motion-dock { position: static; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 16px; border: none; border-radius: 0; background: transparent; box-shadow: none; }
-.observatory-page .motion-dock[hidden] { display: none; }
-.observatory-page .motion-dock button { min-height: 48px; padding: 12px 20px; font: 500 15px/1.4 var(--font-b); letter-spacing: 0; text-transform: none; border: 1px solid #506577; border-radius: 6px; color: var(--ink); background: #0d1c2b; cursor: pointer; }
-.observatory-page #galaxy-explore { border: 1px solid #a5d7c8; background: #a5d7c8; color: #0b2421; }
-.observatory-page #galaxy-explore:hover { background: #c1e9dd; }
-.observatory-page .motion-dock [data-motion-label] { display: inline; }
-.visual-fallback { border-left: 2px solid #83a9b7; padding-left: 18px; margin-top: 28px; }
-.visual-copy .visual-fallback { font-size: 14px; max-width: 56ch; }
-.galaxy-ready .visual-fallback { display: none; }
-.observatory-footer { min-height: 98px; border-top: 1px solid #ffffff24; font-size: 13px; color: #b3c5d0; }
-.observatory-page .galaxy-veil { background: linear-gradient(90deg, rgba(4,9,20,.94), rgba(4,9,20,.72) 40%, rgba(4,9,20,.12) 82%); }
-@media (max-width: 600px) {
-  .observatory-header, .observatory-footer, .visual-intro { width: calc(100% - 36px); }
-  .observatory-header { flex-wrap: wrap; padding-block: 20px; gap: 12px; }
-  .observatory-nav { justify-content: space-between; width: 100%; gap: 16px; }
-  .observatory-nav a { min-height: 44px; display: inline-flex; align-items: center; }
-  .observatory-languages { margin-left: auto; padding-left: 12px; }
-  .visual-intro { min-height: calc(100svh - 238px); padding-block: 56px; }
-  .visual-copy h1 { font-size: 44px; }
-  .visual-copy p { font-size: 17px; }
-  .observatory-footer { flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px; padding-block: 24px; }
-  .observatory-page .galaxy-veil { background: rgba(4,9,20,.72); }
+.observatory-page {
+  --pro-bg: #07101b;
+  --body: #bdcbd6;
+  --ink: #edf4f7;
+  --teal: #a5d7c8;
+  isolation: isolate;
+  background: transparent;
+  min-height: 100vh;
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-@media (forced-colors: active) { .galaxy-backdrop { display: none; } .observatory-page { background: Canvas; color: CanvasText; } .visual-copy h1, .visual-copy p, .observatory-brand, .observatory-footer { color: CanvasText; } }
+.observatory-page a {
+  text-underline-offset: 0.25em;
+}
+.observatory-page :focus-visible {
+  outline: 2px solid #b2e9dc;
+  outline-offset: 5px;
+}
+.observatory-header,
+.observatory-footer {
+  width: min(1180px, calc(100% - 48px));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.observatory-header {
+  min-height: 96px;
+  border-bottom: 1px solid #ffffff24;
+}
+.observatory-brand {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 18px;
+}
+.observatory-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 14px;
+}
+.observatory-nav a {
+  padding-block: 12px;
+}
+.observatory-nav a:hover,
+.observatory-footer a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.observatory-languages {
+  display: flex;
+  gap: 12px;
+  padding-left: 20px;
+  border-left: 1px solid #ffffff30;
+}
+.observatory-languages [aria-current] {
+  color: #b4e4d7;
+  text-decoration: underline;
+}
+.visual-intro {
+  width: min(1180px, calc(100% - 48px));
+  min-height: calc(100svh - 194px);
+  margin-inline: auto;
+  padding-block: clamp(64px, 12vh, 144px);
+  display: flex;
+  align-items: center;
+}
+.visual-copy {
+  max-width: 600px;
+}
+.visual-copy .visual-context {
+  color: #b4e4d7;
+  font-size: 15px;
+  margin: 0 0 20px;
+}
+.visual-copy h1 {
+  font: 500 clamp(42px, 5.2vw, 70px) / 1.08 var(--font-d);
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  margin: 0 0 28px;
+}
+.visual-copy p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+.visual-copy .visual-note {
+  font-size: 14px;
+  color: #a5bac9;
+  margin-top: 28px;
+  max-width: 52ch;
+}
+.observatory-page .motion-dock {
+  position: static;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.observatory-page .motion-dock[hidden] {
+  display: none;
+}
+.observatory-page .motion-dock button {
+  min-height: 48px;
+  padding: 12px 20px;
+  font: 500 15px/1.4 var(--font-b);
+  letter-spacing: 0;
+  text-transform: none;
+  border: 1px solid #506577;
+  border-radius: 6px;
+  color: var(--ink);
+  background: #0d1c2b;
+  cursor: pointer;
+}
+.observatory-page #galaxy-explore {
+  border: 1px solid #a5d7c8;
+  background: #a5d7c8;
+  color: #0b2421;
+}
+.observatory-page #galaxy-explore:hover {
+  background: #c1e9dd;
+}
+.observatory-page .motion-dock [data-motion-label] {
+  display: inline;
+}
+.visual-fallback {
+  border-left: 2px solid #83a9b7;
+  padding-left: 18px;
+  margin-top: 28px;
+}
+.visual-copy .visual-fallback {
+  font-size: 14px;
+  max-width: 56ch;
+}
+.galaxy-ready .visual-fallback {
+  display: none;
+}
+.observatory-footer {
+  min-height: 98px;
+  border-top: 1px solid #ffffff24;
+  font-size: 13px;
+  color: #b3c5d0;
+}
+.observatory-page .galaxy-veil {
+  background: linear-gradient(
+    90deg,
+    rgba(4, 9, 20, 0.94),
+    rgba(4, 9, 20, 0.72) 40%,
+    rgba(4, 9, 20, 0.12) 82%
+  );
+}
+@media (max-width: 600px) {
+  .observatory-header,
+  .observatory-footer,
+  .visual-intro {
+    width: calc(100% - 36px);
+  }
+  .observatory-header {
+    flex-wrap: wrap;
+    padding-block: 20px;
+    gap: 12px;
+  }
+  .observatory-nav {
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px;
+  }
+  .observatory-nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .observatory-languages {
+    margin-left: auto;
+    padding-left: 12px;
+  }
+  .visual-intro {
+    min-height: calc(100svh - 238px);
+    padding-block: 56px;
+  }
+  .visual-copy h1 {
+    font-size: 44px;
+  }
+  .visual-copy p {
+    font-size: 17px;
+  }
+  .observatory-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    padding-block: 24px;
+  }
+  .observatory-page .galaxy-veil {
+    background: rgba(4, 9, 20, 0.72);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+@media (forced-colors: active) {
+  .galaxy-backdrop {
+    display: none;
+  }
+  .observatory-page {
+    background: Canvas;
+    color: CanvasText;
+  }
+  .visual-copy h1,
+  .visual-copy p,
+  .observatory-brand,
+  .observatory-footer {
+    color: CanvasText;
+  }
+}

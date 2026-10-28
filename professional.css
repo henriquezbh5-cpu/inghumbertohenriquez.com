@@ -326,7 +326,9 @@
   background: var(--pro-surface);
 }
 .profile-page .profile-portrait img {
-  aspect-ratio: 469 / 470;
+  aspect-ratio: 4 / 5;
+  height: auto;
+  object-position: center top;
 }
 .motion-dock {
   opacity: 0.85;

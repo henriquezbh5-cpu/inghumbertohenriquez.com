@@ -8,6 +8,7 @@
 - [Professional profile](https://inghumbertohenriquez.com/en/perfil/): education, career and professional approach.
 - [Technical cases](https://inghumbertohenriquez.com/en/perfil/#proyectos): Oficina Viva, Capturista Digital and data consolidation, with the scope of each case.
 - [Laboratory](https://inghumbertohenriquez.com/en/laboratorio/): 13 interactive demonstrations with synthetic data. They do not represent commercial outcomes achieved for clients.
+- [Visual exploration](https://inghumbertohenriquez.com/en/laboratorio/cosmos/): an artistic, interactive interpretation of the cosmos; a creative experience separate from the professional profile.
 - [Publications](https://inghumbertohenriquez.com/en/publicaciones/): technical perspectives and articles authored by Humberto.
 - [Contact](https://inghumbertohenriquez.com/en/#contacto): external collaboration, defined projects and fully remote employment opportunities.
 
