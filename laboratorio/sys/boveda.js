@@ -88,11 +88,7 @@
             output: 'Campos estructurados con su confianza individual y el motivo de cada duda, más una cola de revisión que solo contiene lo dudoso, con el recorte de imagen donde se leyó el valor.',
             failure: 'Por debajo del umbral ese campo no se escribe. Si el campo dudoso es crítico manda la política elegida: retener el documento completo o cargar lo cierto y dejar el crítico pendiente. Ningún valor entra inventado.'
         },
-        impact: [
-            ['1 esquema', 'para PDF, escaneo y foto de celular'],
-            ['6 a 20 s', 'de lectura por documento'],
-            ['Cero', 'campos escritos bajo el umbral']
-        ],
+        impact: [],
 
         render: function (host, k) {
             var DOCS = datos();
@@ -436,7 +432,7 @@
                 animando = true;
                 ctl.busy('run', true);
                 /* Devuelve false si otra carga tomó el relevo mientras esperaba. */
-                async function pausa(ms) { await k.wait(ms); return token === corrida; }
+                async function pausa(ms) { await k.wait(ms); if (!host.isConnected) return; return token === corrida; }
                 try {
                     var d = doc();
                     campos.forEach(function (f) { f.leido = false; });

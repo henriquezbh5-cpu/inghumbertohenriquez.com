@@ -133,11 +133,7 @@
             output: 'Orden de compra aprobada, con expediente que guarda quién firmó, cuándo y bajo qué regla entró cada paso.',
             failure: 'Si un firmante no responde dentro del SLA, el flujo reintenta, escala al suplente configurado y avisa al solicitante sin perder la solicitud.'
         },
-        impact: [
-            ['32 h', 'espera de firmas que el flujo deja de arrastrar'],
-            ['41 s', 'ciclo del flujo, de solicitud a orden emitida'],
-            ['100%', 'firmas con sello de quién, cuándo y bajo qué regla']
-        ],
+        impact: [],
 
         render: function (host, k) {
             var D = datos(), C = k.C;
@@ -403,14 +399,14 @@
                 for (var i = 0; i < r.pasos.length; i++) {
                     var s = r.pasos[i], d = BOT[s.id];
                     pasos.set(i, 'run', 'en curso');
-                    await k.wait(360 + Math.round(Math.random() * 110));   /* jitter solo cosmético */
+                    await k.wait(360 + Math.round(Math.random() * 110)); if (!host.isConnected) return;   /* jitter solo cosmético */
 
                     if (i === r.escala) {
                         pasos.set(i, 'fail', 'sin respuesta en ' + hh(s.h));
                         log.push('er', s.rol + ': ' + s.quien + ' no respondió dentro del SLA de ' + hh(s.h));
-                        await k.wait(420);
+                        await k.wait(420); if (!host.isConnected) return;
                         log.push('wa', 'Reintento con escalamiento al suplente ' + D.roster.suplente + '; aviso enviado al solicitante');
-                        await k.wait(420);
+                        await k.wait(420); if (!host.isConnected) return;
                         d += ESCALA_SEG;
                         seg += d;
                         pasos.set(i, 'done', k.fmt(d, 1) + ' s · firmó el suplente');

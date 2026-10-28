@@ -214,11 +214,7 @@
       failure:
         "Three retries with increasing delays and a refreshed session. Writes are idempotent, so a retry never duplicates records. If the third fails, a notification includes the full trace and the bot remains under observation for 48 hours.",
     },
-    impact: [
-      ["170", "bots and workflows monitored"],
-      ["98.7%", "successful executions without intervention"],
-      ["4,064 h", "manual work avoided over 30 days"],
-    ],
+    impact: [],
     render: function (host, k) {
       var C = k.C,
         bots = datos(),
@@ -787,7 +783,7 @@
             var g = guion[i];
             if (g.pre) log.push(g.pre[0], g.pre[1]);
             esc.set(g.p, "run");
-            await k.wait(g.w);
+            await k.wait(g.w); if (!host.isConnected) return;
             esc.set(g.p, g.e, g.ms);
             log.push(g.c, g.t);
           }

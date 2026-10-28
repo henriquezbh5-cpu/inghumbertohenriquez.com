@@ -178,11 +178,7 @@
             output: 'Expediente digital con bitácora firmada paso por paso: sistema tocado, hora, resultado y responsable.',
             failure: 'Tres respuestas distintas. Si el sistema no contesta, reintento con espera progresiva de 30 s, 90 s y 5 min. Si rechaza la operación, ticket con el número de paso exacto y el movimiento nunca se marca completo. Si está en cierre, el paso se agenda a la reapertura y el resto de la secuencia continúa.'
         },
-        impact: [
-            ['1 de cada 3', 'altas llegaban incompletas antes'],
-            ['bajo 15 min', 'de la firma al expediente cerrado'],
-            ['0', 'accesos activos tras la fecha efectiva']
-        ],
+        impact: [],
         render: function (host, k) {
             var corriendo = false;
 
@@ -476,7 +472,7 @@
                     st.set(0, 'fail', 'rechazado');
                     pipe.set(EXP, 'fail', 'validación');
                     log.push('er', 'Validación previa: el área de origen y la de destino son la misma. El formulario se rechaza.');
-                    await k.wait(360);
+                    await k.wait(360); if (!host.isConnected) return;
                     log.push('wa', 'Se devuelve a la jefatura con el motivo. Cero escrituras, cero reversas pendientes.');
                     kp.set(0, '0 de 12', 'bad');
                     cerrar('rechazado en la validación', 'bad', 'rechazado');
@@ -490,17 +486,17 @@
                     st.set(i, 'run', corto(p.seg));
                     pipe.set(p.sis, 'run', 'en curso');
                     log.push('in', 'Paso ' + k.pad(i + 1) + ' · ' + SIS[p.sis].n + ' — ' + p.n);
-                    await k.wait(190 + Math.random() * 90);
+                    await k.wait(190 + Math.random() * 90); if (!host.isConnected) return;
 
                     if (golpe) {
                         st.set(i, 'fail', f.marca);
                         pipe.set(p.sis, 'fail', 'error');
                         log.push('er', SIS[p.sis].n + ' ' + f.er + '. Paso ' + k.pad(i + 1) + ' marcado como fallido.');
-                        await k.wait(340);
+                        await k.wait(340); if (!host.isConnected) return;
                         extra += f.seg;
                         if (f.modo === 'reintento') {
                             log.push('wa', 'Espera progresiva: reintento 1 a los 30 s, reintento 2 a los 90 s, reintento 3 a los 5 min.');
-                            await k.wait(320);
+                            await k.wait(320); if (!host.isConnected) return;
                             st.set(i, 'done', '2 intentos · ' + corto(p.seg + f.seg));
                             pipe.set(p.sis, 'done', c.cuenta[p.sis] + ' escritos');
                             tocados[p.sis] = 1;
@@ -508,16 +504,16 @@
                             log.push('ok', 'Recuperado en el intento 2 — ' + p.d(c));
                         } else if (f.modo === 'ticket') {
                             log.push('wa', 'Tres reintentos con espera progresiva. Los tres devuelven el mismo rechazo: reintentar no resuelve esto.');
-                            await k.wait(320);
+                            await k.wait(320); if (!host.isConnected) return;
                             log.push('er', 'Ticket ' + D.ticket + ' abierto con el folio, el sistema y el paso ' + k.pad(i + 1) + '. El paso queda pendiente.');
-                            await k.wait(300);
+                            await k.wait(300); if (!host.isConnected) return;
                             log.push('wa', 'Los pasos que no dependen de este continúan; el movimiento no cierra en verde mientras el ticket siga abierto.');
                             st.set(i, 'fail', 'pendiente · ticket');
                             pipe.set(p.sis, 'fail', 'paso pendiente');
                             pend++;
                         } else {
                             log.push('wa', SIS[p.sis].n + ' vuelve a aceptar escrituras el ' + REAPERTURA + '. El paso se agenda, no se fuerza.');
-                            await k.wait(300);
+                            await k.wait(300); if (!host.isConnected) return;
                             st.set(i, '', 'agendado ' + REAPERTURA);
                             pipe.set(p.sis, '', 'diferido al ' + REAPERTURA);
                             dif++;
@@ -530,7 +526,7 @@
 
                     if (p.firma) {
                         log.push('wa', 'Firma adicional requerida por perfil ' + c.perfil.toLowerCase() + ' antes de escribir. Enviada a la gerencia del área.');
-                        await k.wait(260);
+                        await k.wait(260); if (!host.isConnected) return;
                         log.push('ok', 'Firma registrada con acuse. El paso continúa con la aprobación adjunta.');
                     }
 

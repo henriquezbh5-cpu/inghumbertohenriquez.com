@@ -192,11 +192,7 @@
             output: 'Ruta ordenada por criterio, estado por parada y evidencia por orden: firma del receptor, foto del bulto y sello de hora con coordenada.',
             failure: 'Sin cobertura la aplicación sigue operando con los datos descargados y encola la evidencia en el dispositivo. Al volver la señal sincroniza sola, en orden y sin intervención del técnico; la orden lleva llave propia, así que reenviar la cola no duplica la entrega.'
         },
-        impact: [
-            ['Sin señal', 'la aplicación sigue operando'],
-            ['39%', 'menos kilómetros que ordenar por regla de negocio'],
-            ['100%', 'órdenes cerradas con evidencia y sello de hora']
-        ],
+        impact: [],
         render: function (host, k) {
             var corrida = 0, P = null, marks = [], filas = [], legPaths = [];
             var EST = 5, EVI = 6;   /* columnas de estado y evidencia en la tabla */
@@ -463,9 +459,9 @@
 
                 log.clear();
                 log.push('in', 'Despacho iniciado: ' + n + ' órdenes firmadas por el despachador y enviadas al dispositivo.');
-                await k.wait(320); if (mi !== corrida) return;
+                await k.wait(320); if (!host.isConnected) return; if (mi !== corrida) return;
                 log.push('ok', 'Paquete del día descargado: órdenes, mapa de la zona, formularios de entrega y catálogo de motivos. La aplicación ya no necesita red para operar.');
-                await k.wait(320); if (mi !== corrida) return;
+                await k.wait(320); if (!host.isConnected) return; if (mi !== corrida) return;
                 if (off) log.push('wa', 'Cobertura conocida: el sector oriente no tiene señal estable. La aplicación no cambia de modo, sigue escribiendo en el almacenamiento local.');
                 log.push('hl', 'Salida del centro de distribución 08:00.');
 
@@ -477,7 +473,7 @@
                     if (mi !== corrida) return;
                     log.push('in', 'Parada ' + k.pad(i + 1) + ' — ' + s.cli + ': llegada ' + hhmm(s.llegada) + ', ' +
                         s.bultos + ' bultos, ventana ' + ventana(s) + ' (' + motivoTexto(s) + ').');
-                    await k.wait(180); if (mi !== corrida) return;
+                    await k.wait(180); if (!host.isConnected) return; if (mi !== corrida) return;
 
                     if (s.cerrado) {
                         marcar(i, 'repr');
@@ -485,9 +481,9 @@
                         e.cap++; e.ord++; e.arch++; repro++;
                         pintarPipe(e); pintarSalida(e);
                         log.push('er', 'Cliente cerrado. Sin firma del receptor la orden no se marca entregada: el técnico elige el motivo del catálogo y toma foto del punto.');
-                        await k.wait(260); if (mi !== corrida) return;
+                        await k.wait(260); if (!host.isConnected) return; if (mi !== corrida) return;
                         log.push('wa', 'Parada reagendada para el día siguiente en la misma ventana ' + ventana(s) + '. El despachador ve el cambio en el tablero, no al cierre del día.');
-                        await k.wait(160); if (mi !== corrida) return;
+                        await k.wait(160); if (!host.isConnected) return; if (mi !== corrida) return;
                         continue;
                     }
 
@@ -498,7 +494,7 @@
                         enCola.push(i); e.cola++;
                         log.push('wa', 'Sin señal en esta parada. La aplicación sigue operando: firma capturada, foto tomada y sello de hora ' +
                             sello(s) + ' guardados en la cola local del equipo.');
-                        await k.wait(240); if (mi !== corrida) return;
+                        await k.wait(240); if (!host.isConnected) return; if (mi !== corrida) return;
                         log.push('in', 'Cola local: ' + e.cola + ' evidencia' + (e.cola > 1 ? 's' : '') + ' pendiente' +
                             (e.cola > 1 ? 's' : '') + ' de subir. El técnico continúa la ruta sin esperar red.');
                     } else {
@@ -509,7 +505,7 @@
                     }
                     if (s.motivo) log.push('wa', 'La orden queda marcada ' + motivoTexto(s) + '. El desfase viaja con la evidencia, no se corrige a mano.');
                     pintarPipe(e); pintarSalida(e);
-                    await k.wait(160); if (mi !== corrida) return;
+                    await k.wait(160); if (!host.isConnected) return; if (mi !== corrida) return;
                 }
 
                 await trazo(legPaths[P.legs.length - 1], 620);
@@ -517,14 +513,14 @@
 
                 if (enCola.length) {
                     log.push('hl', 'Cobertura recuperada al salir del sector oriente. La sincronización arranca sola.');
-                    await k.wait(280); if (mi !== corrida) return;
+                    await k.wait(280); if (!host.isConnected) return; if (mi !== corrida) return;
                     for (i = 0; i < enCola.length; i++) {
                         marcar(enCola[i], 'ok');
                         estadoFila(enCola[i], 'ok', 'Entregada', 'ok', 'firma + foto');
                         e.cola--; e.drenada++; e.arch++;
                         pintarPipe(e); pintarSalida(e);
                         log.push('ok', 'Evidencia de la parada ' + k.pad(enCola[i] + 1) + ' sincronizada con su sello de hora original, no con la hora de subida.');
-                        await k.wait(180); if (mi !== corrida) return;
+                        await k.wait(180); if (!host.isConnected) return; if (mi !== corrida) return;
                     }
                     log.push('in', 'Sincronización cerrada sin intervención del técnico. Cada orden lleva llave propia: reenviar la cola no duplica la entrega.');
                 }

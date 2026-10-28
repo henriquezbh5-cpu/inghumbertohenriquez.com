@@ -1,6 +1,6 @@
 /* ============================================================
    CV.JS — interacciones del CV digital
-   Reloj GMT-6 · typewriter HH.LOG · contadores · reveals ·
+   Reloj typewriter HH.LOG · contadores · reveals ·
    índice lateral activo · menú móvil. Vanilla, sin dependencias.
    ============================================================ */
 "use strict";
@@ -616,7 +616,7 @@ document.querySelectorAll(".tool-grid .tool").forEach((el, i) => {
       t: "[00:00.000]",
       a: "SISTEMA",
       c: "la-sys",
-      m: "Expediente iniciado — HH/2026 · San Salvador, GMT-6",
+      m: "Expediente iniciado — HH/2026 · San Salvador",
     },
     {
       t: "[00:00.400]",
@@ -640,7 +640,7 @@ document.querySelectorAll(".tool-grid .tool").forEach((el, i) => {
       t: "[00:01.900]",
       a: "OPERACIÓN",
       c: "la-tool",
-      m: "13 demostraciones · Power Platform · IA aplicada · datos",
+      m: "18 demostraciones · Power Platform · IA aplicada · datos",
     },
     {
       t: "[00:02.400]",

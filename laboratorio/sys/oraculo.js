@@ -111,11 +111,7 @@
             output: 'Pronóstico mes a mes con límite inferior, valor central y límite superior, más el error de validación y el escenario aplicado.',
             failure: 'Si el error fuera de muestra supera el umbral, la compuerta no deja publicar: el tablero conserva la corrida anterior y el área recibe el diagnóstico, no un número falso.'
         },
-        impact: [
-            ['30 / 6', 'meses de ajuste y de validación fuera de muestra'],
-            ['12%', 'error máximo tolerado antes de retener el pronóstico'],
-            ['3 cifras', 'cada mes sale con inferior, central y superior']
-        ],
+        impact: [],
 
         render: function (host, k) {
             var y = datos();
@@ -392,7 +388,7 @@
                 pasos.reset();
                 for (i = 0; i < pasos.count; i++) {
                     pasos.set(i, 'run', '…');
-                    await k.wait(240);
+                    await k.wait(240); if (!host.isConnected) return;
                     pasos.set(i, m[i][0], m[i][1]);
                     /* el error fuera de muestra corta la secuencia: lo que sigue
                        se marca detenido sin seguir esperando */

@@ -178,11 +178,7 @@
       failure:
         "Exceptions are routed to an analyst with the difference already calculated and supporting evidence attached. If the robot cannot read the order or find the receipt, it does not approve payment: it holds the invoice for review.",
     },
-    impact: [
-      ["92%", "invoices approved without human intervention"],
-      ["4 h -> 6 min", "per batch of 300 documents"],
-      ["$0", "payments issued without verifying all three documents"],
-    ],
+    impact: [],
     render: function (host, k) {
       var lote = datos();
       var TOTAL = lote.length;
@@ -579,7 +575,7 @@
             " new attachments in the accounts payable inbox.",
         );
         pipe.set(0, "run");
-        await k.wait(ms(240));
+        await k.wait(ms(240)); if (!host.isConnected) return;
         if (!vivo()) {
           ctl.busy("run", false);
           return;
@@ -587,7 +583,7 @@
         pipe.set(0, "done", TOTAL + " invoices");
 
         pipe.set(1, "run");
-        await k.wait(ms(300));
+        await k.wait(ms(300)); if (!host.isConnected) return;
         if (!vivo()) {
           ctl.busy("run", false);
           return;
@@ -602,7 +598,7 @@
           );
 
         pipe.set(2, "run");
-        await k.wait(ms(280));
+        await k.wait(ms(280)); if (!host.isConnected) return;
         if (!vivo()) {
           ctl.busy("run", false);
           return;
@@ -614,7 +610,7 @@
         );
 
         pipe.set(3, "run");
-        await k.wait(ms(280));
+        await k.wait(ms(280)); if (!host.isConnected) return;
         if (!vivo()) {
           ctl.busy("run", false);
           return;
@@ -690,7 +686,7 @@
                 k.money(f.r) +
                 " to the exception records.",
             );
-          await k.wait(ms(58));
+          await k.wait(ms(58)); if (!host.isConnected) return;
           if (fila.parentNode) fila.classList.remove("hit");
         }
         if (!vivo()) {
@@ -700,7 +696,7 @@
         pipe.set(4, "done", e.exc + " exceptions · " + e.auto + " for payment");
 
         pipe.set(5, "run");
-        await k.wait(ms(260));
+        await k.wait(ms(260)); if (!host.isConnected) return;
         if (!vivo()) {
           ctl.busy("run", false);
           return;

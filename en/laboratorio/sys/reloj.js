@@ -285,11 +285,7 @@
       failure:
         "Reprocessing starts at the failure point, never from scratch: the staging area keeps data already extracted. Deferred data is flagged inside the model, not in a separate email.",
     },
-    impact: [
-      ["9 h -> 22 min", "end-to-end monthly close"],
-      ["4", "sources without manual intervention"],
-      ["Reprocessing", "from the failure point, not from scratch"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var D = datos(),
@@ -858,7 +854,7 @@
             continue;
           }
           nodo(i, "run", "in progress", null);
-          await k.wait(320 + Math.round(Math.random() * 120));
+          await k.wait(320 + Math.round(Math.random() * 120)); if (!host.isConnected) return;
 
           if (i === 2 && c.caida) {
             for (var a = 1; a <= 3; a++) {
@@ -868,7 +864,7 @@
                   a +
                   " of 3, no response within 30 s",
               );
-              await k.wait(200);
+              await k.wait(200); if (!host.isConnected) return;
             }
             log.push(
               "er",
@@ -878,7 +874,7 @@
               "in",
               "Resume point saved at node 3; extracted data remains in the staging area.",
             );
-            await k.wait(260);
+            await k.wait(260); if (!host.isConnected) return;
           }
 
           var o = i < 4 ? e.O[i] : null;
@@ -902,7 +898,7 @@
             e.rojas.forEach(function (r) {
               log.push("er", r.id + " · " + r.q + " — " + r.h);
             });
-            await k.wait(280);
+            await k.wait(280); if (!host.isConnected) return;
             if (c.detener) {
               log.push(
                 "er",

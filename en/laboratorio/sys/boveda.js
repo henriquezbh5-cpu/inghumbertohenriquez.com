@@ -233,11 +233,7 @@
       failure:
         "Fields below the threshold are not written. For an uncertain critical field, the selected policy determines whether to hold the entire document or load the reliable fields and leave the critical field pending. No values are invented.",
     },
-    impact: [
-      ["1 schema", "for PDFs, scans and phone photos"],
-      ["6 to 20 s", "reading time per document"],
-      ["Zero", "fields written below the threshold"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var DOCS = datos();
@@ -709,7 +705,7 @@
         ctl.busy("run", true);
         /* Devuelve false si otra carga tomó el relevo mientras esperaba. */
         async function pausa(ms) {
-          await k.wait(ms);
+          await k.wait(ms); if (!host.isConnected) return;
           return token === corrida;
         }
         try {

@@ -176,11 +176,7 @@
             output: 'Modelo publicado con 42 reglas de validación documentadas, cada una con su familia, su umbral y el origen que evalúa.',
             failure: 'Reproceso desde el punto de falla, nunca desde cero: el área de preparación conserva lo ya extraído. El dato diferido se marca dentro del propio modelo, no en un correo aparte.'
         },
-        impact: [
-            ['9 h -> 22 min', 'cierre mensual de punta a punta'],
-            ['4', 'orígenes sin intervención manual'],
-            ['Reproceso', 'desde el punto de falla, no desde cero']
-        ],
+        impact: [],
 
         render: function (host, k) {
             var D = datos(), C = k.C;
@@ -464,16 +460,16 @@
                 for (i = 0; i < NODOS.length; i++) {
                     if (i >= e.hasta) { nodo(i, '', 'no ejecutado', null); continue; }
                     nodo(i, 'run', 'en curso', null);
-                    await k.wait(320 + Math.round(Math.random() * 120));
+                    await k.wait(320 + Math.round(Math.random() * 120)); if (!host.isConnected) return;
 
                     if (i === 2 && c.caida) {
                         for (var a = 1; a <= 3; a++) {
                             log.push('wa', 'Servicio de tesorería: intento ' + a + ' de 3 sin respuesta en 30 s');
-                            await k.wait(200);
+                            await k.wait(200); if (!host.isConnected) return;
                         }
                         log.push('er', 'El servicio no respondió. Token válido, endpoint sin responder.');
                         log.push('in', 'Punto de reanudación guardado en el nodo 3; lo extraído queda en el área de preparación.');
-                        await k.wait(260);
+                        await k.wait(260); if (!host.isConnected) return;
                     }
 
                     var o = i < 4 ? e.O[i] : null;
@@ -487,7 +483,7 @@
                     if (i === 5 && e.rojas.length) {
                         nodo(5, 'fail', e.rojas.length + ' reglas en rojo', null);
                         e.rojas.forEach(function (r) { log.push('er', r.id + ' · ' + r.q + ' — ' + r.h); });
-                        await k.wait(280);
+                        await k.wait(280); if (!host.isConnected) return;
                         if (c.detener) {
                             log.push('er', 'Política "detener si la validación falla": la publicación no ocurre. Se notifica al responsable del cierre con el detalle por regla.');
                             for (var y = 6; y < NODOS.length; y++) nodo(y, '', 'no ejecutado', null);

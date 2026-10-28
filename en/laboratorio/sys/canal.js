@@ -198,11 +198,7 @@
       failure:
         "If the connected data cannot answer the question, it says so and lists what it covers. If the data exists but is outside the user's scope, it explains this without displaying the figure. It never fills the gap with an estimate.",
     },
-    impact: [
-      ["1 source", "the agent queries data rather than answering from memory"],
-      ["24/7", "in corporate chat and the internal portal"],
-      ["Citation", "every answer identifies its source"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var D = datos();
@@ -1167,7 +1163,7 @@
             plural(texto.length, "character", "characters"),
         );
         /* jitter cosmético sobre una latencia simulada */
-        await k.wait(420 + Math.round(Math.random() * 180));
+        await k.wait(420 + Math.round(Math.random() * 180)); if (!host.isConnected) return;
         if (esperando.parentNode === chat) chat.removeChild(esperando);
         var a = resolver(texto),
           nodo = burbuja(a);

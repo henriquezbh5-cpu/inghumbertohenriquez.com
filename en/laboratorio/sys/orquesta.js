@@ -251,11 +251,7 @@
       failure:
         "If an approver does not respond within the SLA, the workflow retries, escalates to the configured backup and notifies the requester without losing the request.",
     },
-    impact: [
-      ["32 h", "approval waiting time eliminated by the workflow"],
-      ["41 s", "workflow cycle from request to issued order"],
-      ["100%", "approvals recorded with who, when and which rule"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var D = datos(),
@@ -790,7 +786,7 @@
           pasos.set(i, "run", "in progress");
           await k.wait(
             360 + Math.round(Math.random() * 110),
-          ); /* jitter solo cosmético */
+          ); if (!host.isConnected) return; /* jitter solo cosmético */
 
           if (i === r.escala) {
             pasos.set(i, "fail", "no response within " + hh(s.h));
@@ -802,14 +798,14 @@
                 " did not respond within the SLA of " +
                 hh(s.h),
             );
-            await k.wait(420);
+            await k.wait(420); if (!host.isConnected) return;
             log.push(
               "wa",
               "Retry with escalation to the backup approver " +
                 D.roster.suplente +
                 "; notification sent to the requester",
             );
-            await k.wait(420);
+            await k.wait(420); if (!host.isConnected) return;
             d += ESCALA_SEG;
             seg += d;
             pasos.set(i, "done", k.fmt(d, 1) + " s · approved by the backup");

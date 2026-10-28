@@ -261,7 +261,7 @@
       "ag-contact-title":
         "&iquest;Cu&aacute;l de estos procesos le est&aacute; comiendo horas a tu equipo?",
       "ag-contact-wa": "Hablemos por WhatsApp",
-      "ag-contact-reply": "RESPUESTA &lt; 24H &middot; GMT-6",
+      "ag-contact-reply": "CONTACTO",
       "ag-form-name": "Nombre",
       "ag-form-email": "Correo",
       "ag-form-msg": "&iquest;Qu&eacute; quieres automatizar?",
@@ -418,7 +418,7 @@
       "ag-contact-title":
         "Which of these processes is eating your team&rsquo;s hours?",
       "ag-contact-wa": "Let&rsquo;s talk on WhatsApp",
-      "ag-contact-reply": "REPLY &lt; 24H &middot; GMT-6",
+      "ag-contact-reply": "CONTACT",
       "ag-form-name": "Name",
       "ag-form-email": "Email",
       "ag-form-msg": "What do you want to automate?",

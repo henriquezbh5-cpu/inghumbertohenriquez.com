@@ -103,11 +103,7 @@
             output: 'Una respuesta calculada sobre las tablas conectadas: la cifra, el desglose que la sostiene y la fuente citada con tabla, filas leídas y el usuario bajo el que se calculó.',
             failure: 'Si la pregunta no se puede responder con los datos conectados, lo declara y enumera lo que sí cubre. Si el dato existe pero está fuera del alcance del usuario, lo dice sin mostrar la cifra. Nunca completa con una estimación.'
         },
-        impact: [
-            ['1 fuente', 'el agente consulta, no responde de memoria'],
-            ['24/7', 'en chat corporativo y portal interno'],
-            ['Cita', 'cada respuesta indica de dónde salió']
-        ],
+        impact: [],
 
         render: function (host, k) {
             var D = datos();
@@ -599,7 +595,7 @@
                 chat.scrollTop = chat.scrollHeight;
                 log.push('in', 'pregunta recibida · ' + plural(texto.length, 'carácter', 'caracteres'));
                 /* jitter cosmético sobre una latencia simulada */
-                await k.wait(420 + Math.round(Math.random() * 180));
+                await k.wait(420 + Math.round(Math.random() * 180)); if (!host.isConnected) return;
                 if (esperando.parentNode === chat) chat.removeChild(esperando);
                 var a = resolver(texto), nodo = burbuja(a);
                 chat.appendChild(nodo);

@@ -145,11 +145,7 @@
             output: 'Lote conciliado listo para programar pago y expediente de excepciones con motivo, monto expuesto y documento de respaldo por cada caso detenido.',
             failure: 'La excepción se enruta a un analista con la diferencia ya calculada y el soporte adjunto. Si el robot no puede leer la orden o no encuentra la recepción, no firma: retiene la factura y la manda a revisión.'
         },
-        impact: [
-            ['92%', 'facturas aprobadas sin intervención humana'],
-            ['4 h -> 6 min', 'por lote de 300 documentos'],
-            ['$0', 'pagos emitidos sin las tres vías probadas']
-        ],
+        impact: [],
         render: function (host, k) {
             var lote = datos();
             var TOTAL = lote.length;
@@ -367,25 +363,25 @@
 
                 log.push('in', 'Disparo: ' + TOTAL + ' adjuntos nuevos en el buzón de cuentas por pagar.');
                 pipe.set(0, 'run');
-                await k.wait(ms(240));
+                await k.wait(ms(240)); if (!host.isConnected) return;
                 if (!vivo()) { ctl.busy('run', false); return; }
                 pipe.set(0, 'done', TOTAL + ' facturas');
 
                 pipe.set(1, 'run');
-                await k.wait(ms(300));
+                await k.wait(ms(300)); if (!host.isConnected) return;
                 if (!vivo()) { ctl.busy('run', false); return; }
                 var leg = TOTAL - e.cuenta.noev;
                 pipe.set(1, e.cuenta.noev ? 'fail' : 'done', leg + ' legibles');
                 if (e.cuenta.noev) log.push('er', e.cuenta.noev + ' adjunto sin número de orden legible. Sin orden no hay tres vías: se retiene y se enruta a captura manual.');
 
                 pipe.set(2, 'run');
-                await k.wait(ms(280));
+                await k.wait(ms(280)); if (!host.isConnected) return;
                 if (!vivo()) { ctl.busy('run', false); return; }
                 pipe.set(2, 'done', leg + ' órdenes');
                 log.push('in', 'Órdenes de compra leídas del ERP para ' + leg + ' facturas.');
 
                 pipe.set(3, 'run');
-                await k.wait(ms(280));
+                await k.wait(ms(280)); if (!host.isConnected) return;
                 if (!vivo()) { ctl.busy('run', false); return; }
                 var conRec = leg - e.cuenta.sinrec;
                 pipe.set(3, e.cuenta.sinrec ? 'fail' : 'done', conRec + ' recepciones');
@@ -403,14 +399,14 @@
                     else if (f.cod === 'menor') log.push('ok', f.d.doc + ' ' + f.d.prov + ': desviación de ' + k.money(f.r) + ' bajo el umbral, a pago programado.');
                     else if (VER[f.cod].bloqueo) log.push('er', f.d.doc + ' ' + f.d.prov + ': ' + VER[f.cod].t.toLowerCase() + ', factura retenida por ' + k.money(f.r) + '.');
                     else log.push('wa', f.d.doc + ' ' + f.d.prov + ': ' + VER[f.cod].t.toLowerCase() + ' fuera de tolerancia, ' + k.money(f.r) + ' al expediente.');
-                    await k.wait(ms(58));
+                    await k.wait(ms(58)); if (!host.isConnected) return;
                     if (fila.parentNode) fila.classList.remove('hit');
                 }
                 if (!vivo()) { ctl.busy('run', false); return; }
                 pipe.set(4, 'done', e.exc + ' excepciones · ' + e.auto + ' a pago');
 
                 pipe.set(5, 'run');
-                await k.wait(ms(260));
+                await k.wait(ms(260)); if (!host.isConnected) return;
                 if (!vivo()) { ctl.busy('run', false); return; }
                 pipe.set(5, 'done', e.auto + ' a pago');
                 log.push('hl', 'Lote cerrado: ' + e.auto + ' facturas al archivo de pago programado y ' + e.exc +

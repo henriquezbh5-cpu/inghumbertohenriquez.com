@@ -197,11 +197,7 @@
       failure:
         "If out-of-sample error exceeds the threshold, the gate blocks publication: the dashboard keeps the previous run and the department receives a diagnosis rather than a misleading number.",
     },
-    impact: [
-      ["30 / 6", "months for fitting and out-of-sample validation"],
-      ["12%", "maximum error allowed before the forecast is held"],
-      ["3 figures", "each month includes lower, central and upper values"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var y = datos();
@@ -791,7 +787,7 @@
         pasos.reset();
         for (i = 0; i < pasos.count; i++) {
           pasos.set(i, "run", "…");
-          await k.wait(240);
+          await k.wait(240); if (!host.isConnected) return;
           pasos.set(i, m[i][0], m[i][1]);
           /* el error fuera de muestra corta la secuencia: lo que sigue
                        se marca detenido sin seguir esperando */

@@ -115,11 +115,7 @@
             output: 'Tasa de éxito por área, horas de trabajo manual evitadas y una cola de excepciones ordenada por criticidad y por volumen perdido, no por hora de fallo.',
             failure: 'Tres reintentos con espera progresiva y sesión renovada. La escritura es idempotente, así que un reintento nunca duplica registros. Si el tercero cae, se abre aviso con la traza completa y el bot queda bajo observación 48 horas.'
         },
-        impact: [
-            ['170', 'bots y flujos vigilados'],
-            ['98.7%', 'ejecuciones correctas sin intervención'],
-            ['4,064 h', 'trabajo manual evitado en 30 días']
-        ],
+        impact: [],
         render: function (host, k) {
             var C = k.C, bots = datos(), rInc = k.rng(4477), etiquetas = [], i;
             for (i = 0; i < 30; i++) etiquetas.push('D' + k.pad(i + 1));
@@ -358,7 +354,7 @@
                         var g = guion[i];
                         if (g.pre) log.push(g.pre[0], g.pre[1]);
                         esc.set(g.p, 'run');
-                        await k.wait(g.w);
+                        await k.wait(g.w); if (!host.isConnected) return;
                         esc.set(g.p, g.e, g.ms);
                         log.push(g.c, g.t);
                     }

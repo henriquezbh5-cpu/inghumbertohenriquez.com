@@ -225,11 +225,7 @@
       failure:
         "Bad data does not enter the model. The batch is returned to the source with the line, field, reason and correction details, so it is corrected once at the source.",
     },
-    impact: [
-      ["0", "invalid records reaching the dashboard"],
-      ["< 2 min", "of checks per batch, before each load"],
-      ["100%", "of rejections with line, field and reason"],
-    ],
+    impact: [],
     render: function (host, k) {
       var C = k.C;
       var regs = datos();
@@ -781,11 +777,11 @@
             ".",
         );
         pipe.set(0, "run");
-        await k.wait(400);
+        await k.wait(400); if (!host.isConnected) return;
         pipe.set(0, "done", k.fmt(TOTAL, 0) + " records");
 
         pipe.set(1, "run");
-        await k.wait(460);
+        await k.wait(460); if (!host.isConnected) return;
         log.push(
           "in",
           "Read and typed: 11 columns, delimiter detected, UTF-8 encoding. No writes yet.",
@@ -801,7 +797,7 @@
         );
         for (var i = 0; i < REGLAS.length; i++) {
           var R = REGLAS[i];
-          await k.wait(240);
+          await k.wait(240); if (!host.isConnected) return;
           if (!estado[R.id]) {
             log.push("wa", R.n + " — rule disabled, not evaluated.");
             continue;
@@ -815,7 +811,7 @@
           );
         }
         pipe.set(2, fallos ? "fail" : "done", k.fmt(fallos, 0) + " findings");
-        await k.wait(360);
+        await k.wait(360); if (!host.isConnected) return;
 
         if (modo === "Full rejection" && fallos) {
           pipe.set(3, "fail", "batch blocked");
@@ -826,7 +822,7 @@
               k.fmt(fallos, 0) +
               " lines to correct.",
           );
-          await k.wait(420);
+          await k.wait(420); if (!host.isConnected) return;
           pipe.set(5, "fail", "load canceled");
           log.push(
             "wa",
@@ -843,7 +839,7 @@
               k.fmt(TOTAL, 0) +
               " records proceed to loading.",
           );
-          await k.wait(420);
+          await k.wait(420); if (!host.isConnected) return;
           pipe.set(
             4,
             fallos ? "fail" : "done",
@@ -858,7 +854,7 @@
           );
         } else {
           pipe.set(3, "done", k.fmt(TOTAL - fallos, 0) + " valid");
-          await k.wait(360);
+          await k.wait(360); if (!host.isConnected) return;
           pipe.set(
             4,
             fallos ? "fail" : "done",
@@ -871,7 +867,7 @@
                   " records quarantined, each with line, field and reason. Source notified with the corrections file."
               : "No findings: the entire batch moves to staging.",
           );
-          await k.wait(400);
+          await k.wait(400); if (!host.isConnected) return;
           if (retenido) {
             pipe.set(5, "fail", "awaiting review");
             log.push(
@@ -892,7 +888,7 @@
             );
           }
         }
-        await k.wait(300);
+        await k.wait(300); if (!host.isConnected) return;
         log.push(
           "in",
           "Checks completed in 1 min 52 s. Batch index published in the quality history.",

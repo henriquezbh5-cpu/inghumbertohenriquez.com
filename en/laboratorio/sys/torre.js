@@ -418,11 +418,7 @@
       failure:
         "If no rule matches, or the text is too short to provide context, the case goes to Tier 1 with the full trace instead of a guessed queue, and the text enters the classifier's retraining batch. A case the agent did not understand is never closed automatically.",
     },
-    impact: [
-      [LAB.kit.pct(D.ratio, 0), "tickets resolved without reaching a person"],
-      ["9 s", "from intake to routing"],
-      ["3 languages", "supported, one destination queue"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var folio = D.folio,
@@ -878,7 +874,7 @@
           pipe.reset();
           for (var i = 0; i < PASOS; i++) {
             pipe.set(i, "run");
-            await k.wait(230);
+            await k.wait(230); if (!host.isConnected) return;
           }
           aplicar(t, a);
         } finally {

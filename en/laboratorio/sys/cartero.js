@@ -106,11 +106,7 @@
       failure:
         "Distinguishes temporary from permanent failures. Retries after 30 s, 60 s and 120 s only where retries help; switches delivery methods if the destination inbox rejects attachments, and aborts with a notification if credentials expire. Never reports false success.",
     },
-    impact: [
-      ["52", "runs per year without intervention"],
-      ["3 h -> 7 min", "per weekly run"],
-      ["100%", "runs with archived evidence"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var D = datos();
@@ -838,7 +834,7 @@
             ", Monday 06:00, on the robot's virtual machine.",
         );
         st.set(0, "run");
-        await k.wait(280);
+        await k.wait(280); if (!host.isConnected) return;
 
         if (P.falla === "sesion") {
           lg.push(
@@ -854,7 +850,7 @@
                 ESPERA[0] +
                 " s, followed by a second sign-in attempt.",
             );
-            await k.wait(240);
+            await k.wait(240); if (!host.isConnected) return;
             lg.push(
               "er",
               "The second attempt was also rejected. This is not a temporary failure: the credential expired.",
@@ -868,7 +864,7 @@
             "hl",
             "Decision: without a session there is nothing to export. Abort the run, do not send the reports email and escalate the notification.",
           );
-          await k.wait(220);
+          await k.wait(220); if (!host.isConnected) return;
           lg.push(
             "wa",
             "Notification sent to the robot owner and the " +
@@ -903,7 +899,7 @@
 
         for (i = 0; i < P.lista.length; i++) {
           st.set(i + 1, "run");
-          await k.wait(190);
+          await k.wait(190); if (!host.isConnected) return;
           if (P.falla === "tablero" && i === P.idxFallo) {
             lg.push(
               "er",
@@ -927,7 +923,7 @@
                   ESPERA[a - 1] +
                   " s before reopening the report.",
               );
-              await k.wait(230);
+              await k.wait(230); if (!host.isConnected) return;
               if (a >= MAX_UTIL) {
                 ok = true;
                 lg.push(
@@ -995,7 +991,7 @@
 
         var vacio = S.entregados === 0;
         st.set(base, "run");
-        await k.wait(210);
+        await k.wait(210); if (!host.isConnected) return;
         st.set(base, "done", vacio ? "no files" : "20 s");
         lg.push(
           vacio ? "er" : "in",
@@ -1021,7 +1017,7 @@
         }
 
         st.set(base + 1, "run");
-        await k.wait(200);
+        await k.wait(200); if (!host.isConnected) return;
         st.set(base + 1, "done", "15 s");
         lg.push(
           "in",
@@ -1054,7 +1050,7 @@
                 ESPERA[a - 1] +
                 " s, then resend the same message.",
             );
-            await k.wait(210);
+            await k.wait(210); if (!host.isConnected) return;
             lg.push(
               "er",
               "Retry " +
@@ -1066,7 +1062,7 @@
             "hl",
             "Decision: retries cannot fix an inbox-policy rejection. The robot uploads the files to the evidence folder and rewrites the email with a link.",
           );
-          await k.wait(240);
+          await k.wait(240); if (!host.isConnected) return;
           lg.push(
             "ok",
             "Files published to the evidence folder in " +
@@ -1075,7 +1071,7 @@
           );
         }
         for (i = 0; i < P.d; i++) {
-          await k.wait(60);
+          await k.wait(60); if (!host.isConnected) return;
           lg.push(
             vacio ? "wa" : "ok",
             vacio
@@ -1100,7 +1096,7 @@
         st.set(base + 2, "done", S.seg.envio + " s");
 
         st.set(base + 3, "run");
-        await k.wait(240);
+        await k.wait(240); if (!host.isConnected) return;
         st.set(base + 3, "done", "18 s");
         lg.push(
           "ok",

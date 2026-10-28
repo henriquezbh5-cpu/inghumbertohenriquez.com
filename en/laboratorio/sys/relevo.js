@@ -505,11 +505,7 @@
       failure:
         "Three different responses. If the system does not answer, retries wait 30 s, 90 s and 5 min. If it rejects the operation, a ticket records the exact step and the change is never marked complete. If it is in a close window, the step is scheduled for reopening and the rest of the sequence continues.",
     },
-    impact: [
-      ["1 in 3", "onboarding requests previously arrived incomplete"],
-      ["under 15 min", "from approval to closed record"],
-      ["0", "active permissions after the effective date"],
-    ],
+    impact: [],
     render: function (host, k) {
       var corriendo = false;
 
@@ -1132,7 +1128,7 @@
             "er",
             "Pre-validation: source and destination departments are the same. The form is rejected.",
           );
-          await k.wait(360);
+          await k.wait(360); if (!host.isConnected) return;
           log.push(
             "wa",
             "Returned to management with the reason. Zero writes, zero pending rollbacks.",
@@ -1154,7 +1150,7 @@
             "in",
             "Step " + k.pad(i + 1) + " · " + SIS[p.sis].n + " — " + p.n,
           );
-          await k.wait(190 + Math.random() * 90);
+          await k.wait(190 + Math.random() * 90); if (!host.isConnected) return;
 
           if (golpe) {
             st.set(i, "fail", f.marca);
@@ -1168,14 +1164,14 @@
                 k.pad(i + 1) +
                 " marked failed.",
             );
-            await k.wait(340);
+            await k.wait(340); if (!host.isConnected) return;
             extra += f.seg;
             if (f.modo === "reintento") {
               log.push(
                 "wa",
                 "Increasing delays: retry 1 after 30 s, retry 2 after 90 s, retry 3 after 5 min.",
               );
-              await k.wait(320);
+              await k.wait(320); if (!host.isConnected) return;
               st.set(i, "done", "2 attempts · " + corto(p.seg + f.seg));
               pipe.set(p.sis, "done", c.cuenta[p.sis] + " written");
               tocados[p.sis] = 1;
@@ -1186,7 +1182,7 @@
                 "wa",
                 "Three retries with increasing delays. All three return the same rejection: retries cannot resolve this.",
               );
-              await k.wait(320);
+              await k.wait(320); if (!host.isConnected) return;
               log.push(
                 "er",
                 "Ticket " +
@@ -1195,7 +1191,7 @@
                   k.pad(i + 1) +
                   ". The step remains pending.",
               );
-              await k.wait(300);
+              await k.wait(300); if (!host.isConnected) return;
               log.push(
                 "wa",
                 "Independent steps continue; the change does not show as successfully closed while the ticket remains open.",
@@ -1211,7 +1207,7 @@
                   REAPERTURA +
                   ". The step is scheduled, not forced.",
               );
-              await k.wait(300);
+              await k.wait(300); if (!host.isConnected) return;
               st.set(i, "", "scheduled " + REAPERTURA);
               pipe.set(p.sis, "", "deferred until " + REAPERTURA);
               dif++;
@@ -1234,7 +1230,7 @@
                 c.perfil.toLowerCase() +
                 " before writing. Sent to department management.",
             );
-            await k.wait(260);
+            await k.wait(260); if (!host.isConnected) return;
             log.push(
               "ok",
               "Approval recorded with acknowledgment. The step continues with approval attached.",

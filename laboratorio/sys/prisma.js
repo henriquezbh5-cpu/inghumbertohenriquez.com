@@ -188,11 +188,7 @@
             output: 'Indicadores, cuatro visualizaciones, conclusiones escritas y el resumen descargable.',
             failure: 'Si el archivo no trae filas útiles lo dice y explica qué esperaba encontrar, en vez de dibujar un tablero vacío.'
         },
-        impact: [
-            ['0 clics', 'de configuración para el primer tablero'],
-            ['En tu equipo', 'el archivo nunca sale del navegador'],
-            ['Cualquier CSV o Excel', 'sin plantilla previa']
-        ],
+        impact: [],
 
         render: function (host, k) {
             var S = { datos: null, fuente: '', graficas: {}, arrancado: false };
@@ -400,7 +396,7 @@
                     estadoTxt.style.color = 'var(--teal)';
                     for (var i = 0; i < PASOS.length; i++) {
                         estadoTxt.textContent = PASOS[i];
-                        await k.wait(190);
+                        await k.wait(190); if (!host.isConnected) return;
                     }
                     estado.classList.add('hide');
                 } else {

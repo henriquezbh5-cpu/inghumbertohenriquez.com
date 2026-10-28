@@ -136,11 +136,7 @@
             output: 'Lote limpio listo para cargar, cuarentena con el motivo escrito registro por registro e índice de calidad acumulado lote a lote.',
             failure: 'Nada malo entra al modelo. El lote se devuelve al origen con el detalle de qué corregir, línea, campo y motivo, para que la corrección se haga una vez y en la fuente.'
         },
-        impact: [
-            ['0', 'registros con defecto llegando al tablero'],
-            ['< 2 min', 'de control por lote, antes de cada carga'],
-            ['100%', 'de los rechazos con línea, campo y motivo']
-        ],
+        impact: [],
         render: function (host, k) {
             var C = k.C;
             var regs = datos();
@@ -433,11 +429,11 @@
 
                 log.push('hl', 'Lote ' + LOTE + ' detectado en la carpeta de entrada — ' + k.fmt(TOTAL, 0) + ' registros, política: ' + modo + '.');
                 pipe.set(0, 'run');
-                await k.wait(400);
+                await k.wait(400); if (!host.isConnected) return;
                 pipe.set(0, 'done', k.fmt(TOTAL, 0) + ' registros');
 
                 pipe.set(1, 'run');
-                await k.wait(460);
+                await k.wait(460); if (!host.isConnected) return;
                 log.push('in', 'Lectura y tipado: 11 columnas, separador detectado, codificación UTF-8. Sin escritura todavía.');
                 pipe.set(1, 'done', '11 columnas');
 
@@ -445,37 +441,37 @@
                 log.push('in', 'Motor de reglas: ' + ev.activas.length + ' de 6 validaciones activas sobre el archivo crudo.');
                 for (var i = 0; i < REGLAS.length; i++) {
                     var R = REGLAS[i];
-                    await k.wait(240);
+                    await k.wait(240); if (!host.isConnected) return;
                     if (!estado[R.id]) { log.push('wa', R.n + ' — regla desactivada, no se evalúa.'); continue; }
                     var c = ev.conteo[R.id];
                     log.push(c ? 'er' : 'ok', R.n + ' — ' + (c ? k.fmt(c, 0) + ' registros detenidos.' : 'sin hallazgos.'));
                 }
                 pipe.set(2, fallos ? 'fail' : 'done', k.fmt(fallos, 0) + ' hallazgos');
-                await k.wait(360);
+                await k.wait(360); if (!host.isConnected) return;
 
                 if (modo === 'Rechazo total' && fallos) {
                     pipe.set(3, 'fail', 'lote bloqueado');
                     pipe.set(4, 'fail', k.fmt(TOTAL, 0) + ' devueltos');
                     log.push('er', 'Rechazo total: el lote completo se devuelve al origen con el detalle de las ' + k.fmt(fallos, 0) + ' líneas a corregir.');
-                    await k.wait(420);
+                    await k.wait(420); if (!host.isConnected) return;
                     pipe.set(5, 'fail', 'carga cancelada');
                     log.push('wa', 'Carga cancelada. El tablero conserva el último lote válido; ningún dato malo lo alcanza.');
                 } else if (modo === 'Solo advertir') {
                     pipe.set(3, 'done', k.fmt(TOTAL, 0) + ' preparados');
                     pipe.set(4, 'run', k.fmt(fallos, 0) + ' avisos');
                     log.push('wa', 'Solo advertir: ' + k.fmt(fallos, 0) + ' excepciones registradas como aviso; los ' + k.fmt(TOTAL, 0) + ' registros siguen a la carga.');
-                    await k.wait(420);
+                    await k.wait(420); if (!host.isConnected) return;
                     pipe.set(4, fallos ? 'fail' : 'done', k.fmt(fallos, 0) + ' avisos');
                     pipe.set(5, 'done', k.fmt(TOTAL, 0) + ' cargados');
                     log.push('er', 'Advertencia: el tablero recibe ' + k.fmt(fallos, 0) + ' registros con defecto conocido. Modo de medición, no de producción.');
                 } else {
                     pipe.set(3, 'done', k.fmt(TOTAL - fallos, 0) + ' limpios');
-                    await k.wait(360);
+                    await k.wait(360); if (!host.isConnected) return;
                     pipe.set(4, fallos ? 'fail' : 'done', k.fmt(fallos, 0) + ' apartados');
                     log.push(fallos ? 'wa' : 'ok', fallos
                         ? k.fmt(fallos, 0) + ' registros a cuarentena, cada uno con línea, campo y motivo. Aviso al origen con el archivo de correcciones.'
                         : 'Sin hallazgos: el lote completo pasa a preparación.');
-                    await k.wait(400);
+                    await k.wait(400); if (!host.isConnected) return;
                     if (retenido) {
                         pipe.set(5, 'fail', 'espera revisión');
                         log.push('wa', 'Índice ' + k.pct(idx, 1) + ' bajo el umbral de ' + umbral + '%: la carga queda retenida. Con esa proporción de fallas se revisa la exportación de origen antes de cargar nada.');
@@ -484,7 +480,7 @@
                         log.push('ok', 'Carga autorizada: ' + k.fmt(TOTAL - fallos, 0) + ' registros limpios al modelo. Cero registros con defecto en el tablero.');
                     }
                 }
-                await k.wait(300);
+                await k.wait(300); if (!host.isConnected) return;
                 log.push('in', 'Control terminado en 1 min 52 s. Índice del lote publicado en el histórico de calidad.');
                 bloquear(false);
             }

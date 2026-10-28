@@ -359,11 +359,7 @@
       failure:
         "Without coverage, the app keeps working with downloaded data and queues evidence on the device. When the signal returns, it synchronizes automatically in order, without technician intervention; each order has its own key, so resending the queue does not duplicate delivery.",
     },
-    impact: [
-      ["No signal", "the app keeps working"],
-      ["39%", "fewer kilometers than business-rule ordering"],
-      ["100%", "orders closed with evidence and timestamps"],
-    ],
+    impact: [],
     render: function (host, k) {
       var corrida = 0,
         P = null,
@@ -954,13 +950,13 @@
             n +
             " orders approved by the dispatcher and sent to the device.",
         );
-        await k.wait(320);
+        await k.wait(320); if (!host.isConnected) return;
         if (mi !== corrida) return;
         log.push(
           "ok",
           "Day's package downloaded: orders, area map, delivery forms and reason catalog. The app no longer needs a network to operate.",
         );
-        await k.wait(320);
+        await k.wait(320); if (!host.isConnected) return;
         if (mi !== corrida) return;
         if (off)
           log.push(
@@ -994,7 +990,7 @@
               motivoTexto(s) +
               ").",
           );
-          await k.wait(180);
+          await k.wait(180); if (!host.isConnected) return;
           if (mi !== corrida) return;
 
           if (s.cerrado) {
@@ -1010,7 +1006,7 @@
               "er",
               "Customer closed. Without the recipient's signature, the order is not marked delivered: the technician selects a catalog reason and takes a location photo.",
             );
-            await k.wait(260);
+            await k.wait(260); if (!host.isConnected) return;
             if (mi !== corrida) return;
             log.push(
               "wa",
@@ -1018,7 +1014,7 @@
                 ventana(s) +
                 ". The dispatcher sees the change on the dashboard immediately, not at day's end.",
             );
-            await k.wait(160);
+            await k.wait(160); if (!host.isConnected) return;
             if (mi !== corrida) return;
             continue;
           }
@@ -1037,7 +1033,7 @@
                 sello(s) +
                 " saved in the device's local queue.",
             );
-            await k.wait(240);
+            await k.wait(240); if (!host.isConnected) return;
             if (mi !== corrida) return;
             log.push(
               "in",
@@ -1069,7 +1065,7 @@
             );
           pintarPipe(e);
           pintarSalida(e);
-          await k.wait(160);
+          await k.wait(160); if (!host.isConnected) return;
           if (mi !== corrida) return;
         }
 
@@ -1081,7 +1077,7 @@
             "hl",
             "Coverage restored after leaving the eastern sector. Synchronization starts automatically.",
           );
-          await k.wait(280);
+          await k.wait(280); if (!host.isConnected) return;
           if (mi !== corrida) return;
           for (i = 0; i < enCola.length; i++) {
             marcar(enCola[i], "ok");
@@ -1097,7 +1093,7 @@
                 k.pad(enCola[i] + 1) +
                 " synchronized with its original timestamp, not the upload time.",
             );
-            await k.wait(180);
+            await k.wait(180); if (!host.isConnected) return;
             if (mi !== corrida) return;
           }
           log.push(

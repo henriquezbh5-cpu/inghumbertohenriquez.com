@@ -292,11 +292,7 @@
       failure:
         "If the file has no usable rows, it explains what was expected rather than drawing an empty dashboard.",
     },
-    impact: [
-      ["0 clicks", "to configure your first dashboard"],
-      ["On your device", "the file never leaves your browser"],
-      ["Any CSV or Excel file", "no template required"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var S = { datos: null, fuente: "", graficas: {}, arrancado: false };
@@ -611,7 +607,7 @@
           estadoTxt.style.color = "var(--teal)";
           for (var i = 0; i < PASOS.length; i++) {
             estadoTxt.textContent = PASOS[i];
-            await k.wait(190);
+            await k.wait(190); if (!host.isConnected) return;
           }
           estado.classList.add("hide");
         } else {

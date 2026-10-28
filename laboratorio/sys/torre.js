@@ -199,11 +199,7 @@
             output: 'Un ticket clasificado, priorizado y enrutado, con la traza de qué regla y qué término lo decidieron, más un borrador de primera respuesta en el idioma de entrada, editable antes de enviar.',
             failure: 'Si ninguna regla coincide, o si el texto es tan corto que no da contexto, el caso va al nivel 1 con la traza completa en lugar de adivinar una cola, y ese texto entra al lote de reentrenamiento del clasificador. Nunca se cierra solo un caso que el agente no entendió.'
         },
-        impact: [
-            [LAB.kit.pct(D.ratio, 0), 'tickets resueltos sin llegar a una persona'],
-            ['9 s', 'desde que entra hasta que se enruta'],
-            ['3 idiomas', 'de entrada, una sola cola de salida']
-        ],
+        impact: [],
 
         render: function (host, k) {
             var folio = D.folio, corriendo = false;
@@ -467,7 +463,7 @@
                     pipe.reset();
                     for (var i = 0; i < PASOS; i++) {
                         pipe.set(i, 'run');
-                        await k.wait(230);
+                        await k.wait(230); if (!host.isConnected) return;
                     }
                     aplicar(t, a);
                 } finally {

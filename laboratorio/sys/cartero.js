@@ -106,11 +106,7 @@
       failure:
         "Distingue el fallo transitorio del permanente. Reintenta con espera de 30 s, 60 s y 120 s solo donde reintentar sirve; ante un rechazo del buzón de destino cambia de canal, y ante una credencial vencida aborta y avisa. Nunca reporta éxito falso.",
     },
-    impact: [
-      ["52", "corridas al año sin intervención"],
-      ["3 h -> 7 min", "por corrida semanal"],
-      ["100%", "corridas con evidencia archivada"],
-    ],
+    impact: [],
 
     render: function (host, k) {
       var D = datos();
@@ -857,7 +853,7 @@
             ", lunes 06:00, en la máquina virtual del robot.",
         );
         st.set(0, "run");
-        await k.wait(280);
+        await k.wait(280); if (!host.isConnected) return;
 
         if (P.falla === "sesion") {
           lg.push(
@@ -873,7 +869,7 @@
                 ESPERA[0] +
                 " s y segundo intento de sesión.",
             );
-            await k.wait(240);
+            await k.wait(240); if (!host.isConnected) return;
             lg.push(
               "er",
               "Segundo intento rechazado igual. No es un tropiezo transitorio: la credencial venció.",
@@ -890,7 +886,7 @@
             "hl",
             "Decisión: sin sesión no hay nada que exportar. Aborta la corrida, no manda el correo de reportes y escala el aviso.",
           );
-          await k.wait(220);
+          await k.wait(220); if (!host.isConnected) return;
           lg.push(
             "wa",
             "Aviso enviado al responsable del robot y a los " +
@@ -925,7 +921,7 @@
 
         for (i = 0; i < P.lista.length; i++) {
           st.set(i + 1, "run");
-          await k.wait(190);
+          await k.wait(190); if (!host.isConnected) return;
           if (P.falla === "tablero" && i === P.idxFallo) {
             lg.push(
               "er",
@@ -949,7 +945,7 @@
                   ESPERA[a - 1] +
                   " s antes de volver a abrir el reporte.",
               );
-              await k.wait(230);
+              await k.wait(230); if (!host.isConnected) return;
               if (a >= MAX_UTIL) {
                 ok = true;
                 lg.push(
@@ -1016,7 +1012,7 @@
 
         var vacio = S.entregados === 0;
         st.set(base, "run");
-        await k.wait(210);
+        await k.wait(210); if (!host.isConnected) return;
         st.set(base, "done", vacio ? "sin archivos" : "20 s");
         lg.push(
           vacio ? "er" : "in",
@@ -1042,7 +1038,7 @@
         }
 
         st.set(base + 1, "run");
-        await k.wait(200);
+        await k.wait(200); if (!host.isConnected) return;
         st.set(base + 1, "done", "15 s");
         lg.push(
           "in",
@@ -1075,7 +1071,7 @@
                 ESPERA[a - 1] +
                 " s y reenvío del mismo mensaje.",
             );
-            await k.wait(210);
+            await k.wait(210); if (!host.isConnected) return;
             lg.push(
               "er",
               "Reintento " +
@@ -1087,7 +1083,7 @@
             "hl",
             "Decisión: reintentar no arregla un rechazo por política del buzón. El robot sube los archivos a la carpeta de evidencia y reescribe el correo con el enlace.",
           );
-          await k.wait(240);
+          await k.wait(240); if (!host.isConnected) return;
           lg.push(
             "ok",
             "Archivos publicados en la carpeta de evidencia en " +
@@ -1096,7 +1092,7 @@
           );
         }
         for (i = 0; i < P.d; i++) {
-          await k.wait(60);
+          await k.wait(60); if (!host.isConnected) return;
           lg.push(
             vacio ? "wa" : "ok",
             vacio
@@ -1121,7 +1117,7 @@
         st.set(base + 2, "done", S.seg.envio + " s");
 
         st.set(base + 3, "run");
-        await k.wait(240);
+        await k.wait(240); if (!host.isConnected) return;
         st.set(base + 3, "done", "18 s");
         lg.push(
           "ok",

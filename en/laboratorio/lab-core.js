@@ -31,7 +31,15 @@
        reservados para estado, nunca como quinta serie. */
   var CAT = [C.teal, C.violet, C.amber, C.cyan];
 
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var reduce = motionPreference.matches;
+  motionPreference.addEventListener("change", function (event) {
+    reduce = event.matches;
+    if (window.LAB) {
+      window.LAB.reduce = reduce;
+      window.LAB.kit.reduce = reduce;
+    }
+  });
 
   /* ---------- utilidades base ---------- */
   function $(sel, root) {
