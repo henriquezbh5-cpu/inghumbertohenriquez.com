@@ -23,11 +23,11 @@
       button.setAttribute("aria-pressed", String(motion.paused));
       button.setAttribute(
         "aria-label",
-        motion.paused ? "Enable background motion" : "Pause background motion",
+        motion.paused ? "Enable motion" : "Pause motion",
       );
       button.setAttribute(
         "title",
-        motion.paused ? "Enable background motion" : "Pause background motion",
+        motion.paused ? "Enable motion" : "Pause motion",
       );
       button.querySelector("[data-motion-label]").textContent = motion.paused
         ? "ENABLE MOTION"

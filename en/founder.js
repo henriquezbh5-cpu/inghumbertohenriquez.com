@@ -26,7 +26,7 @@
     const playing = !video.paused;
     button.setAttribute(
       "aria-label",
-      playing ? "Pause the Optimatiza video" : "Play the Optimatiza video",
+      playing ? "Pause video: Optimatiza" : "Play video: Optimatiza",
     );
     button.querySelector("[data-video-label]").textContent = playing
       ? "Pause video"

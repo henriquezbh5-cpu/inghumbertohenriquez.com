@@ -151,35 +151,15 @@
     }
   });
 
-  // Load the existing assistant only after a visitor asks to open it.
+  // Keep the floating robot intact and offer a second entry from the footer.
   const trigger = document.getElementById("novaTrigger");
   const chatStatus = document.getElementById("novaStatus");
   trigger.hidden = false;
   trigger.addEventListener("click", () => {
-    if (trigger.disabled) return;
-    trigger.disabled = true;
-    trigger.textContent = words.loading;
-    chatStatus.textContent = "";
-    const script = document.createElement("script");
-    script.src = trigger.dataset.src;
-    script.onload = () => {
-      const launcher = document.querySelector(".nova-launch");
-      if (!launcher) {
-        script.onerror();
-        return;
-      }
-      launcher.textContent = words.chat;
-      launcher.setAttribute("aria-label", words.chat);
-      launcher.className = "nova-launch text-link";
-      trigger.replaceWith(launcher);
-      launcher.click();
-    };
-    script.onerror = () => {
-      script.remove();
-      trigger.disabled = false;
-      trigger.textContent = words.chat;
-      chatStatus.textContent = words.unavailable;
-    };
-    document.body.append(script);
+    const launcher = document.querySelector(".nova-launch");
+    if (launcher) {
+      if (launcher.getAttribute("aria-expanded") !== "true") launcher.click();
+      else document.querySelector(".nova-input")?.focus();
+    } else chatStatus.textContent = words.unavailable;
   });
 })();
