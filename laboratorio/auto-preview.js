@@ -110,7 +110,7 @@
         node(
           "dd",
           value ? "avp-field-value" : "avp-field-value avp-field-empty",
-          value || "â€”",
+          value || "—",
         ),
       );
       list.append(group);
@@ -129,7 +129,7 @@
       const group = node("div", "avp-metric");
       group.append(
         node("dt", null, t(metric.label)),
-        node("dd", null, t(metric.value) || "â€”"),
+        node("dd", null, t(metric.value) || "—"),
       );
       list.append(group);
     });
@@ -143,7 +143,7 @@
       node(
         "figcaption",
         null,
-        word("DistribuciÃ³n del ejemplo", "Sample breakdown"),
+        word("Distribución del ejemplo", "Sample breakdown"),
       ),
     );
     const max = Math.max(
@@ -206,7 +206,7 @@
     const list = node("ol", "avp-messages");
     list.setAttribute(
       "aria-label",
-      word("ConversaciÃ³n de ejemplo", "Sample conversation"),
+      word("Conversación de ejemplo", "Sample conversation"),
     );
     view.messages.forEach((message) => {
       const item = node(
@@ -238,7 +238,7 @@
     root.dataset.kind = kind;
     root.setAttribute(
       "aria-label",
-      word("Vista simulada de la aplicaciÃ³n", "Simulated application view"),
+      word("Vista simulada de la aplicación", "Simulated application view"),
     );
     const shell = node("div", "avp-window");
     const header = node("header", "avp-header");
@@ -247,7 +247,7 @@
     const title = node("div", "avp-title");
     title.append(
       node("span", "avp-overline", word("Vista de ejemplo", "Sample view")),
-      node("h3", null, t(view.title) || word("AplicaciÃ³n", "Application")),
+      node("h3", null, t(view.title) || word("Aplicación", "Application")),
     );
     header.append(brand, title);
     const dots = node("span", "avp-window-dots");
@@ -328,8 +328,8 @@
         "span",
         null,
         word(
-          "Datos de ejemplo Â· Vista automÃ¡tica",
-          "Sample data Â· Automatic view",
+          "Datos de ejemplo · Vista automática",
+          "Sample data · Automatic view",
         ),
       ),
     );

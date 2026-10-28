@@ -9,7 +9,7 @@
     />
     <meta content="strict-origin-when-cross-origin" name="referrer" />
     <meta content="#0A1322" name="theme-color" />
-    <meta content="dark" name="color-scheme" />
+    <meta content="light" name="color-scheme" />
     <title>Data Consolidation and Close Controls | Humberto Henríquez</title>
     <meta
       content="RELOJ technical case study: a four-source consolidation demo covering data freshness and publication decisions. A synthetic scenario you can run in your browser."
@@ -147,8 +147,15 @@
       property="og:image:alt"
       content="Humberto Henríquez — Power Platform, Data Science, Automation"
     />
-    <link rel="stylesheet" href="/consolidation-demo.css?v=6d24b0bec075" />
-    <script defer src="/consolidation-demo.js?v=b31b4a3be38a"></script>
+    <link rel="stylesheet" href="/consolidation-auto.css?v=9098ba3af2dc" />
+    <link rel="stylesheet" href="/laboratorio/auto-player.css?v=d808296c05f6" />
+    <link rel="stylesheet" href="/laboratorio/auto-preview.css?v=e76b75b41bca" />
+    <script defer src="/laboratorio/auto-icons.js?v=6bb088c82973"></script>
+    <script defer src="/laboratorio/auto-scenes.js?v=5c19e307edc1"></script>
+    <script defer src="/laboratorio/auto-playback.js?v=550120945dc6"></script>
+    <script defer src="/laboratorio/auto-preview.js?v=287875f09ae5"></script>
+    <script defer src="/laboratorio/auto-player.js?v=f36925fb7953"></script>
+    <script defer src="/consolidation-auto.js?v=f4aa58eb958e"></script>
   </head>
   <body class="profile-page consolidation-page">
     <a class="skip-link mono" href="#contenido">Skip to content</a>
@@ -200,230 +207,26 @@
         <span aria-current="page">Data consolidation</span>
       </nav>
       <header class="cd-hero">
-        <p class="cd-eyebrow">Interactive demonstration</p>
+        <p class="cd-eyebrow">Automatic demonstration</p>
         <h1>Four sources. One result you can check.</h1>
         <p class="cd-lede">
-          Change what happens at a source and see whether the dashboard is
-          published, stopped or shown with a warning.
+          Watch four sources become one dashboard, see what happens when a
+          source fails and how the process recovers.
         </p>
       </header>
       <section
-        class="cd-demo"
         id="consolidationDemo"
-        aria-label="Interactive demonstration"
+        class="cd-auto-host"
+        aria-label="Automatic consolidation demonstration"
       >
-        <p class="cd-scope">
-          Browser simulation with sample data. Technology names show their role
-          in the process; no real systems are connected.
-        </p>
-        <form class="cd-controls" id="consolidationForm">
-          <fieldset class="cd-scenarios">
-            <legend>1. Choose what happens</legend>
-            <div class="cd-scenario-options">
-              <label
-                ><input
-                  type="radio"
-                  name="scenario"
-                  value="current"
-                  checked
-                /><span>All up to date</span></label
-              >
-              <label
-                ><input type="radio" name="scenario" value="stale" /><span
-                  >Outdated Excel</span
-                ></label
-              >
-              <label
-                ><input type="radio" name="scenario" value="offline" /><span
-                  >API unavailable</span
-                ></label
-              >
-            </div>
-          </fieldset>
-          <label class="cd-policy" for="publicationPolicy"
-            ><span>If there is a problem</span
-            ><select id="publicationPolicy" name="policy">
-              <option value="stop">Stop publication</option>
-              <option value="warn">Publish with a warning</option>
-            </select></label
-          >
-          <div class="cd-actions">
-            <button
-              class="cd-button"
-              id="consolidateButton"
-              type="submit"
-              disabled
-            >
-              Consolidate data</button
-            ><button
-              class="cd-reset"
-              id="consolidationReset"
-              type="reset"
-              disabled
-            >
-              Reset
-            </button>
-          </div>
-        </form>
-        <noscript
-          ><p class="cd-noscript">
-            Enable JavaScript to use this demonstration’s controls.
-          </p></noscript
-        >
-        <section class="cd-inputs" aria-labelledby="sourceTitle">
-          <h2 id="sourceTitle" class="cd-section-title">
-            2. Review the sources
-          </h2>
-          <div class="cd-source-grid">
-            <article class="cd-source" data-source="sql">
-              <div class="cd-source-top">
-                <span class="cd-source-icon cd-icon-sql" aria-hidden="true"
-                  >SQL</span
-                ><span class="cd-source-state" data-source-status
-                  >Up to date</span
-                >
-              </div>
-              <h3>SQL Server</h3>
-              <p>Orders</p>
-              <div class="cd-source-foot">
-                <span><strong data-source-rows>3</strong> rows</span
-                ><span data-source-age>1 h since update</span>
-              </div>
-            </article>
-            <article class="cd-source" data-source="sp">
-              <div class="cd-source-top">
-                <span class="cd-source-icon cd-icon-sp" aria-hidden="true"
-                  >SP</span
-                ><span class="cd-source-state" data-source-status
-                  >Up to date</span
-                >
-              </div>
-              <h3>SharePoint</h3>
-              <p>Adjustments</p>
-              <div class="cd-source-foot">
-                <span><strong data-source-rows>3</strong> rows</span
-                ><span data-source-age>2 h since update</span>
-              </div>
-            </article>
-            <article class="cd-source" data-source="api">
-              <div class="cd-source-top">
-                <span class="cd-source-icon cd-icon-api" aria-hidden="true"
-                  >API</span
-                ><span class="cd-source-state" data-source-status
-                  >Up to date</span
-                >
-              </div>
-              <h3>API</h3>
-              <p>Collections</p>
-              <div class="cd-source-foot">
-                <span><strong data-source-rows>2</strong> rows</span
-                ><span data-source-age>1 h since update</span>
-              </div>
-            </article>
-            <article class="cd-source" data-source="excel">
-              <div class="cd-source-top">
-                <span class="cd-source-icon cd-icon-excel" aria-hidden="true"
-                  >XLS</span
-                ><span class="cd-source-state" data-source-status
-                  >Up to date</span
-                >
-              </div>
-              <h3>Excel</h3>
-              <p>Branches</p>
-              <div class="cd-source-foot">
-                <span><strong data-source-rows>2</strong> rows</span
-                ><span data-source-age>3 h since update</span>
-              </div>
-            </article>
-          </div>
-        </section>
-        <div class="cd-outcome-grid">
-          <section class="cd-process" aria-labelledby="processTitle">
-            <h2 id="processTitle" class="cd-section-title">
-              3. Follow the process
-            </h2>
-            <ol class="cd-pipeline">
-              <li data-step="collect">
-                <span class="cd-step-symbol" aria-hidden="true">1</span>
-                <div><strong>Collect</strong><span>Power Automate</span></div>
-                <span class="cd-step-state" data-step-status></span>
-              </li>
-              <li data-step="prepare">
-                <span class="cd-step-symbol" aria-hidden="true">2</span>
-                <div><strong>Combine</strong><span>Python · SQL</span></div>
-                <span class="cd-step-state" data-step-status></span>
-              </li>
-              <li data-step="validate">
-                <span class="cd-step-symbol" aria-hidden="true">3</span>
-                <div><strong>Validate</strong><span>Quality rules</span></div>
-                <span class="cd-step-state" data-step-status></span>
-              </li>
-            </ol>
-            <p class="cd-rule" id="consolidationRule"></p>
-          </section>
-          <section class="cd-dashboard" aria-labelledby="resultTitle">
-            <div class="cd-dashboard-head">
-              <h2 id="resultTitle" class="cd-section-title">
-                4. Check the result
-              </h2>
-              <span>Power BI-style view</span>
-            </div>
-            <div
-              id="consolidationStatus"
-              class="cd-status"
-              role="status"
-              aria-live="polite"
-            >
-              <strong>Ready to consolidate</strong>
-              <p>Choose a scenario, then select Consolidate data.</p>
-            </div>
-            <dl class="cd-metrics">
-              <div class="cd-metric-main">
-                <dt>Sample amount</dt>
-                <dd id="consolidationAmount">—</dd>
-              </div>
-              <div>
-                <dt>Unique records</dt>
-                <dd id="consolidationRecords">—</dd>
-              </div>
-              <div>
-                <dt>Duplicates removed</dt>
-                <dd id="consolidationDuplicates">—</dd>
-              </div>
-            </dl>
-            <div class="cd-chart">
-              <h3>Breakdown by region</h3>
-              <div class="cd-chart-row">
-                <span>North</span>
-                <div class="cd-track">
-                  <span class="cd-bar" data-bar="north"></span>
-                </div>
-                <strong data-region="north">—</strong>
-              </div>
-              <div class="cd-chart-row">
-                <span>South</span>
-                <div class="cd-track">
-                  <span class="cd-bar" data-bar="south"></span>
-                </div>
-                <strong data-region="south">—</strong>
-              </div>
-              <div class="cd-chart-row">
-                <span>West</span>
-                <div class="cd-track">
-                  <span class="cd-bar" data-bar="west"></span>
-                </div>
-                <strong data-region="west">—</strong>
-              </div>
-            </div>
-          </section>
-        </div>
-        <details class="cd-details">
-          <summary>See what happened at each source</summary>
-          <ol id="consolidationTrace" class="cd-trace">
-            <li>Choose a scenario, then select Consolidate data.</li>
-          </ol>
-        </details>
+        <p>Preparing the walkthrough…</p>
       </section>
+      <noscript
+        ><p>
+          This demonstration requires JavaScript. Four sample sources are
+          combined, validated and displayed in a dashboard.
+        </p></noscript
+      >
       <section class="cd-technologies" aria-labelledby="technologyTitle">
         <h2 id="technologyTitle">What each technology contributes</h2>
         <div class="cd-tech-grid">
@@ -445,7 +248,7 @@
         </div>
       </section>
       <aside class="cd-next">
-        <h2>Explore the same problem with more controls</h2>
+        <h2>More processes in motion</h2>
         <div>
           <a class="cd-button" href="/en/laboratorio/#reloj"
             >Open RELOJ in the laboratory</a
@@ -455,13 +258,12 @@
       <details class="cd-details cd-resources">
         <summary>Sources and scope of this demo</summary>
         <p>
-          Totals and states are calculated here using synthetic data. A real
+          Data and states follow a prepared illustrative sequence. A real
           solution requires access, connectors, validation and testing against
           the organization’s systems.
         </p>
         <div>
-          <a href="/consolidation-demo.js?v=b31b4a3be38a"
-            >Read the code for this demo</a
+          <a href="/laboratorio/auto-scenes.js?v=5c19e307edc1">Read the code for this demo</a
           ><a href="/docs/reloj-review-guide.md" download
             >Download the RELOJ review guide</a
           >

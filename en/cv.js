@@ -638,7 +638,7 @@ document.querySelectorAll(".tool-grid .tool").forEach((el, i) => {
       t: "[00:01.900]",
       a: "OPERATIONS",
       c: "la-tool",
-      m: "18 demonstrations · Power Platform · applied AI · data",
+      m: "20 demonstrations · Power Platform · applied AI · data",
     },
     {
       t: "[00:02.400]",

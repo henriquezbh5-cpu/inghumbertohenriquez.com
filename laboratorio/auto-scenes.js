@@ -2421,8 +2421,8 @@
               "Copilot Studio",
               "ai",
               L(
-                "La regla local detecta un problema de acceso…",
-                "The local rule detects an access issue…",
+                "La escena muestra la clasificación preparada de un problema de acceso…",
+                "The scene shows the prepared classification of an access issue…",
               ),
               L("Motivo: acceso a una cuenta", "Reason: account access"),
               {
@@ -2435,7 +2435,7 @@
                   ),
                   field(
                     L("Origen", "Source"),
-                    L("Reglas locales del ejemplo", "Local sample rules"),
+                    L("Clasificación preparada", "Prepared classification"),
                   ),
                 ],
               },

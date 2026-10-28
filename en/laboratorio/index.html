@@ -8,11 +8,11 @@
       http-equiv="Content-Security-Policy"
     />
     <meta content="strict-origin-when-cross-origin" name="referrer" />
-    <meta content="dark" name="color-scheme" />
-    <meta content="#0A1322" name="theme-color" />
-    <title>Interactive Laboratory — Humberto Henríquez</title>
+    <meta content="light" name="color-scheme" />
+    <meta content="#f3f7f7" name="theme-color" />
+    <title>Processes in motion — Humberto Henríquez</title>
     <meta
-      content="Explore apps, workflows, dashboards and agents through interactive examples with sample data."
+      content="Watch apps, workflows, dashboards and agents in automatic demonstrations with sample data."
       name="description"
     />
     <link
@@ -20,11 +20,11 @@
       rel="canonical"
     />
     <meta
-      content="Interactive Laboratory — Humberto Henríquez"
+      content="Processes in motion — Humberto Henríquez"
       property="og:title"
     />
     <meta
-      content="Explore apps, workflows, dashboards and agents through interactive examples with sample data."
+      content="Watch apps, workflows, dashboards and agents in automatic demonstrations with sample data."
       property="og:description"
     />
     <meta content="website" property="og:type" />
@@ -50,8 +50,8 @@
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "Interactive laboratory",
-        "description": "Explore apps, workflows, dashboards and agents through interactive examples with sample data.",
+        "name": "Processes in motion",
+        "description": "Watch apps, workflows, dashboards and agents in automatic demonstrations with sample data.",
         "url": "https://inghumbertohenriquez.com/en/laboratorio/",
         "isPartOf": {
           "@type": "WebSite",
@@ -116,8 +116,10 @@
       property="og:image:alt"
       content="Humberto Henríquez — Power Platform, Data Science, Automation"
     />
-    <link rel="stylesheet" href="/laboratorio/lab-visual.css?v=9525d923a3f4" />
-    <link rel="stylesheet" href="/laboratorio/platform-demos.css?v=cbbf2f0c2767" />
+    <link rel="stylesheet" href="/laboratorio/lab-visual.css?v=4fc431feb4d4" />
+
+    <link rel="stylesheet" href="/laboratorio/auto-player.css?v=d808296c05f6" />
+    <link rel="stylesheet" href="/laboratorio/auto-preview.css?v=e76b75b41bca" />
   </head>
   <body class="lab-visual-page">
     <a class="lab-skip" href="#escenario">Skip to the demo</a>
@@ -146,9 +148,9 @@
     <main id="contenido">
       <section class="lab-intro lab-width" aria-labelledby="lab-title">
         <div>
-          <p class="lab-eyebrow">Interactive laboratory</p>
-          <h1 id="lab-title">See how the technology works.</h1>
-          <p>Choose a process, change a decision and see the result.</p>
+          <p class="lab-eyebrow">Processes in motion</p>
+          <h1 id="lab-title">Watch an automation unfold.</h1>
+          <p>Watch a request become a completed task. No forms to fill in.</p>
         </div>
         <div class="lab-intro-flow" aria-label="An example process">
           <a href="#power-apps"
@@ -249,20 +251,20 @@
           </div>
           <div class="lab-stage-bar">
             <p class="lab-demo-note">
-              Interactive simulation with sample data. It does not act on your
-              systems.
+              Processes run automatically. Pause or replay whenever you like.
             </p>
-            <button id="resetDemo" class="lab-reset" type="button">
-              Reset example
-            </button>
+            <label class="lab-tour"
+              ><input type="checkbox" id="autoTour" checked />Tour all
+              examples</label
+            >
           </div>
           <div id="stage">
             <h2 id="demo-title" tabindex="-1">Loading examples…</h2>
           </div>
           <noscript
             ><p>
-              Enable JavaScript to interact with the examples. You can still
-              explore the illustrated consolidation case.
+              Enable JavaScript to watch the automatic demonstrations. You can
+              still explore the illustrated consolidation case.
             </p>
             <a href="/en/proyectos/consolidacion-datos/"
               >Explore the consolidation case</a
@@ -287,25 +289,12 @@
         ><a href="https://optimatiza.com/">Optimatiza</a>
       </nav>
     </footer>
-    <script defer src="/vendor/xlsx/xlsx.full.min.js"></script>
-    <script defer src="/vendor/chartjs/chart.umd.min.js"></script>
-    <script defer src="/en/laboratorio/lab-core.js?v=e2839053c439"></script>
-    <script defer src="/en/laboratorio/sys/prisma.js?v=a6686fc59280"></script>
-    <script defer src="/en/laboratorio/sys/orquesta.js?v=87017dded53d"></script>
-    <script defer src="/en/laboratorio/sys/centinela.js?v=27f03097ad8e"></script>
-    <script defer src="/en/laboratorio/sys/relevo.js?v=f1b793ca816b"></script>
-    <script defer src="/en/laboratorio/sys/boveda.js?v=39329b565f74"></script>
-    <script defer src="/en/laboratorio/sys/cartero.js?v=c9cf99468333"></script>
-    <script defer src="/en/laboratorio/sys/oraculo.js?v=ce49a093f50e"></script>
-    <script defer src="/en/laboratorio/sys/escudo.js?v=85a49f81c983"></script>
-    <script defer src="/en/laboratorio/sys/torre.js?v=0807875e213b"></script>
-    <script defer src="/en/laboratorio/sys/ruta.js?v=aadd1bf97349"></script>
-    <script defer src="/consolidation-demo.js?v=b31b4a3be38a"></script>
-    <script defer src="/laboratorio/guided-models.js?v=b76106569986"></script>
-    <script defer src="/laboratorio/guided-demos.js?v=c8c233334f8b"></script>
-    <script defer src="/laboratorio/platform-models.js?v=768b76dc2e71"></script>
-    <script defer src="/laboratorio/platform-demos.js?v=b766f1a4ba9a"></script>
-    <script defer src="/laboratorio/lab-boot.js?v=b1c660f79c62"></script>
+    <script defer src="/laboratorio/auto-icons.js?v=6bb088c82973"></script>
+    <script defer src="/laboratorio/auto-scenes.js?v=5c19e307edc1"></script>
+    <script defer src="/laboratorio/auto-playback.js?v=550120945dc6"></script>
+    <script defer src="/laboratorio/auto-preview.js?v=287875f09ae5"></script>
+    <script defer src="/laboratorio/auto-player.js?v=f36925fb7953"></script>
+    <script defer src="/laboratorio/lab-boot.js?v=19df0b67b4a9"></script>
     <script defer src="/en/nova.js"></script>
     <script defer src="/en/nova-companion.js"></script>
   </body>

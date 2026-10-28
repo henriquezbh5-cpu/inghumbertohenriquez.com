@@ -1,0 +1,178 @@
+/* The illustrated case shares the light process presentation. */
+:root,
+.consolidation-page {
+  --bg: #f3f7f7;
+  --bg-2: #fbfdfd;
+  --ink: #102c3c;
+  --body: #465f70;
+  --label: #4c6879;
+  --line: #d3e2e8;
+  --teal: #007c72;
+  --font-m: Inter, sans-serif;
+}
+.consolidation-page {
+  background: var(--bg);
+  color: var(--body);
+}
+.cd-shell {
+  width: min(1180px, calc(100% - 48px));
+}
+.cd-hero {
+  padding: 38px 0 36px;
+}
+.cd-eyebrow {
+  font:
+    600 12px/1.5 Inter,
+    sans-serif;
+  color: #00756b;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+.cd-hero h1 {
+  font: 600 clamp(34px, 4vw, 52px) / 1.1 var(--font-d);
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  max-width: 22ch;
+  margin: 0 0 20px;
+}
+.cd-lede {
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 65ch;
+  margin: 0;
+}
+.cd-auto-host {
+  min-height: 900px;
+}
+.cd-technologies {
+  padding-block: 40px;
+}
+.cd-technologies h2,
+.cd-next h2 {
+  font-size: 26px;
+  line-height: 1.25;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+}
+.cd-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.cd-tech-grid article {
+  border-top: 2px solid #a6cfc3;
+  padding-top: 16px;
+}
+.cd-tech-grid h3 {
+  font-size: 16px;
+  margin: 10px 0 6px;
+  color: var(--ink);
+}
+.cd-tech-grid p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+.cd-tech-mark {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 4px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: #247364;
+  font-size: 12px;
+  font-weight: 600;
+}
+.cd-next {
+  padding: 30px 0;
+  border-block: 1px solid var(--line);
+}
+.cd-next > div {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cd-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  background: #007c72;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.cd-text-link {
+  color: #006b60;
+  text-decoration: underline;
+  font-size: 14px;
+}
+.cd-details {
+  padding-block: 24px;
+  font-size: 13px;
+}
+.cd-details summary {
+  color: #27576b;
+  cursor: pointer;
+  min-height: 44px;
+  display: list-item;
+}
+.cd-details p {
+  max-width: 70ch;
+  margin-block: 12px;
+}
+.cd-details > div {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cd-details a {
+  color: #006e63;
+  text-decoration: underline;
+}
+.consolidation-page :is(button, a, summary):focus-visible {
+  outline: 3px solid #007c72;
+  outline-offset: 3px;
+}
+.profile-footer {
+  border-top-color: var(--line);
+}
+@media (max-width: 650px) {
+  .cd-shell {
+    width: calc(100% - 32px);
+  }
+  .cd-hero {
+    padding-block: 30px;
+  }
+  .cd-hero h1 {
+    font-size: 36px;
+  }
+  .cd-lede {
+    font-size: 16px;
+  }
+  .cd-tech-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cd-auto-host {
+    min-height: 1100px;
+  }
+  .cd-next > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .cd-technologies h2,
+  .cd-next h2 {
+    font-size: 24px;
+  }
+  .profile-nav-inner {
+    padding-inline: 16px;
+  }
+}

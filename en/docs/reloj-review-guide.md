@@ -1,41 +1,19 @@
-# RELOJ: technical review guide
+# RELOJ: automatic demonstration guide
 
-Own demonstration by Humberto Henríquez. Updated: 15 October 2026.
+This presentation uses sample data and illustrative screens. It does not connect real sources or publish a real dashboard.
 
-## What can be evaluated
+## Three walkthroughs
 
-RELOJ represents a close using four sources with different ages. It runs in the browser with synthetic data and a fixed seed. It lets a reviewer compare freshness and validation policies before publishing a result.
+- **Complete close:** SQL Server, SharePoint, API and Excel supply 10 rows. One duplicate is removed, leaving 9 records and a sample total of 5200.
+- **Unavailable source:** publication is shown as blocked when a source is missing. A partial total is not presented as a complete close.
+- **Recovery:** the source returns, the data is checked and a complete close is shown.
 
-- Case and limitations: https://inghumbertohenriquez.com/en/proyectos/consolidacion-datos/
-- Demonstration: https://inghumbertohenriquez.com/en/laboratorio/#reloj
-- Scenario code: https://inghumbertohenriquez.com/en/laboratorio/sys/reloj.js
-- Shared utilities: https://inghumbertohenriquez.com/laboratorio/lab-core.js
+Steps advance automatically. You can pause, play, replay or switch scenarios. Progress stops when the tab is hidden or the demonstration is outside the viewport. Reduced motion or data saving produces a static result.
 
-The linked code is served by the website. It is not a complete enterprise integration repository. No API keys or client data are needed to try the demonstration.
+## Presentation code
 
-## Reproducible walkthrough
+- `/laboratorio/auto-scenes.js`: prepared scenarios, records and states.
+- `/laboratorio/auto-player.js`: sequence, pause and playback.
+- `/laboratorio/auto-preview.js`: illustrative dashboard and data views.
 
-1. Open RELOJ and run its initial configuration. Review the age of each source, the source table and the final result.
-2. Reduce the freshness threshold and select the policy that rejects stale sources. When a source exceeds the threshold, the scenario stops there without publishing.
-3. Select acceptance with a warning, simulate a service outage and keep the option that stops on validation failure. The deferred source remains visible and the scenario stops at validation.
-4. Disable that stop and repeat. Publication continues with warnings; review the freshness information carried with the result.
-5. Compare with silent acceptance. This option represents the risk of hiding staleness; it is not an operational recommendation.
-
-## Design decisions to discuss
-
-- **Freshness per source:** a total alone cannot describe how current its inputs are.
-- **Separate state and policy:** source state and permission to publish are different decisions.
-- **Explicit warnings:** text should support assessment of deferred data without relying only on colour.
-- **Reproducible synthetic baseline:** the seed makes a scenario repeatable without exposing third-party information.
-
-The representation groups 42 checks into families; it does not run 42 external queries. Times and quantities are scenario values, not a performance measurement or observed savings.
-
-## What a real implementation would require
-
-Data contracts, real connectors, protected authentication and secrets, run persistence, idempotency, access controls, recovery tests and observability. Data handling and publication rules would be agreed with the responsible team. This demonstration does not establish that those components operate in production.
-
-## Contact
-
-Profile and terms: https://inghumbertohenriquez.com/en/colaboracion/
-
-Services through Optimatiza; employment opportunities discussed directly with Humberto. No immediate capacity or fixed delivery period is advertised.
+Visible changes belong to the demonstration script. A real implementation needs access, connectors, quality rules and tests against the organization's systems.

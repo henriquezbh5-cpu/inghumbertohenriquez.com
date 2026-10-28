@@ -640,7 +640,7 @@ document.querySelectorAll(".tool-grid .tool").forEach((el, i) => {
       t: "[00:01.900]",
       a: "OPERACIÓN",
       c: "la-tool",
-      m: "18 demostraciones · Power Platform · IA aplicada · datos",
+      m: "20 demostraciones · Power Platform · IA aplicada · datos",
     },
     {
       t: "[00:02.400]",
