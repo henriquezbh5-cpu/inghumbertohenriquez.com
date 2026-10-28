@@ -93,7 +93,7 @@
             "name": "Consolidación de datos y control del cierre | Humberto Henríquez",
             "description": "Caso técnico RELOJ: demo de consolidación con cuatro fuentes, frescura de datos y decisiones de publicación. Escenario sintético ejecutable en el navegador.",
             "inLanguage": "es",
-            "dateModified": "2026-09-23"
+            "dateModified": "2026-10-28"
           },
           {
             "@type": "BreadcrumbList",
@@ -149,8 +149,10 @@
       property="og:image:alt"
       content="Humberto Henríquez — Power Platform, Data Science, Automation"
     />
+    <link rel="stylesheet" href="/consolidation-demo.css?v=6d24b0bec075" />
+    <script defer src="/consolidation-demo.js?v=b31b4a3be38a"></script>
   </head>
-  <body class="profile-page">
+  <body class="profile-page consolidation-page">
     <a class="skip-link mono" href="#contenido">Ir al contenido</a>
     <header class="profile-nav">
       <div class="profile-nav-inner">
@@ -193,216 +195,276 @@
         </nav>
       </div>
     </header>
-    <main id="contenido" class="profile-shell" tabindex="-1">
+    <main id="contenido" class="profile-shell cd-shell" tabindex="-1">
       <nav class="profile-breadcrumbs" aria-label="Ruta de navegación">
         <a href="/">Inicio</a> <span aria-hidden="true">/</span>
         <a href="/#sistemas">Proyectos</a> <span aria-hidden="true">/</span>
         <span aria-current="page">Consolidación de datos</span>
       </nav>
-      <header class="profile-hero">
-        <p class="profile-eyebrow">
-          Caso técnico · Demostración con datos sintéticos
+      <header class="cd-hero">
+        <p class="cd-eyebrow">Demostración interactiva</p>
+        <h1>Cuatro fuentes. Un resultado que puedes comprobar.</h1>
+        <p class="cd-lede">
+          Cambia lo que ocurre en una fuente y observa si el tablero se publica,
+          se detiene o muestra un aviso.
         </p>
-        <h1>Consolidación de datos:<br />publicar con criterio.</h1>
-        <p class="profile-lede">
-          RELOJ explora un problema del cierre mensual: cuatro fuentes llegan
-          con distinta antigüedad y una puede dejar de responder. La decisión de
-          aceptar, marcar o detener cambia lo que se publica.
-        </p>
-        <p class="profile-meta">
-          Proyecto y explicación:
-          <a href="/perfil/">Humberto Wilfredo Henríquez Benítez</a> ·
-          Actualizado el
-          <time datetime="2026-09-23">23 de septiembre de 2026</time>
-        </p>
-        <div class="profile-actions">
-          <a class="profile-button" href="/laboratorio/#reloj">Probar RELOJ</a
-          ><a
-            class="profile-button secondary"
-            href="/laboratorio/sys/reloj.js?v=33e8193c5aae"
-            >Consultar el motor de la demo</a
-          >
-        <a class="profile-button secondary" href="/docs/reloj-review-guide.md" download>Descargar guía de revisión</a>
-          </div>
       </header>
-      <section class="profile-section">
-        <h2>El problema que representa</h2>
-        <p>
-          Un total puede parecer correcto aunque una fuente pertenezca al
-          periodo anterior. La demostración permite observar cómo la frescura,
-          las reglas de validación y la política de publicación afectan al
-          cierre. El trabajo técnico consiste en modelar esas decisiones y hacer
-          visibles sus consecuencias.
+      <section
+        class="cd-demo"
+        id="consolidationDemo"
+        aria-label="Demostración interactiva"
+      >
+        <p class="cd-scope">
+          Simulación en tu navegador con datos de ejemplo. Las tecnologías
+          muestran su papel en el proceso; no hay conexiones a sistemas reales.
         </p>
-        <p class="profile-note">
-          <strong>Alcance:</strong> simulación interactiva ejecutada en el
-          navegador con datos sintéticos y semilla fija. No se conecta a
-          sistemas de clientes. Los tiempos, cantidades y diferencias mostrados
-          son valores del escenario; no son métricas de impacto de un cliente ni
-          un benchmark.
-        </p>
-        <figure class="profile-figure">
-          <img
-            src="/img/capturas/proyecto-dashboard-ejecutivo.webp?v=810472cd"
-            width="1600"
-            height="1000"
-            loading="lazy"
-            decoding="async"
-            alt="Captura de RELOJ, demostración de consolidación de cuatro fuentes con datos sintéticos"
-          />
-          <figcaption>
-            Captura real de la interfaz del laboratorio. Sus datos representan
-            un escenario sintético.
-          </figcaption>
-        </figure>
-      </section>
-      <section class="profile-section">
-        <h2>Cómo está construido el escenario</h2>
-        <p>
-          El motor JavaScript calcula el estado de las fuentes y el resultado
-          del cierre según los controles seleccionados. La cadena representada
-          recorre extracción, preparación, validación, modelo y publicación.
-        </p>
-        <ol
-          class="profile-flow"
-          aria-label="Cadena representada en la demostración"
+        <form class="cd-controls" id="consolidationForm">
+          <fieldset class="cd-scenarios">
+            <legend>1. Elige qué ocurre</legend>
+            <div class="cd-scenario-options">
+              <label
+                ><input
+                  type="radio"
+                  name="scenario"
+                  value="current"
+                  checked
+                /><span>Todo al día</span></label
+              >
+              <label
+                ><input type="radio" name="scenario" value="stale" /><span
+                  >Excel atrasado</span
+                ></label
+              >
+              <label
+                ><input type="radio" name="scenario" value="offline" /><span
+                  >API sin respuesta</span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <label class="cd-policy" for="publicationPolicy"
+            ><span>Si hay un problema</span
+            ><select id="publicationPolicy" name="policy">
+              <option value="stop">Detener la publicación</option>
+              <option value="warn">Publicar con aviso</option>
+            </select></label
+          >
+          <div class="cd-actions">
+            <button
+              class="cd-button"
+              id="consolidateButton"
+              type="submit"
+              disabled
+            >
+              Consolidar datos</button
+            ><button
+              class="cd-reset"
+              id="consolidationReset"
+              type="reset"
+              disabled
+            >
+              Restablecer
+            </button>
+          </div>
+        </form>
+        <noscript
+          ><p class="cd-noscript">
+            Activa JavaScript para usar los controles de esta demostración.
+          </p></noscript
         >
-          <li>Cuatro fuentes</li>
-          <li>Preparación</li>
-          <li>Validación</li>
-          <li>Modelo semántico</li>
-          <li>Publicación</li>
-        </ol>
-        <div
-          class="profile-table-wrap"
-          role="region"
-          aria-label="Fuentes del escenario"
-          tabindex="0"
-        >
-          <table class="profile-table">
-            <thead>
-              <tr>
-                <th scope="col">Origen representado</th>
-                <th scope="col">Condición que permite explorar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Base transaccional</td>
-                <td>Consulta incremental con un corte reciente.</td>
-              </tr>
-              <tr>
-                <td>Listas de apoyo</td>
-                <td>
-                  Datos de colaboración con otro momento de actualización.
-                </td>
-              </tr>
-              <tr>
-                <td>Servicio de tesorería</td>
-                <td>
-                  Caída simulada y recuperación de un extracto del periodo
-                  anterior.
-                </td>
-              </tr>
-              <tr>
-                <td>Archivos de sucursal</td>
-                <td>
-                  Libros de Excel con una antigüedad superior a la de los otros
-                  orígenes.
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <section class="cd-inputs" aria-labelledby="sourceTitle">
+          <h2 id="sourceTitle" class="cd-section-title">
+            2. Revisa las fuentes
+          </h2>
+          <div class="cd-source-grid">
+            <article class="cd-source" data-source="sql">
+              <div class="cd-source-top">
+                <span class="cd-source-icon cd-icon-sql" aria-hidden="true"
+                  >SQL</span
+                ><span class="cd-source-state" data-source-status>Al día</span>
+              </div>
+              <h3>SQL Server</h3>
+              <p>Pedidos</p>
+              <div class="cd-source-foot">
+                <span><strong data-source-rows>3</strong> filas</span
+                ><span data-source-age>1 h desde actualización</span>
+              </div>
+            </article>
+            <article class="cd-source" data-source="sp">
+              <div class="cd-source-top">
+                <span class="cd-source-icon cd-icon-sp" aria-hidden="true"
+                  >SP</span
+                ><span class="cd-source-state" data-source-status>Al día</span>
+              </div>
+              <h3>SharePoint</h3>
+              <p>Ajustes</p>
+              <div class="cd-source-foot">
+                <span><strong data-source-rows>3</strong> filas</span
+                ><span data-source-age>2 h desde actualización</span>
+              </div>
+            </article>
+            <article class="cd-source" data-source="api">
+              <div class="cd-source-top">
+                <span class="cd-source-icon cd-icon-api" aria-hidden="true"
+                  >API</span
+                ><span class="cd-source-state" data-source-status>Al día</span>
+              </div>
+              <h3>API</h3>
+              <p>Cobros</p>
+              <div class="cd-source-foot">
+                <span><strong data-source-rows>2</strong> filas</span
+                ><span data-source-age>1 h desde actualización</span>
+              </div>
+            </article>
+            <article class="cd-source" data-source="excel">
+              <div class="cd-source-top">
+                <span class="cd-source-icon cd-icon-excel" aria-hidden="true"
+                  >XLS</span
+                ><span class="cd-source-state" data-source-status>Al día</span>
+              </div>
+              <h3>Excel</h3>
+              <p>Sucursales</p>
+              <div class="cd-source-foot">
+                <span><strong data-source-rows>2</strong> filas</span
+                ><span data-source-age>3 h desde actualización</span>
+              </div>
+            </article>
+          </div>
+        </section>
+        <div class="cd-outcome-grid">
+          <section class="cd-process" aria-labelledby="processTitle">
+            <h2 id="processTitle" class="cd-section-title">
+              3. Sigue el recorrido
+            </h2>
+            <ol class="cd-pipeline">
+              <li data-step="collect">
+                <span class="cd-step-symbol" aria-hidden="true">1</span>
+                <div><strong>Recoger</strong><span>Power Automate</span></div>
+                <span class="cd-step-state" data-step-status></span>
+              </li>
+              <li data-step="prepare">
+                <span class="cd-step-symbol" aria-hidden="true">2</span>
+                <div><strong>Unificar</strong><span>Python · SQL</span></div>
+                <span class="cd-step-state" data-step-status></span>
+              </li>
+              <li data-step="validate">
+                <span class="cd-step-symbol" aria-hidden="true">3</span>
+                <div>
+                  <strong>Validar</strong><span>Reglas de calidad</span>
+                </div>
+                <span class="cd-step-state" data-step-status></span>
+              </li>
+            </ol>
+            <p class="cd-rule" id="consolidationRule"></p>
+          </section>
+          <section class="cd-dashboard" aria-labelledby="resultTitle">
+            <div class="cd-dashboard-head">
+              <h2 id="resultTitle" class="cd-section-title">
+                4. Comprueba el resultado
+              </h2>
+              <span>Vista tipo Power BI</span>
+            </div>
+            <div
+              id="consolidationStatus"
+              class="cd-status"
+              role="status"
+              aria-live="polite"
+            >
+              <strong>Listo para consolidar</strong>
+              <p>Elige un escenario y pulsa Consolidar datos.</p>
+            </div>
+            <dl class="cd-metrics">
+              <div class="cd-metric-main">
+                <dt>Importe de ejemplo</dt>
+                <dd id="consolidationAmount">—</dd>
+              </div>
+              <div>
+                <dt>Registros únicos</dt>
+                <dd id="consolidationRecords">—</dd>
+              </div>
+              <div>
+                <dt>Duplicados eliminados</dt>
+                <dd id="consolidationDuplicates">—</dd>
+              </div>
+            </dl>
+            <div class="cd-chart">
+              <h3>Distribución por región</h3>
+              <div class="cd-chart-row">
+                <span>Norte</span>
+                <div class="cd-track">
+                  <span class="cd-bar" data-bar="north"></span>
+                </div>
+                <strong data-region="north">—</strong>
+              </div>
+              <div class="cd-chart-row">
+                <span>Sur</span>
+                <div class="cd-track">
+                  <span class="cd-bar" data-bar="south"></span>
+                </div>
+                <strong data-region="south">—</strong>
+              </div>
+              <div class="cd-chart-row">
+                <span>Occidente</span>
+                <div class="cd-track">
+                  <span class="cd-bar" data-bar="west"></span>
+                </div>
+                <strong data-region="west">—</strong>
+              </div>
+            </div>
+          </section>
         </div>
-        <p>
-          La representación agrupa 42 controles por familias: llaves, integridad
-          referencial, cuadre, frescura y formato. El motor deriva
-          incumplimientos del escenario; no ejecuta 42 consultas sobre una base
-          de datos externa.
-        </p>
+        <details class="cd-details">
+          <summary>Ver qué pasó con cada fuente</summary>
+          <ol id="consolidationTrace" class="cd-trace">
+            <li>Elige un escenario y pulsa Consolidar datos.</li>
+          </ol>
+        </details>
       </section>
-      <section class="profile-section">
-        <h2>Recorrido para comprobar el comportamiento</h2>
-        <ol class="profile-steps">
-          <li>
-            <strong>Ejecuta la configuración inicial.</strong> Revisa el corte
-            de cada origen y el resultado de la cadena.
-          </li>
-          <li>
-            <strong>Reduce el umbral de frescura.</strong> Una fuente puede
-            quedar fuera del límite aunque siga respondiendo.
-          </li>
-          <li>
-            <strong>Selecciona «No aceptar».</strong> Si hay un origen vencido,
-            observa cómo la cadena se detiene en la fuente.
-          </li>
-          <li>
-            <strong>Selecciona «Aceptar con marca».</strong> Activa «Simular
-            servicio caído» y conserva «Detener si la validación falla». El
-            escenario debe detenerse en validación.
-          </li>
-          <li>
-            <strong>Desactiva esa detención.</strong> Compara el resultado
-            publicado con avisos y revisa qué información acompaña al dato
-            diferido.
-          </li>
-        </ol>
-        <p>
-          El registro, la tabla de orígenes y el resultado final permiten
-          contrastar la política elegida con sus consecuencias. «Aceptar en
-          silencio» representa deliberadamente el riesgo de ocultar la
-          antigüedad, no una recomendación de operación.
-        </p>
-      </section>
-      <section class="profile-section">
-        <h2>Decisiones de diseño y límites</h2>
-        <div class="profile-grid">
-          <article class="profile-card">
-            <h3>Frescura visible</h3>
-            <p>
-              La antigüedad se evalúa por fuente y se expresa con texto. El
-              color acompaña la explicación.
-            </p>
+      <section class="cd-technologies" aria-labelledby="technologyTitle">
+        <h2 id="technologyTitle">Qué aporta cada tecnología</h2>
+        <div class="cd-tech-grid">
+          <article>
+            <span class="cd-tech-mark" aria-hidden="true">PA</span>
+            <h3>Power Automate</h3>
+            <p>Recoge los datos y coordina los pasos.</p>
           </article>
-          <article class="profile-card">
-            <h3>Política separada</h3>
-            <p>
-              El mismo escenario puede detenerse o publicarse con avisos según
-              la decisión de control.
-            </p>
+          <article>
+            <span class="cd-tech-mark" aria-hidden="true">PY</span>
+            <h3>Python · SQL</h3>
+            <p>Normaliza filas y elimina duplicados.</p>
           </article>
-          <article class="profile-card">
-            <h3>Escenario reproducible</h3>
-            <p>
-              La semilla fija y las reglas del motor permiten comparar
-              decisiones sobre la misma base sintética.
-            </p>
+          <article>
+            <span class="cd-tech-mark" aria-hidden="true">BI</span>
+            <h3>Power BI</h3>
+            <p>Presenta el resultado y sus advertencias.</p>
           </article>
         </div>
-        <p class="profile-note">
-          Llevar este patrón a producción requiere contratos y validaciones
-          sobre datos reales, credenciales protegidas, persistencia de
-          ejecuciones, controles de acceso, pruebas de recuperación y métricas
-          operativas. Esos componentes no se acreditan mediante esta demo.
-        </p>
       </section>
-      <aside class="profile-callout">
-        <h2>Otros casos del mismo enfoque</h2>
-        <p>
-          Visibilidad de tareas en Oficina Viva y automatización documental en
-          Capturista digital: problemas distintos con responsabilidades y
-          alcances explícitos.
-        </p>
-        <div class="profile-actions">
-          <a class="profile-button" href="https://optimatiza.com/oficina-viva/"
-            >Oficina Viva</a
-          ><a
-            class="profile-button secondary"
-            href="https://optimatiza.com/casos/capturista-digital/"
-            >Capturista digital</a
+      <aside class="cd-next">
+        <h2>Explora el mismo problema con más controles</h2>
+        <div>
+          <a class="cd-button" href="/laboratorio/#reloj"
+            >Abrir RELOJ en el laboratorio</a
+          ><a class="cd-text-link" href="/#contacto"
+            >Conversar sobre mi proceso</a
           >
         </div>
       </aside>
+      <details class="cd-details cd-resources">
+        <summary>Fuentes y alcance de esta demo</summary>
+        <p>
+          La suma y los estados se calculan aquí sobre datos sintéticos. Una
+          solución real requiere accesos, conectores, validaciones y pruebas con
+          los sistemas de la organización.
+        </p>
+        <div>
+          <a href="/consolidation-demo.js?v=b31b4a3be38a"
+            >Consultar el código de esta demo</a
+          ><a href="/docs/reloj-review-guide.md" download
+            >Descargar guía de revisión de RELOJ</a
+          >
+        </div>
+      </details>
     </main>
     <footer class="profile-footer">
       <div class="profile-shell profile-footer-inner">
