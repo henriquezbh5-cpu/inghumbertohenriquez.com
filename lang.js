@@ -1,8 +1,7 @@
-/* Country-aware language selection for both static websites. */
+/* Explicit language selection; requested URLs keep their own language. */
 (() => {
   "use strict";
 
-  const script = document.currentScript;
   const storageKey = "website-language";
   const valid = (value) => value === "es" || value === "en";
   const current = document.documentElement.lang.startsWith("en") ? "en" : "es";
@@ -25,23 +24,6 @@
     target.hash = location.hash;
     return target;
   };
-  const readPreference = () => {
-    try {
-      const value =
-        localStorage.getItem(storageKey) || localStorage.getItem("optz-lang");
-      if (valid(value)) return value;
-    } catch {
-      /* Cookies remain available when local storage is restricted. */
-    }
-    try {
-      const match = document.cookie.match(
-        /(?:^|;\s*)website-language=(es|en)(?:;|$)/,
-      );
-      return match ? match[1] : null;
-    } catch {
-      return null;
-    }
-  };
   const remember = (language) => {
     if (!valid(language)) return false;
     let persisted = false;
@@ -60,8 +42,6 @@
     return persisted;
   };
   const requestedLanguage = new URL(location.href).searchParams.get("lang");
-  let volatilePreference = valid(requestedLanguage) ? requestedLanguage : null;
-  let manuallySelected = false;
   let callbackSequence = 0;
   const updateCallbackLanguage = async (language) => {
     const sequence = ++callbackSequence;
@@ -139,32 +119,8 @@
         event.target instanceof Element
           ? event.target.closest("a[data-lang]")
           : null;
-      if (!link || !valid(link.dataset.lang)) {
-        // Carry only the public language choice when all browser storage is blocked.
-        const navigation =
-          event.target instanceof Element
-            ? event.target.closest("a[href]")
-            : null;
-        if (
-          !volatilePreference ||
-          !navigation ||
-          navigation.hasAttribute("download")
-        )
-          return;
-        const destination = new URL(navigation.href, location.href);
-        if (
-          destination.origin !== location.origin ||
-          !/\/$|\.html$/.test(destination.pathname) ||
-          /\/(callback|gracias-pago)\//.test(destination.pathname)
-        )
-          return;
-        destination.searchParams.set("lang", volatilePreference);
-        navigation.href = destination.href;
-        return;
-      }
-      manuallySelected = true;
+      if (!link || !valid(link.dataset.lang)) return;
       const persisted = remember(link.dataset.lang);
-      volatilePreference = persisted ? null : link.dataset.lang;
       if (/\/callback\//.test(location.pathname)) {
         event.preventDefault();
         updateCallbackLanguage(link.dataset.lang).catch(() => {
@@ -212,95 +168,10 @@
       return;
     }
   }
+  // A language parameter is an explicit choice; saved preferences, browser
+  // language and geolocation must not override an otherwise requested URL.
   if (valid(requestedLanguage)) {
-    if (remember(requestedLanguage)) volatilePreference = null;
+    remember(requestedLanguage);
     navigate(requestedLanguage);
-    return;
   }
-  const preference = readPreference();
-  if (preference) {
-    navigate(preference);
-    return;
-  }
-  // A shared English URL explicitly requests English; geo does not override it.
-  if (location.pathname.startsWith("/en/")) return;
-  const browserLanguage = () => {
-    const primary =
-      (navigator.languages && navigator.languages[0]) ||
-      navigator.language ||
-      "es";
-    return primary.toLowerCase().startsWith("en") ? "en" : "es";
-  };
-  const languageForCountry = (country) => {
-    if (country === "US") return "en";
-    if (
-      [
-        "ES",
-        "SV",
-        "MX",
-        "GT",
-        "HN",
-        "NI",
-        "CR",
-        "PA",
-        "CU",
-        "DO",
-        "PR",
-        "CO",
-        "VE",
-        "EC",
-        "PE",
-        "BO",
-        "PY",
-        "CL",
-        "AR",
-        "UY",
-        "GQ",
-      ].includes(country)
-    )
-      return "es";
-    return browserLanguage();
-  };
-  let cachedCountry = null;
-  try {
-    cachedCountry = sessionStorage.getItem("website-country");
-  } catch {
-    /* No cache. */
-  }
-  if (cachedCountry && /^[A-Z]{2}$/.test(cachedCountry)) {
-    navigate(languageForCountry(cachedCountry));
-    return;
-  }
-  const endpoint = script?.dataset.countryEndpoint || "/cdn-cgi/trace";
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 1500);
-  fetch(endpoint, {
-    credentials: "omit",
-    cache: "no-store",
-    signal: controller.signal,
-  })
-    .then((response) => {
-      if (
-        !response.ok ||
-        !response.headers.get("content-type")?.includes("text/plain")
-      )
-        throw new Error("Country unavailable");
-      return response.text();
-    })
-    .then((trace) => {
-      // Extract only ISO country. IP and other trace fields are never retained.
-      const match = trace.match(/^loc=([A-Z]{2})\s*$/m);
-      if (!match) throw new Error("Country unavailable");
-      try {
-        sessionStorage.setItem("website-country", match[1]);
-      } catch {
-        /* No cache. */
-      }
-      if (!manuallySelected && !readPreference())
-        navigate(languageForCountry(match[1]));
-    })
-    .catch(() => {
-      if (!manuallySelected && !readPreference()) navigate(browserLanguage());
-    })
-    .finally(() => clearTimeout(timeout));
 })();
