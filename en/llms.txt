@@ -1,6 +1,6 @@
 # Humberto Wilfredo Henríquez Benítez
 
-> Systems engineer, data scientist and senior consultant in Microsoft Power Platform, data, automation and applied AI. Works remotely from San Salvador, El Salvador.
+> Power Platform architect and senior React developer. His practice covers data, automation and applied AI. Works remotely from San Salvador, El Salvador.
 
 ## Personal website
 
@@ -12,7 +12,7 @@
 - [Publications](https://inghumbertohenriquez.com/en/publicaciones/): technical perspectives and articles authored by Humberto.
 - [Contact](https://inghumbertohenriquez.com/en/#contacto): external collaboration, defined projects and fully remote employment opportunities.
 
-- [Professional pack](https://inghumbertohenriquez.com/en/colaboracion/): one-page summary, current ES/EN CVs, three own-project/demonstration cases, code review guide and engagement terms. Remote overlap with Spain is agreed for each engagement.
+- [Professional pack](https://inghumbertohenriquez.com/en/colaboracion/): one-page summary, current ES/EN CVs, three own-project/demonstration cases, code review guide and engagement terms. Working-hour overlap, time commitment and language are agreed for each international engagement.
 
 ## Professional services through Optimatiza
 
@@ -20,3 +20,12 @@
 - [Support for consulting firms](https://optimatiza.com/en/acompanamiento-tecnologico/#consultoras): senior collaboration within the team on Power Platform, data and automation.
 
 Employment opportunities are discussed directly with Humberto. Professional services are managed through Optimatiza. Time commitment, start date, scope and terms are agreed on a case-by-case basis. This website does not advertise immediate availability, fixed rates or Microsoft Partner credentials.
+
+- [Power Platform architecture](https://optimatiza.com/en/power-platform/)
+- [React and Next.js application development](https://optimatiza.com/en/aplicaciones-empresariales/#desarrollo-react-nextjs)
+- [Data and Power BI](https://optimatiza.com/en/data-business-intelligence/)
+- [Integration, Google Workspace to Microsoft 365 transition and training](https://optimatiza.com/en/integracion-sistemas/#migracion-google-microsoft)
+
+## International coordination
+
+Remote engagements can be assessed for Spain, Latin America, Spanish-speaking teams in the United States and other markets. This offer does not imply offices in those countries or unconfirmed availability. Native Spanish and written technical English; the professional pack specifies a basic level for reading technical documentation. Scope, responsibilities, working hours and capacity are agreed before starting.

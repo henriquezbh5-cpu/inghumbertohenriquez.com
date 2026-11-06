@@ -1,6 +1,6 @@
 # Humberto Wilfredo Henríquez Benítez
 
-> Ingeniero en sistemas, científico de datos y consultor senior en Microsoft Power Platform, datos, automatización e IA aplicada. Trabaja de forma remota desde San Salvador, El Salvador.
+> Arquitecto Power Platform y desarrollador senior React. Su práctica abarca datos, automatización e IA aplicada. Trabaja de forma remota desde San Salvador, El Salvador.
 
 ## Sitio personal
 
@@ -12,7 +12,7 @@
 - [Publicaciones](https://inghumbertohenriquez.com/publicaciones/): criterios técnicos y artículos de autoría de Humberto.
 - [Contacto](https://inghumbertohenriquez.com/#contacto): colaboración externa, proyectos definidos y oportunidades de incorporación 100% remota.
 
-- [Paquete profesional](https://inghumbertohenriquez.com/colaboracion/): resumen de una página, CV actuales ES/EN, tres casos propios/demostrativos, guía de revisión del código y condiciones de colaboración. El solape remoto con España se acuerda en cada colaboración.
+- [Paquete profesional](https://inghumbertohenriquez.com/colaboracion/): resumen de una página, CV actuales ES/EN, tres casos propios/demostrativos, guía de revisión del código y condiciones de colaboración. El solape horario, la dedicación y el idioma se acuerdan para cada colaboración internacional.
 
 ## Servicios profesionales mediante Optimatiza
 
@@ -20,3 +20,12 @@
 - [Refuerzo para consultoras](https://optimatiza.com/acompanamiento-tecnologico/#consultoras): colaboración senior integrada al equipo para Power Platform, datos y automatización.
 
 Las oportunidades laborales se conversan directamente con Humberto. Los servicios profesionales se gestionan mediante Optimatiza. La dedicación, fecha de inicio, alcance y condiciones se acuerdan en cada caso. Este sitio no publica disponibilidad inmediata, tarifas fijas ni acreditaciones de Microsoft Partner.
+
+- [Arquitectura Power Platform](https://optimatiza.com/power-platform/)
+- [Desarrollo de aplicaciones React y Next.js](https://optimatiza.com/aplicaciones-empresariales/#desarrollo-react-nextjs)
+- [Datos y Power BI](https://optimatiza.com/data-business-intelligence/)
+- [Integración, transición de Google Workspace a Microsoft 365 y capacitación](https://optimatiza.com/integracion-sistemas/#migracion-google-microsoft)
+
+## Coordinación internacional
+
+Se pueden valorar colaboraciones remotas para España, Latinoamérica, equipos hispanohablantes de Estados Unidos y otros mercados. La oferta no implica oficinas en esos países ni disponibilidad sin confirmar. Español nativo e inglés técnico escrito; el paquete profesional precisa el nivel básico para lectura de documentación técnica. Alcance, responsabilidades, horario y capacidad se acuerdan antes de iniciar.
