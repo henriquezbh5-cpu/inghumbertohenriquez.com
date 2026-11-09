@@ -1,0 +1,187 @@
+/* Authorized commercial collaboration, shared by the home and profile pages. */
+.hh-partnership {
+  width: min(1200px, calc(100% - 96px));
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) 0;
+  scroll-margin-top: 104px;
+  color: #c9d7e5;
+  font-family: Inter, sans-serif;
+}
+.hh-partnership--profile {
+  width: 100%;
+}
+.hh-partnership .hh-partnership__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid #36505f;
+  border-top: 3px solid #a9d8cd;
+  border-radius: 14px;
+  background: #142534;
+}
+.hh-partnership .hh-partnership__signature {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 22px;
+  min-width: 0;
+  padding: clamp(24px, 4vw, 48px) 24px;
+  border-radius: 8px;
+  background: #fff;
+  color: #0b1b2b;
+}
+.hh-partnership .hh-partnership__optimatiza {
+  font: 700 clamp(30px, 3.2vw, 44px)/1.2 'Space Grotesk', sans-serif;
+  letter-spacing: -.04em;
+  white-space: nowrap;
+}
+.hh-partnership .hh-partnership__optimatiza span {
+  color: #0f766e;
+}
+.hh-partnership .hh-partnership__join {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 80%;
+  color: #0f766e;
+  font-size: 24px;
+  line-height: 1;
+}
+.hh-partnership .hh-partnership__join::before,
+.hh-partnership .hh-partnership__join::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #cddcde;
+}
+.hh-partnership .hh-partnership__logo {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  object-fit: contain;
+}
+.hh-partnership .hh-partnership__copy {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+.hh-partnership .hh-partnership__label {
+  margin: 0 0 16px;
+  color: #beece5;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.hh-partnership .hh-partnership__title {
+  margin: 0 0 24px;
+  color: #fff;
+  font: 700 clamp(30px, 3.5vw, 46px)/1.12 'Space Grotesk', sans-serif;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.hh-partnership .hh-partnership__body {
+  max-width: 56ch;
+  margin: 0;
+  color: #c9d7e5;
+  font-size: 17px;
+  line-height: 1.7;
+}
+.hh-partnership .hh-partnership__actions {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+.hh-partnership .hh-partnership__primary,
+.hh-partnership .hh-partnership__secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font: 600 15px/1.5 Inter, sans-serif;
+  text-align: center;
+  text-decoration: none;
+}
+.hh-partnership .hh-partnership__primary {
+  color: #0b1b2b;
+  background: #beece5;
+  border: 1px solid #beece5;
+}
+.hh-partnership .hh-partnership__primary:hover {
+  background: #fff;
+  border-color: #fff;
+}
+.hh-partnership .hh-partnership__secondary {
+  padding-inline: 0;
+  color: #eef2f1;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: #8faeb7;
+}
+.hh-partnership .hh-partnership__secondary:hover {
+  text-decoration-color: currentColor;
+}
+.hh-partnership a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 5px;
+}
+.hh-partnership .hh-partnership__quality {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 24px;
+  border-top: 1px solid #36505f;
+  color: #beece5;
+  font-size: 16px;
+  line-height: 1.6;
+}
+@media (max-width: 800px) {
+  .hh-partnership {
+    width: calc(100% - 48px);
+    scroll-margin-top: 96px;
+  }
+  .hh-partnership--profile {
+    width: 100%;
+  }
+  .hh-partnership .hh-partnership__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .hh-partnership .hh-partnership__signature,
+  .hh-partnership .hh-partnership__copy {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .hh-partnership .hh-partnership__signature {
+    padding: 28px 24px;
+    gap: 18px;
+  }
+}
+@media (max-width: 400px) {
+  .hh-partnership {
+    width: calc(100% - 32px);
+  }
+  .hh-partnership--profile {
+    width: 100%;
+  }
+  .hh-partnership .hh-partnership__inner {
+    padding: 24px 20px;
+  }
+  .hh-partnership .hh-partnership__primary {
+    width: 100%;
+  }
+}
+@media print {
+  .hh-partnership {
+    width: 100%;
+    break-inside: avoid;
+  }
+}
